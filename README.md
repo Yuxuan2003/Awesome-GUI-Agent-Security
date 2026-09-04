@@ -215,7 +215,7 @@
 
 ## 贡献
 
-只需修改 `data/papers.yaml`，`README.md` 与 `papers_by_*/` 下所有文件由 GitHub Actions 自动生成。收录标准与条目格式见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+只需修改 `data/papers.yaml`，`README.md` 与 `papers_by_*/` 下所有文件由 GitHub Actions 自动生成。收录标准与条目格式见 [CONTRIBUTING.md](CONTRIBUTING.md)，维护流程见 [MAINTENANCE.md](MAINTENANCE.md)。
 
 ## 相关仓库
 
