@@ -5,6 +5,10 @@ name: Link Check
 #   2. check_links.py   —— arXiv 可达性 + 标题精确匹配 + v1 日期一致性（联网，慢）
 #
 # PR 只跑抽样（12 条），避免 arXiv 限速拖慢反馈；每周全量跑一次抓外链腐坏。
+#
+# 注意 push 不加 paths 过滤：首次推送时 data/** 属新增文件，
+# paths 过滤不会匹配，导致 Link Check 无法在建仓时自动跑起来（实测踩过）。
+# 本 workflow 很轻，不过滤也无所谓。
 
 on:
   pull_request:
@@ -13,8 +17,6 @@ on:
       - 'scripts/**'
   push:
     branches: [main]
-    paths:
-      - 'data/**'
   schedule:
     - cron: '0 3 * * 1'   # 每周一 03:00 UTC 全量
   workflow_dispatch:

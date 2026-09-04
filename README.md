@@ -82,7 +82,10 @@
 
 *对抗补丁、弹窗诱导、排版攻击、截图污染*
 
-*本节暂无收录条目*（arXiv 存量约 18 篇待整理，欢迎 PR）
+#### MIRAGE: Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents (MIRAGE) (2026-06)
+- **简介**：批评现有针对多模态 web agent 的对抗评测普遍采用过于宽松的威胁模型、依赖视觉上显眼的 伪影。本文转向受约束的现实设定：评测者只是不具特权的第三方（如商家或广告主），仅能控制 广告位、赞助卡片这类语义合法且空间受限的区域。在此约束下提出视觉间接注入框架 MIRAGE， 实现对下一步动作的定向劫持，说明即便攻击者只掌握页面上一小块合法区域，也足以操纵 基于视觉的 agent。
+- **环境**：Web
+- **arXiv**：[2606.20717](https://arxiv.org/abs/2606.20717)
 
 ### 1.3 环境注入
 
@@ -145,7 +148,10 @@
 
 ### 2.1 输入侧过滤与净化
 
-*本节暂无收录条目*
+#### Untrusted Content Masking for Web Agents with Security Guarantees (UCM) (2026-07)
+- **简介**：指出可证明的注入防御依赖可信指令与不可信数据之间的严格隔离，这在纯文本的 tool-use 场景 中天然成立（agent 可只依据接口定义推理，无需接触不可信内容），但 web agent 必须先观察 渲染后的页面才能感知环境，而页面把可信与不可信内容结构性地混在一起，导致安全保证赖以 成立的信任边界消失。提出 Untrusted Content Masking，利用页面的结构特性在 web 环境中 重建这一边界，使既有的可证明防御能够迁移过来。
+- **环境**：Web
+- **arXiv**：[2607.05277](https://arxiv.org/abs/2607.05277)
 
 ### 2.2 执行前风险评估
 
@@ -161,6 +167,11 @@
 - **简介**：揭示 self-report 这一最廉价的监督通道恰恰在最需要它的地方失效：在 361 个 OSWorld 任务上， 流水线平均分 82.9（超过人类基线 72.4），但 71 次失败里有 64 次（90%）以「成功」收尾， 61 次声称没有遇到任何阻碍，约 9100 次调用中显式的失败上报机制从未被使用。提出外部监控器 CURA，只读 harness 可见的遥测数据，不需模型内部状态、额外 LLM 调用或改 prompt，把运行 轨迹转成带误报率保证的序贯检验：α=0.10 时 CUSUM 告警能在终止前中位 31 步检出 42.3% 的 失败，实测误报率 0.066。
 - **环境**：Desktop
 - **arXiv**：[2608.27808](https://arxiv.org/abs/2608.27808)
+
+#### Prismata: Confining Cross-Site Prompt Injection in Web Agents (Prismata) (2026-07)
+- **简介**：把 web agent 面临的注入风险类比为 XSS 的重现：XSS 已经证明混合可信与不可信内容是危险的， 而 agent 把自然语言当指令解释，使第三方与用户生成内容能够劫持 agent。核心难点在于推导 任务专属的安全策略需要理解页面结构，而页面结构本身已与攻击者内容纠缠。提出 Prismata， 借鉴经典完整性模型的思路做动态信任推导，为页面内容打上权限标签并提供结构性隔离保证， 同时约束 agent「能看到什么」与「能做什么」，实现上下文最小权限。
+- **环境**：Web
+- **arXiv**：[2607.08147](https://arxiv.org/abs/2607.08147)
 
 ### 2.4 人在环与确认机制
 
@@ -195,11 +206,17 @@
 
 ### 3.2 Web 环境基准
 
-*本节暂无收录条目*
+#### Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents (Who Pays the Price) (2026-06)
+- **简介**：指出现有安全基准都采用「攻击视角」，只关注注入在技术上是否可行，忽略了危害在不同受害方 之间的分布差异。本文主张注入风险是**受害者依赖**的：同一个漏洞对不同利益相关方（用户、 平台、商家）造成的后果高度不对称，同一攻击模式的有效性也随目标不同而显著变化。据此构建 以利益相关方为中心的基准，聚焦电商这类动作直接带来财务后果的真实场景。
+- **环境**：Web
+- **arXiv**：[2606.13385](https://arxiv.org/abs/2606.13385)
 
 ### 3.3 Mobile 环境基准
 
-*本节暂无收录条目*
+#### MobileWorldSafety: Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps (MobileWorldSafety) (2026-08)
+- **简介**：指出现有基准脱离日常使用场景，缺乏对移动 GUI agent 在环境注入下的系统评估——而这类 agent 已从研究原型走向真实部署，且日常操作中会不断处理不可信的环境内容。提出基于真实 Android 应用构建的基准 MobileWorldSafety，含 142 个风险任务，覆盖间接提示注入与对抗 指令等多种日常渠道，每个任务都定义了可程序化验证的判定条件，使攻击是否成功可被客观测量。
+- **环境**：Mobile
+- **arXiv**：[2608.17659](https://arxiv.org/abs/2608.17659)
 
 ### 3.4 Desktop / OS 环境基准
 

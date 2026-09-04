@@ -204,3 +204,71 @@ papers:
       Round 四层共十个细分类别，并设计了在注入对抗扰动的同时保持任务仍可完成的构造流程。评测
       16 个主流 GUI 模型显示对动态异常存在普遍脆弱性，最强模型也出现显著性能下降；作者还在
       原始与对抗环境下各做一轮 GRPO 训练，以区分环境难度与模型能力两个混杂因素。
+
+  - id: "2608.17659"
+    title: "MobileWorldSafety: Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps"
+    abbr: "MobileWorldSafety"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      指出现有基准脱离日常使用场景，缺乏对移动 GUI agent 在环境注入下的系统评估——而这类
+      agent 已从研究原型走向真实部署，且日常操作中会不断处理不可信的环境内容。提出基于真实
+      Android 应用构建的基准 MobileWorldSafety，含 142 个风险任务，覆盖间接提示注入与对抗
+      指令等多种日常渠道，每个任务都定义了可程序化验证的判定条件，使攻击是否成功可被客观测量。
+
+  - id: "2607.08147"
+    title: "Prismata: Confining Cross-Site Prompt Injection in Web Agents"
+    abbr: "Prismata"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "2.3"
+    env: [web]
+    summary: >-
+      把 web agent 面临的注入风险类比为 XSS 的重现：XSS 已经证明混合可信与不可信内容是危险的，
+      而 agent 把自然语言当指令解释，使第三方与用户生成内容能够劫持 agent。核心难点在于推导
+      任务专属的安全策略需要理解页面结构，而页面结构本身已与攻击者内容纠缠。提出 Prismata，
+      借鉴经典完整性模型的思路做动态信任推导，为页面内容打上权限标签并提供结构性隔离保证，
+      同时约束 agent「能看到什么」与「能做什么」，实现上下文最小权限。
+
+  - id: "2607.05277"
+    title: "Untrusted Content Masking for Web Agents with Security Guarantees"
+    abbr: "UCM"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "2.1"
+    env: [web]
+    summary: >-
+      指出可证明的注入防御依赖可信指令与不可信数据之间的严格隔离，这在纯文本的 tool-use 场景
+      中天然成立（agent 可只依据接口定义推理，无需接触不可信内容），但 web agent 必须先观察
+      渲染后的页面才能感知环境，而页面把可信与不可信内容结构性地混在一起，导致安全保证赖以
+      成立的信任边界消失。提出 Untrusted Content Masking，利用页面的结构特性在 web 环境中
+      重建这一边界，使既有的可证明防御能够迁移过来。
+
+  - id: "2606.20717"
+    title: "MIRAGE: Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents"
+    abbr: "MIRAGE"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "1.2"
+    env: [web]
+    summary: >-
+      批评现有针对多模态 web agent 的对抗评测普遍采用过于宽松的威胁模型、依赖视觉上显眼的
+      伪影。本文转向受约束的现实设定：评测者只是不具特权的第三方（如商家或广告主），仅能控制
+      广告位、赞助卡片这类语义合法且空间受限的区域。在此约束下提出视觉间接注入框架 MIRAGE，
+      实现对下一步动作的定向劫持，说明即便攻击者只掌握页面上一小块合法区域，也足以操纵
+      基于视觉的 agent。
+
+  - id: "2606.13385"
+    title: "Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents"
+    abbr: "Who Pays the Price"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      指出现有安全基准都采用「攻击视角」，只关注注入在技术上是否可行，忽略了危害在不同受害方
+      之间的分布差异。本文主张注入风险是**受害者依赖**的：同一个漏洞对不同利益相关方（用户、
+      平台、商家）造成的后果高度不对称，同一攻击模式的有效性也随目标不同而显著变化。据此构建
+      以利益相关方为中心的基准，聚焦电商这类动作直接带来财务后果的真实场景。
