@@ -60,16 +60,14 @@ def q_or(field, terms):
         for t in terms) + ")"
 
 
-def search(extra, start_ymd, end_ymd, max_results=100):
-    s = start_ymd.replace("-", "") + "0000"
-    e = end_ymd.replace("-", "") + "2359"
+def _one_page(extra, s, e, start, page_size):
     parts = [f"({CATS})", q_or("abs", FORMS), q_or("abs", SECS),
              f"submittedDate:[{s} TO {e}]"]
     if extra:
         parts.append(f"({extra})")
     params = urllib.parse.urlencode({
         "search_query": " AND ".join(parts),
-        "start": 0, "max_results": max_results,
+        "start": start, "max_results": page_size,
         "sortBy": "submittedDate", "sortOrder": "descending",
     })
     for attempt in range(3):
@@ -80,6 +78,32 @@ def search(extra, start_ymd, end_ymd, max_results=100):
                 return ""
             time.sleep(12)
     return ""
+
+
+def search(extra, start_ymd, end_ymd, page_size=100, max_pages=20):
+    """arXiv 单次最多返回 100 条，**必须翻页**，否则长窗口会被静默截断。
+
+    历史 bug：原实现硬编码 start=0 单次请求，全区间实际 252 篇只召回 100 篇，
+    漏掉 60%。翻页直到某页不足 page_size 为止。
+    """
+    s = start_ymd.replace("-", "") + "0000"
+    e = end_ymd.replace("-", "") + "2359"
+    pages, total = [], None
+    for i in range(max_pages):
+        xml = _one_page(extra, s, e, i * page_size, page_size)
+        if not xml:
+            break
+        if total is None:
+            m = re.search(r"opensearch:totalResults[^>]*>(\d+)<", xml)
+            total = int(m.group(1)) if m else None
+            if total:
+                print(f"  arXiv 报告命中 {total} 篇，开始翻页…", file=sys.stderr)
+        pages.append(xml)
+        got = len(re.findall(r"<entry>", xml))
+        if got < page_size:
+            break
+        time.sleep(SLEEP)
+    return "".join(pages)
 
 
 def parse(xml):
