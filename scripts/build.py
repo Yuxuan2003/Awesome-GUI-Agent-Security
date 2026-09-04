@@ -291,7 +291,10 @@ def build_readme(papers, secs, lang, sec_pages):
         "![Awesome](https://img.shields.io/badge/-awesome-ff69b4)"
     )
     L += ["", t["howto"], "", t["scope"], ""]
-    L += ["<details>", f"<summary>{t['why_q']}</summary>", "", t["why_body"], "", "</details>", ""]
+    # 折叠块内文字用 > 引用，展开后层次更清晰（源自 PR #1 by @KuofengGao，
+    # 该 PR 直接改了产物 README，此处把改动固化进生成逻辑以免被重建覆盖）
+    why = "\n>\n".join("> " + para for para in t["why_body"].split("\n\n"))
+    L += ["<details>", f"<summary>{t['why_q']}</summary>", "", why, "", "</details>", ""]
 
     L += [t["toc"], ""]
     for sid, tz, te, _dz, _de, _st, is_leaf, depth in flatten(secs["sections"]):
