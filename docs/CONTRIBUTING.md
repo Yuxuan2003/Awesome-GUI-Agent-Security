@@ -123,3 +123,26 @@ python3 scripts/check_links.py --sample 8   # spot-check arXiv metadata
 3. **v1 date matches the `date` field** (catches using a v2 revision month as the first-submission month)
 
 Check 2 is not optional. An HTTP 200 does not catch an ID that points at a *different* real paper.
+
+---
+
+## 提 PR 前请注意：README 是生成产物
+
+`README.md`、`README.zh-CN.md` 以及 `docs/by-section/`、`docs/by-env/` 下的所有
+文件都由 `scripts/build.py` 从数据源生成，**直接修改它们会在下次构建时被覆盖**。
+
+请按改动类型选择正确的文件：
+
+| 想改什么 | 改哪里 |
+|---|---|
+| 新增 / 修改论文条目 | `data/papers.yaml` |
+| 章节标题、描述、章节增删 | `data/sections.yaml` |
+| README 的排版、措辞、样式 | `scripts/build.py`（`I18N` 字典与 `build_readme()`） |
+| 收录标准、贡献流程 | 本文件 |
+
+改完后请本地跑一次确认：
+
+```bash
+python3 scripts/build.py        # 生成并校验
+python3 scripts/check_links.py  # 校验 arXiv 元数据（可只跑新增条目）
+```
