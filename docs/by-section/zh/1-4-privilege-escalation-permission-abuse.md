@@ -26,6 +26,12 @@
 
 `环境: Desktop` ｜ [arXiv:2604.18860](https://arxiv.org/abs/2604.18860)
 
+#### Atomicity for Agents: Exposing, Exploiting, and Mitigating TOCTOU Vulnerabilities in Browser-Use Agents (Atomicity for Agents) (2026-02)
+
+把 agent 规划与执行之间的时间差刻画为经典的 TOCTOU 漏洞：网页在两者之间经常发生变化， 导致动作基于过期假设执行，而动态或对抗性内容可以刻意拉大这个窗口。论文在覆盖合成与真实 网站的基准上做了大规模实证，评测 10 个主流开源 agent，发现 TOCTOU 暴露是普遍现象而非 个例。提出的缓解方案刻意保持轻量——在规划阶段监控 DOM 与布局变化，并在动作真正执行前 立即校验页面状态。
+
+`环境: Web` ｜ [arXiv:2603.00476](https://arxiv.org/abs/2603.00476)
+
 #### Mind the Gap: Action Rebinding Attacks against Android GUI Agents (Action Rebinding) (2026-01)
 
 指出把 GUI agent 当作高权限操作者（跨应用边界感知屏幕、注入输入）与 Android 严格的应用 沙箱机制存在根本冲突。跨应用 Action Rebinding 攻击让一个不申请任何危险权限的恶意应用即可 劫持 agent 执行：先渲染一个无害的「上下文载体」诱导 agent 规划出某个动作，再在其推理延迟 窗口内把前台切换到敏感目标应用，agent 察觉不到切换、于是在特权上下文中执行了该动作。 作者进一步利用 agent 自身的任务恢复逻辑，把攻击武器化为可编程的多步利用循环。

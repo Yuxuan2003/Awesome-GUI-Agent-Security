@@ -20,6 +20,12 @@ Applies the contextual integrity framework to ask whether computer-use agents re
 
 `Env: Desktop` ｜ [arXiv:2606.23189](https://arxiv.org/abs/2606.23189)
 
+#### "I Strongly Suspect This Website Is a Scam": Benchmarking PII Leakage and Detection without Defense in Autonomous Web Agents (Scammer4U) (2026-05)
+
+Studies social-engineering attacks — deceptive content already pervasive online — as a vector for manipulating autonomous web agents into submitting users' PII to attacker-controlled endpoints. Scammer4U is a pre-registered benchmark of 91 attacker-controlled environments plus 10 benign-twin baselines, spanning 8 attack vectors and 16 site categories on an 8-axis factorial taxonomy that isolates each design factor's causal contribution. The benign-twin design carries the argument: critical-tier PII leakage reaches 54–93% without privacy guidance versus 0% on the twins, proving leakage is attack-attributable rather than incidental form-filling.
+
+`Env: Web` ｜ [arXiv:2606.00497](https://arxiv.org/abs/2606.00497)
+
 #### Do Phone-Use Agents Respect Your Privacy? (MyPhoneBench) (2026-04)
 
 Asks whether phone-use agents respect privacy while completing benign tasks — hard to answer because privacy-compliant behavior was never operationalized for such agents, and ordinary apps do not reveal what data agents type into which form fields. MyPhoneBench operationalizes privacy-respecting use as permissioned access, minimal disclosure, and user-controlled memory via a minimal privacy contract, paired with instrumented mock apps and rule-based auditing. Across five frontier models, 10 apps, and 300 tasks, task success, privacy-compliant completion, and later-session preference reuse prove to be distinct capabilities that no single model dominates.

@@ -20,6 +20,12 @@
 
 `环境: Desktop` ｜ [arXiv:2606.23189](https://arxiv.org/abs/2606.23189)
 
+#### "I Strongly Suspect This Website Is a Scam": Benchmarking PII Leakage and Detection without Defense in Autonomous Web Agents (Scammer4U) (2026-05)
+
+把社会工程攻击（互联网上早已普遍存在的欺骗性内容）作为一类攻击向量来研究，考察它如何操纵 自主 web agent 把用户 PII 提交到攻击者控制的端点。Scammer4U 是**预注册**基准，含 91 个 攻击者控制环境与 10 个「良性孪生」对照，覆盖 8 类攻击向量、16 类站点，构建在能隔离各设计 因子因果贡献的 8 轴因子分类上。良性孪生的设计承担了论证核心：无隐私提示时关键级 PII 泄露 达 54–93%，而孪生对照为 0%，证明泄露可归因于攻击本身，而非顺手填表的偶然行为。
+
+`环境: Web` ｜ [arXiv:2606.00497](https://arxiv.org/abs/2606.00497)
+
 #### Do Phone-Use Agents Respect Your Privacy? (MyPhoneBench) (2026-04)
 
 追问手机操作类 agent 在完成正常任务时是否尊重隐私。这一问题此前难以回答，因为隐私合规 行为从未被形式化定义，且普通应用不会暴露 agent 究竟把哪些数据填进了哪个表单项。 MyPhoneBench 用一份最小隐私契约把「尊重隐私」操作化为三条：授权访问、最小披露、用户可控 记忆，并配以插桩的模拟应用与规则化审计。在 5 个前沿模型、10 个应用、300 个任务上发现， 任务成功率、隐私合规完成度、后续会话中对已存偏好的使用是三种彼此独立的能力，无一模型全占优。

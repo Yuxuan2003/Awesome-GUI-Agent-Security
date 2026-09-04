@@ -13,3 +13,9 @@
 Targets diagnosis and repair after a computer-use agent fails, proposing a framework that localises the failing step and generates a fix. Although framed around reliability, its failure attribution and state rollback capabilities transfer directly to post-incident security recovery: determining where a hijacked agent first deviated and reverting to the last trusted state. It is one of the few systematic works in the post-hoc recovery defense layer.
 
 `Env: Desktop` ｜ [arXiv:2608.02643](https://arxiv.org/abs/2608.02643)
+
+#### "What Did It Actually Do?": Understanding Risk Awareness and Traceability for Computer-Use Agents (What Did It Actually Do) (2026-03)
+
+Studies the human side of CUA risk as personalized agents move from expert circles into mainstream use: these systems install skills, invoke tools, reach private resources and modify local environments, yet users typically do not know what authority they delegated, what the agent actually did, or whether it was cleanly removed afterward. The work pairs a multi-source corpus of the OpenClaw ecosystem — incidents, advisories, malicious-skill reports, news, tutorials, social narratives — with an interview study of users and practitioners. Participants recognized these systems as risky in the abstract but lacked concrete mental models of privilege and persistence.
+
+`Env: Desktop` ｜ [arXiv:2603.28551](https://arxiv.org/abs/2603.28551)

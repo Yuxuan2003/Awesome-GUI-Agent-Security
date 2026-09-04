@@ -40,11 +40,41 @@ Introduces a paired diagnostic that measures how far a GUI agent's safety alignm
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2607.29199](https://arxiv.org/abs/2607.29199)
 
+#### SeerGuard: A Safety Framework for Mobile GUI Agents via World Model Prediction (SeerGuard) (2026-07)
+
+Argues that existing safety mechanisms for mobile GUI agents are fundamentally reactive and cannot assess risk before an action fires, which matters because a single erroneous action can be irreversible. SeerGuard is a consequence-aware framework combining instruction-level screening with action-level risk assessment: it analyses proposed actions against the current GUI state and anticipates likely outcomes before execution. The enabling component is a safety-augmented world model trained via multi-task learning that fuses semantic next-state prediction with risk assessment, and the framework transfers across different underlying GUI agents rather than being tied to one model.
+
+`Env: Mobile` ｜ [arXiv:2607.15550](https://arxiv.org/abs/2607.15550)
+
 #### (A)I Sees What You Don't: Exploiting New Attack Surfaces in Third-Party Mobile Agents (AI Sees) (2026-07)
 
 Systematically maps the attack surface introduced by third-party mobile agents, centred on a perception gap: agents read screen content that users never see or never attend to, including hidden views, background notifications, and accessibility nodes. An attacker can exploit this asymmetry to steer the agent in ways the user cannot possibly notice, and the paper argues the third-party agent ecosystem lacks any mechanism constraining what an agent is allowed to perceive.
 
 `Env: Mobile` ｜ [arXiv:2607.00333](https://arxiv.org/abs/2607.00333)
+
+#### CAPED: Context-Aware Privacy Exposure Defense for Mobile GUI Agents (CAPED) (2026-06)
+
+Names a problem specific to the screenshot paradigm: because the agent sees the phone exactly as a human does, every screen observation becomes a privacy boundary, and routine task execution can expose contacts, messages, photos, health cues and other context entirely unrelated to the request. The authors call this incidental visual privacy exposure and explain why both extremes fail — text anonymization misses visual and inferential cues, while generic masking removes the very evidence and controls the agent needs to finish the task. CAPED is a phone-side pre-upload control layer that parses visible UI elements and masks selectively, using task requirements and screen context as a privacy prior.
+
+`Env: Mobile` ｜ [arXiv:2606.12666](https://arxiv.org/abs/2606.12666)
+
+#### MaskClaw: Edge-Side Personalized Privacy Arbitration for GUI Agents with Behavior-Driven Skill Evolution (MaskClaw) (2026-05)
+
+Frames GUI-agent privacy as an arbitration problem rather than a detection problem: whether something is private depends on task, recipient, application state and user role, so static PII detectors miss the boundaries, while cloud-side VLM reasoning uploads the raw screen *before* deciding what needed protecting. MaskClaw runs at the edge, extracting local visual evidence, retrieving user- and task-specific policy memory, and deciding Allow / Mask / Ask before screenshots leave the trusted environment. Across five skill-evolution scenarios it converts user corrections, cancellations and edits into reusable privacy skills vetted by a sandbox gate, benchmarked on P-GUI-Evo.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2605.28646](https://arxiv.org/abs/2605.28646)
+
+#### MIRAGE: Context-Aware Prompt Injection against Mobile GUI Agents via User-Generated Content (MIRAGE (Mobile)) (2026-05)
+
+Roots the vulnerability in the perception paradigm: mobile GUI agents see the screen as rendered pixels and choose actions from what they see, so they cannot reliably tell trusted interface chrome from user-generated content. MIRAGE turns benign screenshots into injection samples by planting attacker text into ordinary UGC regions — no modification to the agent, the app, or the OS. The three-stage pipeline has a Localizer find user-controllable regions, a Generator synthesize context-aware payloads rendered in the app's native style, and a Curator enforce realism while balancing samples across apps, region types, and attack intents.
+
+`Env: Mobile` ｜ [arXiv:2605.28116](https://arxiv.org/abs/2605.28116)
+
+#### Mobile GUI Agent Privacy Personalization with Trajectory Induced Preference Optimization (TIPO) (2026-04)
+
+Reframes privacy as a personalization problem rather than a fixed policy: most systems optimize task success or efficiency, ignoring that different users want different privacy postures. The technical observation is that personalization induces systematic structural heterogeneity in trajectories — a privacy-first user prefers protective actions like refusing permissions, logging out and minimizing exposure, producing logically different and variable-length trajectories from a utility-first user, which destabilizes standard preference optimization. TIPO addresses this with preference-intensity weighting to emphasize key privacy steps and padding gating to suppress alignment noise.
+
+`Env: Mobile` ｜ [arXiv:2604.11259](https://arxiv.org/abs/2604.11259)
 
 #### CORA: Conformal Risk-Controlled Agents for Safeguarded Mobile GUI Automation (CORA) (2026-04)
 
@@ -70,14 +100,44 @@ Proposes an efficiency backdoor against VLM-based GUI agents: the trigger leaves
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2603.08316](https://arxiv.org/abs/2603.08316)
 
+#### Anonymization-Enhanced Privacy Protection for Mobile GUI Agents: Available but Invisible (Available but Invisible) (2026-02)
+
+Diagnoses why existing privacy defenses for mobile GUI agents all fall short: reducing UI exposure, obfuscating only task-irrelevant content, or asking for user authorization each leave the hard case untouched — protecting information that is itself *task-critical*. The proposed principle is available-but-invisible: sensitive data stays usable for execution but is never directly visible to the cloud-based agent. Implementation combines a PII-aware recognition model over UI content with anonymization, so the agent operates on placeholders while the real values never leave the trusted boundary.
+
+`Env: Mobile` ｜ [arXiv:2602.10139](https://arxiv.org/abs/2602.10139)
+
+#### GUIGuard-Bench: Toward a General Evaluation for Privacy-Preserving GUI Agents (GUIGuard-Bench) (2026-01)
+
+Argues that existing visual privacy datasets are largely static natural images and therefore cannot capture two properties that define privacy risk in GUI workflows: context dependence and task relevance. GUIGuard-Bench supplies 241 real GUI-agent trajectories with 4,080 screenshots across Android and PC. The annotation design is the contribution — each screenshot is labeled at region level with privacy bounding boxes, semantic categories, risk levels, and critically whether that private information is actually needed to complete the task, which is exactly the distinction a masking defense must get right.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
+
 #### Mind the Gap: Action Rebinding Attacks against Android GUI Agents (Action Rebinding) (2026-01)
 
 Shows that treating GUI agents as high-privilege operators — perceiving screen content and injecting inputs across application boundaries — fundamentally conflicts with Android's strict app sandboxing. The cross-application Action Rebinding attack lets a malicious app holding zero dangerous permissions hijack agent execution: it renders a benign contextual carrier to elicit a planned action, then swaps the foreground to a sensitive target during reasoning latency, so the agent unwittingly executes in a privileged context. The attack is further weaponized into programmable multi-step exploit loops by abusing the agent's own task-recovery logic.
 
 `Env: Mobile` ｜ [arXiv:2601.12349](https://arxiv.org/abs/2601.12349)
 
+#### DualTAP: A Dual-Task Adversarial Protector for Mobile MLLM Agents (DualTAP) (2025-11)
+
+Locates the privacy leak at a concrete architectural point: screenshots containing PII are routinely sent to untrusted third-party routers, which can mine that data with their own MLLMs. The scenario imposes conflicting requirements that prior perturbation methods fail to satisfy jointly — hide PII from the router's model while preserving enough signal for the agent's model to finish the task. DualTAP explicitly decouples the two objectives via a contrastive attention module that targets only PII-sensitive regions and a dual-task adversarial objective balancing task-preservation loss against privacy interference.
+
+`Env: Mobile` ｜ [arXiv:2511.13248](https://arxiv.org/abs/2511.13248)
+
+#### Measuring the Security of Mobile LLM Agents under Adversarial Prompts from Untrusted Third-Party Channels (Mobile Agent Security Study) (2025-10)
+
+The first systematic study of security risks in mobile LLM agents, spanning adversarial case studies from opportunistic manipulation via pop-up advertisements up to end-to-end workflows involving malware installation and cross-app data exfiltration. Coverage is broad — eight state-of-the-art mobile agents across three architectures, over 2,000 adversarial and paired benign trials. The results are systemic rather than incidental: low-barrier vectors such as fraudulent ads succeed with over 80% reliability, and even workflows that require circumventing explicit operating-system warnings, such as malware installation, still go through.
+
+`Env: Mobile` ｜ [arXiv:2510.27140](https://arxiv.org/abs/2510.27140)
+
 #### GhostEI-Bench: Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments? (GhostEI-Bench) (2025-10)
 
 Identifies environmental injection as an underexplored threat distinct from prompt-based attacks: rather than manipulating textual instructions, it corrupts visual perception by inserting adversarial UI elements such as deceptive overlays or spoofed notifications directly into the GUI, bypassing textual safeguards and risking privacy leakage, financial loss, or irreversible device compromise. GhostEI-Bench moves beyond static image assessment by injecting adversarial events into realistic application workflows inside fully operational Android emulators.
 
 `Env: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
+
+#### Poison Once, Control Anywhere: Clean-Text Visual Backdoors in VLM-based Mobile Agents (VIBMA) (2025-06)
+
+Exploits a structural weakness in how mobile agents are built: they are typically fine-tuned on small, user-collected datasets, which makes training-time poisoning practical rather than theoretical. VIBMA is the first clean-text backdoor for VLM-based mobile agents — it modifies only the visual input while leaving prompts and instructions untouched, so there is no textual anomaly to detect. After fine-tuning on poisoned data, inserting a predefined visual trigger at inference activates the attacker's behavior. The mechanism aligns poisoned samples' training gradients with those of an attacker-specified target instance, embedding backdoor features into the data itself.
+
+`Env: Mobile` ｜ [arXiv:2506.13205](https://arxiv.org/abs/2506.13205)

@@ -14,8 +14,62 @@ Observes that provable injection defenses depend on strict isolation between tru
 
 `Env: Web` ｜ [arXiv:2607.05277](https://arxiv.org/abs/2607.05277)
 
+#### CAPED: Context-Aware Privacy Exposure Defense for Mobile GUI Agents (CAPED) (2026-06)
+
+Names a problem specific to the screenshot paradigm: because the agent sees the phone exactly as a human does, every screen observation becomes a privacy boundary, and routine task execution can expose contacts, messages, photos, health cues and other context entirely unrelated to the request. The authors call this incidental visual privacy exposure and explain why both extremes fail — text anonymization misses visual and inferential cues, while generic masking removes the very evidence and controls the agent needs to finish the task. CAPED is a phone-side pre-upload control layer that parses visible UI elements and masks selectively, using task requirements and screen context as a privacy prior.
+
+`Env: Mobile` ｜ [arXiv:2606.12666](https://arxiv.org/abs/2606.12666)
+
+#### MaskClaw: Edge-Side Personalized Privacy Arbitration for GUI Agents with Behavior-Driven Skill Evolution (MaskClaw) (2026-05)
+
+Frames GUI-agent privacy as an arbitration problem rather than a detection problem: whether something is private depends on task, recipient, application state and user role, so static PII detectors miss the boundaries, while cloud-side VLM reasoning uploads the raw screen *before* deciding what needed protecting. MaskClaw runs at the edge, extracting local visual evidence, retrieving user- and task-specific policy memory, and deciding Allow / Mask / Ask before screenshots leave the trusted environment. Across five skill-evolution scenarios it converts user corrections, cancellations and edits into reusable privacy skills vetted by a sandbox gate, benchmarked on P-GUI-Evo.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2605.28646](https://arxiv.org/abs/2605.28646)
+
+#### WARD: Adversarially Robust Defense of Web Agents Against Prompt Injections (WARD) (2026-05)
+
+Catalogues four practical failure modes of existing guard models for web agents: weak generalization to unseen domains and attack patterns, high false positives on benign content, per-step latency that degrades deployment, and vulnerability to attacks that target the guard itself. WARD is built on WARD-Base, a 177K-sample dataset drawn from 719 high-traffic URLs and platforms, plus WARD-PIG, a dataset purpose-built for injections aimed at the guard. It further introduces A3T, an adaptive adversarial training framework, addressing the often-ignored point that a guard model is itself an attack surface.
+
+`Env: Web` ｜ [arXiv:2605.15030](https://arxiv.org/abs/2605.15030)
+
+#### SnapGuard: Lightweight Prompt Injection Detection for Screenshot-Based Web Agents (SnapGuard) (2026-04)
+
+Targets a specific blind spot: screenshot-based web agents operate on rendered visuals rather than structured text, so the dominant text-centric defenses simply do not apply. Existing multimodal detectors do work but lean on large VLMs, and the paper locates the bottleneck precisely — the VLM must comprehend the global semantics of an entire modern webpage, driving up both inference time and GPU memory. SnapGuard starts instead from the observation that injected pages carry distinctive local characteristics, enabling detection without whole-page semantic understanding.
+
+`Env: Web` ｜ [arXiv:2604.25562](https://arxiv.org/abs/2604.25562)
+
+#### WebAgentGuard: A Reasoning-Driven Guard Model for Detecting Prompt Injection Attacks in Web Agents (WebAgentGuard) (2026-04)
+
+Notes that both system-prompt defenses and direct fine-tuning of the agent have shown limited effectiveness against injections embedded in HTML or rendered screenshots. The architectural choice is to run a dedicated guard agent in parallel with the web agent, decoupling injection detection from the agent's own reasoning so that a compromised reasoning chain does not also compromise detection. WebAgentGuard is a reasoning-driven multimodal guard trained on a synthetic dataset spanning 164 topics and 230 distinct visual and UI design styles, targeting the generalization gap that narrow training sets leave open.
+
+`Env: Web` ｜ [arXiv:2604.12284](https://arxiv.org/abs/2604.12284)
+
 #### The Cognitive Firewall: Securing Browser Based AI Agents Against Indirect Prompt Injection Via Hybrid Edge Cloud Defense (Cognitive Firewall) (2026-03)
 
 Tackles the tension that cloud-based defenses offer strong semantic analysis but add latency and privacy exposure. The Cognitive Firewall is a three-stage split-compute architecture distributing checks across client and cloud: a local visual Sentinel, a cloud Deep Planner, and a deterministic Guard enforcing execution-time policies. Across 1,000 adversarial samples edge-only defenses miss 86.9% of semantic attacks, whereas the full hybrid drives attack success below 1% (0.88% static, 0.67% adaptive) while keeping deterministic constraints on side-effecting actions — and by filtering presentation-layer attacks locally it achieves roughly a 17,000x latency advantage over cloud-only baselines.
 
 `Env: Web` ｜ [arXiv:2603.23791](https://arxiv.org/abs/2603.23791)
+
+#### Anonymization-Enhanced Privacy Protection for Mobile GUI Agents: Available but Invisible (Available but Invisible) (2026-02)
+
+Diagnoses why existing privacy defenses for mobile GUI agents all fall short: reducing UI exposure, obfuscating only task-irrelevant content, or asking for user authorization each leave the hard case untouched — protecting information that is itself *task-critical*. The proposed principle is available-but-invisible: sensitive data stays usable for execution but is never directly visible to the cloud-based agent. Implementation combines a PII-aware recognition model over UI content with anonymization, so the agent operates on placeholders while the real values never leave the trusted boundary.
+
+`Env: Mobile` ｜ [arXiv:2602.10139](https://arxiv.org/abs/2602.10139)
+
+#### WebSentinel: Detecting and Localizing Prompt Injection Attacks for Web Agents (WebSentinel) (2026-02)
+
+Observes that existing detection and localization methods underperform in the web-agent setting because their underlying assumptions do not hold there. WebSentinel is a two-step approach: Step I extracts segments of interest that may be contaminated, Step II scores each segment by checking its consistency against the surrounding webpage content as context. Beyond a binary verdict it localizes the injected span, which matters operationally — knowing which element was poisoned enables surgical removal instead of discarding the whole page.
+
+`Env: Web` ｜ [arXiv:2602.03792](https://arxiv.org/abs/2602.03792)
+
+#### Attention is All You Need to Defend Against Indirect Prompt Injection Attacks in LLMs (Rennervate) (2025-12)
+
+Takes a mechanistic route to injection defense by reading attention features rather than classifying text: Rennervate detects covert injection at token-level granularity, which enables precise sanitization that neutralizes the injection while leaving the rest of the LLM's functionality intact — a contrast with page-level or segment-level defenses that must discard clean content along with the poisoned span. The token-level detector uses a two-step attentive pooling mechanism aggregating attention heads and response tokens. The work also releases FIPI, a fine-grained IPI dataset, and reports outperforming 15 commercial and academic defenses.
+
+`Env: Web` ｜ [arXiv:2512.08417](https://arxiv.org/abs/2512.08417)
+
+#### DualTAP: A Dual-Task Adversarial Protector for Mobile MLLM Agents (DualTAP) (2025-11)
+
+Locates the privacy leak at a concrete architectural point: screenshots containing PII are routinely sent to untrusted third-party routers, which can mine that data with their own MLLMs. The scenario imposes conflicting requirements that prior perturbation methods fail to satisfy jointly — hide PII from the router's model while preserving enough signal for the agent's model to finish the task. DualTAP explicitly decouples the two objectives via a contrastive attention module that targets only PII-sensitive regions and a dual-task adversarial objective balancing task-preservation loss against privacy interference.
+
+`Env: Mobile` ｜ [arXiv:2511.13248](https://arxiv.org/abs/2511.13248)

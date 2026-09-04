@@ -13,3 +13,51 @@
 Points out that existing security benchmarks take an attack-centric view, measuring whether injection is technically feasible while ignoring how the resulting harm is distributed. The paper argues injection risk is victim-dependent: one exploit yields asymmetric consequences across stakeholders (user, platform, merchant), and the same attack pattern varies substantially in effectiveness depending on the target. It builds a stakeholder-centric benchmark focused on e-commerce, where agent actions carry direct financial consequences.
 
 `Env: Web` ｜ [arXiv:2606.13385](https://arxiv.org/abs/2606.13385)
+
+#### Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces (WebDecept) (2026-04)
+
+Examines web agent behavior under realistic deceptive interfaces in e-commerce, where a wrong click carries direct financial consequence. WebDecept is a lightweight configurable plugin framework injecting deceptive interface patterns into existing web environments, and instantiates seven patterns commonly seen in the wild including targeted advertisements, domain redirection and shopping manipulation. Injecting them into the frontend during live task execution gives controlled evaluation across multiple multimodal agents. Two findings matter: agents are highly susceptible across several pattern classes, and prompt-based constraints are frequently insufficient as mitigation.
+
+`Env: Web` ｜ [arXiv:2606.13686](https://arxiv.org/abs/2606.13686)
+
+#### RiskWebWorld: A Realistic Interactive Benchmark for GUI Agents in E-commerce Risk Management (RiskWebWorld) (2026-04)
+
+Notes that existing interactive benchmarks target benign, predictable consumer environments, leaving high-stakes investigative domains unexamined. RiskWebWorld draws 1,513 tasks from production risk-control pipelines across 8 core domains and deliberately preserves the authentic difficulties of risk operations — uncooperative websites and partial environmental hijacking. A Gymnasium-compliant infrastructure decouples policy planning from environment mechanics to support agentic RL. The evaluation exposes a stark capability gap: top-tier generalist models reach only 49.1% success, indicating that adversarial real-world operational settings remain far from solved.
+
+`Env: Web` ｜ [arXiv:2604.13531](https://arxiv.org/abs/2604.13531)
+
+#### WebSP-Eval: Evaluating Web Agents on Website Security and Privacy Tasks (WebSP-Eval) (2026-04)
+
+Opens a direction orthogonal to the rest of this list: existing benchmarks measure either general capability (WebArena) or resistance to malicious actions (SafeArena), but none ask whether an agent can competently *perform* the security and privacy chores users actually delegate — managing cookie preferences, configuring privacy-sensitive account settings, revoking inactive sessions. WebSP-Eval contributes 200 hand-built task instances across 28 websites, an agentic harness that manages accounts and initial state across runs via a custom Chrome extension, and an automated evaluator, applied to 8 web agent instantiations.
+
+`Env: Web` ｜ [arXiv:2604.06367](https://arxiv.org/abs/2604.06367)
+
+#### MUZZLE: Adaptive Agentic Red-Teaming of Web Agents Against Indirect Prompt Injection Attacks (MUZZLE) (2026-02)
+
+Criticizes existing security evaluations for relying on fixed attack templates, manually chosen injection surfaces, or narrowly scoped scenarios, none of which reflect the adaptive adversary a deployed agent meets. MUZZLE automates the process by using the target agent's own trajectories to locate high-salience injection surfaces, then adaptively generating context-aware malicious instructions aimed at confidentiality, integrity and availability violations. Grounding surface selection in observed agent behavior rather than human intuition is the key move — the attack adapts to whatever the agent actually attends to.
+
+`Env: Web` ｜ [arXiv:2602.09222](https://arxiv.org/abs/2602.09222)
+
+#### MalURLBench: A Benchmark Evaluating Agents' Vulnerabilities When Processing Web URLs (MalURLBench) (2026-01)
+
+Isolates a narrow but consequential failure: accepting a disguised malicious URL lets an agent proceed into unsafe webpages, and everything downstream inherits that compromise, yet no benchmark had targeted this step. MalURLBench provides 61,845 attack instances spanning 10 real-world scenarios and 7 categories of genuinely malicious websites. Across 12 popular LLMs, models struggle with elaborately disguised URLs. The paper further analyzes which factors drive attack success and ships URLGuard, a lightweight defense module for the same choke point.
+
+`Env: Web` ｜ [arXiv:2601.18113](https://arxiv.org/abs/2601.18113)
+
+#### BrowseSafe: Understanding and Preventing Prompt Injection Within AI Browser Agents (BrowseSafe) (2025-11)
+
+Argues that integrating agents into browsers creates security problems beyond traditional web application threat models, and that while prompt injection is a known vector, its real-world impact remains under-measured. The benchmark's design choices are the contribution: it emphasizes injections that influence real-world *actions* rather than just text output, and constructs payloads with complexity and distractor density comparable to what deployed agents actually meet. It then evaluates existing defenses across frontier models and proposes a multi-layered strategy combining architectural and model-based defenses.
+
+`Env: Web` ｜ [arXiv:2511.20597](https://arxiv.org/abs/2511.20597)
+
+#### Genesis: Evolving Attack Strategies for LLM Web Agent Red-Teaming (Genesis) (2025-10)
+
+Argues that red-teaming built on manually crafted strategies or offline-trained static models cannot capture web agents' underlying behavioral patterns and therefore fails to generalize across environments — success in this setting requires attack strategies that keep being discovered and evolved. Genesis is a three-module agentic framework: an Attacker generating adversarial injections via a genetic algorithm over a hybrid strategy representation, a Scorer evaluating target responses for feedback, and a Strategist mining interaction logs to compile effective strategies into a reusable library.
+
+`Env: Web` ｜ [arXiv:2510.18314](https://arxiv.org/abs/2510.18314)
+
+#### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
+
+Fills a systematic gap: many injection attacks target web agents and many general-purpose detectors exist, but none had been evaluated specifically in the web-agent setting. WAInjectBench first categorizes attacks by threat model, then builds datasets covering both modalities and both polarities — malicious text segments from different attacks, benign text from four categories, attack-produced malicious images, and benign images from two categories. The headline finding is a sharp boundary: detectors handle attacks carrying explicit textual instructions or visible image perturbations, but degrade sharply outside that regime.
+
+`Env: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)

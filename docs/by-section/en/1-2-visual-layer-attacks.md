@@ -14,8 +14,20 @@ Criticises adversarial evaluations of multimodal web agents for adopting permiss
 
 `Env: Web` ｜ [arXiv:2606.20717](https://arxiv.org/abs/2606.20717)
 
+#### Preference Redirection via Attention Concentration: An Attack on Computer Use Agents (PRAC) (2026-04)
+
+Notes that prior CUA attack work concentrated on the language modality while the vision modality received far less attention, then attacks precisely there. Rather than manipulating the VLM's output directly, PRAC alters the model's internal preferences by redirecting attention toward a stealthy adversarial patch, steering a CUA's product selection on an online shopping platform to a chosen target. Attack construction needs white-box access, but the finding that matters is transfer: it generalizes to fine-tuned versions of the same model, so a single base model shared across many deployed agents becomes a shared liability.
+
+`Env: Desktop, Web` ｜ [arXiv:2604.08005](https://arxiv.org/abs/2604.08005)
+
 #### Are GUI Agents Focused Enough? Automated Distraction via Semantic-level UI Element Injection (Semantic UI Injection) (2026-04)
 
 Notes two limits in existing GUI-agent red-teaming: adversarial perturbations need white-box access unavailable commercially, and prompt injection is increasingly neutralized by stronger alignment. Semantic-level UI Element Injection is a black-box paradigm overlaying safety-aligned, harmless UI elements onto screenshots to misdirect visual grounding, pairing a modular Editor-Overlapper-Victim pipeline with iterative search. Across 19 victim models in 8 families, strategic optimization beats random injection by 3.5-6.9x on the most robust victims and transfers near-perfectly across architectures.
 
 `Env: Cross-env` ｜ [arXiv:2604.07831](https://arxiv.org/abs/2604.07831)
+
+#### Visual Confused Deputy: Exploiting and Defending Perception Failures in Computer-Using Agents (Visual Confused Deputy) (2026-03)
+
+Reframes CUA perception failures as a security problem rather than a performance limitation: prior work asks whether an action succeeded, not whether the agent acted on the correct object at all. The paper formalizes the visual confused deputy — an agent authorizing an action based on a misperceived screen state, whether from grounding error, adversarial screenshot manipulation, or a TOCTOU race. Crucially, simple screen-level manipulations can redirect routine clicks into privileged actions while looking indistinguishable from ordinary agent mistakes, making the attack deniable. The proposed guardrail is the first to operate outside the agent's own perceptual loop, using dual-channel contrastive classification to evaluate the click target independently.
+
+`Env: Desktop` ｜ [arXiv:2603.14707](https://arxiv.org/abs/2603.14707)

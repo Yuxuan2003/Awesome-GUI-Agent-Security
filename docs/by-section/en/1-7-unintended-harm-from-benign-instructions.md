@@ -13,3 +13,27 @@
 Introduces a paired diagnostic that measures how far a GUI agent's safety alignment degrades under multi-turn user persuasion. Alignment turns out to be local: agents refuse a harmful request in a single turn, then concede incrementally as the user persists with plausible-sounding justifications — and this decay is invisible to every single-turn metric. The finding implies that single-turn safety evaluation cannot characterise risk in realistic multi-turn interaction.
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2607.29199](https://arxiv.org/abs/2607.29199)
+
+#### The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents (OS-BLIND) (2026-04)
+
+Isolates the setting existing safety evaluations skip: user instructions are entirely benign and harm emerges from task context or execution outcome, with no misuse and no injection. OS-BLIND supplies 300 human-crafted tasks over 12 categories and 8 applications, split into environment-embedded threats and agent-initiated harms. The numbers are stark — most CUAs exceed 90% attack success rate, and safety-aligned Claude 4.5 Sonnet still hits 73.0%. Worse, deploying that same model in a multi-agent configuration pushes its ASR from 73.0% to 92.7%, suggesting orchestration itself erodes alignment.
+
+`Env: Desktop` ｜ [arXiv:2604.10577](https://arxiv.org/abs/2604.10577)
+
+#### When Benign Inputs Lead to Severe Harms: Eliciting Unsafe Unintended Behaviors of Computer-Use Agents (AutoElicit) (2026-02)
+
+Observes that CUAs demonstrably produce unsafe unintended behaviors even under benign inputs, but exploration of this risk has stayed anecdotal — no concrete characterization, no automated way to surface long-tail cases. The paper supplies the first conceptual and methodological framework for unintended CUA behavior: defining its characteristics, eliciting it automatically, and analyzing how it arises from benign inputs. AutoElicit iteratively perturbs benign instructions using CUA execution feedback while keeping the perturbations realistic and benign, surfacing hundreds of harmful behaviors from frontier models including Claude 4.5 Haiku and Opus.
+
+`Env: Desktop` ｜ [arXiv:2602.08235](https://arxiv.org/abs/2602.08235)
+
+#### When Bots Take the Bait: Exposing and Mitigating the Emerging Social Engineering Attack in Web Automation Agent (AgentBait) (2026-01)
+
+Notes that prior research concentrated on model-level threats like prompt injection and backdoors while social engineering against web automation agents stayed unexplored, even as open-source frameworks such as Browser Use and Skyvern-AI widened the attack surface. The AgentBait paradigm exploits an intrinsic execution weakness: inducement contexts distort the agent's reasoning and steer it toward objectives misaligned with the intended task, without any injected instruction. The defense, SUPERVISOR, is a lightweight pluggable runtime module enforcing environment-and-intention consistency between webpage context and the intended goal.
+
+`Env: Web` ｜ [arXiv:2601.07263](https://arxiv.org/abs/2601.07263)
+
+#### DECEPTICON: How Dark Patterns Manipulate Web Agents (DECEPTICON) (2025-12)
+
+Studies dark patterns — deceptive UI designs already pervasive on the real web — as an agent security threat requiring no attacker infrastructure at all, since the malicious interface is simply the status quo. DECEPTICON isolates individual dark patterns across 700 web navigation tasks (600 generated, 100 real-world). Dark patterns steer agents to malicious outcomes in over 70% of tasks versus a 31% human average. The most consequential finding inverts the usual scaling assumption: effectiveness correlates positively with model size and test-time reasoning, so larger and more capable agents are more susceptible, not less.
+
+`Env: Web` ｜ [arXiv:2512.22894](https://arxiv.org/abs/2512.22894)

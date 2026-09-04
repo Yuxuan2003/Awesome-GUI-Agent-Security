@@ -20,6 +20,12 @@ Shows that the Android accessibility tree is an overlooked injection channel for
 
 `Env: Mobile` ｜ [arXiv:2608.08939](https://arxiv.org/abs/2608.08939)
 
+#### MIRAGE: Context-Aware Prompt Injection against Mobile GUI Agents via User-Generated Content (MIRAGE (Mobile)) (2026-05)
+
+Roots the vulnerability in the perception paradigm: mobile GUI agents see the screen as rendered pixels and choose actions from what they see, so they cannot reliably tell trusted interface chrome from user-generated content. MIRAGE turns benign screenshots into injection samples by planting attacker text into ordinary UGC regions — no modification to the agent, the app, or the OS. The three-stage pipeline has a Localizer find user-controllable regions, a Generator synthesize context-aware payloads rendered in the app's native style, and a Curator enforce realism while balancing samples across apps, region types, and attack intents.
+
+`Env: Mobile` ｜ [arXiv:2605.28116](https://arxiv.org/abs/2605.28116)
+
 #### Poison Once, Exploit Forever: Environment-Injected Memory Poisoning Attacks on Web Agents (eTAMP) (2026-04)
 
 Memory makes web agents personalized yet exploitable: storing past interactions creates a persistent attack surface spanning websites and sessions. Whereas prior work assumes attackers can write to memory directly or exploit cross-user sharing, eTAMP achieves cross-session, cross-site compromise through environmental observation alone — a single contaminated observation such as viewing a manipulated product page silently poisons memory and activates during later tasks on different sites, bypassing permission-based defenses. Attack success reaches 32.5% on GPT-5-mini, 23.4% on GPT-5.2, and 19.5% on GPT-OSS-120B, and the paper further identifies Frustration Exploitation.

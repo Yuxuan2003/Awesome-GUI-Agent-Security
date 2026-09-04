@@ -25,3 +25,21 @@ Existing indirect prompt injection (IPI) benchmarks for computer-use agents rely
 Studies how adversarial goals can be concealed inside tasks that look entirely legitimate, so a computer-use agent fulfils the attacker's objective while carrying out work the user has already approved. The key finding is that such attacks defeat human-in-the-loop confirmation: every individual action in the trajectory looks reasonable under review, and harm only emerges from their composition. This exposes a structural blind spot in step-by-step approval, the dominant defense paradigm for CUAs.
 
 `Env: Desktop` ｜ [arXiv:2608.02018](https://arxiv.org/abs/2608.02018)
+
+#### Agent Data Injection Attacks are Realistic Threats to AI Agents (ADI) (2026-07)
+
+Points out that indirect prompt injection research has concentrated almost entirely on instruction injection — untrusted data interpreted as an instruction — and that the mitigations built in response inherit that narrow framing. The paper introduces agent data injection: malicious data disguised as *trusted* data, such as security-critical metadata (resource identifiers, data origins) or agent context data (tool call and response formats). The impact matches instruction injection, since agents still execute unintended actions, but defenses tuned to spot embedded instructions have no reason to flag well-formed metadata.
+
+`Env: Web, Desktop` ｜ [arXiv:2607.05120](https://arxiv.org/abs/2607.05120)
+
+#### WebTrap: Stealthy Mid-Task Hijacking of Browser Agents During Navigation (WebTrap) (2026-05)
+
+Diagnoses two gaps in existing injections against browser agents: low effectiveness, because attacks tuned on toy baselines fail to reach end-to-end goals in real environments with long step counts; and weak stealth, because most attacks pit the attack goal against the user goal, so usability visibly collapses and the attack announces itself. WebTrap instead hijacks mid-task via multi-step instruction fusion steering that merges both goals, letting the agent resume the user's original task after serving the attacker. A context-grounded generation method aligns injected content with the surrounding task environment, so nothing looks out of place.
+
+`Env: Web` ｜ [arXiv:2605.08310](https://arxiv.org/abs/2605.08310)
+
+#### You Told Me to Do It: Measuring Instructional Text-induced Private Data Leakage in LLM Agents (ReadSecBench) (2026-03)
+
+Names the structural problem the Trusted Executor Dilemma: high-privilege agents are handed terminal access, filesystem control and outbound network connectivity, then asked to read and execute project documentation — but they cannot distinguish malicious directives from legitimate setup guidance, so they execute adversarial documentation-embedded instructions at high rates. The paper insists this is a consequence of the instruction-following design paradigm rather than an implementation bug. Measurement is structured by a three-dimensional taxonomy (linguistic disguise, structural obfuscation, semantic abstraction) over ReadSecBench, 500 real-world README files.
+
+`Env: Desktop` ｜ [arXiv:2603.11862](https://arxiv.org/abs/2603.11862)

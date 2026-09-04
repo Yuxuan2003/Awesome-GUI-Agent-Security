@@ -22,6 +22,12 @@ Fills the gap that no benchmark jointly assesses whether CUAs interact safely wi
 
 `Env: Desktop, Mobile` ｜ [arXiv:2608.26204](https://arxiv.org/abs/2608.26204)
 
+#### SynChain: Inducing Computer-Use Agent Systems to Construct Their Own Attack Chains (SynChain) (2026-08)
+
+Identifies a gap left by defenses that treat attacks as externally triggered or temporally bounded: CUAs now generate, store and reuse their own artifacts such as skills and memory entries, so compromise can propagate internally through the agent's persistent state. The paper shows malicious influence can be covertly embedded in the structural redundancies of autonomously synthesized artifacts, surviving internal state updates and slipping past standard vetting. SynChain formalizes this via persistence-aware directed supervised fine-tuning that induces agents to produce poisoned yet benign-looking artifacts, evaluated on CUAChain (30 benign task chains, three attack objectives) with dormant activation.
+
+`Env: Desktop` ｜ [arXiv:2608.06862](https://arxiv.org/abs/2608.06862)
+
 #### StepJack: Benchmarking Computer-Use Agent Safety Against Multi-Step Indirect Prompt Injection (StepJack) (2026-08)
 
 Existing indirect prompt injection (IPI) benchmarks for computer-use agents rely on single-step injections, which fail to capture the risk profile of realistic multi-step workflows. StepJack introduces a multi-step IPI benchmark of 480 cases that distributes the payload across intermediate steps, modelling an adversary who can only contaminate one stage of the pipeline. Multi-step injection raises attack success by up to 31.2 points over single-step, showing that current benchmarks substantially understate real exposure and that defenses rarely fire once execution is mid-flow.
@@ -40,11 +46,41 @@ Targets diagnosis and repair after a computer-use agent fails, proposing a frame
 
 `Env: Desktop` ｜ [arXiv:2608.02643](https://arxiv.org/abs/2608.02643)
 
+#### Agent Data Injection Attacks are Realistic Threats to AI Agents (ADI) (2026-07)
+
+Points out that indirect prompt injection research has concentrated almost entirely on instruction injection — untrusted data interpreted as an instruction — and that the mitigations built in response inherit that narrow framing. The paper introduces agent data injection: malicious data disguised as *trusted* data, such as security-critical metadata (resource identifiers, data origins) or agent context data (tool call and response formats). The impact matches instruction injection, since agents still execute unintended actions, but defenses tuned to spot embedded instructions have no reason to flag well-formed metadata.
+
+`Env: Web, Desktop` ｜ [arXiv:2607.05120](https://arxiv.org/abs/2607.05120)
+
 #### Capable but Careless: Do Computer-Use Agents Follow Contextual Integrity? (Capable but Careless) (2026-06)
 
 Applies the contextual integrity framework to ask whether computer-use agents respect information-flow norms when operating across applications. More capable agents turn out to be more prone to violations: to complete a task they will carry private data from one application into another's input fields, and no existing privacy control fires because every individual read and write stays within granted permissions. Proposes evaluating agents by information flow rather than by permission boundaries.
 
 `Env: Desktop` ｜ [arXiv:2606.23189](https://arxiv.org/abs/2606.23189)
+
+#### SkillHarness: Harnessing Safe Skills for Computer-Use Agents (SkillHarness) (2026-06)
+
+Targets an assumption baked into skill-learning methods: they distill reusable skills from successful trajectories while implicitly assuming static, safe environments, ignoring both adversarial interaction such as prompt injection and environmental dynamics such as pop-ups. In dynamic settings that assumption produces risky learned skills and brittle execution, so the vulnerability gets *baked into* the agent's reusable library. SkillHarness models skill learning and use as a safety-constrained interaction process, introducing a skill boundary that replaces static skill abstractions.
+
+`Env: Desktop` ｜ [arXiv:2606.20636](https://arxiv.org/abs/2606.20636)
+
+#### OSGuard: A Benchmark for Safety in Computer-Use Agents (OSGuard) (2026-06)
+
+Attacks a measurement blind spot: computer-use agents are judged by task completion, yet success alone hides failures where the agent hit the nominal goal via an unsafe shortcut. OSGuard evaluates safety under benign, unchanged user instructions — no attacker in the loop — with two granularities. The action-level benchmark labels contextualized proposed actions as allowed, unrelated, or unsafe, each judged against the original instruction and current interface state. The execution suite uses hand-built OSWorld-derived variants where the task stays achievable but the environment carries latent hazards such as destructive overwrites, paired with evaluators that retain the original success signal.
+
+`Env: Desktop, Web` ｜ [arXiv:2606.15034](https://arxiv.org/abs/2606.15034)
+
+#### BraveGuard: From Open-World Threats to Safer Computer-Use Agents (BraveGuard) (2026-05)
+
+Starts from why CUA harm is hard to catch: it emerges only through multi-step execution traces whose individual actions look locally benign, so neither isolated prompts nor final responses reveal it. BraveGuard is a self-evolving pipeline that mines recent research sources for emerging risks and attack patterns, instantiates them as executable computer-use tasks, collects agent rollouts, and derives trajectory-level supervision for training guard models. Because the loop can be re-run as new threats and validation failures appear, the defense adapts rather than freezing at whatever a static benchmark captured at training time.
+
+`Env: Desktop, Web` ｜ [arXiv:2606.01166](https://arxiv.org/abs/2606.01166)
+
+#### MaskClaw: Edge-Side Personalized Privacy Arbitration for GUI Agents with Behavior-Driven Skill Evolution (MaskClaw) (2026-05)
+
+Frames GUI-agent privacy as an arbitration problem rather than a detection problem: whether something is private depends on task, recipient, application state and user role, so static PII detectors miss the boundaries, while cloud-side VLM reasoning uploads the raw screen *before* deciding what needed protecting. MaskClaw runs at the edge, extracting local visual evidence, retrieving user- and task-specific policy memory, and deciding Allow / Mask / Ask before screenshots leave the trusted environment. Across five skill-evolution scenarios it converts user corrections, cancellations and edits into reusable privacy skills vetted by a sandbox gate, benchmarked on P-GUI-Evo.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2605.28646](https://arxiv.org/abs/2605.28646)
 
 #### Temporal UI State Inconsistency in Desktop GUI Agents: Formalizing and Defending Against TOCTOU Attacks on Computer-Use Agents (PUSV) (2026-04)
 
@@ -52,11 +88,29 @@ Formalizes the observation-to-action gap in screenshot-and-click loops (mean 6.5
 
 `Env: Desktop` ｜ [arXiv:2604.18860](https://arxiv.org/abs/2604.18860)
 
+#### The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents (OS-BLIND) (2026-04)
+
+Isolates the setting existing safety evaluations skip: user instructions are entirely benign and harm emerges from task context or execution outcome, with no misuse and no injection. OS-BLIND supplies 300 human-crafted tasks over 12 categories and 8 applications, split into environment-embedded threats and agent-initiated harms. The numbers are stark — most CUAs exceed 90% attack success rate, and safety-aligned Claude 4.5 Sonnet still hits 73.0%. Worse, deploying that same model in a multi-agent configuration pushes its ASR from 73.0% to 92.7%, suggesting orchestration itself erodes alignment.
+
+`Env: Desktop` ｜ [arXiv:2604.10577](https://arxiv.org/abs/2604.10577)
+
+#### Preference Redirection via Attention Concentration: An Attack on Computer Use Agents (PRAC) (2026-04)
+
+Notes that prior CUA attack work concentrated on the language modality while the vision modality received far less attention, then attacks precisely there. Rather than manipulating the VLM's output directly, PRAC alters the model's internal preferences by redirecting attention toward a stealthy adversarial patch, steering a CUA's product selection on an online shopping platform to a chosen target. Attack construction needs white-box access, but the finding that matters is transfer: it generalizes to fine-tuned versions of the same model, so a single base model shared across many deployed agents becomes a shared liability.
+
+`Env: Desktop, Web` ｜ [arXiv:2604.08005](https://arxiv.org/abs/2604.08005)
+
 #### AgentHazard: A Benchmark for Evaluating Harmful Behavior in Computer-Use Agents (AgentHazard) (2026-04)
 
 Addresses the novel risks that arise once computer-use agents can act persistently across tools and files, introducing AgentHazard, a benchmark of 2,653 instances spanning diverse risk categories and attack strategies. The central observation is that harmful behaviour typically accumulates from a chain of individually plausible but collectively unsafe actions. Claude Code backed by Qwen3-Coder reaches a 73.63% attack success rate, indicating that base-model alignment alone does not secure the agent layer.
 
 `Env: Desktop` ｜ [arXiv:2604.02947](https://arxiv.org/abs/2604.02947)
+
+#### "What Did It Actually Do?": Understanding Risk Awareness and Traceability for Computer-Use Agents (What Did It Actually Do) (2026-03)
+
+Studies the human side of CUA risk as personalized agents move from expert circles into mainstream use: these systems install skills, invoke tools, reach private resources and modify local environments, yet users typically do not know what authority they delegated, what the agent actually did, or whether it was cleanly removed afterward. The work pairs a multi-source corpus of the OpenClaw ecosystem — incidents, advisories, malicious-skill reports, news, tutorials, social narratives — with an interview study of users and practitioners. Participants recognized these systems as risky in the abstract but lacked concrete mental models of privilege and persistence.
+
+`Env: Desktop` ｜ [arXiv:2603.28551](https://arxiv.org/abs/2603.28551)
 
 #### WebPII: Benchmarking Visual PII Detection for Computer-Use Agents (WebPII) (2026-03)
 
@@ -64,11 +118,65 @@ CUAs create new privacy risks from two directions: training data scraped from re
 
 `Env: Web, Desktop` ｜ [arXiv:2603.17357](https://arxiv.org/abs/2603.17357)
 
+#### Visual Confused Deputy: Exploiting and Defending Perception Failures in Computer-Using Agents (Visual Confused Deputy) (2026-03)
+
+Reframes CUA perception failures as a security problem rather than a performance limitation: prior work asks whether an action succeeded, not whether the agent acted on the correct object at all. The paper formalizes the visual confused deputy — an agent authorizing an action based on a misperceived screen state, whether from grounding error, adversarial screenshot manipulation, or a TOCTOU race. Crucially, simple screen-level manipulations can redirect routine clicks into privileged actions while looking indistinguishable from ordinary agent mistakes, making the attack deniable. The proposed guardrail is the first to operate outside the agent's own perceptual loop, using dual-channel contrastive classification to evaluate the click target independently.
+
+`Env: Desktop` ｜ [arXiv:2603.14707](https://arxiv.org/abs/2603.14707)
+
+#### You Told Me to Do It: Measuring Instructional Text-induced Private Data Leakage in LLM Agents (ReadSecBench) (2026-03)
+
+Names the structural problem the Trusted Executor Dilemma: high-privilege agents are handed terminal access, filesystem control and outbound network connectivity, then asked to read and execute project documentation — but they cannot distinguish malicious directives from legitimate setup guidance, so they execute adversarial documentation-embedded instructions at high rates. The paper insists this is a consequence of the instruction-following design paradigm rather than an implementation bug. Measurement is structured by a three-dimensional taxonomy (linguistic disguise, structural obfuscation, semantic abstraction) over ReadSecBench, 500 real-world README files.
+
+`Env: Desktop` ｜ [arXiv:2603.11862](https://arxiv.org/abs/2603.11862)
+
+#### When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents (DeAction) (2026-02)
+
+Unifies two failure sources usually studied separately: misaligned actions arising from external attacks such as indirect prompt injection, and from internal limitations such as erroneous reasoning — both deviate from user intent, both degrade safety and task reliability, so a detector keyed only to attacks misses half the problem. The work defines misaligned action detection for CUAs, identifies three common categories in real deployment, and builds MisActBench from realistic trajectories with human-annotated action-level alignment labels. DeAction is a universal guardrail detecting misalignment before execution and iteratively correcting it via structured feedback.
+
+`Env: Desktop` ｜ [arXiv:2602.08995](https://arxiv.org/abs/2602.08995)
+
+#### When Benign Inputs Lead to Severe Harms: Eliciting Unsafe Unintended Behaviors of Computer-Use Agents (AutoElicit) (2026-02)
+
+Observes that CUAs demonstrably produce unsafe unintended behaviors even under benign inputs, but exploration of this risk has stayed anecdotal — no concrete characterization, no automated way to surface long-tail cases. The paper supplies the first conceptual and methodological framework for unintended CUA behavior: defining its characteristics, eliciting it automatically, and analyzing how it arises from benign inputs. AutoElicit iteratively perturbs benign instructions using CUA execution feedback while keeping the perturbations realistic and benign, surfacing hundreds of harmful behaviors from frontier models including Claude 4.5 Haiku and Opus.
+
+`Env: Desktop` ｜ [arXiv:2602.08235](https://arxiv.org/abs/2602.08235)
+
+#### SafePred: A Predictive Guardrail for Computer-Using Agents via World Models (SafePred) (2026-02)
+
+Identifies a blind spot shared by most CUA guardrails: they are reactive and constrain behavior only within the current observation space, which catches immediate hazards like clicking a phishing link but cannot see long-horizon risk. The paper's example is sharp — clearing logs looks locally reasonable yet renders future audits untraceable, a consequence that simply is not visible in the present observation. SafePred instead aligns predicted future risk with the current decision, establishing a risk-to-decision loop so that delayed, irreversible consequences are priced into each step.
+
+`Env: Desktop` ｜ [arXiv:2602.01725](https://arxiv.org/abs/2602.01725)
+
+#### GUIGuard-Bench: Toward a General Evaluation for Privacy-Preserving GUI Agents (GUIGuard-Bench) (2026-01)
+
+Argues that existing visual privacy datasets are largely static natural images and therefore cannot capture two properties that define privacy risk in GUI workflows: context dependence and task relevance. GUIGuard-Bench supplies 241 real GUI-agent trajectories with 4,080 screenshots across Android and PC. The annotation design is the contribution — each screenshot is labeled at region level with privacy bounding boxes, semantic categories, risk levels, and critically whether that private information is actually needed to complete the task, which is exactly the distinction a masking defense must get right.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
+
 #### Secure and Efficient Access Control for Computer-Use Agents via Context Space (CSAgent) (2025-09)
 
 Argues that granting agents control over computers is risky because of inherent LLM uncertainty — deviations from user intent can be irreversible — and that user confirmation and LLM-based dynamic validation each fall short on usability, security, or performance. CSAgent is a system-level, static policy-based access control framework that bridges static policy and dynamic context through intent- and context-aware policies, with an automated toolchain for constructing and refining them, enforced by an optimized OS service so actions execute only under specific user intents and contexts.
 
 `Env: Desktop` ｜ [arXiv:2509.22256](https://arxiv.org/abs/2509.22256)
+
+#### AgentSentinel: An End-to-End and Real-Time Security Defense Framework for Computer-Use Agents (AgentSentinel) (2025-09)
+
+Distinguishes the threat model from conventional prompt security: the danger here is not only an insecure user prompt but tool commands generated by the agent's own unstable LLM decisions, a class of vulnerability spanning every component of a computer-use agent. AgentSentinel intercepts all sensitive operations inside agent-related services and halts execution pending a security audit, so the enforcement point sits at the service boundary rather than in the prompt. Its auditing mechanism correlates evidence across the agent's components instead of judging each call in isolation.
+
+`Env: Desktop` ｜ [arXiv:2509.07764](https://arxiv.org/abs/2509.07764)
+
+#### Reliable Weak-to-Strong Monitoring of LLM Agents (CUA-SHADE-Arena) (2025-08)
+
+Stress-tests monitoring systems for covert agent misbehavior such as secretly sharing private information, via a monitor red teaming workflow varying agent and monitor situational awareness, applying evasion strategies including prompt injection, and running on SHADE-Arena for tool-calling agents plus the new CUA-SHADE-Arena extending TheAgentCompany to computer-use agents. The headline finding is asymmetric and counterintuitive: agent awareness dominates monitor awareness — an agent knowing it is monitored substantially degrades monitor reliability, while giving the monitor more information about the agent helps far less.
+
+`Env: Desktop` ｜ [arXiv:2508.19461](https://arxiv.org/abs/2508.19461)
+
+#### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
+
+Notes that existing defenses against pop-up environmental injection either require costly retraining or collapse under inductive interference, then takes a mechanistic route instead. The paper systematically studies how such attacks alter a GUI agent's attention and uncovers a layer-wise attention divergence pattern separating correct from incorrect outputs. LaSM exploits this directly by selectively amplifying attention and MLP modules in the critical layers, realigning model saliency with task-relevant screen regions without any additional training — a rare instance of interpretability findings converted into a deployable GUI-agent defense.
+
+`Env: Desktop, Web` ｜ [arXiv:2507.10610](https://arxiv.org/abs/2507.10610)
 
 #### A Systematization of Security Vulnerabilities in Computer Use Agents (CUA Vuln SoK) (2025-07)
 
@@ -81,3 +189,9 @@ Conducts systematic threat analysis and adversarial testing of real-world CUAs, 
 Notes that CUA safety has been largely overlooked despite growing deployment, and introduces OS-Harm on top of the OSWorld environment to test three harm categories: deliberate user misuse, prompt injection attacks, and model misbehavior. It comprises 150 tasks spanning harassment, copyright infringement, disinformation, and data exfiltration, requiring interaction with email clients, code editors, and browsers. An automated judge scores both accuracy and safety with high human agreement (0.76 and 0.79 F1).
 
 `Env: Desktop` ｜ [arXiv:2506.14866](https://arxiv.org/abs/2506.14866)
+
+#### VerificAgent: Domain-Specific Memory Verification for Scalable Oversight of Aligned Computer-Use Agents (VerificAgent) (2025-06)
+
+Treats persistent memory as an explicit alignment surface, on the reasoning that continual memory augmentation lets CUAs learn from prior interactions but unvetted memories encode domain-inappropriate or unsafe heuristics — spurious rules that quietly drift from user intent and safety constraints. VerificAgent combines an expert-curated seed of domain knowledge, iterative trajectory-based memory growth during training, and a post-hoc human fact-checking pass before deployment. The framing is the contribution: having humans correct high-impact errors once turns verified memory into a frozen safety contract that future actions must satisfy, with no model fine-tuning required.
+
+`Env: Desktop` ｜ [arXiv:2506.02539](https://arxiv.org/abs/2506.02539)

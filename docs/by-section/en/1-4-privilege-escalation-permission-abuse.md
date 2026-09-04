@@ -26,6 +26,12 @@ Formalizes the observation-to-action gap in screenshot-and-click loops (mean 6.5
 
 `Env: Desktop` ｜ [arXiv:2604.18860](https://arxiv.org/abs/2604.18860)
 
+#### Atomicity for Agents: Exposing, Exploiting, and Mitigating TOCTOU Vulnerabilities in Browser-Use Agents (Atomicity for Agents) (2026-02)
+
+Frames the gap between an agent's planning and execution as a classic TOCTOU vulnerability: web pages routinely change in between, so actions fire against stale assumptions, and dynamic or adversarial content can deliberately widen that window. The paper contributes a large-scale empirical study over a benchmark of synthesized and real websites, evaluating 10 popular open-source agents and finding TOCTOU exposure to be widespread rather than incidental. The proposed mitigation is deliberately lightweight — monitor DOM and layout changes during planning, then validate page state immediately before the action executes.
+
+`Env: Web` ｜ [arXiv:2603.00476](https://arxiv.org/abs/2603.00476)
+
 #### Mind the Gap: Action Rebinding Attacks against Android GUI Agents (Action Rebinding) (2026-01)
 
 Shows that treating GUI agents as high-privilege operators — perceiving screen content and injecting inputs across application boundaries — fundamentally conflicts with Android's strict app sandboxing. The cross-application Action Rebinding attack lets a malicious app holding zero dangerous permissions hijack agent execution: it renders a benign contextual carrier to elicit a planned action, then swaps the foreground to a sensitive target during reasoning latency, so the agent unwittingly executes in a privileged context. The attack is further weaponized into programmable multi-step exploit loops by abusing the agent's own task-recovery logic.

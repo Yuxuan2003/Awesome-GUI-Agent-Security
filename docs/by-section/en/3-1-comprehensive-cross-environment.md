@@ -14,8 +14,20 @@ Fills the gap that no benchmark jointly assesses whether CUAs interact safely wi
 
 `Env: Desktop, Mobile` ｜ [arXiv:2608.26204](https://arxiv.org/abs/2608.26204)
 
+#### OSGuard: A Benchmark for Safety in Computer-Use Agents (OSGuard) (2026-06)
+
+Attacks a measurement blind spot: computer-use agents are judged by task completion, yet success alone hides failures where the agent hit the nominal goal via an unsafe shortcut. OSGuard evaluates safety under benign, unchanged user instructions — no attacker in the loop — with two granularities. The action-level benchmark labels contextualized proposed actions as allowed, unrelated, or unsafe, each judged against the original instruction and current interface state. The execution suite uses hand-built OSWorld-derived variants where the task stays achievable but the environment carries latent hazards such as destructive overwrites, paired with evaluators that retain the original success signal.
+
+`Env: Desktop, Web` ｜ [arXiv:2606.15034](https://arxiv.org/abs/2606.15034)
+
 #### AgentHazard: A Benchmark for Evaluating Harmful Behavior in Computer-Use Agents (AgentHazard) (2026-04)
 
 Addresses the novel risks that arise once computer-use agents can act persistently across tools and files, introducing AgentHazard, a benchmark of 2,653 instances spanning diverse risk categories and attack strategies. The central observation is that harmful behaviour typically accumulates from a chain of individually plausible but collectively unsafe actions. Claude Code backed by Qwen3-Coder reaches a 73.63% attack success rate, indicating that base-model alignment alone does not secure the agent layer.
 
 `Env: Desktop` ｜ [arXiv:2604.02947](https://arxiv.org/abs/2604.02947)
+
+#### GUIGuard-Bench: Toward a General Evaluation for Privacy-Preserving GUI Agents (GUIGuard-Bench) (2026-01)
+
+Argues that existing visual privacy datasets are largely static natural images and therefore cannot capture two properties that define privacy risk in GUI workflows: context dependence and task relevance. GUIGuard-Bench supplies 241 real GUI-agent trajectories with 4,080 screenshots across Android and PC. The annotation design is the contribution — each screenshot is labeled at region level with privacy bounding boxes, semantic categories, risk levels, and critically whether that private information is actually needed to complete the task, which is exactly the distinction a masking defense must get right.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
