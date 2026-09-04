@@ -1,0 +1,21 @@
+# 1.2 视觉层攻击
+
+*Visual-Layer Attacks*
+
+[← 返回索引](../../../README.zh-CN.md#12-视觉层攻击) ｜ [English](../en/1-2-visual-layer-attacks.md)
+
+*对抗补丁、弹窗诱导、排版攻击、截图污染*
+
+> 本文件由 `scripts/build.py` 生成，请勿手工编辑。
+
+#### MIRAGE: Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents (MIRAGE) (2026-06)
+
+批评现有针对多模态 web agent 的对抗评测普遍采用过于宽松的威胁模型、依赖视觉上显眼的 伪影。本文转向受约束的现实设定：评测者只是不具特权的第三方（如商家或广告主），仅能控制 广告位、赞助卡片这类语义合法且空间受限的区域。在此约束下提出视觉间接注入框架 MIRAGE， 实现对下一步动作的定向劫持，说明即便攻击者只掌握页面上一小块合法区域，也足以操纵 基于视觉的 agent。
+
+`环境: Web` ｜ [arXiv:2606.20717](https://arxiv.org/abs/2606.20717)
+
+#### Are GUI Agents Focused Enough? Automated Distraction via Semantic-level UI Element Injection (Semantic UI Injection) (2026-04)
+
+指出现有 GUI agent 红队研究的两个局限：对抗扰动需要商业部署中拿不到的白盒访问，而提示 注入正被日益增强的安全对齐所化解。提出黑盒范式「语义级 UI 元素注入」——把本身安全对齐、 内容无害的 UI 元素叠加到截图上以误导视觉 grounding，用模块化的 Editor-Overlapper-Victim 流水线配合迭代搜索。在 8 个模型家族共 19 个受害模型上，策略化优化相比随机注入在最鲁棒的 模型上高出 3.5–6.9 倍，且跨架构迁移性近乎完美。
+
+`环境: 跨环境` ｜ [arXiv:2604.07831](https://arxiv.org/abs/2604.07831)

@@ -1,0 +1,15 @@
+# 3.2 Web 环境基准
+
+*Web Environment*
+
+[← 返回索引](../../../README.zh-CN.md#32-web-环境基准) ｜ [English](../en/3-2-web-environment.md)
+
+*针对 web / 浏览器 agent 的安全评测*
+
+> 本文件由 `scripts/build.py` 生成，请勿手工编辑。
+
+#### Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents (Who Pays the Price) (2026-06)
+
+指出现有安全基准都采用「攻击视角」，只关注注入在技术上是否可行，忽略了危害在不同受害方 之间的分布差异。本文主张注入风险是**受害者依赖**的：同一个漏洞对不同利益相关方（用户、 平台、商家）造成的后果高度不对称，同一攻击模式的有效性也随目标不同而显著变化。据此构建 以利益相关方为中心的基准，聚焦电商这类动作直接带来财务后果的真实场景。
+
+`环境: Web` ｜ [arXiv:2606.13385](https://arxiv.org/abs/2606.13385)

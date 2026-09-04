@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 """
 从 data/papers.yaml + data/sections.yaml 生成：
-  - README.md          英文主版本
-  - README.zh-CN.md    中文副版本
-  - docs/by-env/*.md   按环境分组（交叉标签视图）
+  - README.md               英文主版本（紧凑索引：一行一篇）
+  - README.zh-CN.md         中文副版本（同样紧凑）
+  - docs/by-section/en/*.md 各小节完整条目（英文简介）
+  - docs/by-section/zh/*.md 各小节完整条目（中文简介）
+  - docs/by-env/*.md        按环境分组（完整条目，双语）
 
 用法：
     python3 scripts/build.py           # 生成
     python3 scripts/build.py --check   # 只校验，不写文件（CI 用）
 
-设计约定：README 与 docs/ 下所有文件都是产物，绝不手工编辑。
-英文为主版本（summary 字段），中文为副版本（summary_zh 字段）。
+设计约定：
+- README 是**索引页**，只放一行式条目；3-5 句简介全部在 docs/by-section/ 小节页。
+- README 与 docs/ 下所有文件都是产物，绝不手工编辑。
+- 英文为主版本（summary 字段），中文为副版本（summary_zh 字段）。
 """
 import argparse
 import re
+import shutil
 import sys
 from collections import defaultdict
 from datetime import date
@@ -31,20 +36,19 @@ DOCS = ROOT / "docs"
 REPO = "Yuxuan2003/Awesome-GUI-Agent-Security"
 ENV_LABEL = {"web": "Web", "mobile": "Mobile", "desktop": "Desktop", "cross": "Cross-env"}
 ENV_LABEL_ZH = {"web": "Web", "mobile": "Mobile", "desktop": "Desktop", "cross": "跨环境"}
+ENV_EMOJI = {"web": "🌐", "mobile": "📱", "desktop": "🖥️", "cross": "🧩"}
 
 # 两种语言的界面文案。sections.yaml 里的标题是中文，英文标题在 title_en 字段。
 I18N = {
     "en": {
         "tagline": "A curated list of papers on GUI / Computer-Use / Browser Agent security — organized by attack surface and defense layer, not by runtime environment.",
-        "scope": "## Scope",
-        "scope_body": "Only papers whose **primary research subject** is a GUI / computer-use / browser / mobile agent, and whose contribution is about security.",
-        "excl": "**Not included:**",
-        "excl_items": [
-            "General LLM / agent security that merely uses GUI agents as one of several test environments",
-            "Using agents *for* security work (penetration testing, vulnerability discovery, CTF)",
-            "Pure capability work (grounding accuracy, task success rate)",
-        ],
-        "why": "## Why organized by attack surface instead of environment",
+        "howto": "> This page is the **index** — one line per paper. Each section links to a page with a 3–5 sentence summary per paper.",
+        "scope": (
+            "> **Scope:** papers whose *primary subject* is a GUI / computer-use / browser / mobile agent, "
+            "with a security contribution. **Not included:** general LLM/agent security that only uses GUI "
+            "agents as a testbed · agents *for* security work (pentest, CTF) · pure capability work."
+        ),
+        "why_q": "Why organized by attack surface instead of environment?",
         "why_body": (
             "Most GUI agent lists split papers by runtime environment (Web / Mobile / Desktop), "
             "which scatters a single attack class across sections: multi-step indirect injection lands "
@@ -56,7 +60,7 @@ I18N = {
         "toc": "## Contents",
         "by_env": "Browse by environment:",
         "empty": "*No entries yet*",
-        "empty_stock": "*No entries yet* (~{n} papers on arXiv awaiting triage — PRs welcome)",
+        "empty_stock": "*No entries yet* — ~{n} papers on arXiv awaiting triage, PRs welcome",
         "contrib": "## Contributing",
         "contrib_body": (
             "Edit **`data/papers.yaml`** only — `README.md`, `README.zh-CN.md`, and everything under "
@@ -77,18 +81,19 @@ I18N = {
         "venue": "Venue",
         "env": "Env",
         "code": "Code",
+        "summaries": "Summaries →",
+        "papers_n": "{n} papers",
+        "back": "← Index",
+        "other_lang": "中文版",
     },
     "zh": {
         "tagline": "GUI / Computer-Use / 浏览器 Agent 安全论文清单 —— 按攻防轴组织，而非按运行环境。",
-        "scope": "## 收录范围",
-        "scope_body": "只收录**主要研究对象**是 GUI / computer-use / browser / mobile agent，且贡献属于安全范畴的论文。",
-        "excl": "**不收录：**",
-        "excl_items": [
-            "通用 LLM / Agent 安全工作（仅把 GUI agent 当作若干实验环境之一）",
-            "用 agent 做安全工作（渗透测试、漏洞挖掘、CTF）",
-            "纯能力向工作（grounding 精度、任务成功率提升）",
-        ],
-        "why": "## 为什么按攻防轴而不按环境组织",
+        "howto": "> 本页是**索引**，每篇一行；每节链接到带 2-4 句中文简介的小节页。",
+        "scope": (
+            "> **收录范围：** 主要研究对象是 GUI / computer-use / browser / mobile agent、且贡献属于安全范畴的论文。"
+            "**不收录：** 仅把 GUI agent 当试验场的通用 LLM/agent 安全 · 用 agent 做安全工作（渗透、CTF）· 纯能力向工作。"
+        ),
+        "why_q": "为什么按攻防轴而不按环境组织？",
         "why_body": (
             "现有的 GUI agent 清单大多按运行环境（Web / Mobile / Desktop）切分，结果是同一类攻击被打散："
             "多步间接注入落在 Desktop、效率后门落在 Mobile、弹窗攻击横跨 Web 与 Desktop 两处。"
@@ -99,7 +104,7 @@ I18N = {
         "toc": "## 目录",
         "by_env": "按环境浏览：",
         "empty": "*本节暂无收录条目*",
-        "empty_stock": "*本节暂无收录条目*（arXiv 存量约 {n} 篇待整理，欢迎 PR）",
+        "empty_stock": "*本节暂无收录条目* —— arXiv 存量约 {n} 篇待整理，欢迎 PR",
         "contrib": "## 贡献",
         "contrib_body": (
             "只需修改 **`data/papers.yaml`** —— `README.md`、`README.zh-CN.md` 与 `docs/` 下所有文件"
@@ -120,6 +125,10 @@ I18N = {
         "venue": "发表",
         "env": "环境",
         "code": "代码",
+        "summaries": "简介 →",
+        "papers_n": "{n} 篇",
+        "back": "← 返回索引",
+        "other_lang": "English",
     },
 }
 
@@ -194,7 +203,8 @@ def validate(papers, secs):
     return errs
 
 
-def entry(p, lang):
+def entry_full(p, lang):
+    """完整条目（用于小节页与环境页）：标题 + 3-5 句简介 + 元信息行。"""
     t = I18N[lang]
     head = p["title"]
     if p.get("abbr"):
@@ -219,6 +229,24 @@ def entry(p, lang):
     return "\n".join(lines)
 
 
+def entry_compact(p):
+    """一行式条目（用于 README 索引）：**缩写** — 标题 · 日期 · 环境emoji。
+    标题以「缩写:」开头时去掉该前缀，避免与加粗缩写重复。"""
+    link = f"https://arxiv.org/abs/{p['id']}" if p.get("id") else p.get("url")
+    name = p.get("abbr") or p["title"]
+    s = f"- **[{name}]({link})**"
+    if p.get("abbr"):
+        title = re.sub(rf"^{re.escape(p['abbr'])}\s*[:：]\s*", "", p["title"])
+        s += f" — {title}"
+    s += f" · {p['date']}"
+    em = "".join(ENV_EMOJI.get(e, "") for e in (p.get("env") or []))
+    if em:
+        s += f" · {em}"
+    if p.get("code"):
+        s += f" · [code]({p['code']})"
+    return s
+
+
 def sort_key(p):
     return (p.get("date", ""), p.get("id", ""))
 
@@ -230,7 +258,15 @@ def anchor_of(sid, title):
     return re.sub(r"\s+", "-", s.strip())
 
 
-def build_readme(papers, secs, lang):
+def section_file(sid, title_en):
+    """小节页文件名：1-1-indirect-prompt-injection.md"""
+    slug = re.sub(r"[^a-z0-9\s-]", "", title_en.lower())
+    slug = re.sub(r"\s+", "-", slug.strip())
+    return f"{sid.replace('.', '-')}-{slug}.md"
+
+
+def build_readme(papers, secs, lang, sec_pages):
+    """sec_pages: {(sid, lang) -> 文件名}，只为有条目的小节生成。"""
     t = I18N[lang]
     by_sec = defaultdict(list)
     for p in papers:
@@ -254,13 +290,17 @@ def build_readme(papers, secs, lang):
         f"(https://github.com/{REPO}/actions/workflows/check.yml) "
         "![Awesome](https://img.shields.io/badge/-awesome-ff69b4)"
     )
-    L += ["", t["scope"], "", t["scope_body"], "", t["excl"], ""]
-    L += [f"- {x}" for x in t["excl_items"]]
-    L += ["", t["why"], "", t["why_body"], "", t["toc"], ""]
+    L += ["", t["howto"], "", t["scope"], ""]
+    L += ["<details>", f"<summary>{t['why_q']}</summary>", "", t["why_body"], "", "</details>", ""]
 
+    L += [t["toc"], ""]
     for sid, tz, te, _dz, _de, _st, is_leaf, depth in flatten(secs["sections"]):
         title = te if lang == "en" else tz
-        L.append(f"{'  ' * depth}- [{sid} {title}](#{anchor_of(sid, title)})")
+        line = f"{'  ' * depth}- [{sid} {title}](#{anchor_of(sid, title)})"
+        n = len(by_sec.get(sid, []))
+        if is_leaf and n:
+            line += f" · {n}"
+        L.append(line)
     L.append("")
 
     envdir = "docs/by-env"
@@ -270,20 +310,31 @@ def build_readme(papers, secs, lang):
         f"[{lab[e['id']]}]({envdir}/{e['id']}{suffix}.md)" for e in secs["envs"]))
     L += ["", "---", ""]
 
+    sub = "en" if lang == "en" else "zh"
     for sid, tz, te, dz, de, stock, is_leaf, depth in flatten(secs["sections"]):
         title = te if lang == "en" else tz
-        desc = (de if lang == "en" else dz) or (dz if lang == "en" else None)
+        desc = de if lang == "en" else dz  # 不做跨语言回退，避免中文漏进英文版
         L.append(f"{'#' * (2 + depth)} {sid} {title}")
         L.append("")
-        if desc:
-            L += [f"*{' '.join(str(desc).split())}*", ""]
         if not is_leaf:
+            if desc:
+                L += [f"*{' '.join(str(desc).split())}*", ""]
             continue
 
         items = sorted(by_sec.get(sid, []), key=sort_key, reverse=True)
+        page = sec_pages.get((sid, sub))
+        if desc:
+            d = f"*{' '.join(str(desc).split())}*"
+            if page:
+                d += f" · [{t['summaries']}](docs/by-section/{sub}/{page})"
+            L += [d, ""]
+        elif page:
+            L += [f"[{t['summaries']}](docs/by-section/{sub}/{page})", ""]
+
         if items:
             for p in items:
-                L += [entry(p, lang), ""]
+                L.append(entry_compact(p))
+            L.append("")
         else:
             L.append(t["empty_stock"].format(n=stock) if stock else t["empty"])
             L.append("")
@@ -295,6 +346,32 @@ def build_readme(papers, secs, lang):
     return "\n".join(L) + "\n"
 
 
+def build_section_page(items, sid, tz, te, dz, de, lang, secs, fname):
+    """单个小节的完整条目页。"""
+    t = I18N[lang]
+    title = te if lang == "en" else tz
+    other_title = tz if lang == "en" else te
+    desc = de if lang == "en" else dz  # 不做跨语言回退，避免中文漏进英文版
+
+    readme = "README.md" if lang == "en" else "README.zh-CN.md"
+    back_anchor = anchor_of(sid, title)
+    other_sub = "zh" if lang == "en" else "en"
+
+    L = [f"# {sid} {title}", ""]
+    L.append(f"*{other_title}*")
+    L.append("")
+    L.append(f"[{t['back']}](../../../{readme}#{back_anchor}) ｜ "
+             f"[{t['other_lang']}](../{other_sub}/{fname})")
+    L.append("")
+    if desc:
+        L += [f"*{' '.join(str(desc).split())}*", ""]
+    L.append(t["gen_note"])
+    L.append("")
+    for p in sorted(items, key=sort_key, reverse=True):
+        L += [entry_full(p, lang), ""]
+    return "\n".join(L)
+
+
 def build_env(papers, env_id, label, lang):
     t = I18N[lang]
     items = [p for p in papers if env_id in (p.get("env") or [])]
@@ -302,17 +379,27 @@ def build_env(papers, env_id, label, lang):
     if not items:
         L += [t["empty"], ""]
     for p in sorted(items, key=sort_key, reverse=True):
-        L += [entry(p, lang), ""]
+        L += [entry_full(p, lang), ""]
     return "\n".join(L)
 
 
-def check_anchors(readme):
+def check_links_local(readme, sec_pages, lang):
+    """校验目录锚点与 docs/ 相对链接指向的文件确实存在。
+    本次构建即将生成的小节页视为有效（CI --check 模式下文件尚未落盘）。"""
+    bad = []
+    will_exist = {f"docs/by-section/{sub}/{f}" for (sid, sub), f in sec_pages.items()}
     links = re.findall(r"\]\(#([^)]+)\)", readme)
     heads = [
         re.sub(r"\s+", "-", re.sub(r"[^\w\s\u4e00-\u9fff-]", "", h.strip().lower()))
         for h in re.findall(r"^#{2,4} (.+)$", readme, re.M)
     ]
-    return [l for l in links if l not in heads]
+    bad += [f"锚点失效 #{l}" for l in links if l not in heads]
+    for m in re.findall(r"\]\((docs/[^)]+)\)", readme):
+        if m in will_exist:
+            continue
+        if not (ROOT / m).exists():
+            bad.append(f"文件不存在 {m}")
+    return bad
 
 
 def main():
@@ -330,14 +417,57 @@ def main():
         sys.exit(1)
     print(f"✓ 校验通过：{len(papers)} 篇（英文 + 中文简介齐备）")
 
-    en = build_readme(papers, secs, "en")
-    zh = build_readme(papers, secs, "zh")
+    # 预计算小节页文件名（中英同名，分目录存放）
+    by_sec = defaultdict(list)
+    for p in papers:
+        by_sec[str(p["section"])].append(p)
+    sec_pages = {}
+    for sid, tz, te, _dz, _de, _st, is_leaf, _d in flatten(secs["sections"]):
+        if is_leaf and by_sec.get(sid):
+            fname = section_file(sid, te)
+            sec_pages[(sid, "en")] = fname
+            sec_pages[(sid, "zh")] = fname
 
-    bad = check_anchors(en) + check_anchors(zh)
+    en = build_readme(papers, secs, "en", sec_pages)
+    zh = build_readme(papers, secs, "zh", sec_pages)
+
+    if not args.check:
+        # 先写小节页与环境页，README 的本地链接校验依赖它们存在
+        secdir = DOCS / "by-section"
+        if secdir.exists():
+            shutil.rmtree(secdir)
+        for sub in ("en", "zh"):
+            (secdir / sub).mkdir(parents=True, exist_ok=True)
+        n = 0
+        for sid, tz, te, dz, de, _st, is_leaf, _d in flatten(secs["sections"]):
+            if not is_leaf or not by_sec.get(sid):
+                continue
+            fname = sec_pages[(sid, "en")]
+            (secdir / "en" / fname).write_text(
+                build_section_page(by_sec[sid], sid, tz, te, dz, de, "en", secs, fname),
+                encoding="utf-8")
+            (secdir / "zh" / fname).write_text(
+                build_section_page(by_sec[sid], sid, tz, te, dz, de, "zh", secs, fname),
+                encoding="utf-8")
+            n += 2
+        print(f"✓ docs/by-section/（{n} 个文件）")
+
+        envdir = DOCS / "by-env"
+        envdir.mkdir(parents=True, exist_ok=True)
+        for e in secs["envs"]:
+            (envdir / f"{e['id']}.md").write_text(
+                build_env(papers, e["id"], ENV_LABEL[e["id"]], "en"), encoding="utf-8")
+            (envdir / f"{e['id']}.zh-CN.md").write_text(
+                build_env(papers, e["id"], ENV_LABEL_ZH[e["id"]], "zh"), encoding="utf-8")
+        print(f"✓ docs/by-env/（{len(secs['envs']) * 2} 个文件）")
+
+    bad = check_links_local(en, sec_pages, "en") + check_links_local(zh, sec_pages, "zh")
     if bad:
-        print(f"目录锚点失效 {len(bad)} 个：{bad}", file=sys.stderr)
+        print(f"链接校验失败 {len(bad)} 个：", file=sys.stderr)
+        for b in bad:
+            print(f"  ✗ {b}", file=sys.stderr)
         sys.exit(1)
-    print("✓ 目录锚点全部有效（中英双版本）")
+    print("✓ 目录锚点与 docs/ 本地链接全部有效（中英双版本）")
 
     if args.check:
         return
@@ -345,15 +475,6 @@ def main():
     (ROOT / "README.md").write_text(en, encoding="utf-8")
     (ROOT / "README.zh-CN.md").write_text(zh, encoding="utf-8")
     print("✓ README.md + README.zh-CN.md")
-
-    envdir = DOCS / "by-env"
-    envdir.mkdir(parents=True, exist_ok=True)
-    for e in secs["envs"]:
-        (envdir / f"{e['id']}.md").write_text(
-            build_env(papers, e["id"], ENV_LABEL[e["id"]], "en"), encoding="utf-8")
-        (envdir / f"{e['id']}.zh-CN.md").write_text(
-            build_env(papers, e["id"], ENV_LABEL_ZH[e["id"]], "zh"), encoding="utf-8")
-    print(f"✓ docs/by-env/（{len(secs['envs']) * 2} 个文件）")
 
 
 if __name__ == "__main__":

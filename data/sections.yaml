@@ -86,6 +86,8 @@ sections:
       - id: "2.1"
         title: "输入侧过滤与净化"
         title_en: "Input Filtering & Sanitization"
+        desc: "在内容进入模型上下文前过滤或遮蔽不可信部分"
+        desc_en: "Filtering or masking untrusted content before it enters the model context"
         stock: null
         queries: ['abs:sanitization', 'abs:"input filter"', 'abs:detection AND abs:injection']
 
@@ -108,18 +110,24 @@ sections:
       - id: "2.4"
         title: "人在环与确认机制"
         title_en: "Human-in-the-Loop & Confirmation"
+        desc: "关键动作前的人工确认、审批门、可打断性"
+        desc_en: "Confirmation before critical actions, approval gates, interruptibility"
         stock: null
         queries: ['abs:"human-in-the-loop"', 'abs:"user confirmation"', 'abs:"approval gate"']
 
       - id: "2.5"
         title: "事后恢复与回滚"
         title_en: "Post-hoc Recovery & Rollback"
+        desc: "失败归因、状态回滚、危害发生后的修复"
+        desc_en: "Failure attribution, state rollback, repair after harm has occurred"
         stock: null
         queries: ['abs:"harm recovery"', 'abs:rollback', 'abs:"failure attribution"']
 
       - id: "2.6"
         title: "形式化保证与验证"
         title_en: "Formal Guarantees & Verification"
+        desc: "带可证明保证的防御：形式化验证、控制流完整性、共形风险控制"
+        desc_en: "Defenses with provable guarantees: formal verification, control-flow integrity, conformal risk control"
         stock: null
         queries: ['abs:"formal verification"', 'abs:"formal guarantee"', 'abs:"control flow integrity"', 'abs:"conformal risk"']
 
@@ -132,21 +140,29 @@ sections:
       - id: "3.1"
         title: "综合与跨环境基准"
         title_en: "Comprehensive & Cross-environment"
+        desc: "同时覆盖多个环境或威胁类别的基准"
+        desc_en: "Benchmarks spanning multiple environments or threat classes"
         stock: null
         queries: ['abs:benchmark', 'abs:"test suite"', 'abs:dataset']
       - id: "3.2"
         title: "Web 环境基准"
         title_en: "Web Environment"
+        desc: "针对 web / 浏览器 agent 的安全评测"
+        desc_en: "Security evaluation for web / browser agents"
         stock: null
         queries: ['abs:benchmark AND abs:"web agent"']
       - id: "3.3"
         title: "Mobile 环境基准"
         title_en: "Mobile Environment"
+        desc: "针对移动 / Android / iOS agent 的安全评测"
+        desc_en: "Security evaluation for mobile / Android / iOS agents"
         stock: null
         queries: ['abs:benchmark AND abs:"mobile agent"']
       - id: "3.4"
         title: "Desktop 与 OS 环境基准"
         title_en: "Desktop & OS Environment"
+        desc: "针对 desktop / OS 级 computer-use agent 的安全评测"
+        desc_en: "Security evaluation for desktop / OS-level computer-use agents"
         stock: null
         queries: ['abs:benchmark AND abs:"computer-use agent"']
 
@@ -154,16 +170,11 @@ sections:
     title: "商用 AI 浏览器与产品安全"
     title_en: "Commercial AI Browsers & Product Security"
     desc: >-
-      本章以非 arXiv 来源为主（厂商安全公告、CVE、安全博客、漏洞披露）。
-      原因：arXiv 上 browser agent / browser-use 三周召回 0 篇，但 Atlas / Comet /
-      Edge Copilot Mode 类产品安全是当期热点，相关工作不走论文渠道。
-      周更时本章需单独走非 arXiv 检索流程，不要因 arXiv 无结果就跳过。
+      本章以非 arXiv 来源为主：厂商安全公告、CVE、安全博客、漏洞披露。
+      维护时的完整检索流程见 MAINTENANCE.md。
     desc_en: >-
-      Primarily non-arXiv sources: vendor security advisories, CVEs, security blogs, disclosures.
-      Rationale: arXiv yields zero hits for "browser agent" / "browser-use" over a three-week
-      window, yet the security of products like Atlas, Comet, and Edge Copilot Mode is a live
-      topic — that work simply does not go through paper venues. This chapter needs its own
-      non-arXiv tracking pass; do not skip it just because arXiv returns nothing.
+      Primarily non-arXiv sources: vendor security advisories, CVEs, security blogs,
+      disclosures. See MAINTENANCE.md for how this chapter is tracked.
     stock: 0
     queries: []
 
