@@ -171,10 +171,10 @@ sections:
     title_en: "Commercial AI Browsers & Product Security"
     desc: >-
       本章以非 arXiv 来源为主：厂商安全公告、CVE、安全博客、漏洞披露。
-      维护时的完整检索流程见 MAINTENANCE.md。
+      维护时的完整检索流程见 docs/MAINTENANCE.md。
     desc_en: >-
       Primarily non-arXiv sources: vendor security advisories, CVEs, security blogs,
-      disclosures. See MAINTENANCE.md for how this chapter is tracked.
+      disclosures. See docs/MAINTENANCE.md for how this chapter is tracked.
     stock: 0
     queries: []
 

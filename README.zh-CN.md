@@ -190,7 +190,7 @@
 
 ## 4 商用 AI 浏览器与产品安全
 
-*本章以非 arXiv 来源为主：厂商安全公告、CVE、安全博客、漏洞披露。 维护时的完整检索流程见 MAINTENANCE.md。*
+*本章以非 arXiv 来源为主：厂商安全公告、CVE、安全博客、漏洞披露。 维护时的完整检索流程见 docs/MAINTENANCE.md。*
 
 *本节暂无收录条目*
 
@@ -198,7 +198,7 @@
 
 ## 贡献
 
-只需修改 **`data/papers.yaml`** —— `README.md`、`README.zh-CN.md` 与 `docs/` 下所有文件均由 GitHub Actions 自动生成。收录标准与条目格式见 [CONTRIBUTING.md](CONTRIBUTING.md)，维护流程见 [MAINTENANCE.md](MAINTENANCE.md)。
+只需修改 **`data/papers.yaml`** —— `README.md`、`README.zh-CN.md` 与 `docs/` 下所有文件均由 GitHub Actions 自动生成。收录标准与条目格式见 [CONTRIBUTING.md](docs/CONTRIBUTING.md)，维护流程见 [MAINTENANCE.md](docs/MAINTENANCE.md)。
 
 ## 相关仓库
 
