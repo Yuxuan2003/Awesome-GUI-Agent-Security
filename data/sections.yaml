@@ -1,0 +1,136 @@
+# 章节定义 —— README 结构与 papers.yaml 的 section 字段以此为准
+#
+# stock 字段是 2026-09-04 实测的 arXiv 存量（2025-01 至 2026-09，含跨类重叠），
+# 用于判断该节是否值得独立成节（判据 ≥10 篇）以及周更时的预期产出。
+# queries 是该节的检索关键词，周更时按「形态词 × 安全词 × 本节 queries」三层交集检索。
+
+sections:
+  - id: "0"
+    title: "综述与威胁模型"
+    desc: "领域综述、SoK、以及 OWASP ASI / MITRE ATLAS 等威胁分类框架的对照"
+    stock: 15
+    queries: ['abs:survey', 'abs:"systematic review"', 'abs:"SoK"', 'abs:taxonomy']
+
+  - id: "1"
+    title: "攻击面"
+    desc: "按攻击载体与入口组织，而非按运行环境"
+    children:
+      - id: "1.1"
+        title: "间接提示注入"
+        desc: "经网页、文档、邮件等外部内容承载的注入"
+        stock: 56
+        queries: ['abs:"indirect prompt injection"', 'abs:"prompt injection"', 'abs:"injection attack"']
+
+      - id: "1.2"
+        title: "视觉层攻击"
+        desc: "对抗补丁、弹窗诱导、排版攻击、截图污染"
+        stock: 18
+        queries: ['abs:"adversarial patch"', 'abs:"adversarial example"', 'abs:"visual perturbation"', 'abs:"pop-up"', 'abs:popup', 'abs:typographic']
+
+      - id: "1.3"
+        title: "环境注入"
+        desc: "UI 元素注入、无障碍树、伪造通知、覆盖层"
+        stock: 65
+        queries: ['abs:"environmental injection"', 'abs:"environment injection"', 'abs:"UI element"', 'abs:"accessibility tree"', 'abs:overlay']
+
+      - id: "1.4"
+        title: "越权与权限滥用"
+        desc: "OS 级越权、跨应用提权、权限弹窗诱导"
+        stock: 28
+        queries: ['abs:"privilege escalation"', 'abs:"over-privileged"', 'abs:permission', 'abs:"access control"', 'abs:"excessive agency"']
+
+      - id: "1.5"
+        title: "数据泄露与隐私"
+        desc: "凭据窃取、PII 外泄、上下文完整性破坏"
+        stock: 63
+        queries: ['abs:"data leakage"', 'abs:exfiltration', 'abs:privacy', 'abs:PII', 'abs:credential']
+
+      - id: "1.6"
+        title: "后门与投毒"
+        desc: "grounding 后门、效率后门、训练数据投毒"
+        stock: 10
+        queries: ['abs:backdoor', 'abs:poisoning', 'abs:trojan']
+
+      - id: "1.7"
+        title: "良性指令下的意外危害"
+        desc: "无恶意攻击者，agent 自身在正常指令下造成危害"
+        stock: 18
+        queries: ['abs:"harmful behavior"', 'abs:unintended', 'abs:"benign instruction"', 'abs:"harm recovery"']
+
+  - id: "2"
+    title: "防御层"
+    desc: "按防御在执行链上的介入时点组织"
+    children:
+      - id: "2.1"
+        title: "输入侧过滤与净化"
+        stock: null
+        queries: ['abs:sanitization', 'abs:"input filter"', 'abs:detection AND abs:injection']
+
+      - id: "2.2"
+        title: "执行前风险评估"
+        desc: "世界模型预测、动作风险打分"
+        stock: null
+        queries: ['abs:"risk assessment"', 'abs:"world model" AND abs:safety', 'abs:"action risk"']
+
+      - id: "2.3"
+        title: "执行中拦截与权限控制"
+        desc: "信息流追踪、OS 级策略强制、沙箱"
+        stock: null
+        queries: ['abs:"information flow"', 'abs:sandbox', 'abs:"policy enforcement"', 'abs:guardrail']
+
+      - id: "2.4"
+        title: "人在环与确认机制"
+        stock: null
+        queries: ['abs:"human-in-the-loop"', 'abs:"user confirmation"', 'abs:"approval gate"']
+
+      - id: "2.5"
+        title: "事后恢复与回滚"
+        stock: null
+        queries: ['abs:"harm recovery"', 'abs:rollback', 'abs:"failure attribution"']
+
+      - id: "2.6"
+        title: "形式化保证与验证"
+        stock: null
+        queries: ['abs:"formal verification"', 'abs:"formal guarantee"', 'abs:"control flow integrity"']
+
+  - id: "3"
+    title: "评测基准与数据集"
+    desc: "本章二级按运行环境切分（这是环境标签唯一作为一级组织维度的地方）"
+    children:
+      - id: "3.1"
+        title: "综合与跨环境基准"
+        stock: null
+        queries: ['abs:benchmark', 'abs:"test suite"', 'abs:dataset']
+      - id: "3.2"
+        title: "Web 环境基准"
+        stock: null
+        queries: ['abs:benchmark AND abs:"web agent"']
+      - id: "3.3"
+        title: "Mobile 环境基准"
+        stock: null
+        queries: ['abs:benchmark AND abs:"mobile agent"']
+      - id: "3.4"
+        title: "Desktop / OS 环境基准"
+        stock: null
+        queries: ['abs:benchmark AND abs:"computer-use agent"']
+
+  - id: "4"
+    title: "商用 AI 浏览器与产品安全"
+    desc: >-
+      本章以非 arXiv 来源为主（厂商安全公告、CVE、安全博客、漏洞披露）。
+      原因：arXiv 上 browser agent / browser-use 三周召回 0 篇，但 Atlas / Comet /
+      Edge Copilot Mode 类产品安全是当期热点，相关工作不走论文渠道。
+      周更时本章需单独走非 arXiv 检索流程，不要因 arXiv 无结果就跳过。
+    stock: 0
+    queries: []
+
+# 环境标签（交叉维度，不作为一级章节，仅第 3 章做二级切分）
+envs:
+  - id: web
+    title: "Web / 浏览器"
+  - id: mobile
+    title: "Mobile / Android / iOS"
+  - id: desktop
+    title: "Desktop / OS 级 CUA"
+  - id: cross
+    title: "跨环境"

@@ -1,0 +1,41 @@
+name: Link Check
+
+# 两层校验：
+#   1. build.py --check —— 结构与格式（快，每个 PR 都跑，不联网）
+#   2. check_links.py   —— arXiv 可达性 + 标题精确匹配 + v1 日期一致性（联网，慢）
+#
+# PR 只跑抽样（12 条），避免 arXiv 限速拖慢反馈；每周全量跑一次抓外链腐坏。
+
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'scripts/**'
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+  schedule:
+    - cron: '0 3 * * 1'   # 每周一 03:00 UTC 全量
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+
+      - name: 结构与格式校验
+        run: python3 scripts/build.py --check
+
+      - name: arXiv 元数据校验（抽样）
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/check_links.py --sample 12
+
+      - name: arXiv 元数据校验（全量）
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/check_links.py

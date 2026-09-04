@@ -1,0 +1,43 @@
+name: Build
+
+# 只改 data/papers.yaml，README 与分组文件自动重建后回推。
+# 这样避免了手工维护多个文件导致的「目录与正文不同步」「同一论文跨节描述不一致」。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'scripts/build.py'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install pyyaml
+
+      - name: 生成 README 与分组文件
+        run: python3 scripts/build.py
+
+      - name: 提交产物
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md papers_by_section papers_by_env
+          if git diff --staged --quiet; then
+            echo "无变化，跳过提交"
+          else
+            git commit -m "chore: rebuild README and grouped files [skip ci]"
+            git push
+          fi

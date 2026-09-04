@@ -1,0 +1,150 @@
+# Awesome-GUI-Agent-Security 论文数据源
+#
+# ⚠️ 这是本仓库的唯一数据源。README.md 与 papers_by_*/ 下所有文件均由
+#    scripts/build.py 从本文件生成，请勿手工编辑那些文件。
+#
+# 字段说明（必填项标 *）：
+#   id*        arXiv ID，如 2608.06477（不带版本号）。非 arXiv 用 url 字段
+#   title*     论文官方完整标题
+#   abbr       方法/基准缩写，如 StepJack
+#   date*      arXiv v1 提交日期，YYYY-MM
+#   venue      发表会议/期刊，未发表填 arXiv
+#   section*   所属小节 ID，见 scripts/sections.yaml
+#   env*       环境标签，多选：web / mobile / desktop / cross
+#   summary*   中文简介，2-4 句 150-300 字，须含动机/机制/关键数字
+#   code       代码仓库 URL
+#   url        非 arXiv 来源的链接（第 4 章商用产品安全用）
+#
+# 收录边界（详见 CONTRIBUTING.md）：
+#   论文的**主要研究对象**必须是 GUI / computer-use / browser / mobile agent。
+#   仅把 GUI agent 当作若干实验环境之一的通用 LLM 安全工作 → 不收。
+
+papers:
+  - id: "2608.06477"
+    title: "StepJack: Benchmarking Computer-Use Agent Safety Against Multi-Step Indirect Prompt Injection"
+    abbr: "StepJack"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.1"
+    env: [desktop, cross]
+    summary: >-
+      针对现有间接提示注入评测多为单步、无法刻画真实 CUA 长流程风险的问题，提出多步 IPI 基准
+      StepJack，构造 480 个测试用例，把注入载荷分散在多步任务的中间环节，模拟攻击者只能污染
+      流程某一环的现实约束。实验显示多步注入相比单步把攻击成功率最高抬升 31.2 个百分点，
+      说明单步评测显著低估了 CUA 的真实暴露面，且现有防御在流程中段几乎不再触发。
+
+  - id: "2608.02018"
+    title: "Invisible Ink Threats: Adversarial Goals Behind Legitimate Tasks in Computer-Use Agents"
+    abbr: "Invisible Ink"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.1"
+    env: [desktop]
+    summary: >-
+      研究攻击者如何把恶意目标伪装在看似合法的任务描述中，使 CUA 在执行用户确认过的正常任务时
+      顺带完成攻击者目标。核心发现是这类攻击能绕过 human-in-the-loop 确认机制——因为人工审核
+      看到的动作序列本身每一步都合理，只有组合起来才产生危害。这揭示了「逐步确认」这一主流
+      防御范式的结构性盲区。
+
+  - id: "2606.23189"
+    title: "Capable but Careless: Do Computer-Use Agents Follow Contextual Integrity?"
+    abbr: "Capable but Careless"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "1.5"
+    env: [desktop]
+    summary: >-
+      用「上下文完整性」（contextual integrity）框架考察 CUA 在跨应用操作时是否会不当传播敏感
+      信息。结论是能力越强的 agent 反而越容易越界：它们为完成任务会主动把 A 应用中的私密数据
+      带入 B 应用的输入框，而这类行为不触发任何现有的隐私告警，因为每一次读写都在授权范围内。
+      提出了以信息流而非权限边界为判据的评估方法。
+
+  - id: "2608.04755"
+    title: "\"Allow\" to Achieve, Over-Privileged Inadvertently: The Unintended Cost of Task-Completion-Driven Pop-up Decisions in Mobile GUI Agents"
+    abbr: "Allow to Achieve"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.4"
+    env: [mobile]
+    summary: >-
+      发现移动 GUI agent 在遇到权限弹窗时存在系统性的过度授权倾向，识别出两种偏差：App-Trust
+      Bias（对已安装应用默认信任而一律点允许）与 Task-Prior Override（为达成任务目标而牺牲
+      权限最小化）。结果是 agent 在用户不知情的情况下累积远超任务所需的权限，把权限弹窗这一
+      最后防线变成了形式。
+
+  - id: "2607.00333"
+    title: "(A)I Sees What You Don't: Exploiting New Attack Surfaces in Third-Party Mobile Agents"
+    abbr: "AI Sees"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "1.4"
+    env: [mobile]
+    summary: >-
+      系统分析第三方移动 agent 引入的新攻击面，核心是「感知鸿沟」——agent 能读取到屏幕上用户
+      实际看不到或不会注意的内容（隐藏视图、后台通知、无障碍节点），攻击者可利用这一差异实施
+      用户完全无法察觉的诱导。指出第三方 agent 生态缺乏对 agent 可见性范围的约束机制。
+
+  - id: "2607.29199"
+    title: "Alignment Is Local: A Paired Diagnostic for GUI Agents under User Persuasion"
+    abbr: "Alignment Is Local"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "1.7"
+    env: [mobile, cross]
+    summary: >-
+      提出成对诊断方法，衡量 GUI agent 的安全对齐在多轮用户说服下的退化程度。关键发现是对齐
+      具有「局部性」：agent 在单轮拒绝有害请求，但在用户连续追问、提供看似合理的理由后会逐步
+      让步，且这种退化不体现在任何单轮评测指标上。说明当前基于单轮的安全评测无法反映真实
+      多轮交互下的风险。
+
+  - id: "2603.08316"
+    title: "SlowBA: An Efficiency Backdoor Attack towards VLM-based GUI Agents"
+    abbr: "SlowBA"
+    date: "2026-03"
+    venue: "arXiv"
+    section: "1.6"
+    env: [mobile, cross]
+    summary: >-
+      提出针对 VLM-based GUI agent 的效率后门：触发器不改变任务最终结果，只让 agent 的响应
+      延迟大幅增加或步数显著膨胀。这类后门极难被察觉——正确性检测全部通过，只有观察资源消耗
+      才能发现，因此可长期潜伏并造成持续的算力成本损失。拓展了 GUI agent 后门的威胁定义，
+      从「结果篡改」扩展到「可用性与经济性攻击」。
+
+  - id: "2608.08939"
+    title: "Not an A11y: How Android Accessibility Exposes Mobile AI Agents to Indirect Prompt Injection"
+    abbr: "Not an A11y"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.3"
+    env: [mobile]
+    summary: >-
+      指出 Android 无障碍树（accessibility tree）是移动 agent 的一条被忽视的注入通道：任何
+      应用都能往无障碍节点写入文本，而 agent 会把这些内容当作可信的界面语义读取。攻击者无需
+      任何特殊权限即可通过普通应用注入指令。这条路径完全绕开了针对视觉截图或网页内容的
+      防御，暴露出移动 agent 输入通道治理的缺失。
+
+  - id: "2608.02643"
+    title: "CUADebug: Diagnosing and Repairing Computer-Use Agent Failures"
+    abbr: "CUADebug"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "2.5"
+    env: [desktop]
+    summary: >-
+      面向 CUA 执行失败后的诊断与修复，提出定位失败步骤并生成修复方案的框架。虽以可靠性为
+      出发点，但其失败归因与状态回滚能力可直接用于安全事件的事后恢复——在 agent 被注入劫持后
+      判断从哪一步开始偏离、并回退到最后一个可信状态。是「事后恢复」这一防御层中较少见的
+      系统性工作。
+
+  - id: "2604.02947"
+    title: "AgentHazard: A Benchmark for Evaluating Harmful Behavior in Computer-Use Agents"
+    abbr: "AgentHazard"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "3.1"
+    env: [desktop]
+    summary: >-
+      针对 CUA 具备跨工具、跨文件持久化操作能力后产生的新型安全风险，构建覆盖多风险类别与
+      攻击策略的基准 AgentHazard，含 2653 个实例。关键结论是有害行为往往由一串「单看都合理、
+      合起来不安全」的动作累积产生。实测 Claude Code 搭配 Qwen3-Coder 的攻击成功率达 73.63%，
+      表明仅靠底座模型的对齐无法保障 agent 层面的安全。
