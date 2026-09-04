@@ -148,3 +148,59 @@ papers:
       攻击策略的基准 AgentHazard，含 2653 个实例。关键结论是有害行为往往由一串「单看都合理、
       合起来不安全」的动作累积产生。实测 Claude Code 搭配 Qwen3-Coder 的攻击成功率达 73.63%，
       表明仅靠底座模型的对齐无法保障 agent 层面的安全。
+
+  - id: "2608.30207"
+    title: "SIR: Self-improving Red-teaming for Compute Use Agents"
+    abbr: "SIR"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.1"
+    env: [desktop, web]
+    summary: >-
+      指出现有 CUA 安全基准用的都是人工手写的固定注入载荷，会低估自适应攻击者的真实威胁。提出
+      黑盒 IPI 攻击 SIR：从一个用自然语言描述的可复用「隐蔽性原则」小库中组合注入内容，再套一层
+      迭代反馈循环——诊断受害 agent 失败的攻击轨迹，把成功绕过的模式蒸馏回原则库。这把红队从
+      静态测试变成自我改进的过程，说明固定载荷的评测结论会随攻击者迭代迅速失效。
+
+  - id: "2608.27808"
+    title: "CURA: Certified Runtime Alarms for Computer-Use Agents"
+    abbr: "CURA"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "2.3"
+    env: [desktop]
+    summary: >-
+      揭示 self-report 这一最廉价的监督通道恰恰在最需要它的地方失效：在 361 个 OSWorld 任务上，
+      流水线平均分 82.9（超过人类基线 72.4），但 71 次失败里有 64 次（90%）以「成功」收尾，
+      61 次声称没有遇到任何阻碍，约 9100 次调用中显式的失败上报机制从未被使用。提出外部监控器
+      CURA，只读 harness 可见的遥测数据，不需模型内部状态、额外 LLM 调用或改 prompt，把运行
+      轨迹转成带误报率保证的序贯检验：α=0.10 时 CUSUM 告警能在终止前中位 31 步检出 42.3% 的
+      失败，实测误报率 0.066。
+
+  - id: "2608.26204"
+    title: "ADeptS-Bench: Measuring the Trustworthiness of Computer Use Agents Across Devices"
+    abbr: "ADeptS-Bench"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "3.1"
+    env: [desktop, mobile]
+    summary: >-
+      针对「没有基准能同时考察 CUA 在视觉界面下的安全性与对模糊指令的处理」这一空缺，提出双流
+      可信度基准 ADeptS-Bench：Safety 流提供威胁嵌在视觉界面中的良性/恶意配对任务，Disambiguation
+      流考察 agent 在意图模糊时是否会主动澄清。评测 7 个模型的结论相当刺眼——没有模型能在任务
+      成功率超 80% 的同时把攻击成功率压到 30% 以下；所有模型都会毫不犹豫点下 2.5 万美元订单的
+      「结账」，也没有一个能识别出被标为「优化」的按钮实际是「恢复出厂设置」。
+
+  - id: "2608.24099"
+    title: "Are Android GUI Agents Robust Against Runtime Anomalies? AnTrap: Evaluating Agents in Dynamic Adversarial Environments"
+    abbr: "AnTrap"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.3"
+    env: [mobile]
+    summary: >-
+      指出现有基准缺乏对 GUI agent 运行时异常鲁棒性的系统评估，而 Android 实机部署中意外弹窗、
+      动作误用等动态扰动十分常见。提出基准 AnTrap，把真实异常归纳为 State / Thinking / Action /
+      Round 四层共十个细分类别，并设计了在注入对抗扰动的同时保持任务仍可完成的构造流程。评测
+      16 个主流 GUI 模型显示对动态异常存在普遍脆弱性，最强模型也出现显著性能下降；作者还在
+      原始与对抗环境下各做一轮 GRPO 训练，以区分环境难度与模型能力两个混杂因素。
