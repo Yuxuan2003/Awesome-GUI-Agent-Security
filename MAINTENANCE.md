@@ -2,6 +2,18 @@
 
 本仓库的日常维护流程。设计目标：**只改一个 YAML，其余全自动**。
 
+```
+data/papers.yaml     ← 唯一数据源，只改这个
+data/sections.yaml   ← 章节定义（中英标题 + 存量 + 检索关键词）
+   ↓  scripts/build.py
+README.md            英文主版本
+README.zh-CN.md      中文副版本
+docs/by-env/*.md     按环境分组（中英各 4 个）
+```
+
+**双语约定**：英文（`summary`）是主版本，中文（`summary_zh`）是等价副版本而非节译。
+两者都是必填，CI 会拦缺失。
+
 ---
 
 ## 双周更新流程

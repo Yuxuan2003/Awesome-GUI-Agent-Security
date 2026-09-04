@@ -1,126 +1,169 @@
 # 章节定义 —— README 结构与 papers.yaml 的 section 字段以此为准
 #
-# stock 字段是 2026-09-04 实测的 arXiv 存量（2025-01 至 2026-09，含跨类重叠），
-# 用于判断该节是否值得独立成节（判据 ≥10 篇）以及周更时的预期产出。
-# queries 是该节的检索关键词，周更时按「形态词 × 安全词 × 本节 queries」三层交集检索。
+# title / desc     中文（README.zh-CN.md 用）
+# title_en/desc_en 英文（README.md 用，主版本）
+# stock  2026-09-04 实测的 arXiv 存量（2025-01 起，含跨类重叠），
+#        用于判断该节是否值得独立成节（判据 ≥10 篇）以及预期产出
+# queries 该节检索关键词，按「形态词 × 安全词 × 本节 queries」三层交集检索
 
 sections:
   - id: "0"
     title: "综述与威胁模型"
+    title_en: "Surveys & Threat Models"
     desc: "领域综述、SoK、以及 OWASP ASI / MITRE ATLAS 等威胁分类框架的对照"
+    desc_en: "Surveys, SoKs, and mappings onto threat taxonomies such as OWASP ASI and MITRE ATLAS"
     stock: 15
     queries: ['abs:survey', 'abs:"systematic review"', 'abs:"SoK"', 'abs:taxonomy']
 
   - id: "1"
     title: "攻击面"
+    title_en: "Attack Surfaces"
     desc: "按攻击载体与入口组织，而非按运行环境"
+    desc_en: "Organized by attack vector and entry point, not by runtime environment"
     children:
       - id: "1.1"
         title: "间接提示注入"
+        title_en: "Indirect Prompt Injection"
         desc: "经网页、文档、邮件等外部内容承载的注入"
+        desc_en: "Injection carried by external content: web pages, documents, email"
         stock: 56
         queries: ['abs:"indirect prompt injection"', 'abs:"prompt injection"', 'abs:"injection attack"']
 
       - id: "1.2"
         title: "视觉层攻击"
+        title_en: "Visual-Layer Attacks"
         desc: "对抗补丁、弹窗诱导、排版攻击、截图污染"
+        desc_en: "Adversarial patches, pop-up lures, typographic attacks, screenshot poisoning"
         stock: 18
         queries: ['abs:"adversarial patch"', 'abs:"adversarial example"', 'abs:"visual perturbation"', 'abs:"pop-up"', 'abs:popup', 'abs:typographic']
 
       - id: "1.3"
         title: "环境注入"
+        title_en: "Environmental Injection"
         desc: "UI 元素注入、无障碍树、伪造通知、覆盖层"
+        desc_en: "UI element injection, accessibility tree, spoofed notifications, overlays"
         stock: 65
         queries: ['abs:"environmental injection"', 'abs:"environment injection"', 'abs:"UI element"', 'abs:"accessibility tree"', 'abs:overlay']
 
       - id: "1.4"
         title: "越权与权限滥用"
-        desc: "OS 级越权、跨应用提权、权限弹窗诱导"
+        title_en: "Privilege Escalation & Permission Abuse"
+        desc: "OS 级越权、跨应用提权、权限弹窗诱导、TOCTOU"
+        desc_en: "OS-level escalation, cross-app privilege abuse, permission-dialog manipulation, TOCTOU"
         stock: 28
         queries: ['abs:"privilege escalation"', 'abs:"over-privileged"', 'abs:permission', 'abs:"access control"', 'abs:"excessive agency"']
 
       - id: "1.5"
         title: "数据泄露与隐私"
-        desc: "凭据窃取、PII 外泄、上下文完整性破坏"
+        title_en: "Data Exfiltration & Privacy"
+        desc: "凭据窃取、PII 外泄、上下文完整性破坏、过度分享"
+        desc_en: "Credential theft, PII leakage, contextual-integrity violations, oversharing"
         stock: 63
         queries: ['abs:"data leakage"', 'abs:exfiltration', 'abs:privacy', 'abs:PII', 'abs:credential']
 
       - id: "1.6"
         title: "后门与投毒"
-        desc: "grounding 后门、效率后门、训练数据投毒"
+        title_en: "Backdoors & Poisoning"
+        desc: "grounding 后门、效率后门、记忆投毒"
+        desc_en: "Grounding backdoors, efficiency backdoors, memory poisoning"
         stock: 10
         queries: ['abs:backdoor', 'abs:poisoning', 'abs:trojan']
 
       - id: "1.7"
         title: "良性指令下的意外危害"
+        title_en: "Unintended Harm from Benign Instructions"
         desc: "无恶意攻击者，agent 自身在正常指令下造成危害"
+        desc_en: "No adversary involved — harm arising from the agent's own behavior on normal tasks"
         stock: 18
         queries: ['abs:"harmful behavior"', 'abs:unintended', 'abs:"benign instruction"', 'abs:"harm recovery"']
 
   - id: "2"
     title: "防御层"
+    title_en: "Defense Layers"
     desc: "按防御在执行链上的介入时点组织"
+    desc_en: "Organized by where the defense intervenes in the execution chain"
     children:
       - id: "2.1"
         title: "输入侧过滤与净化"
+        title_en: "Input Filtering & Sanitization"
         stock: null
         queries: ['abs:sanitization', 'abs:"input filter"', 'abs:detection AND abs:injection']
 
       - id: "2.2"
         title: "执行前风险评估"
+        title_en: "Pre-execution Risk Assessment"
         desc: "世界模型预测、动作风险打分"
+        desc_en: "World-model prediction, action risk scoring"
         stock: null
         queries: ['abs:"risk assessment"', 'abs:"world model" AND abs:safety', 'abs:"action risk"']
 
       - id: "2.3"
         title: "执行中拦截与权限控制"
+        title_en: "Runtime Interception & Access Control"
         desc: "信息流追踪、OS 级策略强制、沙箱"
+        desc_en: "Information-flow tracking, OS-level policy enforcement, sandboxing"
         stock: null
         queries: ['abs:"information flow"', 'abs:sandbox', 'abs:"policy enforcement"', 'abs:guardrail']
 
       - id: "2.4"
         title: "人在环与确认机制"
+        title_en: "Human-in-the-Loop & Confirmation"
         stock: null
         queries: ['abs:"human-in-the-loop"', 'abs:"user confirmation"', 'abs:"approval gate"']
 
       - id: "2.5"
         title: "事后恢复与回滚"
+        title_en: "Post-hoc Recovery & Rollback"
         stock: null
         queries: ['abs:"harm recovery"', 'abs:rollback', 'abs:"failure attribution"']
 
       - id: "2.6"
         title: "形式化保证与验证"
+        title_en: "Formal Guarantees & Verification"
         stock: null
-        queries: ['abs:"formal verification"', 'abs:"formal guarantee"', 'abs:"control flow integrity"']
+        queries: ['abs:"formal verification"', 'abs:"formal guarantee"', 'abs:"control flow integrity"', 'abs:"conformal risk"']
 
   - id: "3"
     title: "评测基准与数据集"
+    title_en: "Benchmarks & Datasets"
     desc: "本章二级按运行环境切分（这是环境标签唯一作为一级组织维度的地方）"
+    desc_en: "The only chapter where runtime environment serves as a primary organizing dimension"
     children:
       - id: "3.1"
         title: "综合与跨环境基准"
+        title_en: "Comprehensive & Cross-environment"
         stock: null
         queries: ['abs:benchmark', 'abs:"test suite"', 'abs:dataset']
       - id: "3.2"
         title: "Web 环境基准"
+        title_en: "Web Environment"
         stock: null
         queries: ['abs:benchmark AND abs:"web agent"']
       - id: "3.3"
         title: "Mobile 环境基准"
+        title_en: "Mobile Environment"
         stock: null
         queries: ['abs:benchmark AND abs:"mobile agent"']
       - id: "3.4"
-        title: "Desktop / OS 环境基准"
+        title: "Desktop 与 OS 环境基准"
+        title_en: "Desktop & OS Environment"
         stock: null
         queries: ['abs:benchmark AND abs:"computer-use agent"']
 
   - id: "4"
     title: "商用 AI 浏览器与产品安全"
+    title_en: "Commercial AI Browsers & Product Security"
     desc: >-
       本章以非 arXiv 来源为主（厂商安全公告、CVE、安全博客、漏洞披露）。
       原因：arXiv 上 browser agent / browser-use 三周召回 0 篇，但 Atlas / Comet /
       Edge Copilot Mode 类产品安全是当期热点，相关工作不走论文渠道。
       周更时本章需单独走非 arXiv 检索流程，不要因 arXiv 无结果就跳过。
+    desc_en: >-
+      Primarily non-arXiv sources: vendor security advisories, CVEs, security blogs, disclosures.
+      Rationale: arXiv yields zero hits for "browser agent" / "browser-use" over a three-week
+      window, yet the security of products like Atlas, Comet, and Edge Copilot Mode is a live
+      topic — that work simply does not go through paper venues. This chapter needs its own
+      non-arXiv tracking pass; do not skip it just because arXiv returns nothing.
     stock: 0
     queries: []
 
@@ -128,9 +171,13 @@ sections:
 envs:
   - id: web
     title: "Web / 浏览器"
+    title_en: "Web / Browser"
   - id: mobile
     title: "Mobile / Android / iOS"
+    title_en: "Mobile / Android / iOS"
   - id: desktop
     title: "Desktop / OS 级 CUA"
+    title_en: "Desktop / OS-level CUA"
   - id: cross
     title: "跨环境"
+    title_en: "Cross-environment"

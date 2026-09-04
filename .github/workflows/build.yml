@@ -27,17 +27,17 @@ jobs:
 
       - run: pip install pyyaml
 
-      - name: 生成 README 与分组文件
+      - name: 生成中英 README 与 docs 分组文件
         run: python3 scripts/build.py
 
       - name: 提交产物
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md papers_by_section papers_by_env
+          git add README.md README.zh-CN.md docs
           if git diff --staged --quiet; then
             echo "无变化，跳过提交"
           else
-            git commit -m "chore: rebuild README and grouped files [skip ci]"
+            git commit -m "chore: rebuild READMEs and docs [skip ci]"
             git push
           fi

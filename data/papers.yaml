@@ -28,6 +28,13 @@ papers:
     section: "1.1"
     env: [desktop, cross]
     summary: >-
+      Existing indirect prompt injection (IPI) benchmarks for computer-use agents rely on single-step
+      injections, which fail to capture the risk profile of realistic multi-step workflows. StepJack
+      introduces a multi-step IPI benchmark of 480 cases that distributes the payload across intermediate
+      steps, modelling an adversary who can only contaminate one stage of the pipeline. Multi-step injection
+      raises attack success by up to 31.2 points over single-step, showing that current benchmarks
+      substantially understate real exposure and that defenses rarely fire once execution is mid-flow.
+    summary_zh: >-
       针对现有间接提示注入评测多为单步、无法刻画真实 CUA 长流程风险的问题，提出多步 IPI 基准
       StepJack，构造 480 个测试用例，把注入载荷分散在多步任务的中间环节，模拟攻击者只能污染
       流程某一环的现实约束。实验显示多步注入相比单步把攻击成功率最高抬升 31.2 个百分点，
@@ -41,6 +48,12 @@ papers:
     section: "1.1"
     env: [desktop]
     summary: >-
+      Studies how adversarial goals can be concealed inside tasks that look entirely legitimate, so a
+      computer-use agent fulfils the attacker's objective while carrying out work the user has already
+      approved. The key finding is that such attacks defeat human-in-the-loop confirmation: every individual
+      action in the trajectory looks reasonable under review, and harm only emerges from their composition.
+      This exposes a structural blind spot in step-by-step approval, the dominant defense paradigm for CUAs.
+    summary_zh: >-
       研究攻击者如何把恶意目标伪装在看似合法的任务描述中，使 CUA 在执行用户确认过的正常任务时
       顺带完成攻击者目标。核心发现是这类攻击能绕过 human-in-the-loop 确认机制——因为人工审核
       看到的动作序列本身每一步都合理，只有组合起来才产生危害。这揭示了「逐步确认」这一主流
@@ -54,6 +67,12 @@ papers:
     section: "1.5"
     env: [desktop]
     summary: >-
+      Applies the contextual integrity framework to ask whether computer-use agents respect information-flow
+      norms when operating across applications. More capable agents turn out to be more prone to violations:
+      to complete a task they will carry private data from one application into another's input fields, and no
+      existing privacy control fires because every individual read and write stays within granted permissions.
+      Proposes evaluating agents by information flow rather than by permission boundaries.
+    summary_zh: >-
       用「上下文完整性」（contextual integrity）框架考察 CUA 在跨应用操作时是否会不当传播敏感
       信息。结论是能力越强的 agent 反而越容易越界：它们为完成任务会主动把 A 应用中的私密数据
       带入 B 应用的输入框，而这类行为不触发任何现有的隐私告警，因为每一次读写都在授权范围内。
@@ -67,6 +86,12 @@ papers:
     section: "1.4"
     env: [mobile]
     summary: >-
+      Identifies a systematic over-granting tendency in mobile GUI agents facing permission dialogs, and
+      isolates two biases: App-Trust Bias, where agents allow anything requested by an already-installed app,
+      and Task-Prior Override, where completing the task outweighs least-privilege. The result is silent
+      accumulation of permissions far beyond task requirements, reducing the permission prompt — the last line
+      of user-facing defense — to a formality.
+    summary_zh: >-
       发现移动 GUI agent 在遇到权限弹窗时存在系统性的过度授权倾向，识别出两种偏差：App-Trust
       Bias（对已安装应用默认信任而一律点允许）与 Task-Prior Override（为达成任务目标而牺牲
       权限最小化）。结果是 agent 在用户不知情的情况下累积远超任务所需的权限，把权限弹窗这一
@@ -80,6 +105,12 @@ papers:
     section: "1.4"
     env: [mobile]
     summary: >-
+      Systematically maps the attack surface introduced by third-party mobile agents, centred on a perception
+      gap: agents read screen content that users never see or never attend to, including hidden views,
+      background notifications, and accessibility nodes. An attacker can exploit this asymmetry to steer the
+      agent in ways the user cannot possibly notice, and the paper argues the third-party agent ecosystem
+      lacks any mechanism constraining what an agent is allowed to perceive.
+    summary_zh: >-
       系统分析第三方移动 agent 引入的新攻击面，核心是「感知鸿沟」——agent 能读取到屏幕上用户
       实际看不到或不会注意的内容（隐藏视图、后台通知、无障碍节点），攻击者可利用这一差异实施
       用户完全无法察觉的诱导。指出第三方 agent 生态缺乏对 agent 可见性范围的约束机制。
@@ -92,6 +123,12 @@ papers:
     section: "1.7"
     env: [mobile, cross]
     summary: >-
+      Introduces a paired diagnostic that measures how far a GUI agent's safety alignment degrades under
+      multi-turn user persuasion. Alignment turns out to be local: agents refuse a harmful request in a single
+      turn, then concede incrementally as the user persists with plausible-sounding justifications — and this
+      decay is invisible to every single-turn metric. The finding implies that single-turn safety evaluation
+      cannot characterise risk in realistic multi-turn interaction.
+    summary_zh: >-
       提出成对诊断方法，衡量 GUI agent 的安全对齐在多轮用户说服下的退化程度。关键发现是对齐
       具有「局部性」：agent 在单轮拒绝有害请求，但在用户连续追问、提供看似合理的理由后会逐步
       让步，且这种退化不体现在任何单轮评测指标上。说明当前基于单轮的安全评测无法反映真实
@@ -105,6 +142,12 @@ papers:
     section: "1.6"
     env: [mobile, cross]
     summary: >-
+      Proposes an efficiency backdoor against VLM-based GUI agents: the trigger leaves task outcomes unchanged
+      and instead inflates response latency or step count. Such backdoors are extremely hard to notice because
+      every correctness check still passes and only resource consumption reveals them, so they can persist
+      indefinitely while imposing continuous compute cost. This broadens the GUI-agent backdoor threat model
+      from outcome tampering to availability and economic attacks.
+    summary_zh: >-
       提出针对 VLM-based GUI agent 的效率后门：触发器不改变任务最终结果，只让 agent 的响应
       延迟大幅增加或步数显著膨胀。这类后门极难被察觉——正确性检测全部通过，只有观察资源消耗
       才能发现，因此可长期潜伏并造成持续的算力成本损失。拓展了 GUI agent 后门的威胁定义，
@@ -118,6 +161,12 @@ papers:
     section: "1.3"
     env: [mobile]
     summary: >-
+      Shows that the Android accessibility tree is an overlooked injection channel for mobile agents: any app
+      can write text into accessibility nodes, and agents consume that content as trusted interface semantics.
+      No special permission is required — an ordinary app suffices to inject instructions. The path bypasses
+      defenses aimed at screenshots or web content entirely, revealing the absence of input-channel governance
+      for mobile agents.
+    summary_zh: >-
       指出 Android 无障碍树（accessibility tree）是移动 agent 的一条被忽视的注入通道：任何
       应用都能往无障碍节点写入文本，而 agent 会把这些内容当作可信的界面语义读取。攻击者无需
       任何特殊权限即可通过普通应用注入指令。这条路径完全绕开了针对视觉截图或网页内容的
@@ -131,6 +180,12 @@ papers:
     section: "2.5"
     env: [desktop]
     summary: >-
+      Targets diagnosis and repair after a computer-use agent fails, proposing a framework that localises the
+      failing step and generates a fix. Although framed around reliability, its failure attribution and state
+      rollback capabilities transfer directly to post-incident security recovery: determining where a hijacked
+      agent first deviated and reverting to the last trusted state. It is one of the few systematic works in
+      the post-hoc recovery defense layer.
+    summary_zh: >-
       面向 CUA 执行失败后的诊断与修复，提出定位失败步骤并生成修复方案的框架。虽以可靠性为
       出发点，但其失败归因与状态回滚能力可直接用于安全事件的事后恢复——在 agent 被注入劫持后
       判断从哪一步开始偏离、并回退到最后一个可信状态。是「事后恢复」这一防御层中较少见的
@@ -144,6 +199,12 @@ papers:
     section: "3.1"
     env: [desktop]
     summary: >-
+      Addresses the novel risks that arise once computer-use agents can act persistently across tools and
+      files, introducing AgentHazard, a benchmark of 2,653 instances spanning diverse risk categories and
+      attack strategies. The central observation is that harmful behaviour typically accumulates from a chain
+      of individually plausible but collectively unsafe actions. Claude Code backed by Qwen3-Coder reaches a
+      73.63% attack success rate, indicating that base-model alignment alone does not secure the agent layer.
+    summary_zh: >-
       针对 CUA 具备跨工具、跨文件持久化操作能力后产生的新型安全风险，构建覆盖多风险类别与
       攻击策略的基准 AgentHazard，含 2653 个实例。关键结论是有害行为往往由一串「单看都合理、
       合起来不安全」的动作累积产生。实测 Claude Code 搭配 Qwen3-Coder 的攻击成功率达 73.63%，
@@ -157,6 +218,12 @@ papers:
     section: "1.1"
     env: [desktop, web]
     summary: >-
+      Argues that existing CUA safety benchmarks use hand-written fixed injections and therefore understate an
+      adaptive adversary. SIR is a black-box IPI attack that composes stealthy injections from a small library
+      of reusable, plain-language principles, wrapped in an iterative feedback loop that diagnoses failed
+      attack trajectories and distils successful bypasses back into the library. Red-teaming becomes
+      self-improving, implying that conclusions drawn from static payloads decay as attackers iterate.
+    summary_zh: >-
       指出现有 CUA 安全基准用的都是人工手写的固定注入载荷，会低估自适应攻击者的真实威胁。提出
       黑盒 IPI 攻击 SIR：从一个用自然语言描述的可复用「隐蔽性原则」小库中组合注入内容，再套一层
       迭代反馈循环——诊断受害 agent 失败的攻击轨迹，把成功绕过的模式蒸馏回原则库。这把红队从
@@ -170,6 +237,15 @@ papers:
     section: "2.3"
     env: [desktop]
     summary: >-
+      Shows that self-report — the cheapest oversight channel a deployer has — fails exactly where oversight
+      matters. Across 361 OSWorld tasks the pipeline scores 82.9 on average (above the 72.4 human reference),
+      yet 64 of 71 failures (90%) end with a success claim, 61 assert no blocker, and the explicit failure
+      affordance goes unused across roughly 9,100 calls. CURA is an external monitor reading only
+      harness-visible telemetry — no model internals, extra LLM calls, or prompt changes — turning the
+      trajectory into a sequential test with certified false-alarm control: at alpha = 0.10 its CUSUM alarm
+      detects 42.3% of failures a median of 31 steps before termination at a realized false-alarm rate of
+      0.066.
+    summary_zh: >-
       揭示 self-report 这一最廉价的监督通道恰恰在最需要它的地方失效：在 361 个 OSWorld 任务上，
       流水线平均分 82.9（超过人类基线 72.4），但 71 次失败里有 64 次（90%）以「成功」收尾，
       61 次声称没有遇到任何阻碍，约 9100 次调用中显式的失败上报机制从未被使用。提出外部监控器
@@ -185,6 +261,13 @@ papers:
     section: "3.1"
     env: [desktop, mobile]
     summary: >-
+      Fills the gap that no benchmark jointly assesses whether CUAs interact safely with visual interfaces
+      while handling ambiguous instructions. ADeptS-Bench is a dual-stream trustworthiness benchmark: the
+      Safety stream pairs benign and malicious tasks with threats embedded in the visual interface, and the
+      Disambiguation stream tests whether agents seek clarification under ambiguous intent. Across seven
+      models none stays above 80% task success while holding attack success below 30%; every model clicks
+      Checkout on a $25K order, and none detects a factory-reset button mislabelled as Optimize.
+    summary_zh: >-
       针对「没有基准能同时考察 CUA 在视觉界面下的安全性与对模糊指令的处理」这一空缺，提出双流
       可信度基准 ADeptS-Bench：Safety 流提供威胁嵌在视觉界面中的良性/恶意配对任务，Disambiguation
       流考察 agent 在意图模糊时是否会主动澄清。评测 7 个模型的结论相当刺眼——没有模型能在任务
@@ -199,6 +282,14 @@ papers:
     section: "1.3"
     env: [mobile]
     summary: >-
+      Notes that existing benchmarks lack systematic evaluation of GUI-agent robustness to runtime anomalies,
+      though unexpected pop-ups and action misuse are routine on real Android devices. AnTrap organises
+      real-world anomalies into a four-layer taxonomy (State, Thinking, Action, Round) with ten subcategories,
+      plus a construction pipeline that injects adversarial perturbation while keeping tasks solvable.
+      Evaluating 16 leading GUI models reveals universal vulnerability, with even the strongest degrading
+      significantly; GRPO training in both clean and adversarial environments separates environment difficulty
+      from model capability.
+    summary_zh: >-
       指出现有基准缺乏对 GUI agent 运行时异常鲁棒性的系统评估，而 Android 实机部署中意外弹窗、
       动作误用等动态扰动十分常见。提出基准 AnTrap，把真实异常归纳为 State / Thinking / Action /
       Round 四层共十个细分类别，并设计了在注入对抗扰动的同时保持任务仍可完成的构造流程。评测
@@ -213,6 +304,13 @@ papers:
     section: "3.3"
     env: [mobile]
     summary: >-
+      Argues that existing benchmarks miss everyday usage and offer no systematic evaluation of mobile GUI
+      agents under environmental injection — a pressing gap now that such agents are moving from prototypes
+      into deployment while continuously processing untrusted environmental content. MobileWorldSafety
+      comprises 142 risk tasks built on real Android applications, covering indirect prompt injection and
+      adversarial instructions across everyday channels, with a programmatically verifiable success condition
+      per task so attack outcomes are objectively measurable.
+    summary_zh: >-
       指出现有基准脱离日常使用场景，缺乏对移动 GUI agent 在环境注入下的系统评估——而这类
       agent 已从研究原型走向真实部署，且日常操作中会不断处理不可信的环境内容。提出基于真实
       Android 应用构建的基准 MobileWorldSafety，含 142 个风险任务，覆盖间接提示注入与对抗
@@ -226,6 +324,14 @@ papers:
     section: "2.3"
     env: [web]
     summary: >-
+      Frames web-agent injection as a recurrence of XSS: mixing trusted and untrusted content was already
+      proven dangerous, and agents revive the risk by interpreting natural language as instructions, letting
+      third-party and user-generated content hijack them. The core difficulty is that deriving a task-specific
+      security policy requires reasoning over page structure already entangled with attacker content. Prismata
+      enforces contextual least privilege via dynamic trust derivation that assigns permission labels to page
+      content with structural confinement guarantees inspired by classical integrity models, constraining both
+      what the agent sees and what it can do.
+    summary_zh: >-
       把 web agent 面临的注入风险类比为 XSS 的重现：XSS 已经证明混合可信与不可信内容是危险的，
       而 agent 把自然语言当指令解释，使第三方与用户生成内容能够劫持 agent。核心难点在于推导
       任务专属的安全策略需要理解页面结构，而页面结构本身已与攻击者内容纠缠。提出 Prismata，
@@ -240,6 +346,13 @@ papers:
     section: "2.1"
     env: [web]
     summary: >-
+      Observes that provable injection defenses depend on strict isolation between trusted instructions and
+      untrusted data — natural in text-based tool-use settings where an agent can reason from interface
+      definitions alone — but web agents must first observe the rendered page, which structurally intermingles
+      trusted and untrusted content and dissolves the very trust boundary those guarantees rest on. Untrusted
+      Content Masking restores that boundary in web environments by exploiting a structural property of pages,
+      letting provable defenses carry over.
+    summary_zh: >-
       指出可证明的注入防御依赖可信指令与不可信数据之间的严格隔离，这在纯文本的 tool-use 场景
       中天然成立（agent 可只依据接口定义推理，无需接触不可信内容），但 web agent 必须先观察
       渲染后的页面才能感知环境，而页面把可信与不可信内容结构性地混在一起，导致安全保证赖以
@@ -254,6 +367,13 @@ papers:
     section: "1.2"
     env: [web]
     summary: >-
+      Criticises adversarial evaluations of multimodal web agents for adopting permissive threat models and
+      visually conspicuous artifacts. This work moves to a constrained, realistic setting where the evaluator
+      is an unprivileged third party — a merchant or advertiser — controlling only a semantically legitimate,
+      spatially bounded region such as an ad slot or sponsored card. Under those constraints MIRAGE performs
+      visual indirect prompt injection for targeted next-action hijacking, showing that control over one small
+      legitimate region suffices to steer a vision-based agent.
+    summary_zh: >-
       批评现有针对多模态 web agent 的对抗评测普遍采用过于宽松的威胁模型、依赖视觉上显眼的
       伪影。本文转向受约束的现实设定：评测者只是不具特权的第三方（如商家或广告主），仅能控制
       广告位、赞助卡片这类语义合法且空间受限的区域。在此约束下提出视觉间接注入框架 MIRAGE，
@@ -268,7 +388,410 @@ papers:
     section: "3.2"
     env: [web]
     summary: >-
+      Points out that existing security benchmarks take an attack-centric view, measuring whether injection is
+      technically feasible while ignoring how the resulting harm is distributed. The paper argues injection
+      risk is victim-dependent: one exploit yields asymmetric consequences across stakeholders (user,
+      platform, merchant), and the same attack pattern varies substantially in effectiveness depending on the
+      target. It builds a stakeholder-centric benchmark focused on e-commerce, where agent actions carry
+      direct financial consequences.
+    summary_zh: >-
       指出现有安全基准都采用「攻击视角」，只关注注入在技术上是否可行，忽略了危害在不同受害方
       之间的分布差异。本文主张注入风险是**受害者依赖**的：同一个漏洞对不同利益相关方（用户、
       平台、商家）造成的后果高度不对称，同一攻击模式的有效性也随目标不同而显著变化。据此构建
       以利益相关方为中心的基准，聚焦电商这类动作直接带来财务后果的真实场景。
+
+  - id: "2503.23434"
+    title: "Towards Trustworthy GUI Agents: A Survey"
+    abbr: "Trustworthy GUI Survey"
+    date: "2025-03"
+    venue: "arXiv"
+    section: "0"
+    env: [cross]
+    summary: >-
+      Frames the execution gap as the central obstacle to trustworthy GUI agents: the misalignment
+      between perception, reasoning, and interaction in dynamic, partially observable interfaces.
+      Unlike conversational systems, GUI agents perform irreversible operations such as submitting
+      forms, granting permissions, or deleting data. The survey proposes a workflow-aligned taxonomy
+      decomposing trust into Perception, Reasoning, and Interaction Trust, traces how failures
+      propagate and compound through action/observation loops, and argues that task completion alone
+      is an insufficient basis for trust assessment.
+    summary_zh: >-
+      把「执行落差」（execution gap）确立为可信 GUI agent 的核心障碍——即在动态、部分可观测界面下
+      感知、推理与交互三者之间的错配。与对话系统不同，GUI agent 执行的是提交表单、授予权限、删除
+      数据这类不可逆操作。综述提出与工作流对齐的分类法，把信任拆为感知信任、推理信任、交互信任
+      三层，梳理失败如何在动作/观察循环中传播并累积，并主张仅用任务完成率评估可信度是不充分的。
+
+  - id: "2507.05445"
+    title: "A Systematization of Security Vulnerabilities in Computer Use Agents"
+    abbr: "CUA Vuln SoK"
+    date: "2025-07"
+    venue: "arXiv"
+    section: "0"
+    env: [desktop, web]
+    summary: >-
+      Conducts systematic threat analysis and adversarial testing of real-world CUAs, identifying
+      seven risk classes unique to the paradigm and dissecting three exploits in depth: clickjacking
+      via visual overlays that mislead interface-level reasoning, indirect prompt injection achieving
+      RCE through chained tool use, and CoT exposure attacks that hijack multi-step reasoning by
+      manipulating implicit interface framing. The case studies converge on three architectural
+      flaws shared across current implementations: no input provenance tracking, weak
+      interface-action binding, and insufficient control-flow integrity.
+    summary_zh: >-
+      对真实 CUA 做系统化威胁分析与对抗测试，归纳出七类该范式独有的风险，并深入剖析三个具体
+      利用链：用视觉覆盖层误导界面级推理的 clickjacking、经工具链串联实现远程代码执行的间接提示
+      注入、以及通过操纵隐式界面语境劫持多步推理的 CoT 暴露攻击。三个案例共同指向当前实现的
+      三处架构性缺陷：缺少输入来源追踪、界面与动作绑定薄弱、控制流完整性不足。
+
+  - id: "2506.14866"
+    title: "OS-Harm: A Benchmark for Measuring Safety of Computer Use Agents"
+    abbr: "OS-Harm"
+    date: "2025-06"
+    venue: "arXiv"
+    section: "3.4"
+    env: [desktop]
+    summary: >-
+      Notes that CUA safety has been largely overlooked despite growing deployment, and introduces
+      OS-Harm on top of the OSWorld environment to test three harm categories: deliberate user
+      misuse, prompt injection attacks, and model misbehavior. It comprises 150 tasks spanning
+      harassment, copyright infringement, disinformation, and data exfiltration, requiring
+      interaction with email clients, code editors, and browsers. An automated judge scores both
+      accuracy and safety with high human agreement (0.76 and 0.79 F1).
+    summary_zh: >-
+      指出 CUA 已在快速部署但安全性长期被忽视，基于 OSWorld 环境构建 OS-Harm，考察三类危害：
+      用户故意滥用、提示注入攻击、模型自身失当行为。含 150 个任务，覆盖骚扰、侵犯版权、虚假
+      信息、数据外泄等违规类型，要求 agent 操作邮件客户端、代码编辑器、浏览器等多种应用。
+      配套自动评判器同时评估准确性与安全性，与人工标注一致性达 0.76 / 0.79 F1。
+
+  - id: "2505.21499"
+    title: "AdInject: Real-World Black-Box Attacks on Web Agents via Advertising Delivery"
+    abbr: "AdInject"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      Criticises prior environmental injection work for unrealistic assumptions — direct HTML
+      manipulation, knowledge of user intent, or access to model parameters. AdInject instead
+      injects malicious content through internet advertising delivery, operating under a black-box
+      agent, static content constraints, and no knowledge of user intent. It combines ad content
+      designed to lure agent clicks with VLM-based optimization that infers likely user intent from
+      the target site, making it one of the most deployment-realistic threat models in this area.
+    summary_zh: >-
+      批评已有环境注入研究依赖不现实的假设——直接改 HTML、已知用户意图、或能访问模型参数。
+      AdInject 改用互联网广告投放这一真实渠道注入恶意内容，威胁模型严格得多：agent 为黑盒、
+      恶意内容静态不可变、且不掌握用户意图。方法上结合诱导 agent 点击的广告内容设计，以及
+      基于 VLM 从目标站点反推用户潜在意图的内容优化，是该方向最贴近真实部署的威胁模型之一。
+
+  - id: "2507.14293"
+    title: "WebGuard: Building a Generalizable Guardrail for Web Agents"
+    abbr: "WebGuard"
+    date: "2025-07"
+    venue: "arXiv"
+    section: "2.2"
+    env: [web]
+    summary: >-
+      Argues web agents need access controls analogous to those for human users, and releases the
+      first dataset supporting web-agent action risk assessment: 4,939 human-annotated
+      state-changing actions from 193 websites across 22 domains, including often-overlooked
+      long-tail sites, labelled under a three-tier schema (SAFE / LOW / HIGH) with designated
+      train-test splits for generalization study. The headline finding is stark — even frontier LLMs
+      predict action outcomes with under 60% accuracy.
+    summary_zh: >-
+      主张 web agent 需要类似人类用户的访问控制机制，并发布首个支持 agent 动作风险评估的数据集：
+      来自 22 个领域、193 个网站（含常被忽视的长尾站点）的 4939 条人工标注状态改变动作，按
+      SAFE / LOW / HIGH 三级风险标注，并划分好训练测试集以支持泛化研究。核心结论相当刺眼——
+      即便前沿 LLM 预测动作后果的准确率也不足 60%。
+
+  - id: "2510.20333"
+    title: "GhostEI-Bench: Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments?"
+    abbr: "GhostEI-Bench"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Identifies environmental injection as an underexplored threat distinct from prompt-based
+      attacks: rather than manipulating textual instructions, it corrupts visual perception by
+      inserting adversarial UI elements such as deceptive overlays or spoofed notifications directly
+      into the GUI, bypassing textual safeguards and risking privacy leakage, financial loss, or
+      irreversible device compromise. GhostEI-Bench moves beyond static image assessment by
+      injecting adversarial events into realistic application workflows inside fully operational
+      Android emulators.
+    summary_zh: >-
+      把环境注入确立为区别于提示类攻击的、研究不足的威胁向量：它不改文本指令，而是把欺骗性
+      覆盖层、伪造通知这类对抗 UI 元素直接插入 GUI 以污染 agent 的视觉感知，从而绕开文本层
+      防护，可导致隐私泄漏、财务损失甚至不可逆的设备失陷。GhostEI-Bench 跳出静态图像评测，
+      在完整可运行的 Android 模拟器中把对抗事件注入真实应用工作流。
+
+  - id: "2604.02623"
+    title: "Poison Once, Exploit Forever: Environment-Injected Memory Poisoning Attacks on Web Agents"
+    abbr: "eTAMP"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      Memory makes web agents personalized yet exploitable: storing past interactions creates a
+      persistent attack surface spanning websites and sessions. Whereas prior work assumes attackers
+      can write to memory directly or exploit cross-user sharing, eTAMP achieves cross-session,
+      cross-site compromise through environmental observation alone — a single contaminated
+      observation such as viewing a manipulated product page silently poisons memory and activates
+      during later tasks on different sites, bypassing permission-based defenses. Attack success
+      reaches 32.5% on GPT-5-mini, 23.4% on GPT-5.2, and 19.5% on GPT-OSS-120B, and the paper
+      further identifies Frustration Exploitation.
+    summary_zh: >-
+      记忆让 web agent 变得个性化，也使其可被利用：存储历史交互创造出跨站点、跨会话持续存在的
+      攻击面。已有研究假设攻击者能直接写入记忆或利用跨用户共享，而 eTAMP 仅靠环境观察就实现
+      跨会话跨站点污染——单次被污染的观察（如浏览一个被操纵的商品页）即可静默投毒记忆，并在
+      日后其他网站的任务中激活，绕开基于权限的防御。攻击成功率在 GPT-5-mini 上达 32.5%、
+      GPT-5.2 上 23.4%、GPT-OSS-120B 上 19.5%，另发现「挫败感利用」现象。
+
+  - id: "2603.23007"
+    title: "AgentRAE: Remote Action Execution through Notification-based Visual Backdoors against Screenshots-based Mobile GUI Agents"
+    abbr: "AgentRAE"
+    date: "2026-03"
+    venue: "arXiv"
+    section: "1.6"
+    env: [mobile]
+    summary: >-
+      Existing backdoors against web GUI agents rely on environmental injection or deceptive pop-ups,
+      which fail on screenshot-based mobile agents due to restricted trigger design space, OS
+      background interference, and conflicts among multiple trigger-action mappings. AgentRAE
+      induces Remote Action Execution using visually natural triggers such as benign app icons in
+      notifications, via a two-stage pipeline that first sharpens the agent's sensitivity to subtle
+      iconographic differences through contrastive learning, then binds each trigger to a specific
+      action through backdoor post-training.
+    summary_zh: >-
+      已有针对 web GUI agent 的后门依赖环境注入或欺骗性弹窗，但在基于截图的移动 agent 上失效——
+      触发器设计空间受限、操作系统后台干扰、以及多个触发器与动作映射之间相互冲突。AgentRAE 用
+      视觉上自然的触发器（如通知栏里的正常应用图标）诱发远程动作执行，采用两阶段流程：先用
+      对比学习强化 agent 对细微图标差异的敏感度，再通过后门后训练把每个触发器绑定到特定动作。
+
+  - id: "2604.07831"
+    title: "Are GUI Agents Focused Enough? Automated Distraction via Semantic-level UI Element Injection"
+    abbr: "Semantic UI Injection"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "1.2"
+    env: [cross]
+    summary: >-
+      Notes two limits in existing GUI-agent red-teaming: adversarial perturbations need white-box
+      access unavailable commercially, and prompt injection is increasingly neutralized by stronger
+      alignment. Semantic-level UI Element Injection is a black-box paradigm overlaying
+      safety-aligned, harmless UI elements onto screenshots to misdirect visual grounding, pairing a
+      modular Editor-Overlapper-Victim pipeline with iterative search. Across 19 victim models in 8
+      families, strategic optimization beats random injection by 3.5-6.9x on the most robust
+      victims and transfers near-perfectly across architectures.
+    summary_zh: >-
+      指出现有 GUI agent 红队研究的两个局限：对抗扰动需要商业部署中拿不到的白盒访问，而提示
+      注入正被日益增强的安全对齐所化解。提出黑盒范式「语义级 UI 元素注入」——把本身安全对齐、
+      内容无害的 UI 元素叠加到截图上以误导视觉 grounding，用模块化的 Editor-Overlapper-Victim
+      流水线配合迭代搜索。在 8 个模型家族共 19 个受害模型上，策略化优化相比随机注入在最鲁棒的
+      模型上高出 3.5–6.9 倍，且跨架构迁移性近乎完美。
+
+  - id: "2604.09155"
+    title: "CORA: Conformal Risk-Controlled Agents for Safeguarded Mobile GUI Automation"
+    abbr: "CORA"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "2.6"
+    env: [mobile]
+    summary: >-
+      Existing GUI-agent safeguards rest on prompt engineering, brittle heuristics, and VLM-as-critic,
+      offering neither formal verification nor user-tunable guarantees. CORA is a post-policy,
+      pre-action framework giving statistical guarantees on harmful executed actions: it reframes
+      safety as selective action execution, trains a Guardian to estimate action-conditional risk,
+      then uses Conformal Risk Control to calibrate an execute/abstain boundary meeting a
+      user-specified risk budget, routing rejected actions to a Diagnostician that recommends
+      confirm, reflect, or abort. A Goal-Lock mechanism guards against visual injection.
+    summary_zh: >-
+      现有 GUI agent 防护依赖 prompt 工程、脆弱的启发式规则与 VLM-as-critic，既无形式化验证也
+      不提供用户可调的保证。CORA 是一个「策略之后、动作之前」的防护框架，对已执行的有害动作
+      给出统计保证：把安全性重构为选择性动作执行，训练 Guardian 模型估计动作条件风险，再用
+      Conformal Risk Control 校准满足用户指定风险预算的执行/弃权边界，被拒动作交由
+      Diagnostician 做多模态推理并建议确认、反思或中止。另设 Goal-Lock 机制抵御视觉注入。
+
+  - id: "2603.17357"
+    title: "WebPII: Benchmarking Visual PII Detection for Computer-Use Agents"
+    abbr: "WebPII"
+    date: "2026-03"
+    venue: "arXiv"
+    section: "1.5"
+    env: [web, desktop]
+    summary: >-
+      CUAs create new privacy risks from two directions: training data scraped from real websites
+      inevitably contains sensitive information, and cloud-hosted inference exposes user screenshots.
+      No public benchmark existed for detecting PII in web screenshots. WebPII provides 44,865
+      annotated e-commerce UI images with an extended PII taxonomy covering transaction-level
+      re-identification identifiers, anticipatory detection for partially-filled forms, and scalable
+      VLM-based UI reproduction. The accompanying WebRedact more than doubles text-extraction
+      baseline accuracy (0.753 vs 0.357 mAP@50) at 20ms CPU latency.
+    summary_zh: >-
+      CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数据不可避免含敏感信息，而云端推理
+      会暴露用户截图。此前没有公开基准用于检测网页截图中的个人身份信息。WebPII 提供 44865 张
+      标注的电商 UI 图像，特点包括扩展的 PII 分类（含可用于重识别的交易级标识符）、针对用户
+      正在填写的半完成表单的前瞻式检测、以及基于 VLM 的可扩展 UI 复现。配套 WebRedact 把
+      文本抽取基线准确率翻倍以上（0.753 vs 0.357 mAP@50），CPU 延迟仅 20ms。
+
+  - id: "2604.00986"
+    title: "Do Phone-Use Agents Respect Your Privacy?"
+    abbr: "MyPhoneBench"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "1.5"
+    env: [mobile]
+    summary: >-
+      Asks whether phone-use agents respect privacy while completing benign tasks — hard to answer
+      because privacy-compliant behavior was never operationalized for such agents, and ordinary
+      apps do not reveal what data agents type into which form fields. MyPhoneBench operationalizes
+      privacy-respecting use as permissioned access, minimal disclosure, and user-controlled memory
+      via a minimal privacy contract, paired with instrumented mock apps and rule-based auditing.
+      Across five frontier models, 10 apps, and 300 tasks, task success, privacy-compliant
+      completion, and later-session preference reuse prove to be distinct capabilities that no
+      single model dominates.
+    summary_zh: >-
+      追问手机操作类 agent 在完成正常任务时是否尊重隐私。这一问题此前难以回答，因为隐私合规
+      行为从未被形式化定义，且普通应用不会暴露 agent 究竟把哪些数据填进了哪个表单项。
+      MyPhoneBench 用一份最小隐私契约把「尊重隐私」操作化为三条：授权访问、最小披露、用户可控
+      记忆，并配以插桩的模拟应用与规则化审计。在 5 个前沿模型、10 个应用、300 个任务上发现，
+      任务成功率、隐私合规完成度、后续会话中对已存偏好的使用是三种彼此独立的能力，无一模型全占优。
+
+  - id: "2601.12349"
+    title: "Mind the Gap: Action Rebinding Attacks against Android GUI Agents"
+    abbr: "Action Rebinding"
+    date: "2026-01"
+    venue: "arXiv"
+    section: "1.4"
+    env: [mobile]
+    summary: >-
+      Shows that treating GUI agents as high-privilege operators — perceiving screen content and
+      injecting inputs across application boundaries — fundamentally conflicts with Android's strict
+      app sandboxing. The cross-application Action Rebinding attack lets a malicious app holding
+      zero dangerous permissions hijack agent execution: it renders a benign contextual carrier to
+      elicit a planned action, then swaps the foreground to a sensitive target during reasoning
+      latency, so the agent unwittingly executes in a privileged context. The attack is further
+      weaponized into programmable multi-step exploit loops by abusing the agent's own task-recovery
+      logic.
+    summary_zh: >-
+      指出把 GUI agent 当作高权限操作者（跨应用边界感知屏幕、注入输入）与 Android 严格的应用
+      沙箱机制存在根本冲突。跨应用 Action Rebinding 攻击让一个不申请任何危险权限的恶意应用即可
+      劫持 agent 执行：先渲染一个无害的「上下文载体」诱导 agent 规划出某个动作，再在其推理延迟
+      窗口内把前台切换到敏感目标应用，agent 察觉不到切换、于是在特权上下文中执行了该动作。
+      作者进一步利用 agent 自身的任务恢复逻辑，把攻击武器化为可编程的多步利用循环。
+
+  - id: "2604.18860"
+    title: "Temporal UI State Inconsistency in Desktop GUI Agents: Formalizing and Defending Against TOCTOU Attacks on Computer-Use Agents"
+    abbr: "PUSV"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "1.4"
+    env: [desktop]
+    summary: >-
+      Formalizes the observation-to-action gap in screenshot-and-click loops (mean 6.51 s on real
+      OSWorld workloads) as a Visual Atomicity Violation, creating a Time-Of-Check-Time-Of-Use
+      window for unprivileged UI manipulation. Three attack primitives are characterized:
+      Notification Overlay Hijack, Window Focus Manipulation, and Web DOM Injection — the second
+      being the desktop analog of Android Action Rebinding, achieving 100% action-redirection with
+      zero visual evidence at observation time. The proposed PUSV defense re-verifies UI state
+      immediately before each dispatch via masked pixel SSIM, global screenshot diff, and X Window
+      snapshot diff, reaching 100% interception across 180 adversarial trials with no false
+      positives and under 0.1 s overhead.
+    summary_zh: >-
+      把「截图—点击」循环中的观察到动作间隔（真实 OSWorld 负载下平均 6.51 秒）形式化为「视觉
+      原子性破坏」，指出这构成一个 TOCTOU 窗口，无特权攻击者可在其中篡改 UI 状态。刻画三种攻击
+      原语：通知覆盖劫持、窗口焦点操纵、网页 DOM 注入——其中第二种是 Android Action Rebinding
+      的桌面对应物，动作重定向成功率 100% 且在观察时刻不留任何视觉痕迹。提出 PUSV 防御，在每次
+      动作派发前立即复验 UI 状态（点击目标处的掩码像素 SSIM、全局截图差分、X Window 快照差分），
+      在 180 次对抗试验中拦截率 100%、零误报、开销低于 0.1 秒。
+
+  - id: "2509.22256"
+    title: "Secure and Efficient Access Control for Computer-Use Agents via Context Space"
+    abbr: "CSAgent"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "2.3"
+    env: [desktop]
+    summary: >-
+      Argues that granting agents control over computers is risky because of inherent LLM
+      uncertainty — deviations from user intent can be irreversible — and that user confirmation and
+      LLM-based dynamic validation each fall short on usability, security, or performance. CSAgent
+      is a system-level, static policy-based access control framework that bridges static policy and
+      dynamic context through intent- and context-aware policies, with an automated toolchain for
+      constructing and refining them, enforced by an optimized OS service so actions execute only
+      under specific user intents and contexts.
+    summary_zh: >-
+      主张把计算机控制权交给 agent 之所以危险，根源在 LLM 固有的不确定性——一旦动作偏离用户
+      意图，后果可能不可逆；而用户确认与基于 LLM 的动态校验分别在可用性、安全性或性能上有短板。
+      CSAgent 是系统级、基于静态策略的访问控制框架，通过「意图感知 + 上下文感知」策略弥合静态
+      策略与动态上下文之间的落差，并提供自动化工具链协助开发者构造与精炼策略，最终由优化过的
+      操作系统服务强制执行，确保动作只在特定用户意图与上下文下才被允许。
+
+  - id: "2603.23791"
+    title: "The Cognitive Firewall: Securing Browser Based AI Agents Against Indirect Prompt Injection Via Hybrid Edge Cloud Defense"
+    abbr: "Cognitive Firewall"
+    date: "2026-03"
+    venue: "arXiv"
+    section: "2.1"
+    env: [web]
+    summary: >-
+      Tackles the tension that cloud-based defenses offer strong semantic analysis but add latency
+      and privacy exposure. The Cognitive Firewall is a three-stage split-compute architecture
+      distributing checks across client and cloud: a local visual Sentinel, a cloud Deep Planner,
+      and a deterministic Guard enforcing execution-time policies. Across 1,000 adversarial samples
+      edge-only defenses miss 86.9% of semantic attacks, whereas the full hybrid drives attack
+      success below 1% (0.88% static, 0.67% adaptive) while keeping deterministic constraints on
+      side-effecting actions — and by filtering presentation-layer attacks locally it achieves
+      roughly a 17,000x latency advantage over cloud-only baselines.
+    summary_zh: >-
+      针对「云端防御语义分析能力强但引入延迟与隐私暴露」这一矛盾，提出三阶段拆分计算架构
+      Cognitive Firewall，把安全检查分布在客户端与云端：本地视觉 Sentinel、云端 Deep Planner、
+      以及在执行期强制策略的确定性 Guard。在 1000 个对抗样本上，纯边端防御漏检 86.9% 的语义
+      攻击，而完整混合架构把攻击成功率压到 1% 以下（静态评测 0.88%、自适应评测 0.67%），同时
+      对有副作用的动作保持确定性约束；由于表现层攻击在本地即被过滤，相比纯云端基线取得约
+      17000 倍的延迟优势。
+
+  - id: "2608.04741"
+    title: "LoginTrap: Uncovering Task-Agnostic Phishing-Style Indirect Prompt Injection Attacks against LLM-based Web Agents"
+    abbr: "LoginTrap"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "1.5"
+    env: [web]
+    summary: >-
+      Login is a sensitive authentication boundary for web agents because it involves credentials,
+      yet prior work has not examined whether malicious page content can induce login and cause
+      end-to-end private data leakage. LoginTrap is a task-agnostic login-inducing attack assuming a
+      black-box attacker who controls page context and the induced login flow without knowing the
+      user task or agent internals: through a fuzzing-inspired process it generates page-specific
+      indirect injections that make login look like a plausible prerequisite for continuing the
+      task, steering the agent to an attacker-controlled login page.
+    summary_zh: >-
+      登录对 web agent 而言是涉及凭据的敏感认证边界，但已有工作尚未考察恶意页面内容能否诱导
+      agent 登录并造成端到端的私密数据泄漏。LoginTrap 是一种与任务无关的诱导登录攻击，假设
+      黑盒攻击者只控制页面上下文与被诱导的登录流程，并不知道用户任务或 agent 内部实现：通过
+      类 fuzzing 的流程生成页面专属的间接注入内容，使「先登录」看起来是继续完成任务的合理
+      前置条件，从而把 agent 引导至攻击者控制的登录页。
+
+  - id: "2602.13516"
+    title: "SPILLage: Agentic Oversharing on the Web"
+    abbr: "SPILLage"
+    date: "2026-02"
+    venue: "arXiv"
+    section: "1.5"
+    env: [web]
+    summary: >-
+      Unlike chatbots answering questions in controlled settings, web agents act in the wild with
+      access to user resources such as emails and calendars, interacting with third parties and
+      leaving an action trace. The paper formalizes Natural Agentic Oversharing — unintentional
+      disclosure of task-irrelevant user information through that trace — and characterizes it along
+      channel (content vs. behavior) and directness (explicit vs. implicit). This exposes a blind
+      spot: prior work targets text leakage, but agents also overshare behaviorally through clicks,
+      scrolls, and navigation patterns that third parties can monitor. Benchmarked on 180 tasks
+      across live e-commerce sites.
+    summary_zh: >-
+      与在受控环境中回答问题的聊天机器人不同，web agent 是「在野」运行的：它能访问用户的邮件、
+      日历等资源，与第三方交互，并留下动作轨迹。本文把「自然的 agent 过度分享」形式化为——
+      通过这条动作轨迹无意披露与任务无关的用户信息，并沿「通道」（内容 vs. 行为）与「直接性」
+      （显式 vs. 隐式）两个维度刻画。这揭示了一处盲区：已有工作聚焦文本泄漏，但 agent 还会通过
+      点击、滚动、导航模式等行为层面过度暴露，而这些可被第三方监测。在真实电商站点的 180 个
+      任务上做了基准评测。
