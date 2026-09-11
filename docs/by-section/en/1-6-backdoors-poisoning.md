@@ -32,6 +32,12 @@ Proposes an efficiency backdoor against VLM-based GUI agents: the trigger leaves
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2603.08316](https://arxiv.org/abs/2603.08316)
 
+#### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
+
+Identifies visual grounding — the mapping from a textual plan to concrete GUI elements — as an attack surface in its own right, distinct from planning or reasoning. The consequence is what makes it dangerous: a backdoor planted in grounding compromises the agent's behavior **even when it is given a completely correct task-solving plan**, so inspecting the plan reveals nothing wrong. VisualTrap hijacks grounding by misleading the agent into locating the textual plan at attacker-chosen positions, which means every layer of plan-level review or reasoning audit passes cleanly while the actions still land where the attacker wants.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2507.06899](https://arxiv.org/abs/2507.06899)
+
 #### Poison Once, Control Anywhere: Clean-Text Visual Backdoors in VLM-based Mobile Agents (VIBMA) (2025-06)
 
 Exploits a structural weakness in how mobile agents are built: they are typically fine-tuned on small, user-collected datasets, which makes training-time poisoning practical rather than theoretical. VIBMA is the first clean-text backdoor for VLM-based mobile agents — it modifies only the visual input while leaving prompts and instructions untouched, so there is no textual anomaly to detect. After fine-tuning on poisoned data, inserting a predefined visual trigger at inference activates the attacker's behavior. The mechanism aligns poisoned samples' training gradients with those of an attacker-specified target instance, embedding backdoor features into the data itself.

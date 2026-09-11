@@ -20,6 +20,12 @@ Identifies environmental injection as an underexplored threat distinct from prom
 
 `Env: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
 
+#### MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions (MVISU-Bench) (2025-08)
+
+Derives its task taxonomy from user questionnaires rather than researcher intuition, yielding five categories — Multi-App, Vague, Interactive, Single-App and Unethical Instructions — across 404 bilingual tasks on 137 real mobile applications. Two of those categories are squarely safety-relevant: unethical instructions test refusal, and vague instructions test whether the agent asks rather than guesses. The paper also ships Aider, a plug-and-play dynamic prompter that mitigates risk and clarifies user intent, improving overall success by 19.55% over the prior state of the art — a demonstration that asking for clarification and being capable are not in tension.
+
+`Env: Mobile` ｜ [arXiv:2508.09057](https://arxiv.org/abs/2508.09057)
+
 #### MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control (MobileSafetyBench) (2024-10)
 
 Fills what was then a complete void — no standardized benchmark existed for the safety of mobile device-control agents, despite these agents interacting directly with personal information and device settings. Built on Android emulators for realistic grounding, it spans applications including messaging and banking, and deliberately separates two risk families that are often conflated: misuse (the agent is asked to do something harmful) and negative side effects (the agent causes harm while pursuing a legitimate goal). Tasks cover both everyday scenarios and robustness against indirect prompt injection.

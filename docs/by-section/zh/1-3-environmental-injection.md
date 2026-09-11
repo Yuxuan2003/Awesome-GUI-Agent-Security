@@ -32,6 +32,18 @@
 
 `环境: Web` ｜ [arXiv:2604.02623](https://arxiv.org/abs/2604.02623)
 
+#### Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments (Dynamic EIA) (2025-09)
+
+直接质疑以往环境注入工作的真实性：多数研究隐含假定触发物在屏幕上的位置与周围视觉上下文在 训练与测试之间大致保持一致，而这恰恰抹掉了真实网页内容的本质属性——它是在不断变化的。论文 提出动态环境威胁模型：攻击者只是一个普通用户，触发物嵌在持续变化的环境之中。在该模型下现有 方法大多失效，这个结论有两面含义：已发表的攻击成功率高估了威胁，而 agent 的真实暴露程度 至今仍未被测准。
+
+`环境: Web` ｜ [arXiv:2509.11250](https://arxiv.org/abs/2509.11250)
+
+#### Manipulating LLM Web Agents with Indirect Prompt Injection Attack via HTML Accessibility Tree (A11y Tree IPI) (2025-07)
+
+专门针对无障碍树（accessibility tree）——许多 web agent 解析的正是这一结构化表示而非原始 HTML——并表明可以在其中嵌入通用对抗触发串来劫持 agent 行为。方法是基于梯度而非人工构造的， 用 Greedy Coordinate Gradient 攻击基于 Llama-3.1 的 BrowserGym agent，在真实网站上对定向 与通用攻击均报告高成功率，包括窃取登录凭据与强制广告点击。值得注意的是，无障碍树本是为 包容性设计而增设的通道，因此对它做加固意味着要在安全与依赖它的用户之间权衡。
+
+`环境: Web` ｜ [arXiv:2507.14799](https://arxiv.org/abs/2507.14799)
+
 #### AdInject: Real-World Black-Box Attacks on Web Agents via Advertising Delivery (AdInject) (2025-05)
 
 批评已有环境注入研究依赖不现实的假设——直接改 HTML、已知用户意图、或能访问模型参数。 AdInject 改用互联网广告投放这一真实渠道注入恶意内容，威胁模型严格得多：agent 为黑盒、 恶意内容静态不可变、且不掌握用户意图。方法上结合诱导 agent 点击的广告内容设计，以及 基于 VLM 从目标站点反推用户潜在意图的内容优化，是该方向最贴近真实部署的威胁模型之一。

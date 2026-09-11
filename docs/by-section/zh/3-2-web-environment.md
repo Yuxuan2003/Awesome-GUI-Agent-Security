@@ -32,6 +32,12 @@
 
 `环境: Web` ｜ [arXiv:2604.06367](https://arxiv.org/abs/2604.06367)
 
+#### ClawTrap: A MITM-Based Red-Teaming Framework for Real-World OpenClaw Security Evaluation (ClawTrap) (2026-03)
+
+把红队测试下移一层：现有基准集中在静态沙箱设定与内容级 prompt 攻击上，而**网络层**——真实 部署实际暴露的那一层——从未被测试。ClawTrap 是中间人（MITM）框架，用于在真实网络威胁下评测 OpenClaw 这类 agent，支持静态 HTML 替换、iframe 弹窗注入、动态内容修改三类攻击，并提供 规则驱动的拦截、变换与审计的可复现流水线。MITM 这个位置之所以重要，是因为它**不需要攻陷 agent 所访问的任何网站**。
+
+`环境: Web` ｜ [arXiv:2603.18762](https://arxiv.org/abs/2603.18762)
+
 #### MUZZLE: Adaptive Agentic Red-Teaming of Web Agents Against Indirect Prompt Injection Attacks (MUZZLE) (2026-02)
 
 批评现有安全评测依赖固定攻击模板、人工挑选的注入面或范围过窄的场景，都无法反映真实部署时 面对的自适应攻击者。MUZZLE 将这一过程自动化：利用目标 agent 自身的执行轨迹定位高显著性的 注入面，再自适应地生成上下文感知的恶意指令，针对机密性、完整性、可用性三类违背分别施压。 关键之处在于把注入面的选择建立在观测到的 agent 行为上而非人类直觉上——攻击会随 agent 真正关注的内容而调整。
@@ -43,6 +49,12 @@
 隔离出一个范围很窄但后果严重的失效环节：接受一个伪装过的恶意 URL 就会让 agent 进入不安全 网页，此后所有下游行为都继承了这次沦陷，而此前没有基准针对这一步。MalURLBench 提供 61845 个攻击实例，覆盖 10 类真实场景与 7 类真实恶意网站。在 12 个主流 LLM 上的实验显示，模型 难以识别精心伪装的恶意 URL。论文进一步分析影响攻击成功率的关键因素，并给出轻量防御模块 URLGuard，作用在同一咽喉点上。
 
 `环境: Web` ｜ [arXiv:2601.18113](https://arxiv.org/abs/2601.18113)
+
+#### It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents (TRAP) (2025-12)
+
+从「说服」而非「载荷工程」的视角研究注入：藏在界面元素里的对抗指令是在**说服** agent 偏离 原任务，这把防御问题重新框定为心理学层面而非语法层面的。在六个前沿模型上，agent 平均在 25% 的任务中中招，但真正值得看的是差距——GPT-5 为 13%，DeepSeek-R1 高达 43%。更麻烦的是， 界面或上下文的微小改动常常使成功率翻倍，说明这种脆弱性是系统性的，而非绑定于某种特定措辞。 配套发布模块化的社会工程注入框架，在高保真网站克隆上做受控实验。
+
+`环境: Web` ｜ [arXiv:2512.23128](https://arxiv.org/abs/2512.23128)
 
 #### BrowseSafe: Understanding and Preventing Prompt Injection Within AI Browser Agents (BrowseSafe) (2025-11)
 
@@ -56,11 +68,23 @@
 
 `环境: Web` ｜ [arXiv:2510.18314](https://arxiv.org/abs/2510.18314)
 
+#### SecureWebArena: A Holistic Security Evaluation Benchmark for LVLM-based Web Agents (SecureWebArena) (2025-10)
+
+指出现有安全基准只提供部分覆盖，通常局限于用户级 prompt 操纵这类狭窄场景，因而错过了 agent 实际暴露面的大部分。SecureWebArena 构建了六个模拟但贴近真实的网页环境（电商平台、社区论坛 等），含覆盖多样任务与攻击设定的 2970 条高质量轨迹。其组织性贡献是一套结构化的六类攻击向量 分类法，**同时**覆盖用户级与环境级操纵——而后者恰恰是范围更窄的基准所遗漏的那一半。
+
+`环境: Web` ｜ [arXiv:2510.10073](https://arxiv.org/abs/2510.10073)
+
 #### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
 
 填补一个系统性空缺：针对 web agent 的注入攻击很多，通用注入检测方法也很多，但从未有人 在 web agent 场景下系统评测过后者。WAInjectBench 先按威胁模型对攻击做细粒度分类，再构建 覆盖两种模态、两种极性的数据集——来自不同攻击的恶意文本片段、四类正常文本、攻击生成的 恶意图像、两类正常图像。核心结论划出了一条清晰边界：检测器能应对带显式文本指令或可见图像 扰动的攻击，一旦越出这个范围性能急剧下降。
 
 `环境: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
+
+#### RISK: A Framework for GUI Agents in E-commerce Risk Management (RISK) (2025-09)
+
+面向一个 agent 扮演防御方而非攻击目标的领域：电商风控需要通过多步、有状态的交互聚合深度 嵌套的网页数据，这既非传统爬虫所能胜任，也超出大多数 GUI agent 的能力——后者通常局限于 配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条 单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹； 以及 RISK-R1，一个 R1 风格的强化微调框架。
+
+`环境: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
 
 #### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
 

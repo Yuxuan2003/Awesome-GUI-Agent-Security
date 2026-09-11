@@ -14,6 +14,18 @@
 
 `环境: Web` ｜ [arXiv:2608.00202](https://arxiv.org/abs/2608.00202)
 
+#### SafeFlow: Semantic Information-Flow Control for Blocking Malicious Propagation in Multi-Agent Systems (SafeFlow) (2026-07)
+
+指出正是那些让多 agent 系统变强的机制造就了盲点：任务分解与角色专职化使一个有害目标可以被 拆解成局部看来都合理的子任务，于是没有任何单个 agent 能看到足够信息来识别恶意意图。论文的 关键一步是把这个问题重新框定为**语义信息流**问题、而非单轮 prompt 分类任务——这个范畴转换 解释了为何逐条消息的过滤器注定无效。SafeFlow 为根请求附加结构化的语义污点标记，沿动态协作 图传播，并在工作流层面做整体校验。
+
+`环境: 跨环境` ｜ [arXiv:2607.25255](https://arxiv.org/abs/2607.25255)
+
+#### Securing Computer-Use Agents: A Unified Architecture-Lifecycle Framework for Deployment-Grounded Reliability (Architecture-Lifecycle Framework) (2026-05)
+
+论证当 CUA 走出受限基准、进入真实的浏览器、桌面、移动应用、文件系统、终端与工具后端之后， 任务成功率就不再是有意义的可靠性度量：感知错误、规划漂移、记忆使用、工具中介、权限范围与 运行时监督**共同**决定动作是否仍与用户意图对齐。现有综述按方法、平台、基准或威胁来组织 这个领域，但很少把「能力形成 → 权限暴露 → 失效显现 → 控制点放置」这条链条串起来。本框架 通过架构视角（把感知、决策、执行视为相互耦合的层）与生命周期视角提供了这一串联。
+
+`环境: 跨环境` ｜ [arXiv:2605.07110](https://arxiv.org/abs/2605.07110)
+
 #### Measuring the Security of Mobile LLM Agents under Adversarial Prompts from Untrusted Third-Party Channels (Mobile Agent Security Study) (2025-10)
 
 首个针对移动 LLM agent 安全风险的系统性研究，对抗案例从弹窗广告这类机会主义操纵，一直延伸到 涉及恶意软件安装与跨应用数据外泄的端到端攻击流程。覆盖面很广——三种架构下的八个前沿移动 agent，超过 2000 组对抗与配对良性试验。结论是系统性的而非个例：欺诈广告这类低门槛向量成功率 超过 80%，而即便是需要绕过操作系统显式警告的流程（如安装恶意软件），依然能够走通。

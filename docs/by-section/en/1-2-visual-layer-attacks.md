@@ -14,6 +14,12 @@ Insists on end-to-end verification rather than stopping at model output: the que
 
 `Env: Desktop, Web` ｜ [arXiv:2609.09212](https://arxiv.org/abs/2609.09212)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+Asks a question that sits upstream of every visual attack: a multimodal GUI agent reads the interface through two redundant channels — rendered pixels and serialized structure (DOM or accessibility tree) — and forms a state belief before acting, but no existing benchmark asks *which channel that belief came from*. The paper formalizes visual state reliance and measures it with paired single-channel interventions over 735 probes across real web, mobile and desktop interfaces, 225 of them zero-edit divergences mined from live production sites, scored by deterministic forced choice with no model judge. The Perception-Fusion Gap metric captures the fraction of probes a model perceives correctly yet resolves toward structure under conflict — which tells an attacker exactly which channel to poison.
+
+`Env: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
 #### MIRAGE: Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents (MIRAGE) (2026-06)
 
 Criticises adversarial evaluations of multimodal web agents for adopting permissive threat models and visually conspicuous artifacts. This work moves to a constrained, realistic setting where the evaluator is an unprivileged third party — a merchant or advertiser — controlling only a semantically legitimate, spatially bounded region such as an ad slot or sponsored card. Under those constraints MIRAGE performs visual indirect prompt injection for targeted next-action hijacking, showing that control over one small legitimate region suffices to steer a vision-based agent.

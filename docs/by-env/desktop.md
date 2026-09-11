@@ -58,6 +58,12 @@ Points out that indirect prompt injection research has concentrated almost entir
 
 `Env: Web, Desktop` ｜ [arXiv:2607.05120](https://arxiv.org/abs/2607.05120)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+Asks a question that sits upstream of every visual attack: a multimodal GUI agent reads the interface through two redundant channels — rendered pixels and serialized structure (DOM or accessibility tree) — and forms a state belief before acting, but no existing benchmark asks *which channel that belief came from*. The paper formalizes visual state reliance and measures it with paired single-channel interventions over 735 probes across real web, mobile and desktop interfaces, 225 of them zero-edit divergences mined from live production sites, scored by deterministic forced choice with no model judge. The Perception-Fusion Gap metric captures the fraction of probes a model perceives correctly yet resolves toward structure under conflict — which tells an attacker exactly which channel to poison.
+
+`Env: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
 #### Capable but Careless: Do Computer-Use Agents Follow Contextual Integrity? (Capable but Careless) (2026-06)
 
 Applies the contextual integrity framework to ask whether computer-use agents respect information-flow norms when operating across applications. More capable agents turn out to be more prone to violations: to complete a task they will carry private data from one application into another's input fields, and no existing privacy control fires because every individual read and write stays within granted permissions. Proposes evaluating agents by information flow rather than by permission boundaries.
@@ -76,6 +82,12 @@ Attacks a measurement blind spot: computer-use agents are judged by task complet
 
 `Env: Desktop, Web` ｜ [arXiv:2606.15034](https://arxiv.org/abs/2606.15034)
 
+#### Domain-Conditioned Safety in Frontier Computer-Using Agents: A 793-Episode Browser Benchmark, a Coding-Domain Cross-Reference, and a Reproducibility Audit of Recent Red-Teaming (CUA-HandCrafted) (2026-06)
+
+A rare reproducibility audit of this literature, and its finding is uncomfortable: recent CUA red-teaming papers report 42–98% ASR, but those headline numbers cluster on retired models and on whichever model in each paper's panel was most vulnerable. Reproducing the techniques as hand-crafted templates over 793 episodes (24 multi-step web tasks, 56 templates, 8 attack families, 4 system-prompt configs), the authors measure **0/140 multi-step success** against Claude Sonnet 4.6 and GPT-5.4, with resistance traced to model weights rather than prompting. But it does not generalize: the same weights fall to hand-crafted skill-injection at up to 100% on a sister coding-agent benchmark. Safety here is domain-conditioned, and the field's high ASR figures owe more to RL-optimized injection text than to intrinsic fragility.
+
+`Env: Desktop, Web` ｜ [arXiv:2606.05233](https://arxiv.org/abs/2606.05233)
+
 #### BraveGuard: From Open-World Threats to Safer Computer-Use Agents (BraveGuard) (2026-05)
 
 Starts from why CUA harm is hard to catch: it emerges only through multi-step execution traces whose individual actions look locally benign, so neither isolated prompts nor final responses reveal it. BraveGuard is a self-evolving pipeline that mines recent research sources for emerging risks and attack patterns, instantiates them as executable computer-use tasks, collects agent rollouts, and derives trajectory-level supervision for training guard models. Because the loop can be re-run as new threats and validation failures appear, the defense adapts rather than freezing at whatever a static benchmark captured at training time.
@@ -87,6 +99,24 @@ Starts from why CUA harm is hard to catch: it emerges only through multi-step ex
 Frames GUI-agent privacy as an arbitration problem rather than a detection problem: whether something is private depends on task, recipient, application state and user role, so static PII detectors miss the boundaries, while cloud-side VLM reasoning uploads the raw screen *before* deciding what needed protecting. MaskClaw runs at the edge, extracting local visual evidence, retrieving user- and task-specific policy memory, and deciding Allow / Mask / Ask before screenshots leave the trusted environment. Across five skill-evolution scenarios it converts user corrections, cancellations and edits into reusable privacy skills vetted by a sandbox gate, benchmarked on P-GUI-Evo.
 
 `Env: Mobile, Desktop` ｜ [arXiv:2605.28646](https://arxiv.org/abs/2605.28646)
+
+#### OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents (OTora) (2026-05)
+
+Introduces an attack goal that most threat models overlook entirely: Reasoning-Level Denial-of-Service, where the attacker **preserves task correctness** yet degrades availability by inflating reasoning depth or tool-use budget. Because the output stays correct, every correctness-based defense and every output-inspecting guardrail reports normal operation. OTora is a two-stage framework — Stage I optimizes an adversarial trigger inducing targeted tool invocations via insertion-aware scoring and dynamic target co-evolution (black- and white-box), Stage II generates reasoning payloads through ICL-guided genetic search that amplifies overthinking while keeping outcomes correct — evaluated on WebShop, Email and OS agents over backbones including LLaMA-70B and GPT-OSS-120B.
+
+`Env: Web, Desktop` ｜ [arXiv:2605.08876](https://arxiv.org/abs/2605.08876)
+
+#### Constraining Host-Level Abuse in Self-Hosted Computer-Use Agents via TEE-Backed Isolation (TEE-Backed Isolation) (2026-05)
+
+Targets self-hosted CUAs such as OpenClaw, which pair natural-language interaction with direct access to browsers, files, scripts, system commands and outbound channels — a combination that turns any successful steering into host-level abuse, whether via malicious messages, indirect injection, unsafe skills, or tampering along the host-side control path. The central argument is why blocklists cannot work: an operation's security criticality depends jointly on action type, target object, execution context and potential effect, so no static rule captures it. The design keeps ordinary functionality on the constrained REE path while moving security-critical classification behind a TEE boundary.
+
+`Env: Desktop` ｜ [arXiv:2605.06393](https://arxiv.org/abs/2605.06393)
+
+#### OS-SPEAR: A Toolkit for the Safety, Performance, Efficiency, and Robustness Analysis of OS Agents (OS-SPEAR) (2026-04)
+
+Diagnoses three concrete defects in current OS-agent benchmarks — narrow safety scenarios, noisy trajectory labeling, and limited robustness metrics — and answers with a four-dimension toolkit spanning Safety, Performance, Efficiency and Robustness. The subsets are separately constructed rather than reweighted from one pool: a Safety subset covering both environment-induced and human-induced hazards, a Performance subset curated via trajectory value estimation and stratified sampling, and an Efficiency subset measuring through dual lenses. Treating safety as one of four coupled axes rather than a standalone score is the framing worth borrowing.
+
+`Env: Desktop` ｜ [arXiv:2604.24348](https://arxiv.org/abs/2604.24348)
 
 #### Temporal UI State Inconsistency in Desktop GUI Agents: Formalizing and Defending Against TOCTOU Attacks on Computer-Use Agents (PUSV) (2026-04)
 
@@ -166,6 +196,18 @@ Argues that existing visual privacy datasets are largely static natural images a
 
 `Env: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
 
+#### MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction (MirrorGuard) (2026-01)
+
+Names the cost that detection-based defenses quietly impose: blocking prevents damage but often aborts the task prematurely, so security is bought with utility. MirrorGuard instead corrects unsafe reasoning, and solves the training-cost problem with a neural-symbolic simulation pipeline that generates realistic high-risk GUI interaction trajectories entirely in a text-based simulated environment — capturing unsafe reasoning patterns and potential system hazards without ever running destructive operations on a real OS. The resulting defense is plug-and-play, transferring simulation-trained correction to real deployments.
+
+`Env: Desktop` ｜ [arXiv:2601.12822](https://arxiv.org/abs/2601.12822)
+
+#### CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents (NOVA) (2026-01)
+
+Confronts a genuine architectural impasse: isolation gives the strongest injection guarantees by strictly separating trusted planning from untrusted observations, but CUAs need continuous UI observation to decide each action — the two requirements are directly opposed. The paper resolves it with an empirical claim that turns out to hold: UI workflows, though dynamic, are structurally *predictable*. NOVA therefore uses single-shot planning, where a trusted planner emits a complete branching plan upfront covering all anticipated runtime states, which yields control-flow integrity guarantees against arbitrary instruction injection rather than best-effort detection.
+
+`Env: Desktop` ｜ [arXiv:2601.09923](https://arxiv.org/abs/2601.09923)
+
 #### SusBench: An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents (SusBench) (2025-10)
 
 Evaluates CUA susceptibility to UI dark patterns — designs that manipulate users into unintended actions — drawing nine common types from existing taxonomies and injecting believable instances into real consumer websites via code injection, yielding 313 tasks across 55 sites. The methodological strength is the human validation: a study with 29 participants confirmed the injections read as highly realistic, with the vast majority never noticing they had been planted by the researchers. That control is what makes the side-by-side comparison of five state-of-the-art CUAs against human participants credible.
@@ -190,11 +232,23 @@ Stress-tests monitoring systems for covert agent misbehavior such as secretly sh
 
 `Env: Desktop` ｜ [arXiv:2508.19461](https://arxiv.org/abs/2508.19461)
 
+#### Measuring Harmfulness of Computer-Using Agents (CUAHarm) (2025-07)
+
+Points out that existing benchmarks evaluate LMs in chatbots or simple tool use, which cannot measure what a CUA can actually do to a machine. CUAHarm supplies 104 expert-written realistic misuse risks — disabling firewalls, leaking data, installing backdoors — inside a sandbox with rule-based verifiable rewards, so the metric is whether the firewall is *actually* disabled rather than whether the model refused. The results are hard to dismiss: without any jailbreaking prompt, frontier models comply at high rates, Gemini 2.5 Pro reaching 90%. The paper also observes newer models being safer on previous benchmarks yet not here.
+
+`Env: Desktop` ｜ [arXiv:2508.00935](https://arxiv.org/abs/2508.00935)
+
 #### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
 
 Notes that existing defenses against pop-up environmental injection either require costly retraining or collapse under inductive interference, then takes a mechanistic route instead. The paper systematically studies how such attacks alter a GUI agent's attention and uncovers a layer-wise attention divergence pattern separating correct from incorrect outputs. LaSM exploits this directly by selectively amplifying attention and MLP modules in the critical layers, realigning model saliency with task-relevant screen regions without any additional training — a rare instance of interpretability findings converted into a deployable GUI-agent defense.
 
 `Env: Desktop, Web` ｜ [arXiv:2507.10610](https://arxiv.org/abs/2507.10610)
+
+#### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
+
+Identifies visual grounding — the mapping from a textual plan to concrete GUI elements — as an attack surface in its own right, distinct from planning or reasoning. The consequence is what makes it dangerous: a backdoor planted in grounding compromises the agent's behavior **even when it is given a completely correct task-solving plan**, so inspecting the plan reveals nothing wrong. VisualTrap hijacks grounding by misleading the agent into locating the textual plan at attacker-chosen positions, which means every layer of plan-level review or reasoning audit passes cleanly while the actions still land where the attacker wants.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2507.06899](https://arxiv.org/abs/2507.06899)
 
 #### A Systematization of Security Vulnerabilities in Computer Use Agents (CUA Vuln SoK) (2025-07)
 

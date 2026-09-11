@@ -135,26 +135,26 @@ N 篇全部通过 arXiv 元数据校验。
 
 ## 存量建库
 
-**当前进度（2026-09-11）：已收 102 篇 / arXiv 召回 275 篇（2024-01 起），覆盖率约 37%。**
-19 个小节全部有内容。年份分布 2024: 7 / 2025: 25 / 2026: 70。
+**当前进度（2026-09-11）：已收 126 篇 / arXiv 召回 275 篇（2024-01 起），覆盖率约 46%。**
+19 个小节全部有内容。年份分布 2024: 7 / 2025: 36 / 2026: 83。
 
-第一轮大规模建库已完成，从 217 篇可见候选中收录 53 篇，**实际收录率约 24%**
-（低于此前按首批估算的 40%，因为存量补齐时剔除标准比首批更严：大量论文虽命中
-形态词与安全词，但主要贡献落在能力、可靠性或效率上）。
+两轮大规模建库已完成。第一轮从 217 篇可见候选中收录 53 篇（约 24%），
+第二轮从剩余 174 篇中收录 24 篇（约 14%）。**收录率逐轮下降是正常的** ——
+首批捡的是最对位的，越往后剩下的越多是边界情况。估算工作量时按 15% 算。
 
 各节已收数见 README 目录的计数后缀。剩余候选中值得优先跟进的方向：
 
 | 方向 | 说明 |
 |---|---|
-| §2.4 人在环（2 篇） | 候选里有 AOHP、SkillHarness 相关工作待判断 |
-| §2.5 事后恢复（2 篇） | 该方向研究本身稀缺，非仓库缺陷 |
-| §3.3 Mobile 基准（3 篇） | 候选里有 MVISU-Bench、AndroidReality 等 |
-| §3.4 Desktop 基准（3 篇） | 候选里有 macOSWorld、OS-SPEAR、MedCUA-Bench 等 |
+| §2.4 人在环（3 篇） | 该方向研究本身偏少，`Learning When to Ask` 等待判断 |
+| §3.3 Mobile 基准（4 篇） | 候选里还有 AndroidReality、AppDeltaWorld 等 |
+| §3.4 Desktop 基准（4 篇） | 候选里还有 macOSWorld、MedCUA-Bench、LabOSBench |
 | §4 商用 AI 浏览器（2 篇） | 需 arXiv + 非 arXiv 双轨，见下文 |
 
-尚未整理的强信号候选（标题即含明确攻防词）约 40 余篇，含 RedTeamCUA、
-SecureWebArena、OS-Sentinel、VisualTrap、WebInject、EVA、Hidden Ghost Hand 等
-被较多引用的工作。按 24% 收录率估，仓库仍有约 40 篇的增长空间。
+仍未整理的强信号候选约 20 余篇，含 RedTeamCUA、WebInject、EVA、Hidden Ghost Hand、
+Jailbreaking in the Haystack、Invisible to Humans、Blind Gods and Broken Screens、
+WebTrap Park、AOHP、Okara、Peacock 等。按 15% 收录率估，仓库还有约 15–20 篇空间，
+**再两轮即可基本清完存量，此后转入纯常态化维护。**
 
 各节 arXiv 存量（`data/sections.yaml` 的 `stock` 字段）：
 

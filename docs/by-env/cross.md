@@ -16,6 +16,18 @@ Introduces a paired diagnostic that measures how far a GUI agent's safety alignm
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2607.29199](https://arxiv.org/abs/2607.29199)
 
+#### SafeFlow: Semantic Information-Flow Control for Blocking Malicious Propagation in Multi-Agent Systems (SafeFlow) (2026-07)
+
+Identifies a blind spot created by the very mechanisms that make multi-agent systems capable: task decomposition and role specialization let a harmful objective be fragmented into locally plausible subtasks, so no single agent ever sees enough to detect malicious intent. The paper's central move is reframing this as a semantic information-flow problem rather than a single-turn prompt classification task — a category shift that explains why per-message filters cannot work. SafeFlow attaches structured semantic taints to root requests, propagates them along a dynamic collaboration graph, and validates at the workflow level.
+
+`Env: Cross-env` ｜ [arXiv:2607.25255](https://arxiv.org/abs/2607.25255)
+
+#### Securing Computer-Use Agents: A Unified Architecture-Lifecycle Framework for Deployment-Grounded Reliability (Architecture-Lifecycle Framework) (2026-05)
+
+Argues that once CUAs leave bounded benchmarks for real browsers, desktops, mobile apps, filesystems, terminals and tool backends, task success stops being a meaningful reliability measure: perception errors, planning drift, memory use, tool mediation, permission scope and runtime oversight *jointly* decide whether actions stay aligned with user intent. Existing surveys organize the field by method, platform, benchmark or threat, but rarely connect capability formation to authority exposure to failure manifestation to control placement. This framework supplies that connection through an architectural view (Perception, Decision, Execution as coupled layers) plus a lifecycle view.
+
+`Env: Cross-env` ｜ [arXiv:2605.07110](https://arxiv.org/abs/2605.07110)
+
 #### Are GUI Agents Focused Enough? Automated Distraction via Semantic-level UI Element Injection (Semantic UI Injection) (2026-04)
 
 Notes two limits in existing GUI-agent red-teaming: adversarial perturbations need white-box access unavailable commercially, and prompt injection is increasingly neutralized by stronger alignment. Semantic-level UI Element Injection is a black-box paradigm overlaying safety-aligned, harmless UI elements onto screenshots to misdirect visual grounding, pairing a modular Editor-Overlapper-Victim pipeline with iterative search. Across 19 victim models in 8 families, strategic optimization beats random injection by 3.5-6.9x on the most robust victims and transfers near-perfectly across architectures.

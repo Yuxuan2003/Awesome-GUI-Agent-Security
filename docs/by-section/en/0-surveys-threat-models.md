@@ -14,6 +14,18 @@ Asks what role decomposition costs in security terms: multi-agent web systems im
 
 `Env: Web` ｜ [arXiv:2608.00202](https://arxiv.org/abs/2608.00202)
 
+#### SafeFlow: Semantic Information-Flow Control for Blocking Malicious Propagation in Multi-Agent Systems (SafeFlow) (2026-07)
+
+Identifies a blind spot created by the very mechanisms that make multi-agent systems capable: task decomposition and role specialization let a harmful objective be fragmented into locally plausible subtasks, so no single agent ever sees enough to detect malicious intent. The paper's central move is reframing this as a semantic information-flow problem rather than a single-turn prompt classification task — a category shift that explains why per-message filters cannot work. SafeFlow attaches structured semantic taints to root requests, propagates them along a dynamic collaboration graph, and validates at the workflow level.
+
+`Env: Cross-env` ｜ [arXiv:2607.25255](https://arxiv.org/abs/2607.25255)
+
+#### Securing Computer-Use Agents: A Unified Architecture-Lifecycle Framework for Deployment-Grounded Reliability (Architecture-Lifecycle Framework) (2026-05)
+
+Argues that once CUAs leave bounded benchmarks for real browsers, desktops, mobile apps, filesystems, terminals and tool backends, task success stops being a meaningful reliability measure: perception errors, planning drift, memory use, tool mediation, permission scope and runtime oversight *jointly* decide whether actions stay aligned with user intent. Existing surveys organize the field by method, platform, benchmark or threat, but rarely connect capability formation to authority exposure to failure manifestation to control placement. This framework supplies that connection through an architectural view (Perception, Decision, Execution as coupled layers) plus a lifecycle view.
+
+`Env: Cross-env` ｜ [arXiv:2605.07110](https://arxiv.org/abs/2605.07110)
+
 #### Measuring the Security of Mobile LLM Agents under Adversarial Prompts from Untrusted Third-Party Channels (Mobile Agent Security Study) (2025-10)
 
 The first systematic study of security risks in mobile LLM agents, spanning adversarial case studies from opportunistic manipulation via pop-up advertisements up to end-to-end workflows involving malware installation and cross-app data exfiltration. Coverage is broad — eight state-of-the-art mobile agents across three architectures, over 2,000 adversarial and paired benign trials. The results are systemic rather than incidental: low-barrier vectors such as fraudulent ads succeed with over 80% reliability, and even workflows that require circumventing explicit operating-system warnings, such as malware installation, still go through.

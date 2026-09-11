@@ -32,6 +32,12 @@
 
 `环境: Desktop` ｜ [arXiv:2602.01725](https://arxiv.org/abs/2602.01725)
 
+#### MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction (MirrorGuard) (2026-01)
+
+点明基于检测的防御悄悄付出的代价：拦截虽能避免损害，但常常过早中止任务，等于用效用换安全。 MirrorGuard 转而去**纠正不安全的推理**，并用神经符号仿真流水线解决训练成本问题——完全在 文本化的模拟环境中生成真实感的高风险 GUI 交互轨迹，捕捉不安全推理模式与潜在系统危害， 而无需在真实操作系统上执行任何破坏性操作。最终得到的是即插即用的防御，把仿真中训练出的 纠正能力迁移到真实部署。
+
+`环境: Desktop` ｜ [arXiv:2601.12822](https://arxiv.org/abs/2601.12822)
+
 #### WebGuard: Building a Generalizable Guardrail for Web Agents (WebGuard) (2025-07)
 
 主张 web agent 需要类似人类用户的访问控制机制，并发布首个支持 agent 动作风险评估的数据集： 来自 22 个领域、193 个网站（含常被忽视的长尾站点）的 4939 条人工标注状态改变动作，按 SAFE / LOW / HIGH 三级风险标注，并划分好训练测试集以支持泛化研究。核心结论相当刺眼—— 即便前沿 LLM 预测动作后果的准确率也不足 60%。

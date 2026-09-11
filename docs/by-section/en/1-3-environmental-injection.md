@@ -32,6 +32,18 @@ Memory makes web agents personalized yet exploitable: storing past interactions 
 
 `Env: Web` ｜ [arXiv:2604.02623](https://arxiv.org/abs/2604.02623)
 
+#### Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments (Dynamic EIA) (2025-09)
+
+Attacks the realism of prior environmental-injection work directly: most studies implicitly assume a trigger's on-screen position and surrounding visual context stay roughly consistent between training and testing, which erases the defining property of real web content — that it changes. The paper introduces a dynamic-environment threat model where the attacker is merely a regular user and the trigger sits inside a continuously shifting environment. Under that model existing approaches largely fail, which cuts both ways: it means published attack success rates overstate the threat, and that agents' true exposure is still unmeasured.
+
+`Env: Web` ｜ [arXiv:2509.11250](https://arxiv.org/abs/2509.11250)
+
+#### Manipulating LLM Web Agents with Indirect Prompt Injection Attack via HTML Accessibility Tree (A11y Tree IPI) (2025-07)
+
+Targets the accessibility tree specifically — the structured representation many web agents parse instead of raw HTML — and shows universal adversarial triggers can be embedded there to hijack behavior. The method is gradient-based rather than hand-crafted, using Greedy Coordinate Gradient against a BrowserGym agent on Llama-3.1, and reports high success on real websites for both targeted and general attacks including login credential exfiltration and forced ad clicks. Notably the accessibility tree is a channel added for inclusive design, so hardening it means weighing security against the users who depend on it.
+
+`Env: Web` ｜ [arXiv:2507.14799](https://arxiv.org/abs/2507.14799)
+
 #### AdInject: Real-World Black-Box Attacks on Web Agents via Advertising Delivery (AdInject) (2025-05)
 
 Criticises prior environmental injection work for unrealistic assumptions — direct HTML manipulation, knowledge of user intent, or access to model parameters. AdInject instead injects malicious content through internet advertising delivery, operating under a black-box agent, static content constraints, and no knowledge of user intent. It combines ad content designed to lure agent clicks with VLM-based optimization that infers likely user intent from the target site, making it one of the most deployment-realistic threat models in this area.

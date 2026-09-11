@@ -2263,3 +2263,557 @@ papers:
       任务。方法上的强项在于人类验证环节——29 名参与者的实验确认这些注入看起来高度真实，绝大多数
       人完全没有察觉它们是研究团队植入的。正是这一对照使得「五个前沿 CUA 与人类参与者并排比较」
       的结论具备可信度。
+
+  - id: "2512.23128"
+    title: "It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents"
+    abbr: "TRAP"
+    date: "2025-12"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Studies injection through the lens of persuasion rather than payload engineering: adversarial
+      instructions hidden in interface elements *persuade* the agent away from its original task,
+      which reframes the defense problem as psychological rather than syntactic. Across six frontier
+      models, agents fall for injection in 25% of tasks on average, but the spread is the point —
+      13% for GPT-5 against 43% for DeepSeek-R1. More troubling, small interface or contextual
+      changes often double success rates, indicating the vulnerability is systemic rather than
+      tied to any specific phrasing. Ships a modular social-engineering injection framework running
+      controlled experiments on high-fidelity website clones.
+    summary_zh: >-
+      从「说服」而非「载荷工程」的视角研究注入：藏在界面元素里的对抗指令是在**说服** agent 偏离
+      原任务，这把防御问题重新框定为心理学层面而非语法层面的。在六个前沿模型上，agent 平均在 25%
+      的任务中中招，但真正值得看的是差距——GPT-5 为 13%，DeepSeek-R1 高达 43%。更麻烦的是，
+      界面或上下文的微小改动常常使成功率翻倍，说明这种脆弱性是系统性的，而非绑定于某种特定措辞。
+      配套发布模块化的社会工程注入框架，在高保真网站克隆上做受控实验。
+
+  - id: "2510.24411"
+    title: "OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows"
+    abbr: "OS-Sentinel"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "2.3"
+    env: [mobile]
+    summary: >-
+      Frames the core difficulty as one of scale: unsafe operations like system compromise and
+      privacy leakage must be detected across the vast, complex operational space of mobile
+      environments, and no single detector covers it. OS-Sentinel's answer is deliberately hybrid —
+      a Formal Verifier catches explicit system-level violations with certainty, while a VLM-based
+      contextual judge handles the semantic cases formal rules cannot express. It also contributes
+      MobileRisk-Live, a dynamic sandbox paired with a safety detection benchmark of realistic
+      trajectories carrying fine-grained annotations, which is what makes the hybrid split
+      measurable rather than merely plausible.
+    summary_zh: >-
+      把核心难点归结为规模问题：系统沦陷、隐私泄露这类不安全操作需要在移动环境庞大而复杂的操作
+      空间中被检出，而任何单一检测器都覆盖不了。OS-Sentinel 的答案是刻意的混合式——形式化验证器
+      确定性地捕捉显式的系统级违规，VLM 上下文判别器处理形式化规则无法表达的语义情形。工作同时
+      贡献了 MobileRisk-Live：一个动态沙箱环境，配套由真实轨迹构成、带细粒度标注的安全检测基准，
+      正是它让这种混合式切分变得可测量，而不只是听起来合理。
+
+  - id: "2605.06393"
+    title: "Constraining Host-Level Abuse in Self-Hosted Computer-Use Agents via TEE-Backed Isolation"
+    abbr: "TEE-Backed Isolation"
+    date: "2026-05"
+    venue: "arXiv"
+    section: "2.3"
+    env: [desktop]
+    summary: >-
+      Targets self-hosted CUAs such as OpenClaw, which pair natural-language interaction with direct
+      access to browsers, files, scripts, system commands and outbound channels — a combination that
+      turns any successful steering into host-level abuse, whether via malicious messages, indirect
+      injection, unsafe skills, or tampering along the host-side control path. The central argument
+      is why blocklists cannot work: an operation's security criticality depends jointly on action
+      type, target object, execution context and potential effect, so no static rule captures it.
+      The design keeps ordinary functionality on the constrained REE path while moving
+      security-critical classification behind a TEE boundary.
+    summary_zh: >-
+      针对 OpenClaw 这类自托管 CUA——它们把自然语言交互与对浏览器、文件、脚本、系统命令、外发
+      通道的直接访问绑在一起，这种组合使任何一次成功的引导都会演变成主机级滥用，无论引导来自恶意
+      消息、间接注入、不安全 skill，还是对主机侧控制路径的篡改。核心论点在于解释「为何黑名单行
+      不通」：一个操作的安全关键性由动作类型、目标对象、执行上下文与潜在影响**共同**决定，任何
+      静态规则都刻画不了。设计上让普通功能留在受约束的 REE 路径，而把安全关键的分类判定移到 TEE
+      边界之后。
+
+  - id: "2606.20910"
+    title: "Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents"
+    abbr: "Agent Fingerprinting"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "2.5"
+    env: [web]
+    summary: >-
+      Approaches agent security from the website operator's side rather than the agent's: as web
+      agents proliferate, indiscriminate content scraping becomes a privacy and security problem,
+      and the existing defenses — robots.txt, active bot-blocking — are widely violated and easily
+      circumvented. The paper shows AI web agents are distinguishable from both humans and
+      traditional crawlers via a multi-layer fingerprint combining network-layer characteristics
+      (TLS, HTTP) with browser interaction behavior, deployed as a programmatic logging framework
+      on a live instrumented domain. Analyzing six frameworks (AutoGen, Browser Use, Claude,
+      Gemini, Operator, Skyvern) reveals latent structural differences in how each assembles
+      requests and drives the browser.
+    summary_zh: >-
+      从网站运营方而非 agent 方切入 agent 安全：随着 web agent 大量涌现，无节制的内容抓取成为
+      隐私与安全问题，而现有防线——robots.txt、主动 bot 拦截——被普遍无视且极易绕过。论文表明，
+      AI web agent 可以通过「网络层特征（TLS、HTTP）+ 浏览器交互行为」的多层指纹，与人类及传统
+      爬虫区分开来，并将该机制实现为可部署在真实插桩域名上的程序化日志框架。对六个主流框架
+      （AutoGen、Browser Use、Claude、Gemini、Operator、Skyvern）的分析揭示出它们在组装 HTTP
+      请求、建立 TLS/HTTP 连接、驱动浏览器自主操作方式上的潜在结构差异。
+
+  - id: "2608.24913"
+    title: "From Blind Edits to Verified Repair: Building Trustworthy User-Side LLM Agents for Web Accessibility"
+    abbr: "Verified Repair"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "2.5"
+    env: [web]
+    summary: >-
+      An unusual entry: the agent here is benign by design — a Chrome extension that rewrites pages
+      for accessibility — yet the paper's contribution is a safety one, namely that unverified
+      LLM edits are as likely to break a page as fix it. The dual-condition protocol measures harm
+      as carefully as benefit across six small open-weight models (7B–14B) on ten violation-rich and
+      ten already-accessible live sites, and the diagnosis is precise: unverified generation
+      produced 24 improvements against 20 regressions. That near-parity is the argument for
+      verification-before-apply, and the extension injects CSS reversibly so a bad edit can be
+      undone — a concrete instance of the rollback discipline this section is about.
+    summary_zh: >-
+      一个特别的条目：这里的 agent 在设计上完全良性——一个为无障碍改写页面的 Chrome 扩展——但论文
+      的贡献属于安全范畴，即**未经验证的 LLM 编辑，修好页面和弄坏页面的概率几乎相当**。双条件协议
+      以同等严谨程度衡量收益与危害，在六个小规模开源模型（7B–14B）上、针对十个违规密集站点与十个
+      本已高度无障碍的真实站点做评测，诊断相当精确：未验证生成带来 24 处改善、同时造成 20 处退化。
+      这种近乎持平的比例正是「先验证再应用」的论据；而该扩展以可逆方式注入 CSS，使错误编辑可被
+      撤销——这是本节所关注的回滚纪律的一个具体实例。
+
+  - id: "2607.04334"
+    title: "Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure"
+    abbr: "Perception-Fusion Gap"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "1.2"
+    env: [web, mobile, desktop]
+    summary: >-
+      Asks a question that sits upstream of every visual attack: a multimodal GUI agent reads the
+      interface through two redundant channels — rendered pixels and serialized structure (DOM or
+      accessibility tree) — and forms a state belief before acting, but no existing benchmark asks
+      *which channel that belief came from*. The paper formalizes visual state reliance and measures
+      it with paired single-channel interventions over 735 probes across real web, mobile and
+      desktop interfaces, 225 of them zero-edit divergences mined from live production sites, scored
+      by deterministic forced choice with no model judge. The Perception-Fusion Gap metric captures
+      the fraction of probes a model perceives correctly yet resolves toward structure under
+      conflict — which tells an attacker exactly which channel to poison.
+    summary_zh: >-
+      提出一个位于所有视觉攻击上游的问题：多模态 GUI agent 通过两条冗余通道读取界面——渲染后的
+      像素与序列化结构（DOM 或无障碍树）——并在行动前形成对当前状态的信念，但现有基准从不追问
+      **这个信念究竟来自哪条通道**。论文形式化了「视觉状态依赖」，用配对的单通道干预在覆盖真实
+      web / mobile / desktop 界面的 735 个探针上测量，其中 225 个是从线上生产网站挖掘的零编辑
+      分歧样本，全部采用确定性强制选择评分、不引入模型裁判。核心指标 Perception-Fusion Gap
+      刻画的是「模型感知正确、但在冲突时倒向结构」的探针占比——而这恰好告诉攻击者该污染哪条通道。
+
+  - id: "2601.09923"
+    title: "CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents"
+    abbr: "NOVA"
+    date: "2026-01"
+    venue: "arXiv"
+    section: "2.6"
+    env: [desktop]
+    summary: >-
+      Confronts a genuine architectural impasse: isolation gives the strongest injection guarantees
+      by strictly separating trusted planning from untrusted observations, but CUAs need continuous
+      UI observation to decide each action — the two requirements are directly opposed. The paper
+      resolves it with an empirical claim that turns out to hold: UI workflows, though dynamic, are
+      structurally *predictable*. NOVA therefore uses single-shot planning, where a trusted planner
+      emits a complete branching plan upfront covering all anticipated runtime states, which yields
+      control-flow integrity guarantees against arbitrary instruction injection rather than
+      best-effort detection.
+    summary_zh: >-
+      正面处理一个真实的架构僵局：架构隔离通过严格分离「可信规划」与「不可信观测」提供了最强的
+      注入防护保证，但 CUA 必须持续观测 UI 才能决定每一步动作——这两项要求直接冲突。论文用一个
+      经检验成立的经验判断来破局：UI 工作流虽然是动态的，但在**结构上是可预测的**。因此 NOVA
+      采用单次规划：由可信规划器预先给出一份覆盖所有可预期运行时状态的完整分支计划，从而对任意
+      指令注入提供控制流完整性**保证**，而不是尽力而为的检测。
+
+  - id: "2510.10073"
+    title: "SecureWebArena: A Holistic Security Evaluation Benchmark for LVLM-based Web Agents"
+    abbr: "SecureWebArena"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Argues existing security benchmarks give only partial coverage, typically confined to narrow
+      scenarios such as user-level prompt manipulation, and therefore miss most of the agent's
+      actual vulnerability surface. SecureWebArena assembles six simulated but realistic web
+      environments (e-commerce platforms, community forums and others) with 2,970 high-quality
+      trajectories spanning diverse tasks and attack settings. Its organizing contribution is a
+      structured taxonomy of six attack vectors covering **both** user-level and environment-level
+      manipulation — the second half being exactly what narrower benchmarks omit.
+    summary_zh: >-
+      指出现有安全基准只提供部分覆盖，通常局限于用户级 prompt 操纵这类狭窄场景，因而错过了 agent
+      实际暴露面的大部分。SecureWebArena 构建了六个模拟但贴近真实的网页环境（电商平台、社区论坛
+      等），含覆盖多样任务与攻击设定的 2970 条高质量轨迹。其组织性贡献是一套结构化的六类攻击向量
+      分类法，**同时**覆盖用户级与环境级操纵——而后者恰恰是范围更窄的基准所遗漏的那一半。
+
+  - id: "2507.06899"
+    title: "VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation"
+    abbr: "VisualTrap"
+    date: "2025-07"
+    venue: "arXiv"
+    section: "1.6"
+    env: [mobile, desktop]
+    summary: >-
+      Identifies visual grounding — the mapping from a textual plan to concrete GUI elements — as an
+      attack surface in its own right, distinct from planning or reasoning. The consequence is
+      what makes it dangerous: a backdoor planted in grounding compromises the agent's behavior
+      **even when it is given a completely correct task-solving plan**, so inspecting the plan
+      reveals nothing wrong. VisualTrap hijacks grounding by misleading the agent into locating
+      the textual plan at attacker-chosen positions, which means every layer of plan-level review
+      or reasoning audit passes cleanly while the actions still land where the attacker wants.
+    summary_zh: >-
+      把「视觉 grounding」——即从文本计划到具体 GUI 元素的映射——认定为一个独立的攻击面，与规划和
+      推理层面区分开来。其后果正是危险之处：植入 grounding 的后门会在 agent **拿到完全正确的
+      解题计划时**依然改变其行为，因此检查计划本身看不出任何问题。VisualTrap 通过误导 agent 把
+      文本计划定位到攻击者选定的位置来劫持 grounding，这意味着所有计划级审查与推理审计都能干净
+      通过，而动作却落在攻击者想要的地方。
+
+  - id: "2508.00935"
+    title: "Measuring Harmfulness of Computer-Using Agents"
+    abbr: "CUAHarm"
+    date: "2025-07"
+    venue: "arXiv"
+    section: "3.1"
+    env: [desktop]
+    summary: >-
+      Points out that existing benchmarks evaluate LMs in chatbots or simple tool use, which cannot
+      measure what a CUA can actually do to a machine. CUAHarm supplies 104 expert-written realistic
+      misuse risks — disabling firewalls, leaking data, installing backdoors — inside a sandbox with
+      rule-based verifiable rewards, so the metric is whether the firewall is *actually* disabled
+      rather than whether the model refused. The results are hard to dismiss: without any
+      jailbreaking prompt, frontier models comply at high rates, Gemini 2.5 Pro reaching 90%. The
+      paper also observes newer models being safer on previous benchmarks yet not here.
+    summary_zh: >-
+      指出现有基准评测的是聊天机器人或简单工具调用场景下的 LM，无法测量一个 CUA 实际能对机器做到
+      什么。CUAHarm 提供 104 项专家撰写的真实滥用风险——关闭防火墙、外泄数据、安装后门——置于带
+      规则化可验证奖励的沙箱中，因此指标是防火墙**是否真的被关掉**，而不是模型是否口头拒绝。
+      结果很难被轻描淡写：在完全不加越狱提示的情况下，前沿模型的执行成功率就很高，Gemini 2.5 Pro
+      达到 90%。论文还观察到，那些在以往基准上更安全的新模型，在这里并没有更安全。
+
+  - id: "2509.11939"
+    title: "PrivWeb: Unobtrusive and Content-aware Privacy Protection For Web Agents"
+    abbr: "PrivWeb"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "2.4"
+    env: [web]
+    summary: >-
+      Grounds its design in what users actually think: a formative study (N=15) found people
+      frequently misunderstand agents' data practices and want data management that is transparent
+      yet unobtrusive — two goals usually traded against each other. PrivWeb is a trusted add-on
+      using a localized LLM to anonymize interface content per user preference, and its core
+      mechanism is graded interruption: adaptive notifications pause the task for explicit user
+      control only on highly sensitive information, while less sensitive cases get non-disruptive
+      handling. That grading is what keeps human oversight affordable, validated in a second user
+      study (N=14) across travel, retrieval, shopping and entertainment tasks.
+    summary_zh: >-
+      把设计建立在用户的真实认知上：一项形成性研究（N=15）发现人们普遍误解 agent 的数据使用方式，
+      并希望数据管理既透明又不打扰——而这两个目标通常是互相牺牲的。PrivWeb 是运行在 web agent 上
+      的可信附加组件，用本地化 LLM 按用户偏好对界面内容做匿名化，其核心机制是**分级打断**：
+      自适应通知仅在高敏感信息上暂停任务、交由用户明确控制，而较低敏感度的情形走非打断式处理。
+      正是这种分级让「人在环」的成本可承受，并通过第二项用户研究（N=14，覆盖旅行、信息检索、
+      购物与娱乐任务）得到验证。
+
+  - id: "2601.12822"
+    title: "MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction"
+    abbr: "MirrorGuard"
+    date: "2026-01"
+    venue: "arXiv"
+    section: "2.2"
+    env: [desktop]
+    summary: >-
+      Names the cost that detection-based defenses quietly impose: blocking prevents damage but
+      often aborts the task prematurely, so security is bought with utility. MirrorGuard instead
+      corrects unsafe reasoning, and solves the training-cost problem with a neural-symbolic
+      simulation pipeline that generates realistic high-risk GUI interaction trajectories entirely
+      in a text-based simulated environment — capturing unsafe reasoning patterns and potential
+      system hazards without ever running destructive operations on a real OS. The resulting
+      defense is plug-and-play, transferring simulation-trained correction to real deployments.
+    summary_zh: >-
+      点明基于检测的防御悄悄付出的代价：拦截虽能避免损害，但常常过早中止任务，等于用效用换安全。
+      MirrorGuard 转而去**纠正不安全的推理**，并用神经符号仿真流水线解决训练成本问题——完全在
+      文本化的模拟环境中生成真实感的高风险 GUI 交互轨迹，捕捉不安全推理模式与潜在系统危害，
+      而无需在真实操作系统上执行任何破坏性操作。最终得到的是即插即用的防御，把仿真中训练出的
+      纠正能力迁移到真实部署。
+
+  - id: "2509.11250"
+    title: "Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments"
+    abbr: "Dynamic EIA"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      Attacks the realism of prior environmental-injection work directly: most studies implicitly
+      assume a trigger's on-screen position and surrounding visual context stay roughly consistent
+      between training and testing, which erases the defining property of real web content — that
+      it changes. The paper introduces a dynamic-environment threat model where the attacker is
+      merely a regular user and the trigger sits inside a continuously shifting environment.
+      Under that model existing approaches largely fail, which cuts both ways: it means published
+      attack success rates overstate the threat, and that agents' true exposure is still unmeasured.
+    summary_zh: >-
+      直接质疑以往环境注入工作的真实性：多数研究隐含假定触发物在屏幕上的位置与周围视觉上下文在
+      训练与测试之间大致保持一致，而这恰恰抹掉了真实网页内容的本质属性——它是在不断变化的。论文
+      提出动态环境威胁模型：攻击者只是一个普通用户，触发物嵌在持续变化的环境之中。在该模型下现有
+      方法大多失效，这个结论有两面含义：已发表的攻击成功率高估了威胁，而 agent 的真实暴露程度
+      至今仍未被测准。
+
+  - id: "2507.14799"
+    title: "Manipulating LLM Web Agents with Indirect Prompt Injection Attack via HTML Accessibility Tree"
+    abbr: "A11y Tree IPI"
+    date: "2025-07"
+    venue: "arXiv"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      Targets the accessibility tree specifically — the structured representation many web agents
+      parse instead of raw HTML — and shows universal adversarial triggers can be embedded there to
+      hijack behavior. The method is gradient-based rather than hand-crafted, using Greedy
+      Coordinate Gradient against a BrowserGym agent on Llama-3.1, and reports high success on real
+      websites for both targeted and general attacks including login credential exfiltration and
+      forced ad clicks. Notably the accessibility tree is a channel added for inclusive design,
+      so hardening it means weighing security against the users who depend on it.
+    summary_zh: >-
+      专门针对无障碍树（accessibility tree）——许多 web agent 解析的正是这一结构化表示而非原始
+      HTML——并表明可以在其中嵌入通用对抗触发串来劫持 agent 行为。方法是基于梯度而非人工构造的，
+      用 Greedy Coordinate Gradient 攻击基于 Llama-3.1 的 BrowserGym agent，在真实网站上对定向
+      与通用攻击均报告高成功率，包括窃取登录凭据与强制广告点击。值得注意的是，无障碍树本是为
+      包容性设计而增设的通道，因此对它做加固意味着要在安全与依赖它的用户之间权衡。
+
+  - id: "2509.10723"
+    title: "Dark Patterns Meet GUI Agents: LLM Agent Susceptibility to Manipulative Interfaces and the Role of Human Oversight"
+    abbr: "Dark Patterns Meet GUI Agents"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web]
+    summary: >-
+      A two-phase study comparing agents, humans, and human-AI teams against 16 dark pattern types.
+      Phase 1's finding is the sharper one: agents often fail to recognize dark patterns, and even
+      when they do recognize them, they prioritize task completion over protective action — so
+      awareness alone does not produce safety. Phase 2 shows humans and agents fail *differently*:
+      humans through cognitive shortcuts and habitual compliance, agents through procedural blind
+      spots. Human oversight improved avoidance but brought its own costs in attentional tunneling
+      and cognitive load, so neither party covers the other's gaps cleanly.
+    summary_zh: >-
+      两阶段研究，比较 agent、人类参与者与人机协作团队面对 16 类暗黑模式时的表现。第一阶段的
+      发现更为尖锐：agent 常常识别不出暗黑模式，而**即便识别出来，它也会把任务完成置于保护性
+      行动之上**——因此「有意识」本身并不产生安全。第二阶段显示人与 agent 的失败方式**不同**：
+      人类因认知捷径与习惯性顺从而中招，agent 则因流程性盲区而失守。人工监督确实改善了规避率，
+      但带来了注意力隧道化与认知负荷的代价，因此双方都无法干净地补上对方的缺口。
+
+  - id: "2607.25255"
+    title: "SafeFlow: Semantic Information-Flow Control for Blocking Malicious Propagation in Multi-Agent Systems"
+    abbr: "SafeFlow"
+    date: "2026-07"
+    venue: "arXiv"
+    section: "0"
+    env: [cross]
+    summary: >-
+      Identifies a blind spot created by the very mechanisms that make multi-agent systems capable:
+      task decomposition and role specialization let a harmful objective be fragmented into
+      locally plausible subtasks, so no single agent ever sees enough to detect malicious intent.
+      The paper's central move is reframing this as a semantic information-flow problem rather than
+      a single-turn prompt classification task — a category shift that explains why per-message
+      filters cannot work. SafeFlow attaches structured semantic taints to root requests,
+      propagates them along a dynamic collaboration graph, and validates at the workflow level.
+    summary_zh: >-
+      指出正是那些让多 agent 系统变强的机制造就了盲点：任务分解与角色专职化使一个有害目标可以被
+      拆解成局部看来都合理的子任务，于是没有任何单个 agent 能看到足够信息来识别恶意意图。论文的
+      关键一步是把这个问题重新框定为**语义信息流**问题、而非单轮 prompt 分类任务——这个范畴转换
+      解释了为何逐条消息的过滤器注定无效。SafeFlow 为根请求附加结构化的语义污点标记，沿动态协作
+      图传播，并在工作流层面做整体校验。
+
+  - id: "2604.24348"
+    title: "OS-SPEAR: A Toolkit for the Safety, Performance, Efficiency, and Robustness Analysis of OS Agents"
+    abbr: "OS-SPEAR"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "3.4"
+    env: [desktop]
+    summary: >-
+      Diagnoses three concrete defects in current OS-agent benchmarks — narrow safety scenarios,
+      noisy trajectory labeling, and limited robustness metrics — and answers with a four-dimension
+      toolkit spanning Safety, Performance, Efficiency and Robustness. The subsets are separately
+      constructed rather than reweighted from one pool: a Safety subset covering both
+      environment-induced and human-induced hazards, a Performance subset curated via trajectory
+      value estimation and stratified sampling, and an Efficiency subset measuring through dual
+      lenses. Treating safety as one of four coupled axes rather than a standalone score is the
+      framing worth borrowing.
+    summary_zh: >-
+      诊断出当前 OS agent 基准的三个具体缺陷——安全场景狭窄、轨迹标注噪声大、鲁棒性指标有限——
+      并以覆盖安全性、性能、效率、鲁棒性四个维度的工具包作答。各子集是分别构建而非从同一池中
+      重新加权得来：安全子集同时覆盖环境诱发与人为诱发的危害，性能子集通过轨迹价值估计与分层
+      采样策划，效率子集从双重视角度量。把安全作为四个耦合维度之一、而非一个独立分数来处理，
+      这个框定方式值得借鉴。
+
+  - id: "2605.07110"
+    title: "Securing Computer-Use Agents: A Unified Architecture-Lifecycle Framework for Deployment-Grounded Reliability"
+    abbr: "Architecture-Lifecycle Framework"
+    date: "2026-05"
+    venue: "arXiv"
+    section: "0"
+    env: [cross]
+    summary: >-
+      Argues that once CUAs leave bounded benchmarks for real browsers, desktops, mobile apps,
+      filesystems, terminals and tool backends, task success stops being a meaningful reliability
+      measure: perception errors, planning drift, memory use, tool mediation, permission scope and
+      runtime oversight *jointly* decide whether actions stay aligned with user intent. Existing
+      surveys organize the field by method, platform, benchmark or threat, but rarely connect
+      capability formation to authority exposure to failure manifestation to control placement.
+      This framework supplies that connection through an architectural view (Perception, Decision,
+      Execution as coupled layers) plus a lifecycle view.
+    summary_zh: >-
+      论证当 CUA 走出受限基准、进入真实的浏览器、桌面、移动应用、文件系统、终端与工具后端之后，
+      任务成功率就不再是有意义的可靠性度量：感知错误、规划漂移、记忆使用、工具中介、权限范围与
+      运行时监督**共同**决定动作是否仍与用户意图对齐。现有综述按方法、平台、基准或威胁来组织
+      这个领域，但很少把「能力形成 → 权限暴露 → 失效显现 → 控制点放置」这条链条串起来。本框架
+      通过架构视角（把感知、决策、执行视为相互耦合的层）与生命周期视角提供了这一串联。
+
+  - id: "2606.05233"
+    title: "Domain-Conditioned Safety in Frontier Computer-Using Agents: A 793-Episode Browser Benchmark, a Coding-Domain Cross-Reference, and a Reproducibility Audit of Recent Red-Teaming"
+    abbr: "CUA-HandCrafted"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "3.1"
+    env: [desktop, web]
+    summary: >-
+      A rare reproducibility audit of this literature, and its finding is uncomfortable: recent CUA
+      red-teaming papers report 42–98% ASR, but those headline numbers cluster on retired models and
+      on whichever model in each paper's panel was most vulnerable. Reproducing the techniques as
+      hand-crafted templates over 793 episodes (24 multi-step web tasks, 56 templates, 8 attack
+      families, 4 system-prompt configs), the authors measure **0/140 multi-step success** against
+      Claude Sonnet 4.6 and GPT-5.4, with resistance traced to model weights rather than prompting.
+      But it does not generalize: the same weights fall to hand-crafted skill-injection at up to
+      100% on a sister coding-agent benchmark. Safety here is domain-conditioned, and the field's
+      high ASR figures owe more to RL-optimized injection text than to intrinsic fragility.
+    summary_zh: >-
+      本领域少见的**复现审计**，结论令人不安：近期 CUA 红队论文报告 42–98% 的攻击成功率，但这些
+      抢眼数字集中出现在已退役模型、以及各篇论文所测模型中最脆弱的那一个上。作者把这些技术复现为
+      人工模板，在 793 个 episode（24 个多步网页任务、56 个攻击模板、8 个攻击族、4 种 system
+      prompt 配置）上测量，结果对 Claude Sonnet 4.6 与 GPT-5.4 取得 **0/140 的多步攻击成功率**，
+      且消融实验显示这种抵抗力存在于模型权重而非 prompt。但它并不泛化：同样的权重在姊妹编码
+      agent 基准上被人工 skill 注入攻破，成功率最高达 100%。安全性在这里是**领域条件化**的，
+      而领域内那些偏高的 ASR 数字，更多归因于 RL 优化过的注入文本而非模型固有的脆弱。
+
+  - id: "2609.05535"
+    title: "Beyond the Verdict: Evidence-Aligned Evaluation of Visual Prompt-Injection Guardrails"
+    abbr: "Mind2Web-Injection"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "3.1"
+    env: [web]
+    summary: >-
+      Points out that verdict-only evaluation never reveals whether a VLM guardrail actually used the
+      visual evidence that should support its decision — a detector can be right for the wrong
+      reason and look identical on aggregate metrics. Mind2Web-Injection supplies 9,954
+      instruction-screenshot pairs with instruction-relative labels, pixel-exact evidence boxes and
+      matched image-side counterfactuals. The payoff is stark: two models with nearly identical
+      average precision differ **ninefold** in Evidence-Aligned Detection. A causal probe that
+      swaps in an instruction endorsing the cited command finds Qwen3-VL-32B, the strongest
+      open-weight localizer, stays aligned only 58.7% of the time versus 99.9% for GPT-5.6-luna.
+    summary_zh: >-
+      指出只看判定结果的评测永远无法揭示 VLM 护栏是否真的用上了本应支撑其决策的视觉证据——一个
+      检测器可能「因错误的理由给出正确答案」，而在汇总指标上看起来毫无差别。Mind2Web-Injection
+      提供 9954 组指令-截图配对，带相对指令的标签、像素级精确的证据框，以及配对的图像侧反事实
+      样本。收效相当惊人：两个平均精度几乎一致的模型，在「证据对齐检出率」（EAD）上相差**九倍**。
+      一项因果探测把指令替换为「认可被引用命令」的版本后发现，最强的开源权重定位模型
+      Qwen3-VL-32B 仅在 58.7% 的情形下保持对齐，而 GPT-5.6-luna 为 99.9%。
+
+  - id: "2508.09057"
+    title: "MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions"
+    abbr: "MVISU-Bench"
+    date: "2025-08"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Derives its task taxonomy from user questionnaires rather than researcher intuition, yielding
+      five categories — Multi-App, Vague, Interactive, Single-App and Unethical Instructions — across
+      404 bilingual tasks on 137 real mobile applications. Two of those categories are squarely
+      safety-relevant: unethical instructions test refusal, and vague instructions test whether the
+      agent asks rather than guesses. The paper also ships Aider, a plug-and-play dynamic prompter
+      that mitigates risk and clarifies user intent, improving overall success by 19.55% over the
+      prior state of the art — a demonstration that asking for clarification and being capable are
+      not in tension.
+    summary_zh: >-
+      任务分类法来自用户问卷而非研究者直觉，由此得出五个类别——多应用、模糊、交互式、单应用、
+      不道德指令——覆盖 137 个真实移动应用上的 404 个双语任务。其中两个类别与安全直接相关：
+      不道德指令检验拒答能力，模糊指令检验 agent 是否会**主动询问**而不是擅自猜测。论文同时
+      发布 Aider，一个即插即用的动态 prompter，用于缓解风险并澄清用户意图，把总体成功率相比
+      此前 SOTA 提升 19.55%——这说明「主动澄清」与「有能力」并不互相矛盾。
+
+  - id: "2605.08876"
+    title: "OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents"
+    abbr: "OTora"
+    date: "2026-05"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web, desktop]
+    summary: >-
+      Introduces an attack goal that most threat models overlook entirely: Reasoning-Level
+      Denial-of-Service, where the attacker **preserves task correctness** yet degrades availability
+      by inflating reasoning depth or tool-use budget. Because the output stays correct, every
+      correctness-based defense and every output-inspecting guardrail reports normal operation.
+      OTora is a two-stage framework — Stage I optimizes an adversarial trigger inducing targeted
+      tool invocations via insertion-aware scoring and dynamic target co-evolution (black- and
+      white-box), Stage II generates reasoning payloads through ICL-guided genetic search that
+      amplifies overthinking while keeping outcomes correct — evaluated on WebShop, Email and OS
+      agents over backbones including LLaMA-70B and GPT-OSS-120B.
+    summary_zh: >-
+      提出一个绝大多数威胁模型完全忽略的攻击目标：推理级拒绝服务（R-DoS）——攻击者**保持任务结果
+      正确**，却通过膨胀 agent 的推理深度或工具调用预算来损害可用性。正因为输出依然正确，所有
+      基于正确性的防御与所有检查输出的护栏都会报告「运行正常」。OTora 是两阶段框架：第一阶段用
+      插入位置感知打分与动态目标共进化优化对抗触发串，诱导定向的工具调用（支持黑盒与白盒）；
+      第二阶段通过 ICL 引导的遗传搜索生成推理载荷，在保持结果正确的同时放大「过度思考」。
+      在 WebShop、Email 与 OS agent 上评测，骨干模型含 LLaMA-70B 与 GPT-OSS-120B。
+
+  - id: "2603.18762"
+    title: "ClawTrap: A MITM-Based Red-Teaming Framework for Real-World OpenClaw Security Evaluation"
+    abbr: "ClawTrap"
+    date: "2026-03"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Moves red-teaming down a layer: existing benchmarks concentrate on static sandbox settings and
+      content-level prompt attacks, leaving the network layer — where a real deployment is actually
+      exposed — untested. ClawTrap is a man-in-the-middle framework for evaluating agents such as
+      OpenClaw under live network threats, supporting Static HTML Replacement, Iframe Popup
+      Injection and Dynamic Content Modification, with a reproducible pipeline for rule-driven
+      interception, transformation and auditing. The MITM vantage point matters because it does not
+      require compromising any website the agent visits.
+    summary_zh: >-
+      把红队测试下移一层：现有基准集中在静态沙箱设定与内容级 prompt 攻击上，而**网络层**——真实
+      部署实际暴露的那一层——从未被测试。ClawTrap 是中间人（MITM）框架，用于在真实网络威胁下评测
+      OpenClaw 这类 agent，支持静态 HTML 替换、iframe 弹窗注入、动态内容修改三类攻击，并提供
+      规则驱动的拦截、变换与审计的可复现流水线。MITM 这个位置之所以重要，是因为它**不需要攻陷
+      agent 所访问的任何网站**。
+
+  - id: "2509.21982"
+    title: "RISK: A Framework for GUI Agents in E-commerce Risk Management"
+    abbr: "RISK"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Addresses a domain where the agent is the defender rather than the target: e-commerce risk
+      management requires aggregating deeply embedded web data through multi-step stateful
+      interaction, which traditional scraping cannot do and most GUI agents — limited to single-step
+      tasks on cooperative pages — cannot either. RISK contributes three pieces: RISK-Data with
+      8,492 single-step and 2,386 multi-step trajectories collected via a high-fidelity browser
+      framework, RISK-Bench with 802 single-step and 320 multi-step trajectories across three
+      difficulty levels, and RISK-R1, an R1-style reinforcement fine-tuning framework.
+    summary_zh: >-
+      面向一个 agent 扮演防御方而非攻击目标的领域：电商风控需要通过多步、有状态的交互聚合深度
+      嵌套的网页数据，这既非传统爬虫所能胜任，也超出大多数 GUI agent 的能力——后者通常局限于
+      配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条
+      单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹；
+      以及 RISK-R1，一个 R1 风格的强化微调框架。

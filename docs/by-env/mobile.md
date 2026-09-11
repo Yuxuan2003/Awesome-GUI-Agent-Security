@@ -46,6 +46,12 @@ Argues that existing safety mechanisms for mobile GUI agents are fundamentally r
 
 `Env: Mobile` ｜ [arXiv:2607.15550](https://arxiv.org/abs/2607.15550)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+Asks a question that sits upstream of every visual attack: a multimodal GUI agent reads the interface through two redundant channels — rendered pixels and serialized structure (DOM or accessibility tree) — and forms a state belief before acting, but no existing benchmark asks *which channel that belief came from*. The paper formalizes visual state reliance and measures it with paired single-channel interventions over 735 probes across real web, mobile and desktop interfaces, 225 of them zero-edit divergences mined from live production sites, scored by deterministic forced choice with no model judge. The Perception-Fusion Gap metric captures the fraction of probes a model perceives correctly yet resolves toward structure under conflict — which tells an attacker exactly which channel to poison.
+
+`Env: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
 #### (A)I Sees What You Don't: Exploiting New Attack Surfaces in Third-Party Mobile Agents (AI Sees) (2026-07)
 
 Systematically maps the attack surface introduced by third-party mobile agents, centred on a perception gap: agents read screen content that users never see or never attend to, including hidden views, background notifications, and accessibility nodes. An attacker can exploit this asymmetry to steer the agent in ways the user cannot possibly notice, and the paper argues the third-party agent ecosystem lacks any mechanism constraining what an agent is allowed to perceive.
@@ -130,11 +136,29 @@ The first systematic study of security risks in mobile LLM agents, spanning adve
 
 `Env: Mobile` ｜ [arXiv:2510.27140](https://arxiv.org/abs/2510.27140)
 
+#### OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows (OS-Sentinel) (2025-10)
+
+Frames the core difficulty as one of scale: unsafe operations like system compromise and privacy leakage must be detected across the vast, complex operational space of mobile environments, and no single detector covers it. OS-Sentinel's answer is deliberately hybrid — a Formal Verifier catches explicit system-level violations with certainty, while a VLM-based contextual judge handles the semantic cases formal rules cannot express. It also contributes MobileRisk-Live, a dynamic sandbox paired with a safety detection benchmark of realistic trajectories carrying fine-grained annotations, which is what makes the hybrid split measurable rather than merely plausible.
+
+`Env: Mobile` ｜ [arXiv:2510.24411](https://arxiv.org/abs/2510.24411)
+
 #### GhostEI-Bench: Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments? (GhostEI-Bench) (2025-10)
 
 Identifies environmental injection as an underexplored threat distinct from prompt-based attacks: rather than manipulating textual instructions, it corrupts visual perception by inserting adversarial UI elements such as deceptive overlays or spoofed notifications directly into the GUI, bypassing textual safeguards and risking privacy leakage, financial loss, or irreversible device compromise. GhostEI-Bench moves beyond static image assessment by injecting adversarial events into realistic application workflows inside fully operational Android emulators.
 
 `Env: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
+
+#### MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions (MVISU-Bench) (2025-08)
+
+Derives its task taxonomy from user questionnaires rather than researcher intuition, yielding five categories — Multi-App, Vague, Interactive, Single-App and Unethical Instructions — across 404 bilingual tasks on 137 real mobile applications. Two of those categories are squarely safety-relevant: unethical instructions test refusal, and vague instructions test whether the agent asks rather than guesses. The paper also ships Aider, a plug-and-play dynamic prompter that mitigates risk and clarifies user intent, improving overall success by 19.55% over the prior state of the art — a demonstration that asking for clarification and being capable are not in tension.
+
+`Env: Mobile` ｜ [arXiv:2508.09057](https://arxiv.org/abs/2508.09057)
+
+#### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
+
+Identifies visual grounding — the mapping from a textual plan to concrete GUI elements — as an attack surface in its own right, distinct from planning or reasoning. The consequence is what makes it dangerous: a backdoor planted in grounding compromises the agent's behavior **even when it is given a completely correct task-solving plan**, so inspecting the plan reveals nothing wrong. VisualTrap hijacks grounding by misleading the agent into locating the textual plan at attacker-chosen positions, which means every layer of plan-level review or reasoning audit passes cleanly while the actions still land where the attacker wants.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2507.06899](https://arxiv.org/abs/2507.06899)
 
 #### Poison Once, Control Anywhere: Clean-Text Visual Backdoors in VLM-based Mobile Agents (VIBMA) (2025-06)
 

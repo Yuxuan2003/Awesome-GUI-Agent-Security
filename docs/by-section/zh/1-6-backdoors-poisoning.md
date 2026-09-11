@@ -32,6 +32,12 @@
 
 `环境: Mobile, 跨环境` ｜ [arXiv:2603.08316](https://arxiv.org/abs/2603.08316)
 
+#### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
+
+把「视觉 grounding」——即从文本计划到具体 GUI 元素的映射——认定为一个独立的攻击面，与规划和 推理层面区分开来。其后果正是危险之处：植入 grounding 的后门会在 agent **拿到完全正确的 解题计划时**依然改变其行为，因此检查计划本身看不出任何问题。VisualTrap 通过误导 agent 把 文本计划定位到攻击者选定的位置来劫持 grounding，这意味着所有计划级审查与推理审计都能干净 通过，而动作却落在攻击者想要的地方。
+
+`环境: Mobile, Desktop` ｜ [arXiv:2507.06899](https://arxiv.org/abs/2507.06899)
+
 #### Poison Once, Control Anywhere: Clean-Text Visual Backdoors in VLM-based Mobile Agents (VIBMA) (2025-06)
 
 利用移动 agent 构建方式上的结构性弱点：它们通常在小规模、用户自行收集的数据上微调，使 训练期投毒从理论威胁变成现实可行。VIBMA 是首个针对 VLM 移动 agent 的**纯净文本**后门—— 只修改视觉输入，prompt 与指令完全保持原样，因此没有任何文本异常可供检测。模型在投毒数据上 微调后，推理时加入预设的视觉触发图案即激活攻击者指定行为。其机制是把投毒样本的训练梯度与 攻击者指定目标实例的梯度对齐，从而把后门特征嵌进数据本身。

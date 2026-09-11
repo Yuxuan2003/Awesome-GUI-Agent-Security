@@ -26,11 +26,23 @@
 
 `环境: Desktop, Web` ｜ [arXiv:2606.01166](https://arxiv.org/abs/2606.01166)
 
+#### Constraining Host-Level Abuse in Self-Hosted Computer-Use Agents via TEE-Backed Isolation (TEE-Backed Isolation) (2026-05)
+
+针对 OpenClaw 这类自托管 CUA——它们把自然语言交互与对浏览器、文件、脚本、系统命令、外发 通道的直接访问绑在一起，这种组合使任何一次成功的引导都会演变成主机级滥用，无论引导来自恶意 消息、间接注入、不安全 skill，还是对主机侧控制路径的篡改。核心论点在于解释「为何黑名单行 不通」：一个操作的安全关键性由动作类型、目标对象、执行上下文与潜在影响**共同**决定，任何 静态规则都刻画不了。设计上让普通功能留在受约束的 REE 路径，而把安全关键的分类判定移到 TEE 边界之后。
+
+`环境: Desktop` ｜ [arXiv:2605.06393](https://arxiv.org/abs/2605.06393)
+
 #### ceLLMate: Sandboxing Browser AI Agents (ceLLMate) (2025-12)
 
 不试图检测每一条恶意指令，而是通过限制 agent 的环境权限来压缩爆炸半径。核心洞察针对作者 所称的「语义鸿沟」：在点击、按键这类低层 UI 原语上编写和强制安全策略既脆弱又易错，因此 ceLLMate 选择在 HTTP 层做沙箱——依据是任何产生副作用的 UI 操作最终都会向网站后端发出 网络请求。这使策略面同时具备稳定性与语义可读性，实现形态是与 agent 无关的浏览器扩展。
 
 `环境: Web` ｜ [arXiv:2512.12594](https://arxiv.org/abs/2512.12594)
+
+#### OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows (OS-Sentinel) (2025-10)
+
+把核心难点归结为规模问题：系统沦陷、隐私泄露这类不安全操作需要在移动环境庞大而复杂的操作 空间中被检出，而任何单一检测器都覆盖不了。OS-Sentinel 的答案是刻意的混合式——形式化验证器 确定性地捕捉显式的系统级违规，VLM 上下文判别器处理形式化规则无法表达的语义情形。工作同时 贡献了 MobileRisk-Live：一个动态沙箱环境，配套由真实轨迹构成、带细粒度标注的安全检测基准， 正是它让这种混合式切分变得可测量，而不只是听起来合理。
+
+`环境: Mobile` ｜ [arXiv:2510.24411](https://arxiv.org/abs/2510.24411)
 
 #### Secure and Efficient Access Control for Computer-Use Agents via Context Space (CSAgent) (2025-09)
 

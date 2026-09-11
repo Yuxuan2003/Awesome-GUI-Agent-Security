@@ -14,6 +14,12 @@ Reframes privacy as a personalization problem rather than a fixed policy: most s
 
 `Env: Mobile` ｜ [arXiv:2604.11259](https://arxiv.org/abs/2604.11259)
 
+#### PrivWeb: Unobtrusive and Content-aware Privacy Protection For Web Agents (PrivWeb) (2025-09)
+
+Grounds its design in what users actually think: a formative study (N=15) found people frequently misunderstand agents' data practices and want data management that is transparent yet unobtrusive — two goals usually traded against each other. PrivWeb is a trusted add-on using a localized LLM to anonymize interface content per user preference, and its core mechanism is graded interruption: adaptive notifications pause the task for explicit user control only on highly sensitive information, while less sensitive cases get non-disruptive handling. That grading is what keeps human oversight affordable, validated in a second user study (N=14) across travel, retrieval, shopping and entertainment tasks.
+
+`Env: Web` ｜ [arXiv:2509.11939](https://arxiv.org/abs/2509.11939)
+
 #### VerificAgent: Domain-Specific Memory Verification for Scalable Oversight of Aligned Computer-Use Agents (VerificAgent) (2025-06)
 
 Treats persistent memory as an explicit alignment surface, on the reasoning that continual memory augmentation lets CUAs learn from prior interactions but unvetted memories encode domain-inappropriate or unsafe heuristics — spurious rules that quietly drift from user intent and safety constraints. VerificAgent combines an expert-curated seed of domain knowledge, iterative trajectory-based memory growth during training, and a post-hoc human fact-checking pass before deployment. The framing is the contribution: having humans correct high-impact errors once turns verified memory into a frozen safety contract that future actions must satisfy, with no model fine-tuning required.

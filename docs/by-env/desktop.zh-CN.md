@@ -58,6 +58,12 @@
 
 `环境: Web, Desktop` ｜ [arXiv:2607.05120](https://arxiv.org/abs/2607.05120)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+提出一个位于所有视觉攻击上游的问题：多模态 GUI agent 通过两条冗余通道读取界面——渲染后的 像素与序列化结构（DOM 或无障碍树）——并在行动前形成对当前状态的信念，但现有基准从不追问 **这个信念究竟来自哪条通道**。论文形式化了「视觉状态依赖」，用配对的单通道干预在覆盖真实 web / mobile / desktop 界面的 735 个探针上测量，其中 225 个是从线上生产网站挖掘的零编辑 分歧样本，全部采用确定性强制选择评分、不引入模型裁判。核心指标 Perception-Fusion Gap 刻画的是「模型感知正确、但在冲突时倒向结构」的探针占比——而这恰好告诉攻击者该污染哪条通道。
+
+`环境: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
 #### Capable but Careless: Do Computer-Use Agents Follow Contextual Integrity? (Capable but Careless) (2026-06)
 
 用「上下文完整性」（contextual integrity）框架考察 CUA 在跨应用操作时是否会不当传播敏感 信息。结论是能力越强的 agent 反而越容易越界：它们为完成任务会主动把 A 应用中的私密数据 带入 B 应用的输入框，而这类行为不触发任何现有的隐私告警，因为每一次读写都在授权范围内。 提出了以信息流而非权限边界为判据的评估方法。
@@ -76,6 +82,12 @@
 
 `环境: Desktop, Web` ｜ [arXiv:2606.15034](https://arxiv.org/abs/2606.15034)
 
+#### Domain-Conditioned Safety in Frontier Computer-Using Agents: A 793-Episode Browser Benchmark, a Coding-Domain Cross-Reference, and a Reproducibility Audit of Recent Red-Teaming (CUA-HandCrafted) (2026-06)
+
+本领域少见的**复现审计**，结论令人不安：近期 CUA 红队论文报告 42–98% 的攻击成功率，但这些 抢眼数字集中出现在已退役模型、以及各篇论文所测模型中最脆弱的那一个上。作者把这些技术复现为 人工模板，在 793 个 episode（24 个多步网页任务、56 个攻击模板、8 个攻击族、4 种 system prompt 配置）上测量，结果对 Claude Sonnet 4.6 与 GPT-5.4 取得 **0/140 的多步攻击成功率**， 且消融实验显示这种抵抗力存在于模型权重而非 prompt。但它并不泛化：同样的权重在姊妹编码 agent 基准上被人工 skill 注入攻破，成功率最高达 100%。安全性在这里是**领域条件化**的， 而领域内那些偏高的 ASR 数字，更多归因于 RL 优化过的注入文本而非模型固有的脆弱。
+
+`环境: Desktop, Web` ｜ [arXiv:2606.05233](https://arxiv.org/abs/2606.05233)
+
 #### BraveGuard: From Open-World Threats to Safer Computer-Use Agents (BraveGuard) (2026-05)
 
 从「CUA 的危害为何难以捕捉」出发：危害只在多步执行轨迹中浮现，而其中每个单独动作在局部看 都无害，因此孤立的 prompt 与最终回复都看不出问题。BraveGuard 是自我演进的流水线：从近期 研究来源中挖掘新兴风险与攻击模式，将其实例化为可执行的 computer-use 任务，收集 agent rollout，进而导出**轨迹级**监督信号训练护栏模型。由于新威胁与验证失败出现时可以重跑这个 闭环，防御能持续适应，而不是冻结在静态基准训练时所捕捉到的那个快照上。
@@ -87,6 +99,24 @@
 把 GUI agent 隐私问题定义为**裁决**问题而非检测问题：某项内容是否属于隐私取决于任务、接收方、 应用状态与用户角色，因此静态 PII 检测器抓不住这些边界，而云端 VLM 推理又会在决定「什么需要 保护」**之前**就把原始屏幕上传出去。MaskClaw 运行在边缘侧：抽取本地视觉证据、检索用户与任务 专属的策略记忆，在截图离开可信环境前判定 Allow / Mask / Ask。在五个 skill 演进场景中，它把 用户的纠正、取消与编辑转化为可复用的隐私 skill，并经沙箱门校验，评测基准为 P-GUI-Evo。
 
 `环境: Mobile, Desktop` ｜ [arXiv:2605.28646](https://arxiv.org/abs/2605.28646)
+
+#### OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents (OTora) (2026-05)
+
+提出一个绝大多数威胁模型完全忽略的攻击目标：推理级拒绝服务（R-DoS）——攻击者**保持任务结果 正确**，却通过膨胀 agent 的推理深度或工具调用预算来损害可用性。正因为输出依然正确，所有 基于正确性的防御与所有检查输出的护栏都会报告「运行正常」。OTora 是两阶段框架：第一阶段用 插入位置感知打分与动态目标共进化优化对抗触发串，诱导定向的工具调用（支持黑盒与白盒）； 第二阶段通过 ICL 引导的遗传搜索生成推理载荷，在保持结果正确的同时放大「过度思考」。 在 WebShop、Email 与 OS agent 上评测，骨干模型含 LLaMA-70B 与 GPT-OSS-120B。
+
+`环境: Web, Desktop` ｜ [arXiv:2605.08876](https://arxiv.org/abs/2605.08876)
+
+#### Constraining Host-Level Abuse in Self-Hosted Computer-Use Agents via TEE-Backed Isolation (TEE-Backed Isolation) (2026-05)
+
+针对 OpenClaw 这类自托管 CUA——它们把自然语言交互与对浏览器、文件、脚本、系统命令、外发 通道的直接访问绑在一起，这种组合使任何一次成功的引导都会演变成主机级滥用，无论引导来自恶意 消息、间接注入、不安全 skill，还是对主机侧控制路径的篡改。核心论点在于解释「为何黑名单行 不通」：一个操作的安全关键性由动作类型、目标对象、执行上下文与潜在影响**共同**决定，任何 静态规则都刻画不了。设计上让普通功能留在受约束的 REE 路径，而把安全关键的分类判定移到 TEE 边界之后。
+
+`环境: Desktop` ｜ [arXiv:2605.06393](https://arxiv.org/abs/2605.06393)
+
+#### OS-SPEAR: A Toolkit for the Safety, Performance, Efficiency, and Robustness Analysis of OS Agents (OS-SPEAR) (2026-04)
+
+诊断出当前 OS agent 基准的三个具体缺陷——安全场景狭窄、轨迹标注噪声大、鲁棒性指标有限—— 并以覆盖安全性、性能、效率、鲁棒性四个维度的工具包作答。各子集是分别构建而非从同一池中 重新加权得来：安全子集同时覆盖环境诱发与人为诱发的危害，性能子集通过轨迹价值估计与分层 采样策划，效率子集从双重视角度量。把安全作为四个耦合维度之一、而非一个独立分数来处理， 这个框定方式值得借鉴。
+
+`环境: Desktop` ｜ [arXiv:2604.24348](https://arxiv.org/abs/2604.24348)
 
 #### Temporal UI State Inconsistency in Desktop GUI Agents: Formalizing and Defending Against TOCTOU Attacks on Computer-Use Agents (PUSV) (2026-04)
 
@@ -166,6 +196,18 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
 
+#### MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction (MirrorGuard) (2026-01)
+
+点明基于检测的防御悄悄付出的代价：拦截虽能避免损害，但常常过早中止任务，等于用效用换安全。 MirrorGuard 转而去**纠正不安全的推理**，并用神经符号仿真流水线解决训练成本问题——完全在 文本化的模拟环境中生成真实感的高风险 GUI 交互轨迹，捕捉不安全推理模式与潜在系统危害， 而无需在真实操作系统上执行任何破坏性操作。最终得到的是即插即用的防御，把仿真中训练出的 纠正能力迁移到真实部署。
+
+`环境: Desktop` ｜ [arXiv:2601.12822](https://arxiv.org/abs/2601.12822)
+
+#### CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents (NOVA) (2026-01)
+
+正面处理一个真实的架构僵局：架构隔离通过严格分离「可信规划」与「不可信观测」提供了最强的 注入防护保证，但 CUA 必须持续观测 UI 才能决定每一步动作——这两项要求直接冲突。论文用一个 经检验成立的经验判断来破局：UI 工作流虽然是动态的，但在**结构上是可预测的**。因此 NOVA 采用单次规划：由可信规划器预先给出一份覆盖所有可预期运行时状态的完整分支计划，从而对任意 指令注入提供控制流完整性**保证**，而不是尽力而为的检测。
+
+`环境: Desktop` ｜ [arXiv:2601.09923](https://arxiv.org/abs/2601.09923)
+
 #### SusBench: An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents (SusBench) (2025-10)
 
 评测 CUA 对 UI 暗黑模式（诱导用户做出非本意操作的界面设计）的易感程度：从既有分类法中选取 九种常见类型，通过代码注入在真实消费类网站上构造可信实例，形成覆盖 55 个网站的 313 个评测 任务。方法上的强项在于人类验证环节——29 名参与者的实验确认这些注入看起来高度真实，绝大多数 人完全没有察觉它们是研究团队植入的。正是这一对照使得「五个前沿 CUA 与人类参与者并排比较」 的结论具备可信度。
@@ -190,11 +232,23 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Desktop` ｜ [arXiv:2508.19461](https://arxiv.org/abs/2508.19461)
 
+#### Measuring Harmfulness of Computer-Using Agents (CUAHarm) (2025-07)
+
+指出现有基准评测的是聊天机器人或简单工具调用场景下的 LM，无法测量一个 CUA 实际能对机器做到 什么。CUAHarm 提供 104 项专家撰写的真实滥用风险——关闭防火墙、外泄数据、安装后门——置于带 规则化可验证奖励的沙箱中，因此指标是防火墙**是否真的被关掉**，而不是模型是否口头拒绝。 结果很难被轻描淡写：在完全不加越狱提示的情况下，前沿模型的执行成功率就很高，Gemini 2.5 Pro 达到 90%。论文还观察到，那些在以往基准上更安全的新模型，在这里并没有更安全。
+
+`环境: Desktop` ｜ [arXiv:2508.00935](https://arxiv.org/abs/2508.00935)
+
 #### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
 
 指出针对弹窗式环境注入的现有防御要么需要昂贵重训、要么在归纳性干扰下失效，转而走机制 可解释性路线。论文系统研究这类攻击如何改变 GUI agent 的注意力分布，发现正确输出与错误输出 之间存在**逐层的注意力发散模式**。LaSM 直接利用这一发现，选择性放大关键层的注意力与 MLP 模块，无需任何额外训练即把模型显著性重新对齐到任务相关的屏幕区域——这是把可解释性结论 转化为可部署 GUI agent 防御的少见案例。
 
 `环境: Desktop, Web` ｜ [arXiv:2507.10610](https://arxiv.org/abs/2507.10610)
+
+#### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
+
+把「视觉 grounding」——即从文本计划到具体 GUI 元素的映射——认定为一个独立的攻击面，与规划和 推理层面区分开来。其后果正是危险之处：植入 grounding 的后门会在 agent **拿到完全正确的 解题计划时**依然改变其行为，因此检查计划本身看不出任何问题。VisualTrap 通过误导 agent 把 文本计划定位到攻击者选定的位置来劫持 grounding，这意味着所有计划级审查与推理审计都能干净 通过，而动作却落在攻击者想要的地方。
+
+`环境: Mobile, Desktop` ｜ [arXiv:2507.06899](https://arxiv.org/abs/2507.06899)
 
 #### A Systematization of Security Vulnerabilities in Computer Use Agents (CUA Vuln SoK) (2025-07)
 

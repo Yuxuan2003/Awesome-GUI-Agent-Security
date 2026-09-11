@@ -10,6 +10,12 @@
 
 `环境: Desktop, Web` ｜ [arXiv:2609.09212](https://arxiv.org/abs/2609.09212)
 
+#### Beyond the Verdict: Evidence-Aligned Evaluation of Visual Prompt-Injection Guardrails (Mind2Web-Injection) (2026-09)
+
+指出只看判定结果的评测永远无法揭示 VLM 护栏是否真的用上了本应支撑其决策的视觉证据——一个 检测器可能「因错误的理由给出正确答案」，而在汇总指标上看起来毫无差别。Mind2Web-Injection 提供 9954 组指令-截图配对，带相对指令的标签、像素级精确的证据框，以及配对的图像侧反事实 样本。收效相当惊人：两个平均精度几乎一致的模型，在「证据对齐检出率」（EAD）上相差**九倍**。 一项因果探测把指令替换为「认可被引用命令」的版本后发现，最强的开源权重定位模型 Qwen3-VL-32B 仅在 58.7% 的情形下保持对齐，而 GPT-5.6-luna 为 99.9%。
+
+`环境: Web` ｜ [arXiv:2609.05535](https://arxiv.org/abs/2609.05535)
+
 #### SIR: Self-improving Red-teaming for Compute Use Agents (SIR) (2026-08)
 
 指出现有 CUA 安全基准用的都是人工手写的固定注入载荷，会低估自适应攻击者的真实威胁。提出 黑盒 IPI 攻击 SIR：从一个用自然语言描述的可复用「隐蔽性原则」小库中组合注入内容，再套一层 迭代反馈循环——诊断受害 agent 失败的攻击轨迹，把成功绕过的模式蒸馏回原则库。这把红队从 静态测试变成自我改进的过程，说明固定载荷的评测结论会随攻击者迭代迅速失效。
@@ -21,6 +27,12 @@
 登录对 web agent 而言是涉及凭据的敏感认证边界，但已有工作尚未考察恶意页面内容能否诱导 agent 登录并造成端到端的私密数据泄漏。LoginTrap 是一种与任务无关的诱导登录攻击，假设 黑盒攻击者只控制页面上下文与被诱导的登录流程，并不知道用户任务或 agent 内部实现：通过 类 fuzzing 的流程生成页面专属的间接注入内容，使「先登录」看起来是继续完成任务的合理 前置条件，从而把 agent 引导至攻击者控制的登录页。
 
 `环境: Web` ｜ [arXiv:2608.04741](https://arxiv.org/abs/2608.04741)
+
+#### From Blind Edits to Verified Repair: Building Trustworthy User-Side LLM Agents for Web Accessibility (Verified Repair) (2026-07)
+
+一个特别的条目：这里的 agent 在设计上完全良性——一个为无障碍改写页面的 Chrome 扩展——但论文 的贡献属于安全范畴，即**未经验证的 LLM 编辑，修好页面和弄坏页面的概率几乎相当**。双条件协议 以同等严谨程度衡量收益与危害，在六个小规模开源模型（7B–14B）上、针对十个违规密集站点与十个 本已高度无障碍的真实站点做评测，诊断相当精确：未验证生成带来 24 处改善、同时造成 20 处退化。 这种近乎持平的比例正是「先验证再应用」的论据；而该扩展以可逆方式注入 CSS，使错误编辑可被 撤销——这是本节所关注的回滚纪律的一个具体实例。
+
+`环境: Web` ｜ [arXiv:2608.24913](https://arxiv.org/abs/2608.24913)
 
 #### From Monoliths to Swarms: A Study of Attack Surface Evolution in the Transition to Multi-Agent Web Systems (WebMASLab) (2026-07)
 
@@ -52,6 +64,18 @@
 
 `环境: Web, Desktop` ｜ [arXiv:2607.05120](https://arxiv.org/abs/2607.05120)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+提出一个位于所有视觉攻击上游的问题：多模态 GUI agent 通过两条冗余通道读取界面——渲染后的 像素与序列化结构（DOM 或无障碍树）——并在行动前形成对当前状态的信念，但现有基准从不追问 **这个信念究竟来自哪条通道**。论文形式化了「视觉状态依赖」，用配对的单通道干预在覆盖真实 web / mobile / desktop 界面的 735 个探针上测量，其中 225 个是从线上生产网站挖掘的零编辑 分歧样本，全部采用确定性强制选择评分、不引入模型裁判。核心指标 Perception-Fusion Gap 刻画的是「模型感知正确、但在冲突时倒向结构」的探针占比——而这恰好告诉攻击者该污染哪条通道。
+
+`环境: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
+#### Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents (Agent Fingerprinting) (2026-06)
+
+从网站运营方而非 agent 方切入 agent 安全：随着 web agent 大量涌现，无节制的内容抓取成为 隐私与安全问题，而现有防线——robots.txt、主动 bot 拦截——被普遍无视且极易绕过。论文表明， AI web agent 可以通过「网络层特征（TLS、HTTP）+ 浏览器交互行为」的多层指纹，与人类及传统 爬虫区分开来，并将该机制实现为可部署在真实插桩域名上的程序化日志框架。对六个主流框架 （AutoGen、Browser Use、Claude、Gemini、Operator、Skyvern）的分析揭示出它们在组装 HTTP 请求、建立 TLS/HTTP 连接、驱动浏览器自主操作方式上的潜在结构差异。
+
+`环境: Web` ｜ [arXiv:2606.20910](https://arxiv.org/abs/2606.20910)
+
 #### MIRAGE: Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents (MIRAGE) (2026-06)
 
 批评现有针对多模态 web agent 的对抗评测普遍采用过于宽松的威胁模型、依赖视觉上显眼的 伪影。本文转向受约束的现实设定：评测者只是不具特权的第三方（如商家或广告主），仅能控制 广告位、赞助卡片这类语义合法且空间受限的区域。在此约束下提出视觉间接注入框架 MIRAGE， 实现对下一步动作的定向劫持，说明即便攻击者只掌握页面上一小块合法区域，也足以操纵 基于视觉的 agent。
@@ -76,6 +100,12 @@
 
 `环境: Web` ｜ [arXiv:2606.10742](https://arxiv.org/abs/2606.10742)
 
+#### Domain-Conditioned Safety in Frontier Computer-Using Agents: A 793-Episode Browser Benchmark, a Coding-Domain Cross-Reference, and a Reproducibility Audit of Recent Red-Teaming (CUA-HandCrafted) (2026-06)
+
+本领域少见的**复现审计**，结论令人不安：近期 CUA 红队论文报告 42–98% 的攻击成功率，但这些 抢眼数字集中出现在已退役模型、以及各篇论文所测模型中最脆弱的那一个上。作者把这些技术复现为 人工模板，在 793 个 episode（24 个多步网页任务、56 个攻击模板、8 个攻击族、4 种 system prompt 配置）上测量，结果对 Claude Sonnet 4.6 与 GPT-5.4 取得 **0/140 的多步攻击成功率**， 且消融实验显示这种抵抗力存在于模型权重而非 prompt。但它并不泛化：同样的权重在姊妹编码 agent 基准上被人工 skill 注入攻破，成功率最高达 100%。安全性在这里是**领域条件化**的， 而领域内那些偏高的 ASR 数字，更多归因于 RL 优化过的注入文本而非模型固有的脆弱。
+
+`环境: Desktop, Web` ｜ [arXiv:2606.05233](https://arxiv.org/abs/2606.05233)
+
 #### BraveGuard: From Open-World Threats to Safer Computer-Use Agents (BraveGuard) (2026-05)
 
 从「CUA 的危害为何难以捕捉」出发：危害只在多步执行轨迹中浮现，而其中每个单独动作在局部看 都无害，因此孤立的 prompt 与最终回复都看不出问题。BraveGuard 是自我演进的流水线：从近期 研究来源中挖掘新兴风险与攻击模式，将其实例化为可执行的 computer-use 任务，收集 agent rollout，进而导出**轨迹级**监督信号训练护栏模型。由于新威胁与验证失败出现时可以重跑这个 闭环，防御能持续适应，而不是冻结在静态基准训练时所捕捉到的那个快照上。
@@ -99,6 +129,12 @@
 指出以往工作的割裂之处：一类方法能检测欺骗但不与任务回路结合，另一类记录了攻击却不提出 防御。论文形式化了「欺骗感知的 web agent 防御」，提出两阶段框架 DUDE，把带非对称惩罚的 混合奖励学习与经验总结结合起来，将失败模式蒸馏为可迁移的指导。配套发布基准 RUC（Real UI Clickboxes），含跨四个领域与欺骗类别的 1407 个场景。DUDE 在保持任务性能的同时把易受骗 程度降低 53.8%——这一点很关键，因为多数安全干预都是以牺牲效用为代价。
 
 `环境: Web` ｜ [arXiv:2605.09497](https://arxiv.org/abs/2605.09497)
+
+#### OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents (OTora) (2026-05)
+
+提出一个绝大多数威胁模型完全忽略的攻击目标：推理级拒绝服务（R-DoS）——攻击者**保持任务结果 正确**，却通过膨胀 agent 的推理深度或工具调用预算来损害可用性。正因为输出依然正确，所有 基于正确性的防御与所有检查输出的护栏都会报告「运行正常」。OTora 是两阶段框架：第一阶段用 插入位置感知打分与动态目标共进化优化对抗触发串，诱导定向的工具调用（支持黑盒与白盒）； 第二阶段通过 ICL 引导的遗传搜索生成推理载荷，在保持结果正确的同时放大「过度思考」。 在 WebShop、Email 与 OS agent 上评测，骨干模型含 LLaMA-70B 与 GPT-OSS-120B。
+
+`环境: Web, Desktop` ｜ [arXiv:2605.08876](https://arxiv.org/abs/2605.08876)
 
 #### WebTrap: Stealthy Mid-Task Hijacking of Browser Agents During Navigation (WebTrap) (2026-05)
 
@@ -154,6 +190,12 @@
 
 `环境: Web` ｜ [arXiv:2603.23791](https://arxiv.org/abs/2603.23791)
 
+#### ClawTrap: A MITM-Based Red-Teaming Framework for Real-World OpenClaw Security Evaluation (ClawTrap) (2026-03)
+
+把红队测试下移一层：现有基准集中在静态沙箱设定与内容级 prompt 攻击上，而**网络层**——真实 部署实际暴露的那一层——从未被测试。ClawTrap 是中间人（MITM）框架，用于在真实网络威胁下评测 OpenClaw 这类 agent，支持静态 HTML 替换、iframe 弹窗注入、动态内容修改三类攻击，并提供 规则驱动的拦截、变换与审计的可复现流水线。MITM 这个位置之所以重要，是因为它**不需要攻陷 agent 所访问的任何网站**。
+
+`环境: Web` ｜ [arXiv:2603.18762](https://arxiv.org/abs/2603.18762)
+
 #### WebPII: Benchmarking Visual PII Detection for Computer-Use Agents (WebPII) (2026-03)
 
 CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数据不可避免含敏感信息，而云端推理 会暴露用户截图。此前没有公开基准用于检测网页截图中的个人身份信息。WebPII 提供 44865 张 标注的电商 UI 图像，特点包括扩展的 PII 分类（含可用于重识别的交易级标识符）、针对用户 正在填写的半完成表单的前瞻式检测、以及基于 VLM 的可扩展 UI 复现。配套 WebRedact 把 文本抽取基线准确率翻倍以上（0.753 vs 0.357 mAP@50），CPU 延迟仅 20ms。
@@ -202,6 +244,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Web` ｜ [arXiv:2601.07263](https://arxiv.org/abs/2601.07263)
 
+#### It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents (TRAP) (2025-12)
+
+从「说服」而非「载荷工程」的视角研究注入：藏在界面元素里的对抗指令是在**说服** agent 偏离 原任务，这把防御问题重新框定为心理学层面而非语法层面的。在六个前沿模型上，agent 平均在 25% 的任务中中招，但真正值得看的是差距——GPT-5 为 13%，DeepSeek-R1 高达 43%。更麻烦的是， 界面或上下文的微小改动常常使成功率翻倍，说明这种脆弱性是系统性的，而非绑定于某种特定措辞。 配套发布模块化的社会工程注入框架，在高保真网站克隆上做受控实验。
+
+`环境: Web` ｜ [arXiv:2512.23128](https://arxiv.org/abs/2512.23128)
+
 #### DECEPTICON: How Dark Patterns Manipulate Web Agents (DECEPTICON) (2025-12)
 
 把暗黑模式（dark patterns，即真实网络上早已泛滥的欺骗性 UI 设计）作为一类 agent 安全威胁 来研究——它不需要攻击者搭建任何基础设施，因为恶意界面本身就是现状。DECEPTICON 在 700 个 网页导航任务（600 合成 + 100 真实）中隔离测试单个暗黑模式。结果是暗黑模式在超过 70% 的 任务中成功把 agent 引向恶意结果，而人类平均只有 31%。最值得警惕的发现颠覆了通常的 scaling 直觉：操纵有效性与模型规模、测试时推理量**正相关**——越大越强的 agent 反而更易受骗。
@@ -244,17 +292,53 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Web, Desktop` ｜ [arXiv:2510.11035](https://arxiv.org/abs/2510.11035)
 
+#### SecureWebArena: A Holistic Security Evaluation Benchmark for LVLM-based Web Agents (SecureWebArena) (2025-10)
+
+指出现有安全基准只提供部分覆盖，通常局限于用户级 prompt 操纵这类狭窄场景，因而错过了 agent 实际暴露面的大部分。SecureWebArena 构建了六个模拟但贴近真实的网页环境（电商平台、社区论坛 等），含覆盖多样任务与攻击设定的 2970 条高质量轨迹。其组织性贡献是一套结构化的六类攻击向量 分类法，**同时**覆盖用户级与环境级操纵——而后者恰恰是范围更窄的基准所遗漏的那一半。
+
+`环境: Web` ｜ [arXiv:2510.10073](https://arxiv.org/abs/2510.10073)
+
 #### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
 
 填补一个系统性空缺：针对 web agent 的注入攻击很多，通用注入检测方法也很多，但从未有人 在 web agent 场景下系统评测过后者。WAInjectBench 先按威胁模型对攻击做细粒度分类，再构建 覆盖两种模态、两种极性的数据集——来自不同攻击的恶意文本片段、四类正常文本、攻击生成的 恶意图像、两类正常图像。核心结论划出了一条清晰边界：检测器能应对带显式文本指令或可见图像 扰动的攻击，一旦越出这个范围性能急剧下降。
 
 `环境: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
 
+#### RISK: A Framework for GUI Agents in E-commerce Risk Management (RISK) (2025-09)
+
+面向一个 agent 扮演防御方而非攻击目标的领域：电商风控需要通过多步、有状态的交互聚合深度 嵌套的网页数据，这既非传统爬虫所能胜任，也超出大多数 GUI agent 的能力——后者通常局限于 配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条 单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹； 以及 RISK-R1，一个 R1 风格的强化微调框架。
+
+`环境: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
+
+#### PrivWeb: Unobtrusive and Content-aware Privacy Protection For Web Agents (PrivWeb) (2025-09)
+
+把设计建立在用户的真实认知上：一项形成性研究（N=15）发现人们普遍误解 agent 的数据使用方式， 并希望数据管理既透明又不打扰——而这两个目标通常是互相牺牲的。PrivWeb 是运行在 web agent 上 的可信附加组件，用本地化 LLM 按用户偏好对界面内容做匿名化，其核心机制是**分级打断**： 自适应通知仅在高敏感信息上暂停任务、交由用户明确控制，而较低敏感度的情形走非打断式处理。 正是这种分级让「人在环」的成本可承受，并通过第二项用户研究（N=14，覆盖旅行、信息检索、 购物与娱乐任务）得到验证。
+
+`环境: Web` ｜ [arXiv:2509.11939](https://arxiv.org/abs/2509.11939)
+
+#### Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments (Dynamic EIA) (2025-09)
+
+直接质疑以往环境注入工作的真实性：多数研究隐含假定触发物在屏幕上的位置与周围视觉上下文在 训练与测试之间大致保持一致，而这恰恰抹掉了真实网页内容的本质属性——它是在不断变化的。论文 提出动态环境威胁模型：攻击者只是一个普通用户，触发物嵌在持续变化的环境之中。在该模型下现有 方法大多失效，这个结论有两面含义：已发表的攻击成功率高估了威胁，而 agent 的真实暴露程度 至今仍未被测准。
+
+`环境: Web` ｜ [arXiv:2509.11250](https://arxiv.org/abs/2509.11250)
+
+#### Dark Patterns Meet GUI Agents: LLM Agent Susceptibility to Manipulative Interfaces and the Role of Human Oversight (Dark Patterns Meet GUI Agents) (2025-09)
+
+两阶段研究，比较 agent、人类参与者与人机协作团队面对 16 类暗黑模式时的表现。第一阶段的 发现更为尖锐：agent 常常识别不出暗黑模式，而**即便识别出来，它也会把任务完成置于保护性 行动之上**——因此「有意识」本身并不产生安全。第二阶段显示人与 agent 的失败方式**不同**： 人类因认知捷径与习惯性顺从而中招，agent 则因流程性盲区而失守。人工监督确实改善了规避率， 但带来了注意力隧道化与认知负荷的代价，因此双方都无法干净地补上对方的缺口。
+
+`环境: Web` ｜ [arXiv:2509.10723](https://arxiv.org/abs/2509.10723)
+
 #### HarmonyGuard: Toward Safety and Utility in Web Agents via Adaptive Policy Enhancement and Dual-Objective Optimization (HarmonyGuard) (2025-08)
 
 把核心矛盾表述为在长动作序列中平衡任务性能与不断演化的网页隐藏威胁，并指出以往工作局限于 单目标优化或单轮场景。HarmonyGuard 是多 agent 框架，其中 Policy Agent 能从非结构化的 外部文档中自动抽取并维护结构化安全策略、持续更新，回应的是「手写策略会过期」这一现实 问题。双目标优化同时兼顾安全与效用，而非牺牲其一换取其二。
 
 `环境: Web` ｜ [arXiv:2508.04010](https://arxiv.org/abs/2508.04010)
+
+#### Manipulating LLM Web Agents with Indirect Prompt Injection Attack via HTML Accessibility Tree (A11y Tree IPI) (2025-07)
+
+专门针对无障碍树（accessibility tree）——许多 web agent 解析的正是这一结构化表示而非原始 HTML——并表明可以在其中嵌入通用对抗触发串来劫持 agent 行为。方法是基于梯度而非人工构造的， 用 Greedy Coordinate Gradient 攻击基于 Llama-3.1 的 BrowserGym agent，在真实网站上对定向 与通用攻击均报告高成功率，包括窃取登录凭据与强制广告点击。值得注意的是，无障碍树本是为 包容性设计而增设的通道，因此对它做加固意味着要在安全与依赖它的用户之间权衡。
+
+`环境: Web` ｜ [arXiv:2507.14799](https://arxiv.org/abs/2507.14799)
 
 #### WebGuard: Building a Generalizable Guardrail for Web Agents (WebGuard) (2025-07)
 

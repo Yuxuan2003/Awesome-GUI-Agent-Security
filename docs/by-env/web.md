@@ -10,6 +10,12 @@ Insists on end-to-end verification rather than stopping at model output: the que
 
 `Env: Desktop, Web` ｜ [arXiv:2609.09212](https://arxiv.org/abs/2609.09212)
 
+#### Beyond the Verdict: Evidence-Aligned Evaluation of Visual Prompt-Injection Guardrails (Mind2Web-Injection) (2026-09)
+
+Points out that verdict-only evaluation never reveals whether a VLM guardrail actually used the visual evidence that should support its decision — a detector can be right for the wrong reason and look identical on aggregate metrics. Mind2Web-Injection supplies 9,954 instruction-screenshot pairs with instruction-relative labels, pixel-exact evidence boxes and matched image-side counterfactuals. The payoff is stark: two models with nearly identical average precision differ **ninefold** in Evidence-Aligned Detection. A causal probe that swaps in an instruction endorsing the cited command finds Qwen3-VL-32B, the strongest open-weight localizer, stays aligned only 58.7% of the time versus 99.9% for GPT-5.6-luna.
+
+`Env: Web` ｜ [arXiv:2609.05535](https://arxiv.org/abs/2609.05535)
+
 #### SIR: Self-improving Red-teaming for Compute Use Agents (SIR) (2026-08)
 
 Argues that existing CUA safety benchmarks use hand-written fixed injections and therefore understate an adaptive adversary. SIR is a black-box IPI attack that composes stealthy injections from a small library of reusable, plain-language principles, wrapped in an iterative feedback loop that diagnoses failed attack trajectories and distils successful bypasses back into the library. Red-teaming becomes self-improving, implying that conclusions drawn from static payloads decay as attackers iterate.
@@ -21,6 +27,12 @@ Argues that existing CUA safety benchmarks use hand-written fixed injections and
 Login is a sensitive authentication boundary for web agents because it involves credentials, yet prior work has not examined whether malicious page content can induce login and cause end-to-end private data leakage. LoginTrap is a task-agnostic login-inducing attack assuming a black-box attacker who controls page context and the induced login flow without knowing the user task or agent internals: through a fuzzing-inspired process it generates page-specific indirect injections that make login look like a plausible prerequisite for continuing the task, steering the agent to an attacker-controlled login page.
 
 `Env: Web` ｜ [arXiv:2608.04741](https://arxiv.org/abs/2608.04741)
+
+#### From Blind Edits to Verified Repair: Building Trustworthy User-Side LLM Agents for Web Accessibility (Verified Repair) (2026-07)
+
+An unusual entry: the agent here is benign by design — a Chrome extension that rewrites pages for accessibility — yet the paper's contribution is a safety one, namely that unverified LLM edits are as likely to break a page as fix it. The dual-condition protocol measures harm as carefully as benefit across six small open-weight models (7B–14B) on ten violation-rich and ten already-accessible live sites, and the diagnosis is precise: unverified generation produced 24 improvements against 20 regressions. That near-parity is the argument for verification-before-apply, and the extension injects CSS reversibly so a bad edit can be undone — a concrete instance of the rollback discipline this section is about.
+
+`Env: Web` ｜ [arXiv:2608.24913](https://arxiv.org/abs/2608.24913)
 
 #### From Monoliths to Swarms: A Study of Attack Surface Evolution in the Transition to Multi-Agent Web Systems (WebMASLab) (2026-07)
 
@@ -52,6 +64,18 @@ Points out that indirect prompt injection research has concentrated almost entir
 
 `Env: Web, Desktop` ｜ [arXiv:2607.05120](https://arxiv.org/abs/2607.05120)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+Asks a question that sits upstream of every visual attack: a multimodal GUI agent reads the interface through two redundant channels — rendered pixels and serialized structure (DOM or accessibility tree) — and forms a state belief before acting, but no existing benchmark asks *which channel that belief came from*. The paper formalizes visual state reliance and measures it with paired single-channel interventions over 735 probes across real web, mobile and desktop interfaces, 225 of them zero-edit divergences mined from live production sites, scored by deterministic forced choice with no model judge. The Perception-Fusion Gap metric captures the fraction of probes a model perceives correctly yet resolves toward structure under conflict — which tells an attacker exactly which channel to poison.
+
+`Env: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
+#### Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents (Agent Fingerprinting) (2026-06)
+
+Approaches agent security from the website operator's side rather than the agent's: as web agents proliferate, indiscriminate content scraping becomes a privacy and security problem, and the existing defenses — robots.txt, active bot-blocking — are widely violated and easily circumvented. The paper shows AI web agents are distinguishable from both humans and traditional crawlers via a multi-layer fingerprint combining network-layer characteristics (TLS, HTTP) with browser interaction behavior, deployed as a programmatic logging framework on a live instrumented domain. Analyzing six frameworks (AutoGen, Browser Use, Claude, Gemini, Operator, Skyvern) reveals latent structural differences in how each assembles requests and drives the browser.
+
+`Env: Web` ｜ [arXiv:2606.20910](https://arxiv.org/abs/2606.20910)
+
 #### MIRAGE: Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents (MIRAGE) (2026-06)
 
 Criticises adversarial evaluations of multimodal web agents for adopting permissive threat models and visually conspicuous artifacts. This work moves to a constrained, realistic setting where the evaluator is an unprivileged third party — a merchant or advertiser — controlling only a semantically legitimate, spatially bounded region such as an ad slot or sponsored card. Under those constraints MIRAGE performs visual indirect prompt injection for targeted next-action hijacking, showing that control over one small legitimate region suffices to steer a vision-based agent.
@@ -76,6 +100,12 @@ Targets external memory, now a core component of web agents for long-horizon rea
 
 `Env: Web` ｜ [arXiv:2606.10742](https://arxiv.org/abs/2606.10742)
 
+#### Domain-Conditioned Safety in Frontier Computer-Using Agents: A 793-Episode Browser Benchmark, a Coding-Domain Cross-Reference, and a Reproducibility Audit of Recent Red-Teaming (CUA-HandCrafted) (2026-06)
+
+A rare reproducibility audit of this literature, and its finding is uncomfortable: recent CUA red-teaming papers report 42–98% ASR, but those headline numbers cluster on retired models and on whichever model in each paper's panel was most vulnerable. Reproducing the techniques as hand-crafted templates over 793 episodes (24 multi-step web tasks, 56 templates, 8 attack families, 4 system-prompt configs), the authors measure **0/140 multi-step success** against Claude Sonnet 4.6 and GPT-5.4, with resistance traced to model weights rather than prompting. But it does not generalize: the same weights fall to hand-crafted skill-injection at up to 100% on a sister coding-agent benchmark. Safety here is domain-conditioned, and the field's high ASR figures owe more to RL-optimized injection text than to intrinsic fragility.
+
+`Env: Desktop, Web` ｜ [arXiv:2606.05233](https://arxiv.org/abs/2606.05233)
+
 #### BraveGuard: From Open-World Threats to Safer Computer-Use Agents (BraveGuard) (2026-05)
 
 Starts from why CUA harm is hard to catch: it emerges only through multi-step execution traces whose individual actions look locally benign, so neither isolated prompts nor final responses reveal it. BraveGuard is a self-evolving pipeline that mines recent research sources for emerging risks and attack patterns, instantiates them as executable computer-use tasks, collects agent rollouts, and derives trajectory-level supervision for training guard models. Because the loop can be re-run as new threats and validation failures appear, the defense adapts rather than freezing at whatever a static benchmark captured at training time.
@@ -99,6 +129,12 @@ Catalogues four practical failure modes of existing guard models for web agents:
 Identifies a split in prior work: some approaches detect deception without integrating it into the task loop, others document attacks without proposing any defense. The paper formalizes deception-aware web agent defense and proposes DUDE, a two-stage framework combining hybrid-reward learning with asymmetric penalties and experience summarization that distills failure patterns into transferable guidance. It ships RUC (Real UI Clickboxes), a benchmark of 1,407 scenarios across four domains and deception categories. DUDE cuts deception susceptibility by 53.8% while holding task performance, which matters because most safety interventions trade utility away.
 
 `Env: Web` ｜ [arXiv:2605.09497](https://arxiv.org/abs/2605.09497)
+
+#### OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents (OTora) (2026-05)
+
+Introduces an attack goal that most threat models overlook entirely: Reasoning-Level Denial-of-Service, where the attacker **preserves task correctness** yet degrades availability by inflating reasoning depth or tool-use budget. Because the output stays correct, every correctness-based defense and every output-inspecting guardrail reports normal operation. OTora is a two-stage framework — Stage I optimizes an adversarial trigger inducing targeted tool invocations via insertion-aware scoring and dynamic target co-evolution (black- and white-box), Stage II generates reasoning payloads through ICL-guided genetic search that amplifies overthinking while keeping outcomes correct — evaluated on WebShop, Email and OS agents over backbones including LLaMA-70B and GPT-OSS-120B.
+
+`Env: Web, Desktop` ｜ [arXiv:2605.08876](https://arxiv.org/abs/2605.08876)
 
 #### WebTrap: Stealthy Mid-Task Hijacking of Browser Agents During Navigation (WebTrap) (2026-05)
 
@@ -154,6 +190,12 @@ Tackles the tension that cloud-based defenses offer strong semantic analysis but
 
 `Env: Web` ｜ [arXiv:2603.23791](https://arxiv.org/abs/2603.23791)
 
+#### ClawTrap: A MITM-Based Red-Teaming Framework for Real-World OpenClaw Security Evaluation (ClawTrap) (2026-03)
+
+Moves red-teaming down a layer: existing benchmarks concentrate on static sandbox settings and content-level prompt attacks, leaving the network layer — where a real deployment is actually exposed — untested. ClawTrap is a man-in-the-middle framework for evaluating agents such as OpenClaw under live network threats, supporting Static HTML Replacement, Iframe Popup Injection and Dynamic Content Modification, with a reproducible pipeline for rule-driven interception, transformation and auditing. The MITM vantage point matters because it does not require compromising any website the agent visits.
+
+`Env: Web` ｜ [arXiv:2603.18762](https://arxiv.org/abs/2603.18762)
+
 #### WebPII: Benchmarking Visual PII Detection for Computer-Use Agents (WebPII) (2026-03)
 
 CUAs create new privacy risks from two directions: training data scraped from real websites inevitably contains sensitive information, and cloud-hosted inference exposes user screenshots. No public benchmark existed for detecting PII in web screenshots. WebPII provides 44,865 annotated e-commerce UI images with an extended PII taxonomy covering transaction-level re-identification identifiers, anticipatory detection for partially-filled forms, and scalable VLM-based UI reproduction. The accompanying WebRedact more than doubles text-extraction baseline accuracy (0.753 vs 0.357 mAP@50) at 20ms CPU latency.
@@ -202,6 +244,12 @@ Notes that prior research concentrated on model-level threats like prompt inject
 
 `Env: Web` ｜ [arXiv:2601.07263](https://arxiv.org/abs/2601.07263)
 
+#### It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents (TRAP) (2025-12)
+
+Studies injection through the lens of persuasion rather than payload engineering: adversarial instructions hidden in interface elements *persuade* the agent away from its original task, which reframes the defense problem as psychological rather than syntactic. Across six frontier models, agents fall for injection in 25% of tasks on average, but the spread is the point — 13% for GPT-5 against 43% for DeepSeek-R1. More troubling, small interface or contextual changes often double success rates, indicating the vulnerability is systemic rather than tied to any specific phrasing. Ships a modular social-engineering injection framework running controlled experiments on high-fidelity website clones.
+
+`Env: Web` ｜ [arXiv:2512.23128](https://arxiv.org/abs/2512.23128)
+
 #### DECEPTICON: How Dark Patterns Manipulate Web Agents (DECEPTICON) (2025-12)
 
 Studies dark patterns — deceptive UI designs already pervasive on the real web — as an agent security threat requiring no attacker infrastructure at all, since the malicious interface is simply the status quo. DECEPTICON isolates individual dark patterns across 700 web navigation tasks (600 generated, 100 real-world). Dark patterns steer agents to malicious outcomes in over 70% of tasks versus a 31% human average. The most consequential finding inverts the usual scaling assumption: effectiveness correlates positively with model size and test-time reasoning, so larger and more capable agents are more susceptible, not less.
@@ -244,17 +292,53 @@ Evaluates CUA susceptibility to UI dark patterns — designs that manipulate use
 
 `Env: Web, Desktop` ｜ [arXiv:2510.11035](https://arxiv.org/abs/2510.11035)
 
+#### SecureWebArena: A Holistic Security Evaluation Benchmark for LVLM-based Web Agents (SecureWebArena) (2025-10)
+
+Argues existing security benchmarks give only partial coverage, typically confined to narrow scenarios such as user-level prompt manipulation, and therefore miss most of the agent's actual vulnerability surface. SecureWebArena assembles six simulated but realistic web environments (e-commerce platforms, community forums and others) with 2,970 high-quality trajectories spanning diverse tasks and attack settings. Its organizing contribution is a structured taxonomy of six attack vectors covering **both** user-level and environment-level manipulation — the second half being exactly what narrower benchmarks omit.
+
+`Env: Web` ｜ [arXiv:2510.10073](https://arxiv.org/abs/2510.10073)
+
 #### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
 
 Fills a systematic gap: many injection attacks target web agents and many general-purpose detectors exist, but none had been evaluated specifically in the web-agent setting. WAInjectBench first categorizes attacks by threat model, then builds datasets covering both modalities and both polarities — malicious text segments from different attacks, benign text from four categories, attack-produced malicious images, and benign images from two categories. The headline finding is a sharp boundary: detectors handle attacks carrying explicit textual instructions or visible image perturbations, but degrade sharply outside that regime.
 
 `Env: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
 
+#### RISK: A Framework for GUI Agents in E-commerce Risk Management (RISK) (2025-09)
+
+Addresses a domain where the agent is the defender rather than the target: e-commerce risk management requires aggregating deeply embedded web data through multi-step stateful interaction, which traditional scraping cannot do and most GUI agents — limited to single-step tasks on cooperative pages — cannot either. RISK contributes three pieces: RISK-Data with 8,492 single-step and 2,386 multi-step trajectories collected via a high-fidelity browser framework, RISK-Bench with 802 single-step and 320 multi-step trajectories across three difficulty levels, and RISK-R1, an R1-style reinforcement fine-tuning framework.
+
+`Env: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
+
+#### PrivWeb: Unobtrusive and Content-aware Privacy Protection For Web Agents (PrivWeb) (2025-09)
+
+Grounds its design in what users actually think: a formative study (N=15) found people frequently misunderstand agents' data practices and want data management that is transparent yet unobtrusive — two goals usually traded against each other. PrivWeb is a trusted add-on using a localized LLM to anonymize interface content per user preference, and its core mechanism is graded interruption: adaptive notifications pause the task for explicit user control only on highly sensitive information, while less sensitive cases get non-disruptive handling. That grading is what keeps human oversight affordable, validated in a second user study (N=14) across travel, retrieval, shopping and entertainment tasks.
+
+`Env: Web` ｜ [arXiv:2509.11939](https://arxiv.org/abs/2509.11939)
+
+#### Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments (Dynamic EIA) (2025-09)
+
+Attacks the realism of prior environmental-injection work directly: most studies implicitly assume a trigger's on-screen position and surrounding visual context stay roughly consistent between training and testing, which erases the defining property of real web content — that it changes. The paper introduces a dynamic-environment threat model where the attacker is merely a regular user and the trigger sits inside a continuously shifting environment. Under that model existing approaches largely fail, which cuts both ways: it means published attack success rates overstate the threat, and that agents' true exposure is still unmeasured.
+
+`Env: Web` ｜ [arXiv:2509.11250](https://arxiv.org/abs/2509.11250)
+
+#### Dark Patterns Meet GUI Agents: LLM Agent Susceptibility to Manipulative Interfaces and the Role of Human Oversight (Dark Patterns Meet GUI Agents) (2025-09)
+
+A two-phase study comparing agents, humans, and human-AI teams against 16 dark pattern types. Phase 1's finding is the sharper one: agents often fail to recognize dark patterns, and even when they do recognize them, they prioritize task completion over protective action — so awareness alone does not produce safety. Phase 2 shows humans and agents fail *differently*: humans through cognitive shortcuts and habitual compliance, agents through procedural blind spots. Human oversight improved avoidance but brought its own costs in attentional tunneling and cognitive load, so neither party covers the other's gaps cleanly.
+
+`Env: Web` ｜ [arXiv:2509.10723](https://arxiv.org/abs/2509.10723)
+
 #### HarmonyGuard: Toward Safety and Utility in Web Agents via Adaptive Policy Enhancement and Dual-Objective Optimization (HarmonyGuard) (2025-08)
 
 Frames the core tension as balancing task performance against evolving hidden web threats over long action sequences, and notes that prior work is confined to single-objective optimization or single-turn settings. HarmonyGuard is a multi-agent framework whose Policy Agent automatically extracts and maintains structured security policies from unstructured external documents and keeps updating them, addressing the practical problem that hand-written policies go stale. The dual-objective optimization jointly targets safety and utility rather than trading one for the other.
 
 `Env: Web` ｜ [arXiv:2508.04010](https://arxiv.org/abs/2508.04010)
+
+#### Manipulating LLM Web Agents with Indirect Prompt Injection Attack via HTML Accessibility Tree (A11y Tree IPI) (2025-07)
+
+Targets the accessibility tree specifically — the structured representation many web agents parse instead of raw HTML — and shows universal adversarial triggers can be embedded there to hijack behavior. The method is gradient-based rather than hand-crafted, using Greedy Coordinate Gradient against a BrowserGym agent on Llama-3.1, and reports high success on real websites for both targeted and general attacks including login credential exfiltration and forced ad clicks. Notably the accessibility tree is a channel added for inclusive design, so hardening it means weighing security against the users who depend on it.
+
+`Env: Web` ｜ [arXiv:2507.14799](https://arxiv.org/abs/2507.14799)
 
 #### WebGuard: Building a Generalizable Guardrail for Web Agents (WebGuard) (2025-07)
 

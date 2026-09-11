@@ -26,6 +26,12 @@ Locates an attack surface created by architecture: multimodal web agents consume
 
 `Env: Web` ｜ [arXiv:2603.04364](https://arxiv.org/abs/2603.04364)
 
+#### CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents (NOVA) (2026-01)
+
+Confronts a genuine architectural impasse: isolation gives the strongest injection guarantees by strictly separating trusted planning from untrusted observations, but CUAs need continuous UI observation to decide each action — the two requirements are directly opposed. The paper resolves it with an empirical claim that turns out to hold: UI workflows, though dynamic, are structurally *predictable*. NOVA therefore uses single-shot planning, where a trusted planner emits a complete branching plan upfront covering all anticipated runtime states, which yields control-flow integrity guarantees against arbitrary instruction injection rather than best-effort detection.
+
+`Env: Desktop` ｜ [arXiv:2601.09923](https://arxiv.org/abs/2601.09923)
+
 #### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
 
 Notes that existing defenses against pop-up environmental injection either require costly retraining or collapse under inductive interference, then takes a mechanistic route instead. The paper systematically studies how such attacks alter a GUI agent's attention and uncovers a layer-wise attention divergence pattern separating correct from incorrect outputs. LaSM exploits this directly by selectively amplifying attention and MLP modules in the critical layers, realigning model saliency with task-relevant screen regions without any additional training — a rare instance of interpretability findings converted into a deployable GUI-agent defense.

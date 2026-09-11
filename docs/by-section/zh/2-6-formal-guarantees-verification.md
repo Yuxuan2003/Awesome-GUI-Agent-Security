@@ -26,6 +26,12 @@
 
 `环境: Web` ｜ [arXiv:2603.04364](https://arxiv.org/abs/2603.04364)
 
+#### CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents (NOVA) (2026-01)
+
+正面处理一个真实的架构僵局：架构隔离通过严格分离「可信规划」与「不可信观测」提供了最强的 注入防护保证，但 CUA 必须持续观测 UI 才能决定每一步动作——这两项要求直接冲突。论文用一个 经检验成立的经验判断来破局：UI 工作流虽然是动态的，但在**结构上是可预测的**。因此 NOVA 采用单次规划：由可信规划器预先给出一份覆盖所有可预期运行时状态的完整分支计划，从而对任意 指令注入提供控制流完整性**保证**，而不是尽力而为的检测。
+
+`环境: Desktop` ｜ [arXiv:2601.09923](https://arxiv.org/abs/2601.09923)
+
 #### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
 
 指出针对弹窗式环境注入的现有防御要么需要昂贵重训、要么在归纳性干扰下失效，转而走机制 可解释性路线。论文系统研究这类攻击如何改变 GUI agent 的注意力分布，发现正确输出与错误输出 之间存在**逐层的注意力发散模式**。LaSM 直接利用这一发现，选择性放大关键层的注意力与 MLP 模块，无需任何额外训练即把模型显著性重新对齐到任务相关的屏幕区域——这是把可解释性结论 转化为可部署 GUI agent 防御的少见案例。

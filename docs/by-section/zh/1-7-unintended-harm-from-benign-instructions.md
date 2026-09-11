@@ -14,6 +14,12 @@
 
 `环境: Mobile, 跨环境` ｜ [arXiv:2607.29199](https://arxiv.org/abs/2607.29199)
 
+#### OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents (OTora) (2026-05)
+
+提出一个绝大多数威胁模型完全忽略的攻击目标：推理级拒绝服务（R-DoS）——攻击者**保持任务结果 正确**，却通过膨胀 agent 的推理深度或工具调用预算来损害可用性。正因为输出依然正确，所有 基于正确性的防御与所有检查输出的护栏都会报告「运行正常」。OTora 是两阶段框架：第一阶段用 插入位置感知打分与动态目标共进化优化对抗触发串，诱导定向的工具调用（支持黑盒与白盒）； 第二阶段通过 ICL 引导的遗传搜索生成推理载荷，在保持结果正确的同时放大「过度思考」。 在 WebShop、Email 与 OS agent 上评测，骨干模型含 LLaMA-70B 与 GPT-OSS-120B。
+
+`环境: Web, Desktop` ｜ [arXiv:2605.08876](https://arxiv.org/abs/2605.08876)
+
 #### The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents (OS-BLIND) (2026-04)
 
 隔离出现有安全评测跳过的那个场景：用户指令完全良性，危害来自任务上下文或执行后果，既无 滥用也无注入。OS-BLIND 提供 300 个人工构造任务，覆盖 12 个类别、8 个应用，分为「环境 嵌入型威胁」与「agent 自发危害」两簇。数字相当刺眼——多数 CUA 的攻击成功率超过 90%， 即便经过安全对齐的 Claude 4.5 Sonnet 也达到 73.0%。更糟的是，同一模型置于多 agent 配置中时 ASR 从 73.0% 升至 92.7%，说明编排本身就在侵蚀对齐效果。
@@ -37,3 +43,9 @@
 把暗黑模式（dark patterns，即真实网络上早已泛滥的欺骗性 UI 设计）作为一类 agent 安全威胁 来研究——它不需要攻击者搭建任何基础设施，因为恶意界面本身就是现状。DECEPTICON 在 700 个 网页导航任务（600 合成 + 100 真实）中隔离测试单个暗黑模式。结果是暗黑模式在超过 70% 的 任务中成功把 agent 引向恶意结果，而人类平均只有 31%。最值得警惕的发现颠覆了通常的 scaling 直觉：操纵有效性与模型规模、测试时推理量**正相关**——越大越强的 agent 反而更易受骗。
 
 `环境: Web` ｜ [arXiv:2512.22894](https://arxiv.org/abs/2512.22894)
+
+#### Dark Patterns Meet GUI Agents: LLM Agent Susceptibility to Manipulative Interfaces and the Role of Human Oversight (Dark Patterns Meet GUI Agents) (2025-09)
+
+两阶段研究，比较 agent、人类参与者与人机协作团队面对 16 类暗黑模式时的表现。第一阶段的 发现更为尖锐：agent 常常识别不出暗黑模式，而**即便识别出来，它也会把任务完成置于保护性 行动之上**——因此「有意识」本身并不产生安全。第二阶段显示人与 agent 的失败方式**不同**： 人类因认知捷径与习惯性顺从而中招，agent 则因流程性盲区而失守。人工监督确实改善了规避率， 但带来了注意力隧道化与认知负荷的代价，因此双方都无法干净地补上对方的缺口。
+
+`环境: Web` ｜ [arXiv:2509.10723](https://arxiv.org/abs/2509.10723)

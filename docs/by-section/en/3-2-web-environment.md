@@ -32,6 +32,12 @@ Opens a direction orthogonal to the rest of this list: existing benchmarks measu
 
 `Env: Web` ｜ [arXiv:2604.06367](https://arxiv.org/abs/2604.06367)
 
+#### ClawTrap: A MITM-Based Red-Teaming Framework for Real-World OpenClaw Security Evaluation (ClawTrap) (2026-03)
+
+Moves red-teaming down a layer: existing benchmarks concentrate on static sandbox settings and content-level prompt attacks, leaving the network layer — where a real deployment is actually exposed — untested. ClawTrap is a man-in-the-middle framework for evaluating agents such as OpenClaw under live network threats, supporting Static HTML Replacement, Iframe Popup Injection and Dynamic Content Modification, with a reproducible pipeline for rule-driven interception, transformation and auditing. The MITM vantage point matters because it does not require compromising any website the agent visits.
+
+`Env: Web` ｜ [arXiv:2603.18762](https://arxiv.org/abs/2603.18762)
+
 #### MUZZLE: Adaptive Agentic Red-Teaming of Web Agents Against Indirect Prompt Injection Attacks (MUZZLE) (2026-02)
 
 Criticizes existing security evaluations for relying on fixed attack templates, manually chosen injection surfaces, or narrowly scoped scenarios, none of which reflect the adaptive adversary a deployed agent meets. MUZZLE automates the process by using the target agent's own trajectories to locate high-salience injection surfaces, then adaptively generating context-aware malicious instructions aimed at confidentiality, integrity and availability violations. Grounding surface selection in observed agent behavior rather than human intuition is the key move — the attack adapts to whatever the agent actually attends to.
@@ -43,6 +49,12 @@ Criticizes existing security evaluations for relying on fixed attack templates, 
 Isolates a narrow but consequential failure: accepting a disguised malicious URL lets an agent proceed into unsafe webpages, and everything downstream inherits that compromise, yet no benchmark had targeted this step. MalURLBench provides 61,845 attack instances spanning 10 real-world scenarios and 7 categories of genuinely malicious websites. Across 12 popular LLMs, models struggle with elaborately disguised URLs. The paper further analyzes which factors drive attack success and ships URLGuard, a lightweight defense module for the same choke point.
 
 `Env: Web` ｜ [arXiv:2601.18113](https://arxiv.org/abs/2601.18113)
+
+#### It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents (TRAP) (2025-12)
+
+Studies injection through the lens of persuasion rather than payload engineering: adversarial instructions hidden in interface elements *persuade* the agent away from its original task, which reframes the defense problem as psychological rather than syntactic. Across six frontier models, agents fall for injection in 25% of tasks on average, but the spread is the point — 13% for GPT-5 against 43% for DeepSeek-R1. More troubling, small interface or contextual changes often double success rates, indicating the vulnerability is systemic rather than tied to any specific phrasing. Ships a modular social-engineering injection framework running controlled experiments on high-fidelity website clones.
+
+`Env: Web` ｜ [arXiv:2512.23128](https://arxiv.org/abs/2512.23128)
 
 #### BrowseSafe: Understanding and Preventing Prompt Injection Within AI Browser Agents (BrowseSafe) (2025-11)
 
@@ -56,11 +68,23 @@ Argues that red-teaming built on manually crafted strategies or offline-trained 
 
 `Env: Web` ｜ [arXiv:2510.18314](https://arxiv.org/abs/2510.18314)
 
+#### SecureWebArena: A Holistic Security Evaluation Benchmark for LVLM-based Web Agents (SecureWebArena) (2025-10)
+
+Argues existing security benchmarks give only partial coverage, typically confined to narrow scenarios such as user-level prompt manipulation, and therefore miss most of the agent's actual vulnerability surface. SecureWebArena assembles six simulated but realistic web environments (e-commerce platforms, community forums and others) with 2,970 high-quality trajectories spanning diverse tasks and attack settings. Its organizing contribution is a structured taxonomy of six attack vectors covering **both** user-level and environment-level manipulation — the second half being exactly what narrower benchmarks omit.
+
+`Env: Web` ｜ [arXiv:2510.10073](https://arxiv.org/abs/2510.10073)
+
 #### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
 
 Fills a systematic gap: many injection attacks target web agents and many general-purpose detectors exist, but none had been evaluated specifically in the web-agent setting. WAInjectBench first categorizes attacks by threat model, then builds datasets covering both modalities and both polarities — malicious text segments from different attacks, benign text from four categories, attack-produced malicious images, and benign images from two categories. The headline finding is a sharp boundary: detectors handle attacks carrying explicit textual instructions or visible image perturbations, but degrade sharply outside that regime.
 
 `Env: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
+
+#### RISK: A Framework for GUI Agents in E-commerce Risk Management (RISK) (2025-09)
+
+Addresses a domain where the agent is the defender rather than the target: e-commerce risk management requires aggregating deeply embedded web data through multi-step stateful interaction, which traditional scraping cannot do and most GUI agents — limited to single-step tasks on cooperative pages — cannot either. RISK contributes three pieces: RISK-Data with 8,492 single-step and 2,386 multi-step trajectories collected via a high-fidelity browser framework, RISK-Bench with 802 single-step and 320 multi-step trajectories across three difficulty levels, and RISK-R1, an R1-style reinforcement fine-tuning framework.
+
+`Env: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
 
 #### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
 

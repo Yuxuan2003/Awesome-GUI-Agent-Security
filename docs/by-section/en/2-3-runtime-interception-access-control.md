@@ -26,11 +26,23 @@ Starts from why CUA harm is hard to catch: it emerges only through multi-step ex
 
 `Env: Desktop, Web` ｜ [arXiv:2606.01166](https://arxiv.org/abs/2606.01166)
 
+#### Constraining Host-Level Abuse in Self-Hosted Computer-Use Agents via TEE-Backed Isolation (TEE-Backed Isolation) (2026-05)
+
+Targets self-hosted CUAs such as OpenClaw, which pair natural-language interaction with direct access to browsers, files, scripts, system commands and outbound channels — a combination that turns any successful steering into host-level abuse, whether via malicious messages, indirect injection, unsafe skills, or tampering along the host-side control path. The central argument is why blocklists cannot work: an operation's security criticality depends jointly on action type, target object, execution context and potential effect, so no static rule captures it. The design keeps ordinary functionality on the constrained REE path while moving security-critical classification behind a TEE boundary.
+
+`Env: Desktop` ｜ [arXiv:2605.06393](https://arxiv.org/abs/2605.06393)
+
 #### ceLLMate: Sandboxing Browser AI Agents (ceLLMate) (2025-12)
 
 Approaches injection containment by restricting the agent's ambient authority to shrink the blast radius, rather than trying to detect every malicious instruction. The key insight addresses what the authors call the semantic gap: writing and enforcing security policies over low-level UI primitives like clicks and keystrokes is brittle and error-prone, so ceLLMate instead sandboxes at the HTTP layer, on the grounds that every side-effecting UI operation ultimately produces network traffic to the site's backend. This yields a policy surface that is both stable and semantically meaningful, shipped as an agent-agnostic browser extension.
 
 `Env: Web` ｜ [arXiv:2512.12594](https://arxiv.org/abs/2512.12594)
+
+#### OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows (OS-Sentinel) (2025-10)
+
+Frames the core difficulty as one of scale: unsafe operations like system compromise and privacy leakage must be detected across the vast, complex operational space of mobile environments, and no single detector covers it. OS-Sentinel's answer is deliberately hybrid — a Formal Verifier catches explicit system-level violations with certainty, while a VLM-based contextual judge handles the semantic cases formal rules cannot express. It also contributes MobileRisk-Live, a dynamic sandbox paired with a safety detection benchmark of realistic trajectories carrying fine-grained annotations, which is what makes the hybrid split measurable rather than merely plausible.
+
+`Env: Mobile` ｜ [arXiv:2510.24411](https://arxiv.org/abs/2510.24411)
 
 #### Secure and Efficient Access Control for Computer-Use Agents via Context Space (CSAgent) (2025-09)
 

@@ -32,6 +32,12 @@ Identifies a blind spot shared by most CUA guardrails: they are reactive and con
 
 `Env: Desktop` ｜ [arXiv:2602.01725](https://arxiv.org/abs/2602.01725)
 
+#### MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction (MirrorGuard) (2026-01)
+
+Names the cost that detection-based defenses quietly impose: blocking prevents damage but often aborts the task prematurely, so security is bought with utility. MirrorGuard instead corrects unsafe reasoning, and solves the training-cost problem with a neural-symbolic simulation pipeline that generates realistic high-risk GUI interaction trajectories entirely in a text-based simulated environment — capturing unsafe reasoning patterns and potential system hazards without ever running destructive operations on a real OS. The resulting defense is plug-and-play, transferring simulation-trained correction to real deployments.
+
+`Env: Desktop` ｜ [arXiv:2601.12822](https://arxiv.org/abs/2601.12822)
+
 #### WebGuard: Building a Generalizable Guardrail for Web Agents (WebGuard) (2025-07)
 
 Argues web agents need access controls analogous to those for human users, and releases the first dataset supporting web-agent action risk assessment: 4,939 human-annotated state-changing actions from 193 websites across 22 domains, including often-overlooked long-tail sites, labelled under a three-tier schema (SAFE / LOW / HIGH) with designated train-test splits for generalization study. The headline finding is stark — even frontier LLMs predict action outcomes with under 60% accuracy.

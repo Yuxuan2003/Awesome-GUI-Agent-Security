@@ -14,6 +14,12 @@ Introduces a paired diagnostic that measures how far a GUI agent's safety alignm
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2607.29199](https://arxiv.org/abs/2607.29199)
 
+#### OTora: A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents (OTora) (2026-05)
+
+Introduces an attack goal that most threat models overlook entirely: Reasoning-Level Denial-of-Service, where the attacker **preserves task correctness** yet degrades availability by inflating reasoning depth or tool-use budget. Because the output stays correct, every correctness-based defense and every output-inspecting guardrail reports normal operation. OTora is a two-stage framework — Stage I optimizes an adversarial trigger inducing targeted tool invocations via insertion-aware scoring and dynamic target co-evolution (black- and white-box), Stage II generates reasoning payloads through ICL-guided genetic search that amplifies overthinking while keeping outcomes correct — evaluated on WebShop, Email and OS agents over backbones including LLaMA-70B and GPT-OSS-120B.
+
+`Env: Web, Desktop` ｜ [arXiv:2605.08876](https://arxiv.org/abs/2605.08876)
+
 #### The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents (OS-BLIND) (2026-04)
 
 Isolates the setting existing safety evaluations skip: user instructions are entirely benign and harm emerges from task context or execution outcome, with no misuse and no injection. OS-BLIND supplies 300 human-crafted tasks over 12 categories and 8 applications, split into environment-embedded threats and agent-initiated harms. The numbers are stark — most CUAs exceed 90% attack success rate, and safety-aligned Claude 4.5 Sonnet still hits 73.0%. Worse, deploying that same model in a multi-agent configuration pushes its ASR from 73.0% to 92.7%, suggesting orchestration itself erodes alignment.
@@ -37,3 +43,9 @@ Notes that prior research concentrated on model-level threats like prompt inject
 Studies dark patterns — deceptive UI designs already pervasive on the real web — as an agent security threat requiring no attacker infrastructure at all, since the malicious interface is simply the status quo. DECEPTICON isolates individual dark patterns across 700 web navigation tasks (600 generated, 100 real-world). Dark patterns steer agents to malicious outcomes in over 70% of tasks versus a 31% human average. The most consequential finding inverts the usual scaling assumption: effectiveness correlates positively with model size and test-time reasoning, so larger and more capable agents are more susceptible, not less.
 
 `Env: Web` ｜ [arXiv:2512.22894](https://arxiv.org/abs/2512.22894)
+
+#### Dark Patterns Meet GUI Agents: LLM Agent Susceptibility to Manipulative Interfaces and the Role of Human Oversight (Dark Patterns Meet GUI Agents) (2025-09)
+
+A two-phase study comparing agents, humans, and human-AI teams against 16 dark pattern types. Phase 1's finding is the sharper one: agents often fail to recognize dark patterns, and even when they do recognize them, they prioritize task completion over protective action — so awareness alone does not produce safety. Phase 2 shows humans and agents fail *differently*: humans through cognitive shortcuts and habitual compliance, agents through procedural blind spots. Human oversight improved avoidance but brought its own costs in attentional tunneling and cognitive load, so neither party covers the other's gaps cleanly.
+
+`Env: Web` ｜ [arXiv:2509.10723](https://arxiv.org/abs/2509.10723)

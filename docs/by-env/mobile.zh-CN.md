@@ -46,6 +46,12 @@
 
 `环境: Mobile` ｜ [arXiv:2607.15550](https://arxiv.org/abs/2607.15550)
 
+#### Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure (Perception-Fusion Gap) (2026-07)
+
+提出一个位于所有视觉攻击上游的问题：多模态 GUI agent 通过两条冗余通道读取界面——渲染后的 像素与序列化结构（DOM 或无障碍树）——并在行动前形成对当前状态的信念，但现有基准从不追问 **这个信念究竟来自哪条通道**。论文形式化了「视觉状态依赖」，用配对的单通道干预在覆盖真实 web / mobile / desktop 界面的 735 个探针上测量，其中 225 个是从线上生产网站挖掘的零编辑 分歧样本，全部采用确定性强制选择评分、不引入模型裁判。核心指标 Perception-Fusion Gap 刻画的是「模型感知正确、但在冲突时倒向结构」的探针占比——而这恰好告诉攻击者该污染哪条通道。
+
+`环境: Web, Mobile, Desktop` ｜ [arXiv:2607.04334](https://arxiv.org/abs/2607.04334)
+
 #### (A)I Sees What You Don't: Exploiting New Attack Surfaces in Third-Party Mobile Agents (AI Sees) (2026-07)
 
 系统分析第三方移动 agent 引入的新攻击面，核心是「感知鸿沟」——agent 能读取到屏幕上用户 实际看不到或不会注意的内容（隐藏视图、后台通知、无障碍节点），攻击者可利用这一差异实施 用户完全无法察觉的诱导。指出第三方 agent 生态缺乏对 agent 可见性范围的约束机制。
@@ -130,11 +136,29 @@
 
 `环境: Mobile` ｜ [arXiv:2510.27140](https://arxiv.org/abs/2510.27140)
 
+#### OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows (OS-Sentinel) (2025-10)
+
+把核心难点归结为规模问题：系统沦陷、隐私泄露这类不安全操作需要在移动环境庞大而复杂的操作 空间中被检出，而任何单一检测器都覆盖不了。OS-Sentinel 的答案是刻意的混合式——形式化验证器 确定性地捕捉显式的系统级违规，VLM 上下文判别器处理形式化规则无法表达的语义情形。工作同时 贡献了 MobileRisk-Live：一个动态沙箱环境，配套由真实轨迹构成、带细粒度标注的安全检测基准， 正是它让这种混合式切分变得可测量，而不只是听起来合理。
+
+`环境: Mobile` ｜ [arXiv:2510.24411](https://arxiv.org/abs/2510.24411)
+
 #### GhostEI-Bench: Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments? (GhostEI-Bench) (2025-10)
 
 把环境注入确立为区别于提示类攻击的、研究不足的威胁向量：它不改文本指令，而是把欺骗性 覆盖层、伪造通知这类对抗 UI 元素直接插入 GUI 以污染 agent 的视觉感知，从而绕开文本层 防护，可导致隐私泄漏、财务损失甚至不可逆的设备失陷。GhostEI-Bench 跳出静态图像评测， 在完整可运行的 Android 模拟器中把对抗事件注入真实应用工作流。
 
 `环境: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
+
+#### MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions (MVISU-Bench) (2025-08)
+
+任务分类法来自用户问卷而非研究者直觉，由此得出五个类别——多应用、模糊、交互式、单应用、 不道德指令——覆盖 137 个真实移动应用上的 404 个双语任务。其中两个类别与安全直接相关： 不道德指令检验拒答能力，模糊指令检验 agent 是否会**主动询问**而不是擅自猜测。论文同时 发布 Aider，一个即插即用的动态 prompter，用于缓解风险并澄清用户意图，把总体成功率相比 此前 SOTA 提升 19.55%——这说明「主动澄清」与「有能力」并不互相矛盾。
+
+`环境: Mobile` ｜ [arXiv:2508.09057](https://arxiv.org/abs/2508.09057)
+
+#### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
+
+把「视觉 grounding」——即从文本计划到具体 GUI 元素的映射——认定为一个独立的攻击面，与规划和 推理层面区分开来。其后果正是危险之处：植入 grounding 的后门会在 agent **拿到完全正确的 解题计划时**依然改变其行为，因此检查计划本身看不出任何问题。VisualTrap 通过误导 agent 把 文本计划定位到攻击者选定的位置来劫持 grounding，这意味着所有计划级审查与推理审计都能干净 通过，而动作却落在攻击者想要的地方。
+
+`环境: Mobile, Desktop` ｜ [arXiv:2507.06899](https://arxiv.org/abs/2507.06899)
 
 #### Poison Once, Control Anywhere: Clean-Text Visual Backdoors in VLM-based Mobile Agents (VIBMA) (2025-06)
 
