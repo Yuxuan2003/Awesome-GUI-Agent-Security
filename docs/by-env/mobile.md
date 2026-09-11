@@ -141,3 +141,9 @@ Identifies environmental injection as an underexplored threat distinct from prom
 Exploits a structural weakness in how mobile agents are built: they are typically fine-tuned on small, user-collected datasets, which makes training-time poisoning practical rather than theoretical. VIBMA is the first clean-text backdoor for VLM-based mobile agents — it modifies only the visual input while leaving prompts and instructions untouched, so there is no textual anomaly to detect. After fine-tuning on poisoned data, inserting a predefined visual trigger at inference activates the attacker's behavior. The mechanism aligns poisoned samples' training gradients with those of an attacker-specified target instance, embedding backdoor features into the data itself.
 
 `Env: Mobile` ｜ [arXiv:2506.13205](https://arxiv.org/abs/2506.13205)
+
+#### MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control (MobileSafetyBench) (2024-10)
+
+Fills what was then a complete void — no standardized benchmark existed for the safety of mobile device-control agents, despite these agents interacting directly with personal information and device settings. Built on Android emulators for realistic grounding, it spans applications including messaging and banking, and deliberately separates two risk families that are often conflated: misuse (the agent is asked to do something harmful) and negative side effects (the agent causes harm while pursuing a legitimate goal). Tasks cover both everyday scenarios and robustness against indirect prompt injection.
+
+`Env: Mobile` ｜ [arXiv:2410.17520](https://arxiv.org/abs/2410.17520)

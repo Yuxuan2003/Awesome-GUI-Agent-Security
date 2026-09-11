@@ -4,6 +4,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### AgentHijack: Visual Patch Attacks on Multimodal Computer-Use Agents (AgentHijack) (2026-09)
+
+坚持做端到端验证而不止于模型输出：真正要回答的问题是，一个局部视觉补丁能否在「截图输入 → VLM 生成 → 动作解析 → 环境执行」的完整链条上产生**可验证的环境后果**。补丁在作者控制的 GitHub Pages 与本地部署的 CSDN 克隆站上训练与投放，在五个开源或公开可得的 GUI agent / VLM 后端上评测，汇总 600 个实例级在线用例。三级指标清楚地暴露了攻击在哪一环衰减—— T-ASR 84.5%、TAPR 47.0%，而 E2E-ASR 仅 20.3%。轨迹分析发现了最令人不安的现象：在部分 成功案例中，agent 先执行了恶意终端命令，随后又不动声色地继续完成用户原本的良性任务。
+
+`环境: Desktop, Web` ｜ [arXiv:2609.09212](https://arxiv.org/abs/2609.09212)
+
 #### SIR: Self-improving Red-teaming for Compute Use Agents (SIR) (2026-08)
 
 指出现有 CUA 安全基准用的都是人工手写的固定注入载荷，会低估自适应攻击者的真实威胁。提出 黑盒 IPI 攻击 SIR：从一个用自然语言描述的可复用「隐蔽性原则」小库中组合注入内容，再套一层 迭代反馈循环——诊断受害 agent 失败的攻击轨迹，把成功绕过的模式蒸馏回原则库。这把红队从 静态测试变成自我改进的过程，说明固定载荷的评测结论会随攻击者迭代迅速失效。
@@ -142,6 +148,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Desktop` ｜ [arXiv:2602.08235](https://arxiv.org/abs/2602.08235)
 
+#### LPS-Bench: Benchmarking Safety Awareness of Computer-Use Agents in Long-Horizon Planning under Benign and Adversarial Scenarios (LPS-Bench) (2026-02)
+
+指出现有基准在**时机**上的缺口：它们聚焦短周期或 GUI 层任务、评判执行期错误，却从未检验 agent 能否在**规划阶段**（任何动作发生之前）预见风险。LPS-Bench 评测基于 MCP 的 CUA 在 长周期任务下的规划期安全意识，覆盖良性与对抗两类交互，含 7 个任务域、9 类风险的 65 个场景， 配以多 agent 自动化数据生成流水线与针对规划轨迹的 LLM-as-a-judge 评测协议。实验显示现有 CUA 在长程规划中维持安全意识的能力存在明显不足。
+
+`环境: Desktop` ｜ [arXiv:2602.03255](https://arxiv.org/abs/2602.03255)
+
 #### SafePred: A Predictive Guardrail for Computer-Using Agents via World Models (SafePred) (2026-02)
 
 指出现有 CUA 护栏的共同盲区：它们都是被动式的，只在当前观测空间内约束行为，因此能拦下 「点击钓鱼链接」这类即时危害，却看不见长周期风险。文中的例子很到位——清理日志在局部看 完全合理，但会导致未来审计无从追溯，而这个后果在当前观测里根本不可见。SafePred 转而把 预测出的未来风险与当前决策对齐，建立「风险到决策」的闭环，使延迟发生、不可逆的后果能被 计入每一步的判断。
@@ -153,6 +165,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 指出现有视觉隐私数据集多为静态自然图像，因而无法刻画 GUI 工作流中界定隐私风险的两个性质： 上下文依赖与任务相关性。GUIGuard-Bench 提供 241 条真实 GUI agent 轨迹、涵盖 Android 与 PC 环境的 4080 张截图。真正的贡献在标注设计——每张截图在区域级标注隐私边界框、语义类别、 风险等级，以及关键的一项：该隐私信息是否为完成任务所必需。而这恰恰是遮蔽类防御必须判断 正确的那个区分。
 
 `环境: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
+
+#### SusBench: An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents (SusBench) (2025-10)
+
+评测 CUA 对 UI 暗黑模式（诱导用户做出非本意操作的界面设计）的易感程度：从既有分类法中选取 九种常见类型，通过代码注入在真实消费类网站上构造可信实例，形成覆盖 55 个网站的 313 个评测 任务。方法上的强项在于人类验证环节——29 名参与者的实验确认这些注入看起来高度真实，绝大多数 人完全没有察觉它们是研究团队植入的。正是这一对照使得「五个前沿 CUA 与人类参与者并排比较」 的结论具备可信度。
+
+`环境: Web, Desktop` ｜ [arXiv:2510.11035](https://arxiv.org/abs/2510.11035)
 
 #### Secure and Efficient Access Control for Computer-Use Agents via Context Space (CSAgent) (2025-09)
 
@@ -195,3 +213,15 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 把持久化记忆当作一个**显式的对齐面**来处理，理由是：持续的记忆增强让 CUA 能从过往交互中学习， 但未经审核的记忆会编码领域不适当或不安全的启发式规则——这些伪规则会悄然偏离用户意图与安全 约束。VerificAgent 结合三部分：专家策划的领域知识种子、训练期基于轨迹的迭代记忆增长、以及 部署前的人工事实核查环节。真正的贡献在其框定方式：让人类**一次性**纠正高影响错误，就把 经核验的记忆变成一份「冻结的安全契约」，后续所有动作都必须满足它，且无需微调模型。
 
 `环境: Desktop` ｜ [arXiv:2506.02539](https://arxiv.org/abs/2506.02539)
+
+#### VPI-Bench: Visual Prompt Injection Attacks for Computer-Use Agents (VPI-Bench) (2025-06)
+
+指出以往工作集中在浏览器 agent 与 HTML 层攻击上，而握有完整系统权限、能操作文件、读取用户 数据、执行任意命令的 CUA 反而研究不足。VPI-Bench 研究**视觉嵌入**于渲染界面中的恶意指令 ——这类指令在构造上就绕开了文本层净化——并提供覆盖五个常用平台的 306 个测试用例。每个用例都是 真实网页平台的交互式变体，部署在真实环境中并含一处视觉嵌入的恶意 prompt，同时覆盖 CUA 与 browser-use agent 两类目标。
+
+`环境: Desktop, Web` ｜ [arXiv:2506.02456](https://arxiv.org/abs/2506.02456)
+
+#### RiOSWorld: Benchmarking the Risk of Multimodal Computer-Use Agents (RiOSWorld) (2025-05)
+
+正面提出「迁移性」问题：为对话场景下的通用 MLLM 设计并对齐的安全风险原则，能否有效迁移到 真实的计算机操作场景？论文指出以往的风险评测总在两点之一上失守——要么缺乏真实的交互环境， 要么把范围收窄到少数几类特定风险——而这两种失守都忽略了真实环境所固有的复杂性与多变性。 RiOSWorld 在真实的计算机操作过程中评测风险，已成为多模态 CUA 风险评测中被较多引用的基准之一。
+
+`环境: Desktop` ｜ [arXiv:2506.00618](https://arxiv.org/abs/2506.00618)

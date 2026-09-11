@@ -53,7 +53,7 @@ python3 scripts/fetch.py 2026-09-03 2026-09-16
 若某小节想单独补历史存量：
 
 ```bash
-python3 scripts/fetch.py 2025-01-01 2026-09-04 --section 1.2
+python3 scripts/fetch.py 2024-01-01 2026-09-11 --section 1.2
 ```
 
 **3. 人工判断范围（不能省的一步）**
@@ -165,14 +165,36 @@ N 篇全部通过 arXiv 元数据校验。
 
 ### 批量建库的操作要点（实测）
 
-**一批 6 篇为宜。** 读摘要 → 写双语简介 → 合并 → `build.py --check`，
+**一批 6 篇为宜。** 读摘要 → 写双语简介 → 合并 → `build.py`，
 一轮 6 篇既能保证简介质量，出错时回溯范围也小。
 
-**每批合并后立刻跑 `--check`。** 实测曾误将同一批 YAML 追加两次，
-CI 的「arXiv ID 重复」+「标题近似重复」当场拦下 6 处问题。若积累多批再校验，
-定位重复段落会麻烦得多。
+**合并一律用 `scripts/merge.py`，不要 `cat >>`。**
 
-**全量 `check_links.py` 要留足时间。** 90 篇 × 3.2s ≈ 5 分钟，放后台跑。
+```bash
+python3 scripts/merge.py /tmp/batch.yaml --dry-run   # 先看会新增几条
+python3 scripts/merge.py /tmp/batch.yaml
+python3 scripts/build.py
+```
+
+`merge.py` 在写入前按 arXiv ID / url 判重，已存在的条目直接跳过，**因此可以
+安全地反复执行**。直接 `cat batch.yaml >> data/papers.yaml` 在命令重试或中断
+重跑时会把同一批追加两次 —— 这个错误实测犯了两次。虽然 `build.py` 的重复校验
+每次都拦住了，但事后截断修正容易多切或少切，不如从源头避免。
+
+**每批合并后立刻跑 `build.py`。** 它会校验重复、必填字段、日期格式与锚点。
+若积累多批再校验，定位问题段落会麻烦得多。
+
+**全量 `check_links.py` 要留足时间。** 100 篇 × 3.2s ≈ 5.5 分钟，放后台跑，
+用 `pgrep -f check_links.py` 判断是否结束（前台等待会被超时中断）。
+
+**改完数据源后如果远端已有 Actions 提交，推送会被拒。** 标准处理：
+```bash
+git stash -q
+git pull --rebase <URL> main
+git stash pop
+python3 scripts/build.py     # rebase 后必须重建
+git push <URL> main
+```
 
 ### ⚠️ 补存量前必须确认分页正常
 

@@ -187,8 +187,11 @@ def validate(papers, secs):
 
         if p.get("date") and not re.fullmatch(r"\d{4}-\d{2}", str(p["date"])):
             errs.append(f"[{tag}] date 应为 YYYY-MM：{p['date']}")
-        if p.get("date") and str(p["date"]) < "2025-01":
-            errs.append(f"[{tag}] date 早于收录范围 2025-01：{p['date']}")
+        # 收录下限 2024-01：2024 年是本方向的奠基期（WIPI、EIA、BrowserART、
+        # GuardAgent、ST-WebAgentBench 等被反复引用的工作都出自这一年），
+        # 缺了它们领域脉络会断。2023 及更早经检索基本无对位工作，不再放宽。
+        if p.get("date") and str(p["date"]) < "2024-01":
+            errs.append(f"[{tag}] date 早于收录范围 2024-01：{p['date']}")
 
         if p.get("section") and str(p["section"]) not in valid_secs:
             errs.append(f"[{tag}] section 未定义：{p['section']}")
@@ -285,7 +288,7 @@ def build_readme(papers, secs, lang, sec_pages):
     L.append(
         f"![Last Update](https://img.shields.io/badge/last%20update-{ym}-brightgreen) "
         f"![Papers](https://img.shields.io/badge/papers-{badge}-blue) "
-        f"![Time Range](https://img.shields.io/badge/time-2025.01--{ym}-orange) "
+        f"![Time Range](https://img.shields.io/badge/time-2024.01--{ym}-orange) "
         f"[![Link Check](https://github.com/{REPO}/actions/workflows/check.yml/badge.svg)]"
         f"(https://github.com/{REPO}/actions/workflows/check.yml) "
         "![Awesome](https://img.shields.io/badge/-awesome-ff69b4)"

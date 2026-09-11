@@ -55,3 +55,9 @@
 把核心矛盾表述为在长动作序列中平衡任务性能与不断演化的网页隐藏威胁，并指出以往工作局限于 单目标优化或单轮场景。HarmonyGuard 是多 agent 框架，其中 Policy Agent 能从非结构化的 外部文档中自动抽取并维护结构化安全策略、持续更新，回应的是「手写策略会过期」这一现实 问题。双目标优化同时兼顾安全与效用，而非牺牲其一换取其二。
 
 `环境: Web` ｜ [arXiv:2508.04010](https://arxiv.org/abs/2508.04010)
+
+#### GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning (GuardAgent) (2024-06)
+
+首个护栏 **agent**——它不是分类器或过滤器，而是通过动态检查目标 agent 的动作是否满足给定的 安全守护请求来实施保护。设计上值得注意的是它如何绕开 LLM 判断的可靠性上限：GuardAgent 先把 守护请求解析为任务计划，再把计划映射为护栏**代码**并执行，因此尽管推理由 LLM 承担，强制执行 仍是确定性的；同时从存有历史任务经验的记忆模块中检索上下文示例。工作还贡献了两个基准： 面向医疗 agent 访问控制的 EICU-AC，与面向 web agent 安全策略的 Mind2Web-SC。
+
+`环境: Web` ｜ [arXiv:2406.09187](https://arxiv.org/abs/2406.09187)

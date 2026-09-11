@@ -19,3 +19,9 @@ Argues that existing benchmarks miss everyday usage and offer no systematic eval
 Identifies environmental injection as an underexplored threat distinct from prompt-based attacks: rather than manipulating textual instructions, it corrupts visual perception by inserting adversarial UI elements such as deceptive overlays or spoofed notifications directly into the GUI, bypassing textual safeguards and risking privacy leakage, financial loss, or irreversible device compromise. GhostEI-Bench moves beyond static image assessment by injecting adversarial events into realistic application workflows inside fully operational Android emulators.
 
 `Env: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
+
+#### MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control (MobileSafetyBench) (2024-10)
+
+Fills what was then a complete void — no standardized benchmark existed for the safety of mobile device-control agents, despite these agents interacting directly with personal information and device settings. Built on Android emulators for realistic grounding, it spans applications including messaging and banking, and deliberately separates two risk families that are often conflated: misuse (the agent is asked to do something harmful) and negative side effects (the agent causes harm while pursuing a legitimate goal). Tasks cover both everyday scenarios and robustness against indirect prompt injection.
+
+`Env: Mobile` ｜ [arXiv:2410.17520](https://arxiv.org/abs/2410.17520)

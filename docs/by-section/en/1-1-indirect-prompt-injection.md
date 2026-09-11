@@ -43,3 +43,9 @@ Diagnoses two gaps in existing injections against browser agents: low effectiven
 Names the structural problem the Trusted Executor Dilemma: high-privilege agents are handed terminal access, filesystem control and outbound network connectivity, then asked to read and execute project documentation — but they cannot distinguish malicious directives from legitimate setup guidance, so they execute adversarial documentation-embedded instructions at high rates. The paper insists this is a consequence of the instruction-following design paradigm rather than an implementation bug. Measurement is structured by a three-dimensional taxonomy (linguistic disguise, structural obfuscation, semantic abstraction) over ReadSecBench, 500 real-world README files.
 
 `Env: Desktop` ｜ [arXiv:2603.11862](https://arxiv.org/abs/2603.11862)
+
+#### WIPI: A New Web Threat for LLM-Driven Web Agents (WIPI) (2024-02)
+
+One of the earliest papers to pose the question directly — as countless web agents shipped and moved toward everyday deployment, are they secure at all? WIPI introduces a threat that indirectly controls a web agent by embedding malicious instructions in publicly accessible webpages, requiring no access to the agent itself. The method works black-box and focuses on the form and content of the indirect instruction rather than on model internals, which is what makes it both efficient and stealthy. Historically this is a foundational reference for the indirect injection line of work on web agents.
+
+`Env: Web` ｜ [arXiv:2402.16965](https://arxiv.org/abs/2402.16965)

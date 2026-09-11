@@ -37,3 +37,9 @@ Memory makes web agents personalized yet exploitable: storing past interactions 
 Criticises prior environmental injection work for unrealistic assumptions — direct HTML manipulation, knowledge of user intent, or access to model parameters. AdInject instead injects malicious content through internet advertising delivery, operating under a black-box agent, static content constraints, and no knowledge of user intent. It combines ad content designed to lure agent clicks with VLM-based optimization that infers likely user intent from the target site, making it one of the most deployment-realistic threat models in this area.
 
 `Env: Web` ｜ [arXiv:2505.21499](https://arxiv.org/abs/2505.21499)
+
+#### EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage (EIA) (2024-09)
+
+The first study of privacy risk for generalist web agents in adversarial environments, motivated by an observation that is obvious in hindsight: everyday web tasks such as booking flights inherently involve the user's PII, so an agent that touches a compromised site leaks by construction. The paper presents a realistic website-side threat model with two adversarial targets — stealing specific PII, or the entire user request — and proposes the Environmental Injection Attack, which injects content designed to blend into the environment the agent operates in. This paper named the environmental-injection category that later work builds on.
+
+`Env: Web` ｜ [arXiv:2409.11295](https://arxiv.org/abs/2409.11295)

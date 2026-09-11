@@ -31,3 +31,9 @@ Conducts systematic threat analysis and adversarial testing of real-world CUAs, 
 Frames the execution gap as the central obstacle to trustworthy GUI agents: the misalignment between perception, reasoning, and interaction in dynamic, partially observable interfaces. Unlike conversational systems, GUI agents perform irreversible operations such as submitting forms, granting permissions, or deleting data. The survey proposes a workflow-aligned taxonomy decomposing trust into Perception, Reasoning, and Interaction Trust, traces how failures propagate and compound through action/observation loops, and argues that task completion alone is an insufficient basis for trust assessment.
 
 `Env: Cross-env` ｜ [arXiv:2503.23434](https://arxiv.org/abs/2503.23434)
+
+#### Refusal-Trained LLMs Are Easily Jailbroken As Browser Agents (BrowserART) (2024-10)
+
+Asks a question that reframed how the field thinks about agent safety: does the refusal behavior instilled in chat contexts generalize to non-chat, agentic use? The stakes differ in kind rather than degree — unlike a chatbot, an agent holding a browser or a phone acts on the real world, so a failed refusal produces consequences rather than text. The paper ships BrowserART, a red-teaming suite of 100 browser-related harmful behaviors spanning synthetic and real websites, drawing partly on HarmBench and AirBench 2024. The finding that refusal training transfers poorly to the agentic setting motivated much of the subsequent work.
+
+`Env: Web` ｜ [arXiv:2410.13886](https://arxiv.org/abs/2410.13886)

@@ -61,3 +61,15 @@ Argues that red-teaming built on manually crafted strategies or offline-trained 
 Fills a systematic gap: many injection attacks target web agents and many general-purpose detectors exist, but none had been evaluated specifically in the web-agent setting. WAInjectBench first categorizes attacks by threat model, then builds datasets covering both modalities and both polarities — malicious text segments from different attacks, benign text from four categories, attack-produced malicious images, and benign images from two categories. The headline finding is a sharp boundary: detectors handle attacks carrying explicit textual instructions or visible image perturbations, but degrade sharply outside that regime.
 
 `Env: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
+
+#### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
+
+A black-box red-teaming framework that departs from hand-crafted adversarial prompts by training an adversarial prompter model through a reinforcement learning pipeline, optimizing prompts from the black-box agent's own feedback. The design goal is not raw success but controllability alongside stealthiness — attacks that remain steerable rather than merely effective. It reports high success rates against state-of-the-art GPT-4-based web agents across diverse tasks, and finds existing prompt-based defenses offer only limited protection, an early datapoint for why prompt hardening alone does not hold.
+
+`Env: Web` ｜ [arXiv:2410.17401](https://arxiv.org/abs/2410.17401)
+
+#### ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents (ST-WebAgentBench) (2024-10)
+
+Criticizes benchmarks that measure only whether an agent finishes a task, ignoring whether it finished safely or in a way an enterprise can trust — and argues safety and trustworthiness are prerequisites for adoption in critical workflows, not add-ons. Each of its 222 tasks pairs with ST policies, concise rules encoding constraints, scored on six orthogonal dimensions such as user consent and robustness. Its lasting contribution is the metric: Completion Under Policy credits only completions respecting every applicable policy, and three open agents score under two-thirds of their nominal success rate under CuP.
+
+`Env: Web` ｜ [arXiv:2410.06703](https://arxiv.org/abs/2410.06703)

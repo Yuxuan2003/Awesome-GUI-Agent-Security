@@ -61,3 +61,15 @@
 填补一个系统性空缺：针对 web agent 的注入攻击很多，通用注入检测方法也很多，但从未有人 在 web agent 场景下系统评测过后者。WAInjectBench 先按威胁模型对攻击做细粒度分类，再构建 覆盖两种模态、两种极性的数据集——来自不同攻击的恶意文本片段、四类正常文本、攻击生成的 恶意图像、两类正常图像。核心结论划出了一条清晰边界：检测器能应对带显式文本指令或可见图像 扰动的攻击，一旦越出这个范围性能急剧下降。
 
 `环境: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
+
+#### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
+
+黑盒红队框架，摆脱人工编写对抗 prompt 的做法，转而用强化学习流水线训练一个对抗 prompter 模型，依据黑盒 agent 自身的反馈来优化 prompt。其设计目标不只是成功率，而是在隐蔽性之外还要 **可控性**——攻击要保持可操纵，而非仅仅有效。论文报告在多样任务上对基于 GPT-4 的前沿 web agent 取得高成功率，并发现现有基于 prompt 的防御保护有限，这是「单靠 prompt 加固撑不住」 的一个早期证据。
+
+`环境: Web` ｜ [arXiv:2410.17401](https://arxiv.org/abs/2410.17401)
+
+#### ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents (ST-WebAgentBench) (2024-10)
+
+批评那些只测量「任务是否完成」的基准——它们忽略了完成得是否安全、是否达到企业可信任的程度—— 并主张在关键工作流中，安全与可信是采用的前置条件而非附加项。其 222 个任务每个都配有 ST 策略 （编码约束的简明规则），并在用户同意、鲁棒性等六个正交维度上打分。真正留下来的贡献是那个 指标：Completion Under Policy 只把「遵守了所有适用策略」的完成计为成功，而三个开源 agent 在 CuP 下的得分不足其名义成功率的三分之二。
+
+`环境: Web` ｜ [arXiv:2410.06703](https://arxiv.org/abs/2410.06703)

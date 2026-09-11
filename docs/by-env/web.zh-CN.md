@@ -4,6 +4,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### AgentHijack: Visual Patch Attacks on Multimodal Computer-Use Agents (AgentHijack) (2026-09)
+
+坚持做端到端验证而不止于模型输出：真正要回答的问题是，一个局部视觉补丁能否在「截图输入 → VLM 生成 → 动作解析 → 环境执行」的完整链条上产生**可验证的环境后果**。补丁在作者控制的 GitHub Pages 与本地部署的 CSDN 克隆站上训练与投放，在五个开源或公开可得的 GUI agent / VLM 后端上评测，汇总 600 个实例级在线用例。三级指标清楚地暴露了攻击在哪一环衰减—— T-ASR 84.5%、TAPR 47.0%，而 E2E-ASR 仅 20.3%。轨迹分析发现了最令人不安的现象：在部分 成功案例中，agent 先执行了恶意终端命令，随后又不动声色地继续完成用户原本的良性任务。
+
+`环境: Desktop, Web` ｜ [arXiv:2609.09212](https://arxiv.org/abs/2609.09212)
+
 #### SIR: Self-improving Red-teaming for Compute Use Agents (SIR) (2026-08)
 
 指出现有 CUA 安全基准用的都是人工手写的固定注入载荷，会低估自适应攻击者的真实威胁。提出 黑盒 IPI 攻击 SIR：从一个用自然语言描述的可复用「隐蔽性原则」小库中组合注入内容，再套一层 迭代反馈循环——诊断受害 agent 失败的攻击轨迹，把成功绕过的模式蒸馏回原则库。这把红队从 静态测试变成自我改进的过程，说明固定载荷的评测结论会随攻击者迭代迅速失效。
@@ -232,6 +238,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Web` ｜ [arXiv:2510.18314](https://arxiv.org/abs/2510.18314)
 
+#### SusBench: An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents (SusBench) (2025-10)
+
+评测 CUA 对 UI 暗黑模式（诱导用户做出非本意操作的界面设计）的易感程度：从既有分类法中选取 九种常见类型，通过代码注入在真实消费类网站上构造可信实例，形成覆盖 55 个网站的 313 个评测 任务。方法上的强项在于人类验证环节——29 名参与者的实验确认这些注入看起来高度真实，绝大多数 人完全没有察觉它们是研究团队植入的。正是这一对照使得「五个前沿 CUA 与人类参与者并排比较」 的结论具备可信度。
+
+`环境: Web, Desktop` ｜ [arXiv:2510.11035](https://arxiv.org/abs/2510.11035)
+
 #### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
 
 填补一个系统性空缺：针对 web agent 的注入攻击很多，通用注入检测方法也很多，但从未有人 在 web agent 场景下系统评测过后者。WAInjectBench 先按威胁模型对攻击做细粒度分类，再构建 覆盖两种模态、两种极性的数据集——来自不同攻击的恶意文本片段、四类正常文本、攻击生成的 恶意图像、两类正常图像。核心结论划出了一条清晰边界：检测器能应对带显式文本指令或可见图像 扰动的攻击，一旦越出这个范围性能急剧下降。
@@ -262,8 +274,50 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Desktop, Web` ｜ [arXiv:2507.05445](https://arxiv.org/abs/2507.05445)
 
+#### VPI-Bench: Visual Prompt Injection Attacks for Computer-Use Agents (VPI-Bench) (2025-06)
+
+指出以往工作集中在浏览器 agent 与 HTML 层攻击上，而握有完整系统权限、能操作文件、读取用户 数据、执行任意命令的 CUA 反而研究不足。VPI-Bench 研究**视觉嵌入**于渲染界面中的恶意指令 ——这类指令在构造上就绕开了文本层净化——并提供覆盖五个常用平台的 306 个测试用例。每个用例都是 真实网页平台的交互式变体，部署在真实环境中并含一处视觉嵌入的恶意 prompt，同时覆盖 CUA 与 browser-use agent 两类目标。
+
+`环境: Desktop, Web` ｜ [arXiv:2506.02456](https://arxiv.org/abs/2506.02456)
+
 #### AdInject: Real-World Black-Box Attacks on Web Agents via Advertising Delivery (AdInject) (2025-05)
 
 批评已有环境注入研究依赖不现实的假设——直接改 HTML、已知用户意图、或能访问模型参数。 AdInject 改用互联网广告投放这一真实渠道注入恶意内容，威胁模型严格得多：agent 为黑盒、 恶意内容静态不可变、且不掌握用户意图。方法上结合诱导 agent 点击的广告内容设计，以及 基于 VLM 从目标站点反推用户潜在意图的内容优化，是该方向最贴近真实部署的威胁模型之一。
 
 `环境: Web` ｜ [arXiv:2505.21499](https://arxiv.org/abs/2505.21499)
+
+#### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
+
+黑盒红队框架，摆脱人工编写对抗 prompt 的做法，转而用强化学习流水线训练一个对抗 prompter 模型，依据黑盒 agent 自身的反馈来优化 prompt。其设计目标不只是成功率，而是在隐蔽性之外还要 **可控性**——攻击要保持可操纵，而非仅仅有效。论文报告在多样任务上对基于 GPT-4 的前沿 web agent 取得高成功率，并发现现有基于 prompt 的防御保护有限，这是「单靠 prompt 加固撑不住」 的一个早期证据。
+
+`环境: Web` ｜ [arXiv:2410.17401](https://arxiv.org/abs/2410.17401)
+
+#### Refusal-Trained LLMs Are Easily Jailbroken As Browser Agents (BrowserART) (2024-10)
+
+提出了一个重塑领域思考方式的问题：在聊天场景中训练出的拒答行为，能否泛化到非聊天的 agentic 场景？其风险是**性质**上的差异而非程度差异——与聊天机器人不同，手握浏览器或手机的 agent 直接 作用于真实世界，因此一次拒答失败产生的是后果而不是文本。论文发布红队测试套件 BrowserART， 含 100 项浏览器相关有害行为、覆盖合成与真实网站，部分取材自 HarmBench 与 AirBench 2024。 「拒答训练难以迁移到 agentic 场景」这一结论催生了此后大量工作。
+
+`环境: Web` ｜ [arXiv:2410.13886](https://arxiv.org/abs/2410.13886)
+
+#### ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents (ST-WebAgentBench) (2024-10)
+
+批评那些只测量「任务是否完成」的基准——它们忽略了完成得是否安全、是否达到企业可信任的程度—— 并主张在关键工作流中，安全与可信是采用的前置条件而非附加项。其 222 个任务每个都配有 ST 策略 （编码约束的简明规则），并在用户同意、鲁棒性等六个正交维度上打分。真正留下来的贡献是那个 指标：Completion Under Policy 只把「遵守了所有适用策略」的完成计为成功，而三个开源 agent 在 CuP 下的得分不足其名义成功率的三分之二。
+
+`环境: Web` ｜ [arXiv:2410.06703](https://arxiv.org/abs/2410.06703)
+
+#### EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage (EIA) (2024-09)
+
+首个研究通用 web agent 在对抗环境下隐私风险的工作，出发点事后看来显而易见：订机票这类日常 网页任务本身就涉及用户 PII，因此 agent 一旦接触到被攻陷的网站，泄露就是结构性的。论文给出 网站侧的现实威胁模型，含两类攻击目标——窃取特定 PII，或窃取完整的用户请求——并提出「环境 注入攻击」（EIA），注入的内容经设计能融入 agent 所处的环境。这篇论文命名了后续工作赖以展开的 「环境注入」这一攻击类别。
+
+`环境: Web` ｜ [arXiv:2409.11295](https://arxiv.org/abs/2409.11295)
+
+#### GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning (GuardAgent) (2024-06)
+
+首个护栏 **agent**——它不是分类器或过滤器，而是通过动态检查目标 agent 的动作是否满足给定的 安全守护请求来实施保护。设计上值得注意的是它如何绕开 LLM 判断的可靠性上限：GuardAgent 先把 守护请求解析为任务计划，再把计划映射为护栏**代码**并执行，因此尽管推理由 LLM 承担，强制执行 仍是确定性的；同时从存有历史任务经验的记忆模块中检索上下文示例。工作还贡献了两个基准： 面向医疗 agent 访问控制的 EICU-AC，与面向 web agent 安全策略的 Mind2Web-SC。
+
+`环境: Web` ｜ [arXiv:2406.09187](https://arxiv.org/abs/2406.09187)
+
+#### WIPI: A New Web Threat for LLM-Driven Web Agents (WIPI) (2024-02)
+
+最早直接抛出这个问题的工作之一——在无数 web agent 相继发布、逐步走向日常部署之际，它们究竟 安全吗？WIPI 提出一种新威胁：把恶意指令嵌入公开可访问的网页，从而间接控制 web agent，全程 无需接触 agent 本身。方法在黑盒环境下工作，关注的是间接指令的形式与内容而非模型内部，这正是 它兼具效率与隐蔽性的原因。就领域脉络而言，这是 web agent 间接注入这条线的奠基性文献。
+
+`环境: Web` ｜ [arXiv:2402.16965](https://arxiv.org/abs/2402.16965)

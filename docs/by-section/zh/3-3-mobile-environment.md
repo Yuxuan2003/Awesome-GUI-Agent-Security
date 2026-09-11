@@ -19,3 +19,9 @@
 把环境注入确立为区别于提示类攻击的、研究不足的威胁向量：它不改文本指令，而是把欺骗性 覆盖层、伪造通知这类对抗 UI 元素直接插入 GUI 以污染 agent 的视觉感知，从而绕开文本层 防护，可导致隐私泄漏、财务损失甚至不可逆的设备失陷。GhostEI-Bench 跳出静态图像评测， 在完整可运行的 Android 模拟器中把对抗事件注入真实应用工作流。
 
 `环境: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
+
+#### MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control (MobileSafetyBench) (2024-10)
+
+填补了当时的一个完全空白——尽管移动设备控制 agent 会直接接触个人信息与设备设置，却没有任何 标准化的安全评测基准。该基准基于 Android 模拟器构建以保证真实性，覆盖消息、银行等类应用， 并刻意区分了两类常被混为一谈的风险：**滥用**（agent 被要求做有害之事）与**负面副作用** （agent 在追求正当目标的过程中造成危害）。任务同时覆盖日常场景与面对间接提示注入时的鲁棒性。
+
+`环境: Mobile` ｜ [arXiv:2410.17520](https://arxiv.org/abs/2410.17520)

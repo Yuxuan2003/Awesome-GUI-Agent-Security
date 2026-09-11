@@ -35,8 +35,13 @@ contribution still stands, it probably doesn't belong here.
 
 ### Time range
 
-**2025.01 onwards only.** The date is the **arXiv v1 submission month**, not a v2/v3 revision —
-CI compares against arXiv and will reject mismatches.
+**2024.01 onwards.** The lower bound was moved back from 2025.01 because 2024 is when this
+line of work was founded — WIPI, EIA, BrowserART, GuardAgent, ST-WebAgentBench and
+MobileSafetyBench all date from that year, and omitting them breaks the field's lineage.
+Papers from 2023 and earlier were surveyed and contain essentially no on-topic work.
+
+The date is the **arXiv v1 submission month**, not a v2/v3 revision — CI compares against
+arXiv and will reject mismatches.
 
 ---
 

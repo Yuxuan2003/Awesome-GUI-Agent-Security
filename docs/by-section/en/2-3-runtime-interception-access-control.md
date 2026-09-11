@@ -55,3 +55,9 @@ Stress-tests monitoring systems for covert agent misbehavior such as secretly sh
 Frames the core tension as balancing task performance against evolving hidden web threats over long action sequences, and notes that prior work is confined to single-objective optimization or single-turn settings. HarmonyGuard is a multi-agent framework whose Policy Agent automatically extracts and maintains structured security policies from unstructured external documents and keeps updating them, addressing the practical problem that hand-written policies go stale. The dual-objective optimization jointly targets safety and utility rather than trading one for the other.
 
 `Env: Web` ｜ [arXiv:2508.04010](https://arxiv.org/abs/2508.04010)
+
+#### GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning (GuardAgent) (2024-06)
+
+The first guardrail *agent* — rather than a classifier or a filter, it protects a target agent by dynamically checking whether its actions satisfy given safety guard requests. The design is notable for how it escapes the reliability limits of LLM judgment: GuardAgent analyses the guard request into a task plan, maps that plan into guardrail *code*, and executes it, so enforcement is deterministic even though the reasoning is LLM-based, with in-context demonstrations retrieved from a memory of prior tasks. It also contributes EICU-AC for healthcare-agent access control and Mind2Web-SC for web-agent safety policies.
+
+`Env: Web` ｜ [arXiv:2406.09187](https://arxiv.org/abs/2406.09187)

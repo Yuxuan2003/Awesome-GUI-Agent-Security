@@ -31,3 +31,15 @@ Addresses the novel risks that arise once computer-use agents can act persistent
 Argues that existing visual privacy datasets are largely static natural images and therefore cannot capture two properties that define privacy risk in GUI workflows: context dependence and task relevance. GUIGuard-Bench supplies 241 real GUI-agent trajectories with 4,080 screenshots across Android and PC. The annotation design is the contribution — each screenshot is labeled at region level with privacy bounding boxes, semantic categories, risk levels, and critically whether that private information is actually needed to complete the task, which is exactly the distinction a masking defense must get right.
 
 `Env: Mobile, Desktop` ｜ [arXiv:2601.18842](https://arxiv.org/abs/2601.18842)
+
+#### SusBench: An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents (SusBench) (2025-10)
+
+Evaluates CUA susceptibility to UI dark patterns — designs that manipulate users into unintended actions — drawing nine common types from existing taxonomies and injecting believable instances into real consumer websites via code injection, yielding 313 tasks across 55 sites. The methodological strength is the human validation: a study with 29 participants confirmed the injections read as highly realistic, with the vast majority never noticing they had been planted by the researchers. That control is what makes the side-by-side comparison of five state-of-the-art CUAs against human participants credible.
+
+`Env: Web, Desktop` ｜ [arXiv:2510.11035](https://arxiv.org/abs/2510.11035)
+
+#### RiOSWorld: Benchmarking the Risk of Multimodal Computer-Use Agents (RiOSWorld) (2025-05)
+
+Poses the transfer question head-on: can safety risk principles designed and aligned for general MLLMs in dialogue settings carry over to real-world computer-use scenarios? It argues prior risk evaluations fail on one of two counts — either they lack realistic interactive environments, or they narrow onto a few specific risk types — and both failures ignore the complexity and variability that define real environments. RiOSWorld evaluates risk during actual computer manipulation, and has become one of the more widely referenced risk benchmarks for multimodal CUAs.
+
+`Env: Desktop` ｜ [arXiv:2506.00618](https://arxiv.org/abs/2506.00618)

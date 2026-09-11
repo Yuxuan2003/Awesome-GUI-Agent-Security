@@ -1998,3 +1998,268 @@ papers:
       约束。VerificAgent 结合三部分：专家策划的领域知识种子、训练期基于轨迹的迭代记忆增长、以及
       部署前的人工事实核查环节。真正的贡献在其框定方式：让人类**一次性**纠正高影响错误，就把
       经核验的记忆变成一份「冻结的安全契约」，后续所有动作都必须满足它，且无需微调模型。
+
+  - id: "2402.16965"
+    title: "WIPI: A New Web Threat for LLM-Driven Web Agents"
+    abbr: "WIPI"
+    date: "2024-02"
+    venue: "arXiv"
+    section: "1.1"
+    env: [web]
+    summary: >-
+      One of the earliest papers to pose the question directly — as countless web agents shipped
+      and moved toward everyday deployment, are they secure at all? WIPI introduces a threat that
+      indirectly controls a web agent by embedding malicious instructions in publicly accessible
+      webpages, requiring no access to the agent itself. The method works black-box and focuses on
+      the form and content of the indirect instruction rather than on model internals, which is
+      what makes it both efficient and stealthy. Historically this is a foundational reference for
+      the indirect injection line of work on web agents.
+    summary_zh: >-
+      最早直接抛出这个问题的工作之一——在无数 web agent 相继发布、逐步走向日常部署之际，它们究竟
+      安全吗？WIPI 提出一种新威胁：把恶意指令嵌入公开可访问的网页，从而间接控制 web agent，全程
+      无需接触 agent 本身。方法在黑盒环境下工作，关注的是间接指令的形式与内容而非模型内部，这正是
+      它兼具效率与隐蔽性的原因。就领域脉络而言，这是 web agent 间接注入这条线的奠基性文献。
+
+  - id: "2409.11295"
+    title: "EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage"
+    abbr: "EIA"
+    date: "2024-09"
+    venue: "arXiv"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      The first study of privacy risk for generalist web agents in adversarial environments,
+      motivated by an observation that is obvious in hindsight: everyday web tasks such as booking
+      flights inherently involve the user's PII, so an agent that touches a compromised site
+      leaks by construction. The paper presents a realistic website-side threat model with two
+      adversarial targets — stealing specific PII, or the entire user request — and proposes the
+      Environmental Injection Attack, which injects content designed to blend into the environment
+      the agent operates in. This paper named the environmental-injection category that later work
+      builds on.
+    summary_zh: >-
+      首个研究通用 web agent 在对抗环境下隐私风险的工作，出发点事后看来显而易见：订机票这类日常
+      网页任务本身就涉及用户 PII，因此 agent 一旦接触到被攻陷的网站，泄露就是结构性的。论文给出
+      网站侧的现实威胁模型，含两类攻击目标——窃取特定 PII，或窃取完整的用户请求——并提出「环境
+      注入攻击」（EIA），注入的内容经设计能融入 agent 所处的环境。这篇论文命名了后续工作赖以展开的
+      「环境注入」这一攻击类别。
+
+  - id: "2410.13886"
+    title: "Refusal-Trained LLMs Are Easily Jailbroken As Browser Agents"
+    abbr: "BrowserART"
+    date: "2024-10"
+    venue: "arXiv"
+    section: "0"
+    env: [web]
+    summary: >-
+      Asks a question that reframed how the field thinks about agent safety: does the refusal
+      behavior instilled in chat contexts generalize to non-chat, agentic use? The stakes differ
+      in kind rather than degree — unlike a chatbot, an agent holding a browser or a phone acts on
+      the real world, so a failed refusal produces consequences rather than text. The paper ships
+      BrowserART, a red-teaming suite of 100 browser-related harmful behaviors spanning synthetic
+      and real websites, drawing partly on HarmBench and AirBench 2024. The finding that refusal
+      training transfers poorly to the agentic setting motivated much of the subsequent work.
+    summary_zh: >-
+      提出了一个重塑领域思考方式的问题：在聊天场景中训练出的拒答行为，能否泛化到非聊天的 agentic
+      场景？其风险是**性质**上的差异而非程度差异——与聊天机器人不同，手握浏览器或手机的 agent 直接
+      作用于真实世界，因此一次拒答失败产生的是后果而不是文本。论文发布红队测试套件 BrowserART，
+      含 100 项浏览器相关有害行为、覆盖合成与真实网站，部分取材自 HarmBench 与 AirBench 2024。
+      「拒答训练难以迁移到 agentic 场景」这一结论催生了此后大量工作。
+
+  - id: "2410.06703"
+    title: "ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents"
+    abbr: "ST-WebAgentBench"
+    date: "2024-10"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Criticizes benchmarks that measure only whether an agent finishes a task, ignoring whether it
+      finished safely or in a way an enterprise can trust — and argues safety and trustworthiness
+      are prerequisites for adoption in critical workflows, not add-ons. Each of its 222 tasks
+      pairs with ST policies, concise rules encoding constraints, scored on six orthogonal
+      dimensions such as user consent and robustness. Its lasting contribution is the metric:
+      Completion Under Policy credits only completions respecting every applicable policy, and
+      three open agents score under two-thirds of their nominal success rate under CuP.
+    summary_zh: >-
+      批评那些只测量「任务是否完成」的基准——它们忽略了完成得是否安全、是否达到企业可信任的程度——
+      并主张在关键工作流中，安全与可信是采用的前置条件而非附加项。其 222 个任务每个都配有 ST 策略
+      （编码约束的简明规则），并在用户同意、鲁棒性等六个正交维度上打分。真正留下来的贡献是那个
+      指标：Completion Under Policy 只把「遵守了所有适用策略」的完成计为成功，而三个开源 agent
+      在 CuP 下的得分不足其名义成功率的三分之二。
+
+  - id: "2406.09187"
+    title: "GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning"
+    abbr: "GuardAgent"
+    date: "2024-06"
+    venue: "arXiv"
+    section: "2.3"
+    env: [web]
+    summary: >-
+      The first guardrail *agent* — rather than a classifier or a filter, it protects a target agent
+      by dynamically checking whether its actions satisfy given safety guard requests. The design
+      is notable for how it escapes the reliability limits of LLM judgment: GuardAgent analyses the
+      guard request into a task plan, maps that plan into guardrail *code*, and executes it, so
+      enforcement is deterministic even though the reasoning is LLM-based, with in-context
+      demonstrations retrieved from a memory of prior tasks. It also contributes EICU-AC for
+      healthcare-agent access control and Mind2Web-SC for web-agent safety policies.
+    summary_zh: >-
+      首个护栏 **agent**——它不是分类器或过滤器，而是通过动态检查目标 agent 的动作是否满足给定的
+      安全守护请求来实施保护。设计上值得注意的是它如何绕开 LLM 判断的可靠性上限：GuardAgent 先把
+      守护请求解析为任务计划，再把计划映射为护栏**代码**并执行，因此尽管推理由 LLM 承担，强制执行
+      仍是确定性的；同时从存有历史任务经验的记忆模块中检索上下文示例。工作还贡献了两个基准：
+      面向医疗 agent 访问控制的 EICU-AC，与面向 web agent 安全策略的 Mind2Web-SC。
+
+  - id: "2410.17401"
+    title: "AdvAgent: Controllable Blackbox Red-teaming on Web Agents"
+    abbr: "AdvAgent"
+    date: "2024-10"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      A black-box red-teaming framework that departs from hand-crafted adversarial prompts by
+      training an adversarial prompter model through a reinforcement learning pipeline, optimizing
+      prompts from the black-box agent's own feedback. The design goal is not raw success but
+      controllability alongside stealthiness — attacks that remain steerable rather than merely
+      effective. It reports high success rates against state-of-the-art GPT-4-based web agents
+      across diverse tasks, and finds existing prompt-based defenses offer only limited
+      protection, an early datapoint for why prompt hardening alone does not hold.
+    summary_zh: >-
+      黑盒红队框架，摆脱人工编写对抗 prompt 的做法，转而用强化学习流水线训练一个对抗 prompter
+      模型，依据黑盒 agent 自身的反馈来优化 prompt。其设计目标不只是成功率，而是在隐蔽性之外还要
+      **可控性**——攻击要保持可操纵，而非仅仅有效。论文报告在多样任务上对基于 GPT-4 的前沿 web
+      agent 取得高成功率，并发现现有基于 prompt 的防御保护有限，这是「单靠 prompt 加固撑不住」
+      的一个早期证据。
+
+  - id: "2609.09212"
+    title: "AgentHijack: Visual Patch Attacks on Multimodal Computer-Use Agents"
+    abbr: "AgentHijack"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "1.2"
+    env: [desktop, web]
+    summary: >-
+      Insists on end-to-end verification rather than stopping at model output: the question is
+      whether a local visual patch produces verifiable *environmental consequences* across the
+      full chain of screenshot input, VLM generation, action parsing, and environment execution.
+      Patches are trained and deployed on author-controlled GitHub Pages and a locally hosted
+      CSDN clone, evaluated across five open or publicly available GUI-agent and VLM backends
+      over 600 instance-level online cases. The three-stage metrics expose where attacks decay —
+      T-ASR 84.5%, TAPR 47.0%, but E2E-ASR only 20.3%. Trajectory analysis found the most
+      unsettling pattern: in some successful cases the agent runs the malicious terminal command
+      first, then calmly resumes the user's original benign task.
+    summary_zh: >-
+      坚持做端到端验证而不止于模型输出：真正要回答的问题是，一个局部视觉补丁能否在「截图输入 →
+      VLM 生成 → 动作解析 → 环境执行」的完整链条上产生**可验证的环境后果**。补丁在作者控制的
+      GitHub Pages 与本地部署的 CSDN 克隆站上训练与投放，在五个开源或公开可得的 GUI agent /
+      VLM 后端上评测，汇总 600 个实例级在线用例。三级指标清楚地暴露了攻击在哪一环衰减——
+      T-ASR 84.5%、TAPR 47.0%，而 E2E-ASR 仅 20.3%。轨迹分析发现了最令人不安的现象：在部分
+      成功案例中，agent 先执行了恶意终端命令，随后又不动声色地继续完成用户原本的良性任务。
+
+  - id: "2410.17520"
+    title: "MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control"
+    abbr: "MobileSafetyBench"
+    date: "2024-10"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Fills what was then a complete void — no standardized benchmark existed for the safety of
+      mobile device-control agents, despite these agents interacting directly with personal
+      information and device settings. Built on Android emulators for realistic grounding, it
+      spans applications including messaging and banking, and deliberately separates two risk
+      families that are often conflated: misuse (the agent is asked to do something harmful) and
+      negative side effects (the agent causes harm while pursuing a legitimate goal). Tasks cover
+      both everyday scenarios and robustness against indirect prompt injection.
+    summary_zh: >-
+      填补了当时的一个完全空白——尽管移动设备控制 agent 会直接接触个人信息与设备设置，却没有任何
+      标准化的安全评测基准。该基准基于 Android 模拟器构建以保证真实性，覆盖消息、银行等类应用，
+      并刻意区分了两类常被混为一谈的风险：**滥用**（agent 被要求做有害之事）与**负面副作用**
+      （agent 在追求正当目标的过程中造成危害）。任务同时覆盖日常场景与面对间接提示注入时的鲁棒性。
+
+  - id: "2506.00618"
+    title: "RiOSWorld: Benchmarking the Risk of Multimodal Computer-Use Agents"
+    abbr: "RiOSWorld"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "3.1"
+    env: [desktop]
+    summary: >-
+      Poses the transfer question head-on: can safety risk principles designed and aligned for
+      general MLLMs in dialogue settings carry over to real-world computer-use scenarios? It
+      argues prior risk evaluations fail on one of two counts — either they lack realistic
+      interactive environments, or they narrow onto a few specific risk types — and both failures
+      ignore the complexity and variability that define real environments. RiOSWorld evaluates
+      risk during actual computer manipulation, and has become one of the more widely referenced
+      risk benchmarks for multimodal CUAs.
+    summary_zh: >-
+      正面提出「迁移性」问题：为对话场景下的通用 MLLM 设计并对齐的安全风险原则，能否有效迁移到
+      真实的计算机操作场景？论文指出以往的风险评测总在两点之一上失守——要么缺乏真实的交互环境，
+      要么把范围收窄到少数几类特定风险——而这两种失守都忽略了真实环境所固有的复杂性与多变性。
+      RiOSWorld 在真实的计算机操作过程中评测风险，已成为多模态 CUA 风险评测中被较多引用的基准之一。
+
+  - id: "2506.02456"
+    title: "VPI-Bench: Visual Prompt Injection Attacks for Computer-Use Agents"
+    abbr: "VPI-Bench"
+    date: "2025-06"
+    venue: "arXiv"
+    section: "3.4"
+    env: [desktop, web]
+    summary: >-
+      Notes that prior work concentrated on browser-based agents and HTML-level attacks, leaving
+      CUAs — which hold full system access and can manipulate files, read user data and execute
+      arbitrary commands — comparatively unexamined. VPI-Bench studies instructions embedded
+      *visually* in rendered interfaces, which by construction bypass text-level sanitization, and
+      supplies 306 test cases across five widely used platforms. Each case is an interactive
+      variant of a real web platform deployed in a realistic environment with a visually embedded
+      malicious prompt, covering both CUAs and browser-use agents.
+    summary_zh: >-
+      指出以往工作集中在浏览器 agent 与 HTML 层攻击上，而握有完整系统权限、能操作文件、读取用户
+      数据、执行任意命令的 CUA 反而研究不足。VPI-Bench 研究**视觉嵌入**于渲染界面中的恶意指令
+      ——这类指令在构造上就绕开了文本层净化——并提供覆盖五个常用平台的 306 个测试用例。每个用例都是
+      真实网页平台的交互式变体，部署在真实环境中并含一处视觉嵌入的恶意 prompt，同时覆盖 CUA 与
+      browser-use agent 两类目标。
+
+  - id: "2602.03255"
+    title: "LPS-Bench: Benchmarking Safety Awareness of Computer-Use Agents in Long-Horizon Planning under Benign and Adversarial Scenarios"
+    abbr: "LPS-Bench"
+    date: "2026-02"
+    venue: "arXiv"
+    section: "3.4"
+    env: [desktop]
+    summary: >-
+      Identifies a timing gap in existing benchmarks: they focus on short-horizon or GUI-level
+      tasks and score execution-time errors, but never test whether an agent can *anticipate*
+      risk at planning time — before any action fires. LPS-Bench evaluates planning-time safety
+      awareness of MCP-based CUAs on long-horizon tasks, covering benign and adversarial
+      interaction across 65 scenarios spanning 7 task domains and 9 risk types, with a multi-agent
+      generation pipeline and LLM-as-a-judge assessment over the planning trajectory. Existing
+      CUAs show substantial deficiencies at maintaining safety awareness across long plans.
+    summary_zh: >-
+      指出现有基准在**时机**上的缺口：它们聚焦短周期或 GUI 层任务、评判执行期错误，却从未检验
+      agent 能否在**规划阶段**（任何动作发生之前）预见风险。LPS-Bench 评测基于 MCP 的 CUA 在
+      长周期任务下的规划期安全意识，覆盖良性与对抗两类交互，含 7 个任务域、9 类风险的 65 个场景，
+      配以多 agent 自动化数据生成流水线与针对规划轨迹的 LLM-as-a-judge 评测协议。实验显示现有
+      CUA 在长程规划中维持安全意识的能力存在明显不足。
+
+  - id: "2510.11035"
+    title: "SusBench: An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents"
+    abbr: "SusBench"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "3.1"
+    env: [web, desktop]
+    summary: >-
+      Evaluates CUA susceptibility to UI dark patterns — designs that manipulate users into
+      unintended actions — drawing nine common types from existing taxonomies and injecting
+      believable instances into real consumer websites via code injection, yielding 313 tasks
+      across 55 sites. The methodological strength is the human validation: a study with 29
+      participants confirmed the injections read as highly realistic, with the vast majority
+      never noticing they had been planted by the researchers. That control is what makes the
+      side-by-side comparison of five state-of-the-art CUAs against human participants credible.
+    summary_zh: >-
+      评测 CUA 对 UI 暗黑模式（诱导用户做出非本意操作的界面设计）的易感程度：从既有分类法中选取
+      九种常见类型，通过代码注入在真实消费类网站上构造可信实例，形成覆盖 55 个网站的 313 个评测
+      任务。方法上的强项在于人类验证环节——29 名参与者的实验确认这些注入看起来高度真实，绝大多数
+      人完全没有察觉它们是研究团队植入的。正是这一对照使得「五个前沿 CUA 与人类参与者并排比较」
+      的结论具备可信度。
