@@ -1,14 +1,19 @@
 name: Link Check
 
 # 两层校验：
-#   1. build.py --check —— 结构与格式（快，每个 PR 都跑，不联网）
-#   2. check_links.py   —— arXiv 可达性 + 标题精确匹配 + v1 日期一致性（联网，慢）
+#   1. build.py --check —— 结构与格式（不联网，最快）
+#   2. check_links.py   —— arXiv 可达性 + 标题精确匹配 + v1 日期一致性
 #
-# PR 只跑抽样（12 条），避免 arXiv 限速拖慢反馈；每周全量跑一次抓外链腐坏。
+# 一律跑全量。check_links.py 改为 id_list 批量查询后（40 条/批），
+# 139 篇只需 4 次请求、约 14 秒，抽样模式已无必要。
+#
+# 历史问题：早期逐条请求 + 3.2s 间隔，在 CI 上会被 arXiv 限流 ——
+# 2026-09-14 定时任务实测 126 条只有前 12 条通过、其余 114 条全报「无法访问」，
+# 而同一份数据本地跑全过。若再遇到大批条目集体失败，先怀疑限流，
+# 重跑 workflow，**不要据此删除 papers.yaml 里的条目**。
 #
 # 注意 push 不加 paths 过滤：首次推送时 data/** 属新增文件，
 # paths 过滤不会匹配，导致 Link Check 无法在建仓时自动跑起来（实测踩过）。
-# 本 workflow 很轻，不过滤也无所谓。
 
 on:
   pull_request:
@@ -18,7 +23,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 3 * * 1'   # 每周一 03:00 UTC 全量
+    - cron: '0 3 * * 1'   # 每周一 03:00 UTC，抓外链腐坏
   workflow_dispatch:
 
 jobs:
@@ -34,10 +39,5 @@ jobs:
       - name: 结构与格式校验
         run: python3 scripts/build.py --check
 
-      - name: arXiv 元数据校验（抽样）
-        if: github.event_name == 'pull_request'
-        run: python3 scripts/check_links.py --sample 12
-
       - name: arXiv 元数据校验（全量）
-        if: github.event_name != 'pull_request'
         run: python3 scripts/check_links.py

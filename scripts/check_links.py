@@ -31,8 +31,10 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 API = "https://export.arxiv.org/api/query"
-SLEEP = 3.2       # arXiv 有速率限制，相邻请求间隔
-RETRY = 3
+BATCH = 40        # arXiv 的 id_list 支持批量查询。逐条请求会在十几次后被限流
+                  # （实测 CI 上 126 条只有前 12 条通过、其余 114 条全部「无法访问」）
+SLEEP = 3.2       # 批次之间的间隔
+RETRY = 4
 SIM_MIN = 0.92    # 标题相似度阈值。不要放太松：
                   # "... Part I" 与 "... Part II" 相似度可达 0.995，
                   # 正是要抓的错链场景，因此同时做长度差与子串检查
@@ -42,23 +44,44 @@ def norm(s):
     return re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", s or "")).strip().lower()
 
 
-def fetch(aid):
-    """返回 (title, v1_date) 或 None"""
-    url = API + "?" + urllib.parse.urlencode({"id_list": aid, "max_results": 1})
+def fetch_batch(aids):
+    """批量查询，返回 {id: (title, v1_date)}。
+
+    关键：用 id_list 一次查多条，而不是逐条请求。arXiv 对高频单条请求限流很快
+    （CI 环境尤其明显，共享出口 IP），逐条模式下 100+ 条几乎必然大面积失败，
+    表现为「论文集体消失」这种明显不可能的结果。
+
+    网络连续失败时抛错而非返回空 —— 否则会被误判为「这些论文都不存在」。
+    """
+    url = API + "?" + urllib.parse.urlencode(
+        {"id_list": ",".join(aids), "max_results": len(aids)})
+    last = None
     for attempt in range(RETRY):
         try:
-            raw = urllib.request.urlopen(url, timeout=45).read().decode()
+            raw = urllib.request.urlopen(url, timeout=90).read().decode()
+            break
         except Exception as e:
-            if attempt == RETRY - 1:
-                return None
-            time.sleep(10)
+            last = e
+            if attempt < RETRY - 1:
+                wait = 15 * (attempt + 1)
+                print(f"    批次请求失败（第 {attempt + 1} 次），{wait}s 后重试：{e}",
+                      file=sys.stderr)
+                time.sleep(wait)
+    else:
+        raise RuntimeError(
+            f"arXiv 批量请求连续 {RETRY} 次失败：{last}\n"
+            f"        这是网络/限流问题，不代表论文不存在 —— 请勿据此删除条目。")
+
+    out = {}
+    for blk in re.findall(r"<entry>(.*?)</entry>", raw, re.S):
+        m = re.search(r"<id>https?://arxiv\.org/abs/([^<]+)</id>", blk)
+        t = re.findall(r"<title>(.*?)</title>", blk, re.S)
+        pub = re.findall(r"<published>(.*?)</published>", blk)
+        if not m or not t:
             continue
-        titles = re.findall(r"<title>(.*?)</title>", raw, re.S)
-        pub = re.findall(r"<published>(.*?)</published>", raw)
-        if len(titles) < 2:
-            return None
-        return " ".join(titles[1].split()), (pub[0][:7] if pub else None)
-    return None
+        out[m.group(1).split("v")[0]] = (
+            " ".join(t[0].split()), pub[0][:7] if pub else None)
+    return out
 
 
 def main():
@@ -73,23 +96,40 @@ def main():
     if args.sample and args.sample < len(targets):
         targets = random.sample(targets, args.sample)
 
-    print(f"校验 {len(targets)} 条 arXiv 记录（间隔 {SLEEP}s）\n")
-
+    # 占位符先单独拦下，不必发请求
     bad, warn = [], []
-    for i, p in enumerate(targets, 1):
+    real = []
+    for p in targets:
+        if "XXXXX" in str(p["id"]).upper():
+            bad.append(f"[{p.get('abbr') or p['title'][:40]}] "
+                       f"ID 是未回填的占位符：{p['id']}")
+        else:
+            real.append(p)
+
+    batches = [real[i:i + BATCH] for i in range(0, len(real), BATCH)]
+    print(f"校验 {len(real)} 条 arXiv 记录（{len(batches)} 批 × 最多 {BATCH} 条/批）\n")
+
+    meta = {}
+    for bi, grp in enumerate(batches, 1):
+        print(f"  批次 {bi}/{len(batches)}（{len(grp)} 条）…", flush=True)
+        meta.update(fetch_batch([str(p["id"]) for p in grp]))
+        if bi < len(batches):
+            time.sleep(SLEEP)
+
+    # 全批次都取不到 = 请求层面出了问题，而非数据错误。宁可报错也不要指控条目不存在。
+    if real and not meta:
+        sys.exit("✗ 所有批次均未返回任何条目 —— 判定为 arXiv 请求异常而非数据错误，"
+                 "请稍后重试，不要据此修改 papers.yaml")
+
+    print()
+    for i, p in enumerate(real, 1):
         aid = str(p["id"])
         tag = p.get("abbr") or p["title"][:40]
+        got = meta.get(aid)
 
-        if "XXXXX" in aid.upper():
-            bad.append(f"[{tag}] ID 是未回填的占位符：{aid}")
-            print(f"  {i:>3}. ✗ {tag} — 占位符")
-            continue
-
-        got = fetch(aid)
         if got is None:
             bad.append(f"[{tag}] arXiv {aid} 无法访问或不存在")
-            print(f"  {i:>3}. ✗ {tag} — 取回失败")
-            time.sleep(SLEEP)
+            print(f"  {i:>3}. ✗ {tag} — 未在返回结果中")
             continue
 
         got_title, v1 = got
@@ -110,8 +150,6 @@ def main():
         else:
             print(f"  {i:>3}. ✓ {tag}")
 
-        time.sleep(SLEEP)
-
     print()
     if warn:
         print(f"{len(warn)} 个警告：")
@@ -124,7 +162,7 @@ def main():
             print(f"  ✗ {e}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"✓ 全部通过（{len(targets)} 条，0 不一致）")
+    print(f"✓ 全部通过（{len(real)} 条，0 不一致）")
 
 
 if __name__ == "__main__":
