@@ -4,6 +4,18 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### When Agents See Differently: Exposing UI Desynchronization Threats in Mobile Agents (UI Desynchronization) (2026-09)
+
+人类监督 mobile agent 依赖一个未被言明的前提：用户与 agent 从同一界面看到一致的信息。 本文证明这个前提可被系统性打破。用户经由物理屏幕与人类视觉系统感知界面，受遮挡与亮度 对比度限制；而 agent 消费的是数字截图，还额外拿到暴露非视觉控件元数据的无障碍表示。 同一个 UI 状态因此向双方呈现实质不同的信息，作者称之为「人机 UI 失同步」。实验表明， 重打包的合法 APK 克隆可以利用这一失同步把 agent 引向攻击者指定的动作，同时对人类用户 保持功能与行为完全一致；扰动在部署前嵌入，无需获取运行时指令、无需检测 agent、无需在线 适配。在五个 mobile agent 框架、三个主干模型、546 个任务上，静态与动态误导率分别为 77.9% 与 66.9%。186 人的问卷研究进一步确认这些视觉扰动人眼难以察觉。
+
+`环境: Mobile` ｜ [arXiv:2609.16732](https://arxiv.org/abs/2609.16732)
+
+#### PriMobiBench: Characterizing Visual Privacy Leakage in VLM-Driven Mobile GUI Agents (PriMobiBench) (2026-09)
+
+移动 GUI agent 通过解读截图流自动化手机任务，这一设计带来严重但研究不足的隐私风险： 既包括屏上敏感信息的直接泄露，也包括非预期的用户画像推断，而两者都缺少标准化基准来量化。 PriMobiBench 是首个系统评测截图驱动移动 agent 的视觉隐私泄露与画像风险的基准，提供 数据生成、轨迹构建与多模型评测的统一流水线，并附数据集 MobiLeak——来自 16 个应用的 执行轨迹，覆盖 25 类隐私属性、2960 个嵌入的隐私实例。结果相当刺眼：VLM 直接提取敏感 信息成功率最高 82.5%；即便没有显式泄露，也能从聚合的视觉证据中以约 70% 的成功率推断出 用户画像。作者提出的缓解方案在上云前遮蔽「隐私敏感但与任务无关」的 UI 元素，可将画像 成功率最多降低 58%，代价仅约 8% 的性能损失。
+
+`环境: Mobile` ｜ [arXiv:2609.13873](https://arxiv.org/abs/2609.13873)
+
 #### ADeptS-Bench: Measuring the Trustworthiness of Computer Use Agents Across Devices (ADeptS-Bench) (2026-08)
 
 针对「没有基准能同时考察 CUA 在视觉界面下的安全性与对模糊指令的处理」这一空缺，提出双流 可信度基准 ADeptS-Bench：Safety 流提供威胁嵌在视觉界面中的良性/恶意配对任务，Disambiguation 流考察 agent 在意图模糊时是否会主动澄清。评测 7 个模型的结论相当刺眼——没有模型能在任务 成功率超 80% 的同时把攻击成功率压到 30% 以下；所有模型都会毫不犹豫点下 2.5 万美元订单的 「结账」，也没有一个能识别出被标为「优化」的按钮实际是「恢复出厂设置」。
@@ -34,6 +46,12 @@
 
 `环境: Mobile` ｜ [arXiv:2608.04755](https://arxiv.org/abs/2608.04755)
 
+#### FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory (FocusMem) (2026-08)
+
+潜在记忆把多模态 GUI 轨迹压缩成少量连续 token，但现有方法把每条轨迹映射到一个固定 记忆块，且主要靠下一动作监督来训练。由此带来三个实际问题：压缩过程中细节丢失、同一个 记忆块要服务所有决策阶段、检索到不相关的轨迹仍会误导 agent。FocusMem 把这些职责拆开： 角色感知的内容基底促使情景记忆保留可复用经验、工作记忆保留当前任务进展；状态条件化的 读出机制为同一份存储证据生成面向具体决策的视图；轻量的信任门可在检索不可靠时抑制记忆。 最后这一项正是它进入安全清单的理由——它把检索到的记忆当作需要设门的不可信输入， 而这正是对抗记忆投毒式操纵的结构性防御。
+
+`环境: Mobile, Desktop, Web` ｜ [arXiv:2608.04530](https://arxiv.org/abs/2608.04530)
+
 #### Alignment Is Local: A Paired Diagnostic for GUI Agents under User Persuasion (Alignment Is Local) (2026-07)
 
 提出成对诊断方法，衡量 GUI agent 的安全对齐在多轮用户说服下的退化程度。关键发现是对齐 具有「局部性」：agent 在单轮拒绝有害请求，但在用户连续追问、提供看似合理的理由后会逐步 让步，且这种退化不体现在任何单轮评测指标上。说明当前基于单轮的安全评测无法反映真实 多轮交互下的风险。
@@ -57,6 +75,12 @@
 系统分析第三方移动 agent 引入的新攻击面，核心是「感知鸿沟」——agent 能读取到屏幕上用户 实际看不到或不会注意的内容（隐藏视图、后台通知、无障碍节点），攻击者可利用这一差异实施 用户完全无法察觉的诱导。指出第三方 agent 生态缺乏对 agent 可见性范围的约束机制。
 
 `环境: Mobile` ｜ [arXiv:2607.00333](https://arxiv.org/abs/2607.00333)
+
+#### AOHP: An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction (AOHP) (2026-06)
+
+面向终端用户的操作系统是为「以应用为中心」的工作流设计的，对 AI agent 几乎没有原生支持； 因此在传统系统上跑 agent 会带来执行开销与安全风险。agent 原生操作系统的概念正在出现， 但社区缺少一个开放测试平台，来探索 agent 中介的交互究竟需要哪些架构原语。AOHP （Android Open Harness Project）是基于 AOSP 构建的 OS 级 agent harness，核心设计原则是 把 agent 当作一等的 OS 参与者，从而支持自适应用户界面与 agent 友好的运行时环境。收录 于此是因为它把安全问题从行为层面推到了结构层面：它提供了一个基底，可以在其上原型化并 对比面向 GUI agent 的 OS 级隔离与权限原语，而不是给「屏幕抓取」范式事后加装护栏。
+
+`环境: Mobile` ｜ [arXiv:2606.23449](https://arxiv.org/abs/2606.23449)
 
 #### CAPED: Context-Aware Privacy Exposure Defense for Mobile GUI Agents (CAPED) (2026-06)
 
@@ -106,6 +130,12 @@
 
 `环境: Mobile, 跨环境` ｜ [arXiv:2603.08316](https://arxiv.org/abs/2603.08316)
 
+#### Blind Gods and Broken Screens: Architecting a Secure, Intent-Centric Mobile Agent Operating System (Aura) (2026-02)
+
+本文主张当前主流的「屏幕即接口」范式本身就是病根而非细节：让 agent 依赖非结构化的视觉 数据，既继承了屏幕固有的结构性脆弱性，也与移动生态的经济基础相冲突。作者以一款已上线的 商用助手为案例做系统性安全分析，把威胁面拆为 Agent 身份、外部接口、内部推理、动作执行 四个维度，暴露出伪造应用身份、视觉欺骗、间接提示注入、越权提权等缺陷，并且都可追溯到 同一个根源——对非结构化像素的依赖。给出的答案是推倒重来：提出 Aura（Agent 通用运行时 架构），用以意图为中心的接口取代脆弱的 GUI 抓取，使安全性来自架构本身，而不是靠给感知层 打补丁。
+
+`环境: Mobile` ｜ [arXiv:2602.10915](https://arxiv.org/abs/2602.10915)
+
 #### Anonymization-Enhanced Privacy Protection for Mobile GUI Agents: Available but Invisible (Available but Invisible) (2026-02)
 
 诊断出移动 GUI agent 现有隐私防御为何都不够用：减少 UI 暴露、只混淆与任务无关内容、或依赖 用户授权，这三条路都绕开了最难的情况——如何保护**本身就是任务必需**的敏感信息。论文提出的 原则是「可用但不可见」：敏感数据对执行仍然可用，但云端 agent 永远看不到其真实内容。实现上 结合 PII 感知的 UI 内容识别模型与匿名化，使 agent 在占位符上操作，真实值始终不越出可信边界。
@@ -147,6 +177,18 @@
 把环境注入确立为区别于提示类攻击的、研究不足的威胁向量：它不改文本指令，而是把欺骗性 覆盖层、伪造通知这类对抗 UI 元素直接插入 GUI 以污染 agent 的视觉感知，从而绕开文本层 防护，可导致隐私泄漏、财务损失甚至不可逆的设备失陷。GhostEI-Bench 跳出静态图像评测， 在完整可运行的 Android 模拟器中把对抗事件注入真实应用工作流。
 
 `环境: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
+
+#### Invisible to Humans, Triggered by Agents: Stealthy Jailbreak Attacks on Mobile Vision-Language Agents (Agent-Only Perceptual Injection) (2025-10)
+
+此前针对移动 agent 的视觉注入要么依赖用户能察觉的持续视觉篡改，要么需要系统级权限。 本文找到一个更干净的触发条件：人与 agent 的交互存在稳定差异——自动化 agent 产生的 接触式触摸信号近乎为零。这个信号被用作判别器，从而实现「仅对 agent 生效的感知注入」： 恶意内容只在 agent 交互时暴露，人类用户则不易感知。为适配移动 UI 约束与一次性交互场景， 作者提出 HG-IDA*，用单次优化构造可绕过 LVLM 安全过滤的越狱提示。这个机制的巧妙之处在于 它不是把载荷藏起来不让人看见，而是在证明「触摸者不是人」之前根本不投放载荷。
+
+`环境: Mobile` ｜ [arXiv:2510.07809](https://arxiv.org/abs/2510.07809)
+
+#### VeriOS: Query-Driven Proactive Human-Agent-GUI Interaction for Trustworthy OS Agents (VeriOS) (2025-09)
+
+多数 OS agent 是为理想化环境设计的，而真实环境常常并不可信——因此要防的失败模式是 「过度执行」。VeriOS 没有外挂一层过滤器，而是把「何时该问人」变成一种可学习的能力： 提出查询驱动的人-agent-GUI 交互框架，让 agent 在正常条件下自主执行、在不可信场景中 主动向用户发问。VeriOS-Agent 采用三阶段训练（监督微调 + 组相对策略优化），目的是把 关于「可信性」的元知识与任务知识解耦，使两者可以独立调用。这个设定对 §2.4 很有意义： 确认机制不再是硬加在上层的固定策略，而是 agent 自己必须学会有选择地做出的决策。
+
+`环境: Mobile, Desktop` ｜ [arXiv:2509.07553](https://arxiv.org/abs/2509.07553)
 
 #### MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions (MVISU-Bench) (2025-08)
 

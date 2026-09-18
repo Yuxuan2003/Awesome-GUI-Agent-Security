@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### AOHP: An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction (AOHP) (2026-06)
+
+面向终端用户的操作系统是为「以应用为中心」的工作流设计的，对 AI agent 几乎没有原生支持； 因此在传统系统上跑 agent 会带来执行开销与安全风险。agent 原生操作系统的概念正在出现， 但社区缺少一个开放测试平台，来探索 agent 中介的交互究竟需要哪些架构原语。AOHP （Android Open Harness Project）是基于 AOSP 构建的 OS 级 agent harness，核心设计原则是 把 agent 当作一等的 OS 参与者，从而支持自适应用户界面与 agent 友好的运行时环境。收录 于此是因为它把安全问题从行为层面推到了结构层面：它提供了一个基底，可以在其上原型化并 对比面向 GUI agent 的 OS 级隔离与权限原语，而不是给「屏幕抓取」范式事后加装护栏。
+
+`环境: Mobile` ｜ [arXiv:2606.23449](https://arxiv.org/abs/2606.23449)
+
 #### SkillHarness: Harnessing Safe Skills for Computer-Use Agents (SkillHarness) (2026-06)
 
 针对 skill 学习类方法中一个被默认接受的假设：它们从成功轨迹中蒸馏可复用 skill，却隐含假定 环境是静态且安全的，既忽略提示注入这类对抗交互，也忽略弹窗这类环境动态。在动态环境下，这个 假设会产出有风险的 skill 与脆弱的执行——也就是说漏洞被**固化进**了 agent 的可复用库里。 SkillHarness 把 skill 的学习与使用建模为受安全约束的交互过程，引入「skill 边界」以取代 静态的 skill 抽象。
@@ -25,6 +31,12 @@
 定位到一处由架构本身造就的攻击面：多模态 web agent 同时消费截图与无障碍树，因此攻击者只需 注入 DOM 就能**同时**污染两个观测通道，并且两边叙述互相一致，使任何跨通道一致性检查都失效。 MiniWob++ 上的漏洞分析显示，带视觉成分的攻击远强于纯文本注入，暴露出以文本为中心的 VLM 安全训练所留下的缺口。DMAST 把 agent 与攻击者的交互形式化为二人零和马尔可夫博弈，通过模仿 学习、带「零确认」策略的 oracle 引导 SFT、以及最后的对抗阶段共训双方。
 
 `环境: Web` ｜ [arXiv:2603.04364](https://arxiv.org/abs/2603.04364)
+
+#### Blind Gods and Broken Screens: Architecting a Secure, Intent-Centric Mobile Agent Operating System (Aura) (2026-02)
+
+本文主张当前主流的「屏幕即接口」范式本身就是病根而非细节：让 agent 依赖非结构化的视觉 数据，既继承了屏幕固有的结构性脆弱性，也与移动生态的经济基础相冲突。作者以一款已上线的 商用助手为案例做系统性安全分析，把威胁面拆为 Agent 身份、外部接口、内部推理、动作执行 四个维度，暴露出伪造应用身份、视觉欺骗、间接提示注入、越权提权等缺陷，并且都可追溯到 同一个根源——对非结构化像素的依赖。给出的答案是推倒重来：提出 Aura（Agent 通用运行时 架构），用以意图为中心的接口取代脆弱的 GUI 抓取，使安全性来自架构本身，而不是靠给感知层 打补丁。
+
+`环境: Mobile` ｜ [arXiv:2602.10915](https://arxiv.org/abs/2602.10915)
 
 #### CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents (NOVA) (2026-01)
 

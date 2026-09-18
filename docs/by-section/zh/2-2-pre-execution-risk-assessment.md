@@ -38,6 +38,12 @@
 
 `环境: Desktop` ｜ [arXiv:2601.12822](https://arxiv.org/abs/2601.12822)
 
+#### Learning Efficient Guardrails for Compliance (PolicyGuard) (2025-10)
+
+相比标准的安全目标，长周期 web agent 是否真的遵守现实世界的策略规范，此前研究严重不足。 PolicyGuardBench 用 6 万条策略-轨迹配对填补这一空缺，且关键在于它不只评测全轨迹违规 检测，还提出了基于前缀的检测任务——即在轨迹尚未结束时就抓到违规。作者在此数据上训练 轻量护栏 PolicyGuard，在保持高推理效率的同时取得较强检测准确率，并在未见领域上仍能 维持性能。对落地最有价值的结论是关于规模的：准确且可泛化的合规护栏在小模型上就能实现， 因此执行前的策略检查不必承担前沿模型的成本。
+
+`环境: Web` ｜ [arXiv:2510.03485](https://arxiv.org/abs/2510.03485)
+
 #### WebGuard: Building a Generalizable Guardrail for Web Agents (WebGuard) (2025-07)
 
 主张 web agent 需要类似人类用户的访问控制机制，并发布首个支持 agent 动作风险评估的数据集： 来自 22 个领域、193 个网站（含常被忽视的长尾站点）的 4939 条人工标注状态改变动作，按 SAFE / LOW / HIGH 三级风险标注，并划分好训练测试集以支持泛化研究。核心结论相当刺眼—— 即便前沿 LLM 预测动作后果的准确率也不足 60%。

@@ -4,6 +4,18 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### A Dual-Process Perspective on Nudge Susceptibility in LLM-Based GUI Agents (Nudge Susceptibility) (2026-09)
+
+GUI agent 运行在专为「支持并有意引导人类决策」而设计的界面里。LLM 文本输出中的行为偏差 已有大量记录，但当模型转为感知界面并执行决策时这种影响如何运作，以及日益内置的推理能力 是否让 agent 更稳健，此前少有人知。本文基于双过程理论，在随机化的在线购物实验中用 3600 个 agent、21600 次模拟、覆盖三家厂商的六个前沿模型，发现 agent 对自动型（Type 1） 与反思型（Type 2）数字助推均易感。关键结论是推理配置对两者的调节方向**相反**：它降低了 对自动型默认助推的易感性，却提高了对反思型社会影响助推的易感性。也就是说，充分推理并未 带来稳健性，而是改变了选择架构生效的路径，且这一改变随模型规模系统性变化。作者据此主张， 对于把决策委托给自主 agent 的组织，界面设计本身应被视为治理议题。
+
+`环境: Web` ｜ [arXiv:2609.19843](https://arxiv.org/abs/2609.19843)
+
+#### HazardAuditor: From Executable Threats to Safer Computer-Use Agents (HazardAuditor) (2026-09)
+
+指出护栏模型覆盖 computer-use agent 时的两处断层：现有护栏针对静态 prompt 与回复， 不适配 agent 的执行过程；而现有可执行安全平台只产出评测判定，给不出护栏模型跨异构框架 学习所需的规范化监督信号。HazardAuditor 同时补上两者——基础设施在受控环境中运行 Claude Code、Codex、Hermes、OpenClaw，把它们的交互归一化为统一事件表示，从而支持 跨框架监督。作者还发现一处结构性错配：token 级后训练目标会让更长的推理过程主导梯度更新。 为此提出 Guard Policy Optimization（GuardPO），把确定性的安全结果转换为序列级优势， 并对推理区与判定区分别归一化，使「安全决策」成为真正的优化单元。相比此前最强护栏， 准确率最高提升 16.5 个百分点。
+
+`环境: Desktop, Web` ｜ [arXiv:2609.15134](https://arxiv.org/abs/2609.15134)
+
 #### AgentHijack: Visual Patch Attacks on Multimodal Computer-Use Agents (AgentHijack) (2026-09)
 
 坚持做端到端验证而不止于模型输出：真正要回答的问题是，一个局部视觉补丁能否在「截图输入 → VLM 生成 → 动作解析 → 环境执行」的完整链条上产生**可验证的环境后果**。补丁在作者控制的 GitHub Pages 与本地部署的 CSDN 克隆站上训练与投放，在五个开源或公开可得的 GUI agent / VLM 后端上评测，汇总 600 个实例级在线用例。三级指标清楚地暴露了攻击在哪一环衰减—— T-ASR 84.5%、TAPR 47.0%，而 E2E-ASR 仅 20.3%。轨迹分析发现了最令人不安的现象：在部分 成功案例中，agent 先执行了恶意终端命令，随后又不动声色地继续完成用户原本的良性任务。
@@ -16,6 +28,12 @@
 
 `环境: Web` ｜ [arXiv:2609.05535](https://arxiv.org/abs/2609.05535)
 
+#### Monitoring Web Agents Without Internal Signals: Observable Trajectories and Key-Step Supervision (Key-Step Supervision) (2026-09)
+
+可靠监控恰恰在最需要它的地方最难做：闭源 API 背后拿不到 token logit 这类模型内部信号。 本文研究仅凭可观测信号做前缀级风险预测——给定一段正在演进的执行前缀，判断当前是否仍在 正轨上。作者导出两类表示：Macro 特征刻画跨步的 agent-环境行为与反馈；Micro 特征通过 重复黑盒查询衡量意图、动作、预期状态变化三者的一致性。真正巧妙的是监督信号的设计： 不直接继承最终结果标签，而是把「在后续观测中未被纠正、且与最终失败相关的第一个关键错误」 标为关键步边界，从而把失败轨迹中仍然有效的早期前缀保留为「正轨」——这避免了朴素的 结果标签带来的噪声，后者会让监控器要么报得太晚、要么频繁误报。
+
+`环境: Web` ｜ [arXiv:2609.02057](https://arxiv.org/abs/2609.02057)
+
 #### SIR: Self-improving Red-teaming for Compute Use Agents (SIR) (2026-08)
 
 指出现有 CUA 安全基准用的都是人工手写的固定注入载荷，会低估自适应攻击者的真实威胁。提出 黑盒 IPI 攻击 SIR：从一个用自然语言描述的可复用「隐蔽性原则」小库中组合注入内容，再套一层 迭代反馈循环——诊断受害 agent 失败的攻击轨迹，把成功绕过的模式蒸馏回原则库。这把红队从 静态测试变成自我改进的过程，说明固定载荷的评测结论会随攻击者迭代迅速失效。
@@ -27,6 +45,12 @@
 登录对 web agent 而言是涉及凭据的敏感认证边界，但已有工作尚未考察恶意页面内容能否诱导 agent 登录并造成端到端的私密数据泄漏。LoginTrap 是一种与任务无关的诱导登录攻击，假设 黑盒攻击者只控制页面上下文与被诱导的登录流程，并不知道用户任务或 agent 内部实现：通过 类 fuzzing 的流程生成页面专属的间接注入内容，使「先登录」看起来是继续完成任务的合理 前置条件，从而把 agent 引导至攻击者控制的登录页。
 
 `环境: Web` ｜ [arXiv:2608.04741](https://arxiv.org/abs/2608.04741)
+
+#### FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory (FocusMem) (2026-08)
+
+潜在记忆把多模态 GUI 轨迹压缩成少量连续 token，但现有方法把每条轨迹映射到一个固定 记忆块，且主要靠下一动作监督来训练。由此带来三个实际问题：压缩过程中细节丢失、同一个 记忆块要服务所有决策阶段、检索到不相关的轨迹仍会误导 agent。FocusMem 把这些职责拆开： 角色感知的内容基底促使情景记忆保留可复用经验、工作记忆保留当前任务进展；状态条件化的 读出机制为同一份存储证据生成面向具体决策的视图；轻量的信任门可在检索不可靠时抑制记忆。 最后这一项正是它进入安全清单的理由——它把检索到的记忆当作需要设门的不可信输入， 而这正是对抗记忆投毒式操纵的结构性防御。
+
+`环境: Mobile, Desktop, Web` ｜ [arXiv:2608.04530](https://arxiv.org/abs/2608.04530)
 
 #### From Blind Edits to Verified Repair: Building Trustworthy User-Side LLM Agents for Web Accessibility (Verified Repair) (2026-07)
 
@@ -238,6 +262,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Web` ｜ [arXiv:2601.18113](https://arxiv.org/abs/2601.18113)
 
+#### WebTrap Park: An Automated Platform for Systematic Security Evaluation of Web Agents (WebTrap Park) (2026-01)
+
+web agent 的安全评测长期碎片化、难以标准化。WebTrap Park 是一个自动化平台，通过直接 观察 agent 与真实网页的具体交互来评测，把三大类安全风险来源实例化为 1226 个可执行任务。 评测基于动作而非文本输出，且**无需修改被测 agent**——这正是它能用于闭源框架的原因。 最值得注意的结论与架构而非模型有关：不同 agent 框架之间的安全性差异明显，说明框架设计 的影响超出了底层模型的选择。平台已公开托管，因此可作为可复现的基线而非一次性评测。
+
+`环境: Web` ｜ [arXiv:2601.08406](https://arxiv.org/abs/2601.08406)
+
 #### When Bots Take the Bait: Exposing and Mitigating the Emerging Social Engineering Attack in Web Automation Agent (AgentBait) (2026-01)
 
 指出以往研究集中在提示注入、后门这类模型层威胁，而针对 web 自动化 agent 的社会工程攻击一直 无人探索——尽管 Browser Use、Skyvern-AI 等开源框架已显著扩大了攻击面。AgentBait 攻击范式 利用执行层面的内在弱点：诱导性上下文会扭曲 agent 的推理，把它引向与原任务不一致的目标， 而全程不需要注入任何指令。防御侧提出 SUPERVISOR，一个轻量可插拔的运行时模块，强制网页 上下文与预期目标之间的「环境—意图一致性」对齐。
@@ -298,6 +328,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 
 `环境: Web` ｜ [arXiv:2510.10073](https://arxiv.org/abs/2510.10073)
 
+#### Learning Efficient Guardrails for Compliance (PolicyGuard) (2025-10)
+
+相比标准的安全目标，长周期 web agent 是否真的遵守现实世界的策略规范，此前研究严重不足。 PolicyGuardBench 用 6 万条策略-轨迹配对填补这一空缺，且关键在于它不只评测全轨迹违规 检测，还提出了基于前缀的检测任务——即在轨迹尚未结束时就抓到违规。作者在此数据上训练 轻量护栏 PolicyGuard，在保持高推理效率的同时取得较强检测准确率，并在未见领域上仍能 维持性能。对落地最有价值的结论是关于规模的：准确且可泛化的合规护栏在小模型上就能实现， 因此执行前的策略检查不必承担前沿模型的成本。
+
+`环境: Web` ｜ [arXiv:2510.03485](https://arxiv.org/abs/2510.03485)
+
 #### WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents (WAInjectBench) (2025-10)
 
 填补一个系统性空缺：针对 web agent 的注入攻击很多，通用注入检测方法也很多，但从未有人 在 web agent 场景下系统评测过后者。WAInjectBench 先按威胁模型对攻击做细粒度分类，再构建 覆盖两种模态、两种极性的数据集——来自不同攻击的恶意文本片段、四类正常文本、攻击生成的 恶意图像、两类正常图像。核心结论划出了一条清晰边界：检测器能应对带显式文本指令或可见图像 扰动的攻击，一旦越出这个范围性能急剧下降。
@@ -309,6 +345,12 @@ CUA 从两个方向带来新的隐私风险：从真实网站采集的训练数�
 面向一个 agent 扮演防御方而非攻击目标的领域：电商风控需要通过多步、有状态的交互聚合深度 嵌套的网页数据，这既非传统爬虫所能胜任，也超出大多数 GUI agent 的能力——后者通常局限于 配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条 单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹； 以及 RISK-R1，一个 R1 风格的强化微调框架。
 
 `环境: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
+
+#### Benchmarking MLLM-based Web Understanding: Reasoning, Robustness and Safety (WebRRSBench) (2025-09)
+
+MLLM 越来越多地充当 GUI agent 与前端自动化背后的推理引擎，需要理解页面结构、选择可操作 控件、可靠执行多步交互。但现有基准大多只衡量视觉感知或 UI 代码生成，对端到端 web 应用 所需的推理、鲁棒性与安全能力评测不足。WebRRSBench 在八项任务上联合评测这三者，涵盖 位置关系推理、颜色鲁棒性、安全关键检测等，数据取自 729 个网站、含 3799 个 QA 对， 考察对页面结构、文本、控件以及安全关键交互的多步推断。它在本清单中的价值在于「耦合」： 安全性与它所依赖的感知、推理能力放在同一套评测框架里衡量，而不是作为一个脱离上下文的 独立分数。
+
+`环境: Web` ｜ [arXiv:2509.21782](https://arxiv.org/abs/2509.21782)
 
 #### PrivWeb: Unobtrusive and Content-aware Privacy Protection For Web Agents (PrivWeb) (2025-09)
 

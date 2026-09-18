@@ -2817,3 +2817,355 @@ papers:
       配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条
       单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹；
       以及 RISK-R1，一个 R1 风格的强化微调框架。
+
+  - id: "2609.16732"
+    title: "When Agents See Differently: Exposing UI Desynchronization Threats in Mobile Agents"
+    abbr: "UI Desynchronization"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "1.2"
+    env: [mobile]
+    summary: >-
+      Human oversight of mobile agents rests on an unstated premise: that user and agent observe
+      consistent information from the same interface. This paper shows the premise is systematically
+      violable. Users perceive interfaces through physical displays and the human visual system,
+      subject to occlusion and luminance-contrast limits; agents consume digital screenshots that
+      retain such content plus accessibility representations exposing nonvisual widget metadata.
+      The same UI state can therefore carry materially different information to each party — termed
+      human-agent UI desynchronization. The authors show a repackaged clone of a legitimate APK can
+      exploit this to steer agents toward attacker-designated actions while remaining fully
+      functional and behaviorally consistent for human users, with perturbations embedded before
+      deployment and requiring no access to runtime instructions, agent detection, or online
+      adaptation. Across five mobile-agent frameworks, three backbones, and 546 tasks: average
+      misleading rates 77.9% (static) and 66.9% (dynamic). A questionnaire study with 186
+      participants confirms the visual perturbations are hard for humans to notice.
+    summary_zh: >-
+      人类监督 mobile agent 依赖一个未被言明的前提：用户与 agent 从同一界面看到一致的信息。
+      本文证明这个前提可被系统性打破。用户经由物理屏幕与人类视觉系统感知界面，受遮挡与亮度
+      对比度限制；而 agent 消费的是数字截图，还额外拿到暴露非视觉控件元数据的无障碍表示。
+      同一个 UI 状态因此向双方呈现实质不同的信息，作者称之为「人机 UI 失同步」。实验表明，
+      重打包的合法 APK 克隆可以利用这一失同步把 agent 引向攻击者指定的动作，同时对人类用户
+      保持功能与行为完全一致；扰动在部署前嵌入，无需获取运行时指令、无需检测 agent、无需在线
+      适配。在五个 mobile agent 框架、三个主干模型、546 个任务上，静态与动态误导率分别为
+      77.9% 与 66.9%。186 人的问卷研究进一步确认这些视觉扰动人眼难以察觉。
+
+  - id: "2609.15134"
+    title: "HazardAuditor: From Executable Threats to Safer Computer-Use Agents"
+    abbr: "HazardAuditor"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "2.3"
+    env: [desktop, web]
+    summary: >-
+      Identifies two gaps that keep guard models from covering computer-use agents: existing guards
+      target static prompts and responses, ill-suited to agent execution; existing executable safety
+      platforms emit evaluation verdicts rather than the normalized supervision a guard model needs
+      to learn across heterogeneous frameworks. HazardAuditor closes both — its infrastructure runs
+      Claude Code, Codex, Hermes, and OpenClaw in controlled environments and normalizes their
+      interactions into a canonical event representation enabling cross-framework supervision. The
+      authors further observe a structural mismatch: token-level post-training objectives let longer
+      rationales dominate gradient updates in generative guards. Guard Policy Optimization (GuardPO)
+      converts deterministic safety outcomes into sequence-level advantages and normalizes rationale
+      versus verdict regions, making the safety decision the effective unit of optimization.
+      Accuracy improves by up to 16.5 points over the strongest prior guard.
+    summary_zh: >-
+      指出护栏模型覆盖 computer-use agent 时的两处断层：现有护栏针对静态 prompt 与回复，
+      不适配 agent 的执行过程；而现有可执行安全平台只产出评测判定，给不出护栏模型跨异构框架
+      学习所需的规范化监督信号。HazardAuditor 同时补上两者——基础设施在受控环境中运行
+      Claude Code、Codex、Hermes、OpenClaw，把它们的交互归一化为统一事件表示，从而支持
+      跨框架监督。作者还发现一处结构性错配：token 级后训练目标会让更长的推理过程主导梯度更新。
+      为此提出 Guard Policy Optimization（GuardPO），把确定性的安全结果转换为序列级优势，
+      并对推理区与判定区分别归一化，使「安全决策」成为真正的优化单元。相比此前最强护栏，
+      准确率最高提升 16.5 个百分点。
+
+  - id: "2609.13873"
+    title: "PriMobiBench: Characterizing Visual Privacy Leakage in VLM-Driven Mobile GUI Agents"
+    abbr: "PriMobiBench"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Mobile GUI agents automate smartphone tasks by interpreting screenshot streams — a design that
+      introduces serious and underexplored privacy risk, both direct leakage of on-screen sensitive
+      information and unintended user profiling, with no standardized benchmark to quantify either.
+      PriMobiBench is the first benchmark for visual privacy leakage and profiling in
+      screenshot-driven mobile agents, providing a unified pipeline for data generation, trajectory
+      construction, and multi-model evaluation, plus MobiLeak — execution traces from 16 apps
+      covering 25 privacy attributes with 2,960 embedded privacy instances. Findings: VLMs extract
+      sensitive information with up to 82.5% success, and infer user profiles from aggregated visual
+      evidence at roughly 70%. A proposed mitigation masks privacy-sensitive but task-irrelevant UI
+      elements before cloud processing, cutting profiling success by up to 58% at about 8%
+      performance cost.
+    summary_zh: >-
+      移动 GUI agent 通过解读截图流自动化手机任务，这一设计带来严重但研究不足的隐私风险：
+      既包括屏上敏感信息的直接泄露，也包括非预期的用户画像推断，而两者都缺少标准化基准来量化。
+      PriMobiBench 是首个系统评测截图驱动移动 agent 的视觉隐私泄露与画像风险的基准，提供
+      数据生成、轨迹构建与多模型评测的统一流水线，并附数据集 MobiLeak——来自 16 个应用的
+      执行轨迹，覆盖 25 类隐私属性、2960 个嵌入的隐私实例。结果相当刺眼：VLM 直接提取敏感
+      信息成功率最高 82.5%；即便没有显式泄露，也能从聚合的视觉证据中以约 70% 的成功率推断出
+      用户画像。作者提出的缓解方案在上云前遮蔽「隐私敏感但与任务无关」的 UI 元素，可将画像
+      成功率最多降低 58%，代价仅约 8% 的性能损失。
+
+  - id: "2609.19843"
+    title: "A Dual-Process Perspective on Nudge Susceptibility in LLM-Based GUI Agents"
+    abbr: "Nudge Susceptibility"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web]
+    summary: >-
+      GUI agents act inside interfaces designed to support but also deliberately steer human
+      decisions. Behavioural bias in LLM text output is well documented, but far less is known about
+      how such influence operates once a model perceives an interface and executes decisions — and
+      whether built-in reasoning makes agents more robust to it. Drawing on Dual-Process Theory, a
+      randomized online-shopping experiment with 3,600 agents and 21,600 simulations across six
+      frontier models from three providers finds agents vulnerable to both automatic (Type 1) and
+      reflective (Type 2) digital nudges. Crucially, reasoning configuration moderates the two in
+      **opposing** directions: it reduces susceptibility to automatic default nudges while
+      heightening susceptibility to reflective social-influence nudges. Extensive reasoning
+      therefore does not confer robustness — it redirects the route through which choice
+      architecture takes effect, and that redirection is systematically structured by model scale.
+    summary_zh: >-
+      GUI agent 运行在专为「支持并有意引导人类决策」而设计的界面里。LLM 文本输出中的行为偏差
+      已有大量记录，但当模型转为感知界面并执行决策时这种影响如何运作，以及日益内置的推理能力
+      是否让 agent 更稳健，此前少有人知。本文基于双过程理论，在随机化的在线购物实验中用
+      3600 个 agent、21600 次模拟、覆盖三家厂商的六个前沿模型，发现 agent 对自动型（Type 1）
+      与反思型（Type 2）数字助推均易感。关键结论是推理配置对两者的调节方向**相反**：它降低了
+      对自动型默认助推的易感性，却提高了对反思型社会影响助推的易感性。也就是说，充分推理并未
+      带来稳健性，而是改变了选择架构生效的路径，且这一改变随模型规模系统性变化。作者据此主张，
+      对于把决策委托给自主 agent 的组织，界面设计本身应被视为治理议题。
+
+  - id: "2509.07553"
+    title: "VeriOS: Query-Driven Proactive Human-Agent-GUI Interaction for Trustworthy OS Agents"
+    abbr: "VeriOS"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "2.4"
+    env: [mobile, desktop]
+    summary: >-
+      Most OS agents are built for idealized settings, while real environments routinely present
+      untrustworthy conditions — so the failure mode to guard against is over-execution. Rather than
+      adding an external filter, VeriOS makes "when to ask a human" a learned capability: a
+      query-driven human-agent-GUI interaction framework in which the agent executes autonomously
+      under normal conditions and proactively queries the user in untrustworthy scenarios.
+      VeriOS-Agent is trained in three stages — supervised fine-tuning plus group relative policy
+      optimization — designed to decouple meta-knowledge about trustworthiness from task knowledge
+      so the two can be used independently. The framing matters for §2.4: confirmation is treated
+      not as a fixed policy layer bolted on top, but as a decision the agent itself must learn to
+      make selectively.
+    summary_zh: >-
+      多数 OS agent 是为理想化环境设计的，而真实环境常常并不可信——因此要防的失败模式是
+      「过度执行」。VeriOS 没有外挂一层过滤器，而是把「何时该问人」变成一种可学习的能力：
+      提出查询驱动的人-agent-GUI 交互框架，让 agent 在正常条件下自主执行、在不可信场景中
+      主动向用户发问。VeriOS-Agent 采用三阶段训练（监督微调 + 组相对策略优化），目的是把
+      关于「可信性」的元知识与任务知识解耦，使两者可以独立调用。这个设定对 §2.4 很有意义：
+      确认机制不再是硬加在上层的固定策略，而是 agent 自己必须学会有选择地做出的决策。
+
+  - id: "2510.07809"
+    title: "Invisible to Humans, Triggered by Agents: Stealthy Jailbreak Attacks on Mobile Vision-Language Agents"
+    abbr: "Agent-Only Perceptual Injection"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "1.2"
+    env: [mobile]
+    summary: >-
+      Prior visual prompt injections against mobile agents rely on persistent visual manipulations
+      that users would notice, or on system-level privileges. This work finds a cleaner trigger: a
+      consistent discrepancy between human and agent interaction — automated agents generate
+      near-zero contact touch signals. That signal becomes a discriminator, enabling agent-only
+      perceptual injection, where malicious content is exposed solely during agent interaction and
+      is not readily perceived by human users. To fit mobile UI constraints and one-shot interaction,
+      the authors introduce HG-IDA*, a one-shot optimization method for constructing jailbreak
+      prompts that evade LVLM safety filters. The mechanism is notable because it does not hide the
+      payload from human vision — it withholds the payload until the toucher is provably not human.
+    summary_zh: >-
+      此前针对移动 agent 的视觉注入要么依赖用户能察觉的持续视觉篡改，要么需要系统级权限。
+      本文找到一个更干净的触发条件：人与 agent 的交互存在稳定差异——自动化 agent 产生的
+      接触式触摸信号近乎为零。这个信号被用作判别器，从而实现「仅对 agent 生效的感知注入」：
+      恶意内容只在 agent 交互时暴露，人类用户则不易感知。为适配移动 UI 约束与一次性交互场景，
+      作者提出 HG-IDA*，用单次优化构造可绕过 LVLM 安全过滤的越狱提示。这个机制的巧妙之处在于
+      它不是把载荷藏起来不让人看见，而是在证明「触摸者不是人」之前根本不投放载荷。
+
+  - id: "2601.08406"
+    title: "WebTrap Park: An Automated Platform for Systematic Security Evaluation of Web Agents"
+    abbr: "WebTrap Park"
+    date: "2026-01"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Web agent security evaluation remains fragmented and hard to standardize. WebTrap Park is an
+      automated platform that evaluates through direct observation of an agent's concrete
+      interactions with live web pages, instantiating three major sources of security risk into
+      1,226 executable tasks. Assessment is action-based and requires no modification to the agent
+      under test — which is what makes it applicable to closed frameworks. The headline finding is
+      about architecture rather than models: security differs clearly across agent frameworks, so
+      framework design matters beyond the underlying model choice. Publicly hosted, which makes it
+      usable as a reproducible baseline rather than a one-off evaluation.
+    summary_zh: >-
+      web agent 的安全评测长期碎片化、难以标准化。WebTrap Park 是一个自动化平台，通过直接
+      观察 agent 与真实网页的具体交互来评测，把三大类安全风险来源实例化为 1226 个可执行任务。
+      评测基于动作而非文本输出，且**无需修改被测 agent**——这正是它能用于闭源框架的原因。
+      最值得注意的结论与架构而非模型有关：不同 agent 框架之间的安全性差异明显，说明框架设计
+      的影响超出了底层模型的选择。平台已公开托管，因此可作为可复现的基线而非一次性评测。
+
+  - id: "2602.10915"
+    title: "Blind Gods and Broken Screens: Architecting a Secure, Intent-Centric Mobile Agent Operating System"
+    abbr: "Aura"
+    date: "2026-02"
+    venue: "arXiv"
+    section: "2.6"
+    env: [mobile]
+    summary: >-
+      Argues that the prevailing "Screen-as-Interface" paradigm is the root cause rather than a
+      detail: by driving agents off unstructured visual data, it inherits the screen's structural
+      vulnerabilities and also conflicts with the mobile ecosystem's economic foundations. A
+      systematic security analysis of a deployed commercial assistant decomposes the threat
+      landscape into four dimensions — Agent Identity, External Interface, Internal Reasoning,
+      Action Execution — surfacing fake app identity, visual spoofing, indirect prompt injection,
+      and unauthorized privilege escalation, all traced back to that same reliance on unstructured
+      pixels. The proposed answer is clean-slate: Aura, an Agent Universal Runtime Architecture that
+      replaces brittle GUI scraping with an intent-centric interface, so security properties come
+      from the architecture instead of from patching the perception layer.
+    summary_zh: >-
+      本文主张当前主流的「屏幕即接口」范式本身就是病根而非细节：让 agent 依赖非结构化的视觉
+      数据，既继承了屏幕固有的结构性脆弱性，也与移动生态的经济基础相冲突。作者以一款已上线的
+      商用助手为案例做系统性安全分析，把威胁面拆为 Agent 身份、外部接口、内部推理、动作执行
+      四个维度，暴露出伪造应用身份、视觉欺骗、间接提示注入、越权提权等缺陷，并且都可追溯到
+      同一个根源——对非结构化像素的依赖。给出的答案是推倒重来：提出 Aura（Agent 通用运行时
+      架构），用以意图为中心的接口取代脆弱的 GUI 抓取，使安全性来自架构本身，而不是靠给感知层
+      打补丁。
+
+  - id: "2608.04530"
+    title: "FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory"
+    abbr: "FocusMem"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "2.1"
+    env: [mobile, desktop, web]
+    summary: >-
+      Latent memory compresses multimodal GUI trajectories into a few continuous tokens, but existing
+      methods map each trajectory to one fixed block trained mainly by next-action supervision. Three
+      problems follow: detail is lost in compression, one block must serve every decision stage, and
+      irrelevant retrieved trajectories can still mislead the agent. FocusMem factorizes these
+      responsibilities — a role-aware content basis pushes episodic memory toward reusable experience
+      and working memory toward current task progress; a state-conditioned readout produces a
+      decision-specific view of the same stored evidence; and a lightweight trust gate can suppress
+      memory when retrieval is unreliable. That last component is why this belongs on a security
+      list: it treats retrieved memory as untrusted input requiring gating, which is the structural
+      defense against memory-poisoning style manipulation.
+    summary_zh: >-
+      潜在记忆把多模态 GUI 轨迹压缩成少量连续 token，但现有方法把每条轨迹映射到一个固定
+      记忆块，且主要靠下一动作监督来训练。由此带来三个实际问题：压缩过程中细节丢失、同一个
+      记忆块要服务所有决策阶段、检索到不相关的轨迹仍会误导 agent。FocusMem 把这些职责拆开：
+      角色感知的内容基底促使情景记忆保留可复用经验、工作记忆保留当前任务进展；状态条件化的
+      读出机制为同一份存储证据生成面向具体决策的视图；轻量的信任门可在检索不可靠时抑制记忆。
+      最后这一项正是它进入安全清单的理由——它把检索到的记忆当作需要设门的不可信输入，
+      而这正是对抗记忆投毒式操纵的结构性防御。
+
+  - id: "2510.03485"
+    title: "Learning Efficient Guardrails for Compliance"
+    abbr: "PolicyGuard"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "2.2"
+    env: [web]
+    summary: >-
+      Compared with standard safety objectives, whether long-horizon web agents actually adhere to
+      real-world policies is critically underexplored. PolicyGuardBench addresses this with 60k
+      policy-trajectory pairs and — importantly — evaluates not only full-trajectory violation
+      detection but a novel prefix-based variant, i.e. catching a violation before the trajectory
+      finishes. On that data the authors train PolicyGuard, a lightweight guardrail achieving strong
+      detection accuracy at high inference efficiency, and preserving performance on unseen domains.
+      The relevant conclusion for deployment is the scale claim: accurate and generalizable
+      compliance guardrails are feasible at small model sizes, so pre-execution policy checking need
+      not carry frontier-model cost.
+    summary_zh: >-
+      相比标准的安全目标，长周期 web agent 是否真的遵守现实世界的策略规范，此前研究严重不足。
+      PolicyGuardBench 用 6 万条策略-轨迹配对填补这一空缺，且关键在于它不只评测全轨迹违规
+      检测，还提出了基于前缀的检测任务——即在轨迹尚未结束时就抓到违规。作者在此数据上训练
+      轻量护栏 PolicyGuard，在保持高推理效率的同时取得较强检测准确率，并在未见领域上仍能
+      维持性能。对落地最有价值的结论是关于规模的：准确且可泛化的合规护栏在小模型上就能实现，
+      因此执行前的策略检查不必承担前沿模型的成本。
+
+  - id: "2609.02057"
+    title: "Monitoring Web Agents Without Internal Signals: Observable Trajectories and Key-Step Supervision"
+    abbr: "Key-Step Supervision"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "2.3"
+    env: [web]
+    summary: >-
+      Reliable monitoring becomes hard precisely where it is most needed in practice: behind closed
+      APIs, where model-internal signals such as token logits are unavailable. This work studies
+      prefix-level risk prediction from observable signals only — given an evolving prefix, estimate
+      whether execution is still on track. Two representations are derived: Macro features summarize
+      cross-step agent-environment behavior and feedback; Micro features measure consistency among
+      intention, action, and anticipated state change via repeated black-box queries. The
+      supervision design is the notable part: instead of inheriting the final outcome label, the
+      authors label the first uncorrected critical error associated with eventual failure as a
+      key-step boundary, which preserves valid early prefixes of failed trajectories as on track —
+      avoiding the label noise that makes naive outcome-based monitors fire too late or too often.
+    summary_zh: >-
+      可靠监控恰恰在最需要它的地方最难做：闭源 API 背后拿不到 token logit 这类模型内部信号。
+      本文研究仅凭可观测信号做前缀级风险预测——给定一段正在演进的执行前缀，判断当前是否仍在
+      正轨上。作者导出两类表示：Macro 特征刻画跨步的 agent-环境行为与反馈；Micro 特征通过
+      重复黑盒查询衡量意图、动作、预期状态变化三者的一致性。真正巧妙的是监督信号的设计：
+      不直接继承最终结果标签，而是把「在后续观测中未被纠正、且与最终失败相关的第一个关键错误」
+      标为关键步边界，从而把失败轨迹中仍然有效的早期前缀保留为「正轨」——这避免了朴素的
+      结果标签带来的噪声，后者会让监控器要么报得太晚、要么频繁误报。
+
+  - id: "2509.21782"
+    title: "Benchmarking MLLM-based Web Understanding: Reasoning, Robustness and Safety"
+    abbr: "WebRRSBench"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      MLLMs increasingly serve as the reasoning engine behind GUI agents and front-end automation,
+      which must interpret page structure, select actionable widgets, and execute multi-step
+      interactions reliably. Existing benchmarks, however, mostly measure visual perception or UI
+      code generation, leaving reasoning, robustness, and safety under-evaluated for end-to-end web
+      applications. WebRRSBench evaluates all three jointly across eight tasks — including position
+      relationship reasoning, color robustness, and safety-critical detection — built from 729
+      websites with 3,799 QA pairs probing multi-step inference over page structure, text, widgets,
+      and safety-critical interactions. Its value on this list is the coupling: it measures safety in
+      the same harness as the perception and reasoning capabilities that safety depends on, rather
+      than as a detached score.
+    summary_zh: >-
+      MLLM 越来越多地充当 GUI agent 与前端自动化背后的推理引擎，需要理解页面结构、选择可操作
+      控件、可靠执行多步交互。但现有基准大多只衡量视觉感知或 UI 代码生成，对端到端 web 应用
+      所需的推理、鲁棒性与安全能力评测不足。WebRRSBench 在八项任务上联合评测这三者，涵盖
+      位置关系推理、颜色鲁棒性、安全关键检测等，数据取自 729 个网站、含 3799 个 QA 对，
+      考察对页面结构、文本、控件以及安全关键交互的多步推断。它在本清单中的价值在于「耦合」：
+      安全性与它所依赖的感知、推理能力放在同一套评测框架里衡量，而不是作为一个脱离上下文的
+      独立分数。
+
+  - id: "2606.23449"
+    title: "AOHP: An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction"
+    abbr: "AOHP"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "2.6"
+    env: [mobile]
+    summary: >-
+      End-user operating systems are designed for application-centric workflows and offer little
+      native support for AI agents; running agents on top of them therefore incurs execution
+      overhead and safety risk. Agent-native OS designs are emerging, but the community lacks an
+      open testbed for exploring which architectural primitives agent-mediated interaction actually
+      needs. AOHP (Android Open Harness Project) is an OS-level agent harness built on AOSP whose
+      core design principle is to treat agents as first-class OS actors, enabling adaptive user
+      interfaces and agent-friendly runtime environments. Included here because it makes the
+      security question structural rather than behavioral: it provides the substrate on which
+      OS-level isolation and permission primitives for GUI agents can be prototyped and compared,
+      instead of retrofitting guards onto the screen-scraping paradigm.
+    summary_zh: >-
+      面向终端用户的操作系统是为「以应用为中心」的工作流设计的，对 AI agent 几乎没有原生支持；
+      因此在传统系统上跑 agent 会带来执行开销与安全风险。agent 原生操作系统的概念正在出现，
+      但社区缺少一个开放测试平台，来探索 agent 中介的交互究竟需要哪些架构原语。AOHP
+      （Android Open Harness Project）是基于 AOSP 构建的 OS 级 agent harness，核心设计原则是
+      把 agent 当作一等的 OS 参与者，从而支持自适应用户界面与 agent 友好的运行时环境。收录
+      于此是因为它把安全问题从行为层面推到了结构层面：它提供了一个基底，可以在其上原型化并
+      对比面向 GUI agent 的 OS 级隔离与权限原语，而不是给「屏幕抓取」范式事后加装护栏。

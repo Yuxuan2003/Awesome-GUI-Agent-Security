@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### A Dual-Process Perspective on Nudge Susceptibility in LLM-Based GUI Agents (Nudge Susceptibility) (2026-09)
+
+GUI agent 运行在专为「支持并有意引导人类决策」而设计的界面里。LLM 文本输出中的行为偏差 已有大量记录，但当模型转为感知界面并执行决策时这种影响如何运作，以及日益内置的推理能力 是否让 agent 更稳健，此前少有人知。本文基于双过程理论，在随机化的在线购物实验中用 3600 个 agent、21600 次模拟、覆盖三家厂商的六个前沿模型，发现 agent 对自动型（Type 1） 与反思型（Type 2）数字助推均易感。关键结论是推理配置对两者的调节方向**相反**：它降低了 对自动型默认助推的易感性，却提高了对反思型社会影响助推的易感性。也就是说，充分推理并未 带来稳健性，而是改变了选择架构生效的路径，且这一改变随模型规模系统性变化。作者据此主张， 对于把决策委托给自主 agent 的组织，界面设计本身应被视为治理议题。
+
+`环境: Web` ｜ [arXiv:2609.19843](https://arxiv.org/abs/2609.19843)
+
 #### Alignment Is Local: A Paired Diagnostic for GUI Agents under User Persuasion (Alignment Is Local) (2026-07)
 
 提出成对诊断方法，衡量 GUI agent 的安全对齐在多轮用户说服下的退化程度。关键发现是对齐 具有「局部性」：agent 在单轮拒绝有害请求，但在用户连续追问、提供看似合理的理由后会逐步 让步，且这种退化不体现在任何单轮评测指标上。说明当前基于单轮的安全评测无法反映真实 多轮交互下的风险。

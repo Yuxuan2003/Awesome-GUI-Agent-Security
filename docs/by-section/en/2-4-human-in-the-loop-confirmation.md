@@ -20,6 +20,12 @@ Grounds its design in what users actually think: a formative study (N=15) found 
 
 `Env: Web` ｜ [arXiv:2509.11939](https://arxiv.org/abs/2509.11939)
 
+#### VeriOS: Query-Driven Proactive Human-Agent-GUI Interaction for Trustworthy OS Agents (VeriOS) (2025-09)
+
+Most OS agents are built for idealized settings, while real environments routinely present untrustworthy conditions — so the failure mode to guard against is over-execution. Rather than adding an external filter, VeriOS makes "when to ask a human" a learned capability: a query-driven human-agent-GUI interaction framework in which the agent executes autonomously under normal conditions and proactively queries the user in untrustworthy scenarios. VeriOS-Agent is trained in three stages — supervised fine-tuning plus group relative policy optimization — designed to decouple meta-knowledge about trustworthiness from task knowledge so the two can be used independently. The framing matters for §2.4: confirmation is treated not as a fixed policy layer bolted on top, but as a decision the agent itself must learn to make selectively.
+
+`Env: Mobile, Desktop` ｜ [arXiv:2509.07553](https://arxiv.org/abs/2509.07553)
+
 #### VerificAgent: Domain-Specific Memory Verification for Scalable Oversight of Aligned Computer-Use Agents (VerificAgent) (2025-06)
 
 Treats persistent memory as an explicit alignment surface, on the reasoning that continual memory augmentation lets CUAs learn from prior interactions but unvetted memories encode domain-inappropriate or unsafe heuristics — spurious rules that quietly drift from user intent and safety constraints. VerificAgent combines an expert-curated seed of domain knowledge, iterative trajectory-based memory growth during training, and a post-hoc human fact-checking pass before deployment. The framing is the contribution: having humans correct high-impact errors once turns verified memory into a frozen safety contract that future actions must satisfy, with no model fine-tuning required.

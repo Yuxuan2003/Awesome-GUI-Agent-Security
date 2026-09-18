@@ -50,6 +50,12 @@ Isolates a narrow but consequential failure: accepting a disguised malicious URL
 
 `Env: Web` ｜ [arXiv:2601.18113](https://arxiv.org/abs/2601.18113)
 
+#### WebTrap Park: An Automated Platform for Systematic Security Evaluation of Web Agents (WebTrap Park) (2026-01)
+
+Web agent security evaluation remains fragmented and hard to standardize. WebTrap Park is an automated platform that evaluates through direct observation of an agent's concrete interactions with live web pages, instantiating three major sources of security risk into 1,226 executable tasks. Assessment is action-based and requires no modification to the agent under test — which is what makes it applicable to closed frameworks. The headline finding is about architecture rather than models: security differs clearly across agent frameworks, so framework design matters beyond the underlying model choice. Publicly hosted, which makes it usable as a reproducible baseline rather than a one-off evaluation.
+
+`Env: Web` ｜ [arXiv:2601.08406](https://arxiv.org/abs/2601.08406)
+
 #### It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents (TRAP) (2025-12)
 
 Studies injection through the lens of persuasion rather than payload engineering: adversarial instructions hidden in interface elements *persuade* the agent away from its original task, which reframes the defense problem as psychological rather than syntactic. Across six frontier models, agents fall for injection in 25% of tasks on average, but the spread is the point — 13% for GPT-5 against 43% for DeepSeek-R1. More troubling, small interface or contextual changes often double success rates, indicating the vulnerability is systemic rather than tied to any specific phrasing. Ships a modular social-engineering injection framework running controlled experiments on high-fidelity website clones.
@@ -85,6 +91,12 @@ Fills a systematic gap: many injection attacks target web agents and many genera
 Addresses a domain where the agent is the defender rather than the target: e-commerce risk management requires aggregating deeply embedded web data through multi-step stateful interaction, which traditional scraping cannot do and most GUI agents — limited to single-step tasks on cooperative pages — cannot either. RISK contributes three pieces: RISK-Data with 8,492 single-step and 2,386 multi-step trajectories collected via a high-fidelity browser framework, RISK-Bench with 802 single-step and 320 multi-step trajectories across three difficulty levels, and RISK-R1, an R1-style reinforcement fine-tuning framework.
 
 `Env: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
+
+#### Benchmarking MLLM-based Web Understanding: Reasoning, Robustness and Safety (WebRRSBench) (2025-09)
+
+MLLMs increasingly serve as the reasoning engine behind GUI agents and front-end automation, which must interpret page structure, select actionable widgets, and execute multi-step interactions reliably. Existing benchmarks, however, mostly measure visual perception or UI code generation, leaving reasoning, robustness, and safety under-evaluated for end-to-end web applications. WebRRSBench evaluates all three jointly across eight tasks — including position relationship reasoning, color robustness, and safety-critical detection — built from 729 websites with 3,799 QA pairs probing multi-step inference over page structure, text, widgets, and safety-critical interactions. Its value on this list is the coupling: it measures safety in the same harness as the perception and reasoning capabilities that safety depends on, rather than as a detached score.
+
+`Env: Web` ｜ [arXiv:2509.21782](https://arxiv.org/abs/2509.21782)
 
 #### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
 

@@ -38,6 +38,12 @@ Names the cost that detection-based defenses quietly impose: blocking prevents d
 
 `Env: Desktop` ｜ [arXiv:2601.12822](https://arxiv.org/abs/2601.12822)
 
+#### Learning Efficient Guardrails for Compliance (PolicyGuard) (2025-10)
+
+Compared with standard safety objectives, whether long-horizon web agents actually adhere to real-world policies is critically underexplored. PolicyGuardBench addresses this with 60k policy-trajectory pairs and — importantly — evaluates not only full-trajectory violation detection but a novel prefix-based variant, i.e. catching a violation before the trajectory finishes. On that data the authors train PolicyGuard, a lightweight guardrail achieving strong detection accuracy at high inference efficiency, and preserving performance on unseen domains. The relevant conclusion for deployment is the scale claim: accurate and generalizable compliance guardrails are feasible at small model sizes, so pre-execution policy checking need not carry frontier-model cost.
+
+`Env: Web` ｜ [arXiv:2510.03485](https://arxiv.org/abs/2510.03485)
+
 #### WebGuard: Building a Generalizable Guardrail for Web Agents (WebGuard) (2025-07)
 
 Argues web agents need access controls analogous to those for human users, and releases the first dataset supporting web-agent action risk assessment: 4,939 human-annotated state-changing actions from 193 websites across 22 domains, including often-overlooked long-tail sites, labelled under a three-tier schema (SAFE / LOW / HIGH) with designated train-test splits for generalization study. The headline finding is stark — even frontier LLMs predict action outcomes with under 60% accuracy.

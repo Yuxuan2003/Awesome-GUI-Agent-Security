@@ -50,6 +50,12 @@
 
 `环境: Web` ｜ [arXiv:2601.18113](https://arxiv.org/abs/2601.18113)
 
+#### WebTrap Park: An Automated Platform for Systematic Security Evaluation of Web Agents (WebTrap Park) (2026-01)
+
+web agent 的安全评测长期碎片化、难以标准化。WebTrap Park 是一个自动化平台，通过直接 观察 agent 与真实网页的具体交互来评测，把三大类安全风险来源实例化为 1226 个可执行任务。 评测基于动作而非文本输出，且**无需修改被测 agent**——这正是它能用于闭源框架的原因。 最值得注意的结论与架构而非模型有关：不同 agent 框架之间的安全性差异明显，说明框架设计 的影响超出了底层模型的选择。平台已公开托管，因此可作为可复现的基线而非一次性评测。
+
+`环境: Web` ｜ [arXiv:2601.08406](https://arxiv.org/abs/2601.08406)
+
 #### It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents (TRAP) (2025-12)
 
 从「说服」而非「载荷工程」的视角研究注入：藏在界面元素里的对抗指令是在**说服** agent 偏离 原任务，这把防御问题重新框定为心理学层面而非语法层面的。在六个前沿模型上，agent 平均在 25% 的任务中中招，但真正值得看的是差距——GPT-5 为 13%，DeepSeek-R1 高达 43%。更麻烦的是， 界面或上下文的微小改动常常使成功率翻倍，说明这种脆弱性是系统性的，而非绑定于某种特定措辞。 配套发布模块化的社会工程注入框架，在高保真网站克隆上做受控实验。
@@ -85,6 +91,12 @@
 面向一个 agent 扮演防御方而非攻击目标的领域：电商风控需要通过多步、有状态的交互聚合深度 嵌套的网页数据，这既非传统爬虫所能胜任，也超出大多数 GUI agent 的能力——后者通常局限于 配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条 单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹； 以及 RISK-R1，一个 R1 风格的强化微调框架。
 
 `环境: Web` ｜ [arXiv:2509.21982](https://arxiv.org/abs/2509.21982)
+
+#### Benchmarking MLLM-based Web Understanding: Reasoning, Robustness and Safety (WebRRSBench) (2025-09)
+
+MLLM 越来越多地充当 GUI agent 与前端自动化背后的推理引擎，需要理解页面结构、选择可操作 控件、可靠执行多步交互。但现有基准大多只衡量视觉感知或 UI 代码生成，对端到端 web 应用 所需的推理、鲁棒性与安全能力评测不足。WebRRSBench 在八项任务上联合评测这三者，涵盖 位置关系推理、颜色鲁棒性、安全关键检测等，数据取自 729 个网站、含 3799 个 QA 对， 考察对页面结构、文本、控件以及安全关键交互的多步推断。它在本清单中的价值在于「耦合」： 安全性与它所依赖的感知、推理能力放在同一套评测框架里衡量，而不是作为一个脱离上下文的 独立分数。
+
+`环境: Web` ｜ [arXiv:2509.21782](https://arxiv.org/abs/2509.21782)
 
 #### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
 

@@ -70,14 +70,19 @@ def _one_page(extra, s, e, start, page_size):
         "start": start, "max_results": page_size,
         "sortBy": "submittedDate", "sortOrder": "descending",
     })
-    for attempt in range(3):
+    last = None
+    for attempt in range(4):
         try:
             return urllib.request.urlopen(API + "?" + params, timeout=60).read().decode()
-        except Exception:
-            if attempt == 2:
-                return ""
-            time.sleep(12)
-    return ""
+        except Exception as ex:
+            last = ex
+            if attempt < 3:
+                print(f"  请求失败（第 {attempt + 1} 次），{12}s 后重试：{ex}", file=sys.stderr)
+                time.sleep(12)
+    # 关键：网络故障绝不能伪装成「无结果」。
+    # 历史 bug：原实现返回 "" 让 search() 静默 break，全区间 174 篇候选被报成 0 篇，
+    # 日志里连「arXiv 报告命中」都不打印 —— 极易被误读为「存量已清完」。
+    raise RuntimeError(f"arXiv 请求连续 4 次失败（start={start}）：{last}")
 
 
 def search(extra, start_ymd, end_ymd, page_size=100, max_pages=20):
@@ -88,21 +93,24 @@ def search(extra, start_ymd, end_ymd, page_size=100, max_pages=20):
     """
     s = start_ymd.replace("-", "") + "0000"
     e = end_ymd.replace("-", "") + "2359"
-    pages, total = [], None
+    pages, total, got_all = [], None, 0
     for i in range(max_pages):
         xml = _one_page(extra, s, e, i * page_size, page_size)
-        if not xml:
-            break
         if total is None:
             m = re.search(r"opensearch:totalResults[^>]*>(\d+)<", xml)
             total = int(m.group(1)) if m else None
-            if total:
-                print(f"  arXiv 报告命中 {total} 篇，开始翻页…", file=sys.stderr)
+            print(f"  arXiv 报告命中 {total if total is not None else '?'} 篇，开始翻页…",
+                  file=sys.stderr)
         pages.append(xml)
         got = len(re.findall(r"<entry>", xml))
+        got_all += got
         if got < page_size:
             break
         time.sleep(SLEEP)
+    # 自检：翻页拿到的条数应与 arXiv 报告的总数一致，否则说明被截断
+    if total is not None and got_all < total:
+        print(f"  ⚠ 警告：arXiv 报告 {total} 篇，实际只取到 {got_all} 篇 —— 疑似翻页被截断，"
+              f"请检查 max_pages（当前 {max_pages}）", file=sys.stderr)
     return "".join(pages)
 
 

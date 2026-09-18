@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### PriMobiBench: Characterizing Visual Privacy Leakage in VLM-Driven Mobile GUI Agents (PriMobiBench) (2026-09)
+
+移动 GUI agent 通过解读截图流自动化手机任务，这一设计带来严重但研究不足的隐私风险： 既包括屏上敏感信息的直接泄露，也包括非预期的用户画像推断，而两者都缺少标准化基准来量化。 PriMobiBench 是首个系统评测截图驱动移动 agent 的视觉隐私泄露与画像风险的基准，提供 数据生成、轨迹构建与多模型评测的统一流水线，并附数据集 MobiLeak——来自 16 个应用的 执行轨迹，覆盖 25 类隐私属性、2960 个嵌入的隐私实例。结果相当刺眼：VLM 直接提取敏感 信息成功率最高 82.5%；即便没有显式泄露，也能从聚合的视觉证据中以约 70% 的成功率推断出 用户画像。作者提出的缓解方案在上云前遮蔽「隐私敏感但与任务无关」的 UI 元素，可将画像 成功率最多降低 58%，代价仅约 8% 的性能损失。
+
+`环境: Mobile` ｜ [arXiv:2609.13873](https://arxiv.org/abs/2609.13873)
+
 #### MobileWorldSafety: Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps (MobileWorldSafety) (2026-08)
 
 指出现有基准脱离日常使用场景，缺乏对移动 GUI agent 在环境注入下的系统评估——而这类 agent 已从研究原型走向真实部署，且日常操作中会不断处理不可信的环境内容。提出基于真实 Android 应用构建的基准 MobileWorldSafety，含 142 个风险任务，覆盖间接提示注入与对抗 指令等多种日常渠道，每个任务都定义了可程序化验证的判定条件，使攻击是否成功可被客观测量。

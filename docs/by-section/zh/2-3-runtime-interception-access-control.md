@@ -8,6 +8,18 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### HazardAuditor: From Executable Threats to Safer Computer-Use Agents (HazardAuditor) (2026-09)
+
+指出护栏模型覆盖 computer-use agent 时的两处断层：现有护栏针对静态 prompt 与回复， 不适配 agent 的执行过程；而现有可执行安全平台只产出评测判定，给不出护栏模型跨异构框架 学习所需的规范化监督信号。HazardAuditor 同时补上两者——基础设施在受控环境中运行 Claude Code、Codex、Hermes、OpenClaw，把它们的交互归一化为统一事件表示，从而支持 跨框架监督。作者还发现一处结构性错配：token 级后训练目标会让更长的推理过程主导梯度更新。 为此提出 Guard Policy Optimization（GuardPO），把确定性的安全结果转换为序列级优势， 并对推理区与判定区分别归一化，使「安全决策」成为真正的优化单元。相比此前最强护栏， 准确率最高提升 16.5 个百分点。
+
+`环境: Desktop, Web` ｜ [arXiv:2609.15134](https://arxiv.org/abs/2609.15134)
+
+#### Monitoring Web Agents Without Internal Signals: Observable Trajectories and Key-Step Supervision (Key-Step Supervision) (2026-09)
+
+可靠监控恰恰在最需要它的地方最难做：闭源 API 背后拿不到 token logit 这类模型内部信号。 本文研究仅凭可观测信号做前缀级风险预测——给定一段正在演进的执行前缀，判断当前是否仍在 正轨上。作者导出两类表示：Macro 特征刻画跨步的 agent-环境行为与反馈；Micro 特征通过 重复黑盒查询衡量意图、动作、预期状态变化三者的一致性。真正巧妙的是监督信号的设计： 不直接继承最终结果标签，而是把「在后续观测中未被纠正、且与最终失败相关的第一个关键错误」 标为关键步边界，从而把失败轨迹中仍然有效的早期前缀保留为「正轨」——这避免了朴素的 结果标签带来的噪声，后者会让监控器要么报得太晚、要么频繁误报。
+
+`环境: Web` ｜ [arXiv:2609.02057](https://arxiv.org/abs/2609.02057)
+
 #### CURA: Certified Runtime Alarms for Computer-Use Agents (CURA) (2026-08)
 
 揭示 self-report 这一最廉价的监督通道恰恰在最需要它的地方失效：在 361 个 OSWorld 任务上， 流水线平均分 82.9（超过人类基线 72.4），但 71 次失败里有 64 次（90%）以「成功」收尾， 61 次声称没有遇到任何阻碍，约 9100 次调用中显式的失败上报机制从未被使用。提出外部监控器 CURA，只读 harness 可见的遥测数据，不需模型内部状态、额外 LLM 调用或改 prompt，把运行 轨迹转成带误报率保证的序贯检验：α=0.10 时 CUSUM 告警能在终止前中位 31 步检出 42.3% 的 失败，实测误报率 0.066。
