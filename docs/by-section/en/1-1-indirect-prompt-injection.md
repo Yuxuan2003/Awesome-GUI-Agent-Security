@@ -44,6 +44,30 @@ Names the structural problem the Trusted Executor Dilemma: high-privilege agents
 
 `Env: Desktop` ｜ [arXiv:2603.11862](https://arxiv.org/abs/2603.11862)
 
+#### Context manipulation attacks : Web agents are susceptible to corrupted memory (Plan Injection) (2025-06)
+
+Because LLMs are stateless, autonomous web navigation agents depend on external memory to maintain context across interactions — and that memory is often managed client-side or by third-party applications rather than securely on a server, a gap already exploited against production systems. The paper introduces and formalizes "plan injection", a context manipulation attack that corrupts the agent's internal task representation instead of its prompt. Evaluated on two popular web agents, Browser-use and Agent-E, plan injections bypass robust prompt injection defenses and reach up to 3x the attack success rate of comparable prompt-based attacks. A further variant, "context-chained injections", builds logical bridges between the legitimate user goal and the attacker's objective and raises success rates by 17.7% on privacy exfiltration tasks. The authors conclude that secure memory handling must become a first-class concern in agentic systems.
+
+`Env: Web` ｜ [arXiv:2506.17318](https://arxiv.org/abs/2506.17318)
+
+#### The Hidden Dangers of Browsing AI Agents (2025-05)
+
+Autonomous browsing agents rely on dynamic content, tool execution and user-provided data, exposing a broad attack surface. This paper presents a comprehensive security evaluation and the first end-to-end threat model for browsing agents, with actionable guidance for securing real-world deployment. The proposed defense follows a defense-in-depth strategy: input sanitization, planner-executor isolation, formal analyzers and session safeguards, protecting against both initial access and post-exploitation vectors. Through a white-box analysis of the popular open-source project Browser Use, the authors demonstrate how untrusted web content hijacks agent behaviour and leads to critical security breaches, with findings including prompt injection, domain validation bypass and credential exfiltration — evidenced by a disclosed CVE and a working proof-of-concept exploit.
+
+`Env: Web` ｜ [arXiv:2505.13076](https://arxiv.org/abs/2505.13076)
+
+#### The Obvious Invisible Threat: LLM-Powered GUI Agents' Vulnerability to Fine-Print Injections (Fine-Print Injection) (2025-04)
+
+GUI agents complete real-world tasks such as filling forms or booking services and often must process and act on sensitive user data, which introduces new privacy and security risks. Adversaries can inject malicious content into GUIs that alters agent behaviour or induces unintended disclosure of private information, exploiting the discrepancy between visual saliency for agents and for human users, or the agent's limited ability to detect violations of contextual integrity. The paper characterizes six types of such attacks and tests them with six state-of-the-art GUI agents, 234 adversarial webpages and 39 human participants. GUI agents prove highly vulnerable, particularly to contextually embedded threats. Human participants are also susceptible to many of these attacks, indicating that simple human oversight may not reliably prevent failures — a misalignment that motivates privacy-aware agent design and practical defenses.
+
+`Env: Web` ｜ [arXiv:2504.11281](https://arxiv.org/abs/2504.11281)
+
+#### sudo rm -rf agentic_security (SUDO) (2025-03)
+
+LLMs deployed as computer-use agents autonomously perform tasks in real desktop or web environments, creating serious security exposures. This paper presents SUDO (Screen-based Universal Detox2Tox Offense), an attack framework that systematically bypasses refusal-trained safeguards in commercial computer-use agents such as Claude for Computer Use. The core mechanism, Detox2Tox, transforms harmful requests the agent initially rejects into seemingly benign ones, secures detailed instructions from advanced vision-language models, then reintroduces malicious content via toxification just before execution. Unlike conventional jailbreaks, SUDO iteratively refines its attacks using built-in refusal feedback, becoming increasingly effective against robust policy filters. Across 50 real-world tasks and multiple state-of-the-art VLMs, SUDO achieves 24.41% attack success rate without refinement and up to 41.33% with iterative refinement against Claude for Computer Use.
+
+`Env: Desktop, Cross-env` ｜ `Venue: ACL 2025` ｜ [arXiv:2503.20279](https://arxiv.org/abs/2503.20279)
+
 #### WIPI: A New Web Threat for LLM-Driven Web Agents (WIPI) (2024-02)
 
 One of the earliest papers to pose the question directly — as countless web agents shipped and moved toward everyday deployment, are they secure at all? WIPI introduces a threat that indirectly controls a web agent by embedding malicious instructions in publicly accessible webpages, requiring no access to the agent itself. The method works black-box and focuses on the form and content of the indirect instruction rather than on model internals, which is what makes it both efficient and stealthy. Historically this is a foundational reference for the indirect injection line of work on web agents.

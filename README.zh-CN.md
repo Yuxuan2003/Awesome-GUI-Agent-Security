@@ -4,7 +4,7 @@
 
 > GUI / Computer-Use / 浏览器 Agent 安全论文清单 —— 按攻防轴组织，而非按运行环境。
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.09-brightgreen) ![Papers](https://img.shields.io/badge/papers-130%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.09-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.09-brightgreen) ![Papers](https://img.shields.io/badge/papers-170%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.09-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > 本页是**索引**，每篇一行；每节链接到带 2-4 句中文简介的小节页。
 
@@ -21,26 +21,26 @@
 
 ## 目录
 
-- [0 综述与威胁模型](#0-综述与威胁模型) · 7
+- [0 综述与威胁模型](#0-综述与威胁模型) · 8
 - [1 攻击面](#1-攻击面)
-  - [1.1 间接提示注入](#11-间接提示注入) · 7
-  - [1.2 视觉层攻击](#12-视觉层攻击) · 8
-  - [1.3 环境注入](#13-环境注入) · 8
+  - [1.1 间接提示注入](#11-间接提示注入) · 11
+  - [1.2 视觉层攻击](#12-视觉层攻击) · 13
+  - [1.3 环境注入](#13-环境注入) · 12
   - [1.4 越权与权限滥用](#14-越权与权限滥用) · 5
   - [1.5 数据泄露与隐私](#15-数据泄露与隐私) · 6
-  - [1.6 后门与投毒](#16-后门与投毒) · 6
-  - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 8
+  - [1.6 后门与投毒](#16-后门与投毒) · 8
+  - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 12
 - [2 防御层](#2-防御层)
-  - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 12
-  - [2.2 执行前风险评估](#22-执行前风险评估) · 7
-  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 13
-  - [2.4 人在环与确认机制](#24-人在环与确认机制) · 4
-  - [2.5 事后恢复与回滚](#25-事后恢复与回滚) · 4
-  - [2.6 形式化保证与验证](#26-形式化保证与验证) · 7
+  - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 15
+  - [2.2 执行前风险评估](#22-执行前风险评估) · 9
+  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 15
+  - [2.4 人在环与确认机制](#24-人在环与确认机制) · 6
+  - [2.5 事后恢复与回滚](#25-事后恢复与回滚) · 5
+  - [2.6 形式化保证与验证](#26-形式化保证与验证) · 8
 - [3 评测基准与数据集](#3-评测基准与数据集)
-  - [3.1 综合与跨环境基准](#31-综合与跨环境基准) · 9
-  - [3.2 Web 环境基准](#32-web-环境基准) · 17
-  - [3.3 Mobile 环境基准](#33-mobile-环境基准) · 5
+  - [3.1 综合与跨环境基准](#31-综合与跨环境基准) · 11
+  - [3.2 Web 环境基准](#32-web-环境基准) · 20
+  - [3.3 Mobile 环境基准](#33-mobile-环境基准) · 8
   - [3.4 Desktop 与 OS 环境基准](#34-desktop-与-os-环境基准) · 4
 - [4 商用 AI 浏览器与产品安全](#4-商用-ai-浏览器与产品安全) · 2
 
@@ -57,6 +57,7 @@
 - **[Architecture-Lifecycle Framework](https://arxiv.org/abs/2605.07110)** — Securing Computer-Use Agents: A Unified Architecture-Lifecycle Framework for Deployment-Grounded Reliability · 2026-05 · 🧩
 - **[Mobile Agent Security Study](https://arxiv.org/abs/2510.27140)** — Measuring the Security of Mobile LLM Agents under Adversarial Prompts from Untrusted Third-Party Channels · 2025-10 · 📱
 - **[CUA Vuln SoK](https://arxiv.org/abs/2507.05445)** — A Systematization of Security Vulnerabilities in Computer Use Agents · 2025-07 · 🖥️🌐
+- **[JARVIS or Ultron?](https://arxiv.org/abs/2505.10924)** — A Survey on the Safety and Security Threats of Computer-Using Agents: JARVIS or Ultron? · 2025-05 · 🧩
 - **[Trustworthy GUI Survey](https://arxiv.org/abs/2503.23434)** — Towards Trustworthy GUI Agents: A Survey · 2025-03 · 🧩
 - **[BrowserART](https://arxiv.org/abs/2410.13886)** — Refusal-Trained LLMs Are Easily Jailbroken As Browser Agents · 2024-10 · 🌐
 
@@ -74,6 +75,10 @@
 - **[ADI](https://arxiv.org/abs/2607.05120)** — Agent Data Injection Attacks are Realistic Threats to AI Agents · 2026-07 · 🌐🖥️
 - **[WebTrap](https://arxiv.org/abs/2605.08310)** — Stealthy Mid-Task Hijacking of Browser Agents During Navigation · 2026-05 · 🌐
 - **[ReadSecBench](https://arxiv.org/abs/2603.11862)** — You Told Me to Do It: Measuring Instructional Text-induced Private Data Leakage in LLM Agents · 2026-03 · 🖥️
+- **[Plan Injection](https://arxiv.org/abs/2506.17318)** — Context manipulation attacks : Web agents are susceptible to corrupted memory · 2025-06 · 🌐
+- **[The Hidden Dangers of Browsing AI Agents](https://arxiv.org/abs/2505.13076)** · 2025-05 · 🌐
+- **[Fine-Print Injection](https://arxiv.org/abs/2504.11281)** — The Obvious Invisible Threat: LLM-Powered GUI Agents' Vulnerability to Fine-Print Injections · 2025-04 · 🌐
+- **[SUDO](https://arxiv.org/abs/2503.20279)** — sudo rm -rf agentic_security · 2025-03 · 🖥️🧩
 - **[WIPI](https://arxiv.org/abs/2402.16965)** — A New Web Threat for LLM-Driven Web Agents · 2024-02 · 🌐
 
 ### 1.2 视觉层攻击
@@ -84,10 +89,15 @@
 - **[AgentHijack](https://arxiv.org/abs/2609.09212)** — Visual Patch Attacks on Multimodal Computer-Use Agents · 2026-09 · 🖥️🌐
 - **[Perception-Fusion Gap](https://arxiv.org/abs/2607.04334)** — Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure · 2026-07 · 🌐📱🖥️
 - **[MIRAGE](https://arxiv.org/abs/2606.20717)** — Stealthy Visual Prompt Injection for Vulnerability Detection in Web Agents · 2026-06 · 🌐
+- **[PriceBlind](https://arxiv.org/abs/2604.16515)** — Penny Wise, Pixel Foolish: Bypassing Price Constraints in Multimodal Agents via Visual Adversarial Perturbations · 2026-04 · 📱
 - **[PRAC](https://arxiv.org/abs/2604.08005)** — Preference Redirection via Attention Concentration: An Attack on Computer Use Agents · 2026-04 · 🖥️🌐
 - **[Semantic UI Injection](https://arxiv.org/abs/2604.07831)** — Are GUI Agents Focused Enough? Automated Distraction via Semantic-level UI Element Injection · 2026-04 · 🧩
 - **[Visual Confused Deputy](https://arxiv.org/abs/2603.14707)** — Exploiting and Defending Perception Failures in Computer-Using Agents · 2026-03 · 🖥️
 - **[Agent-Only Perceptual Injection](https://arxiv.org/abs/2510.07809)** — Invisible to Humans, Triggered by Agents: Stealthy Jailbreak Attacks on Mobile Vision-Language Agents · 2025-10 · 📱
+- **[CPS](https://arxiv.org/abs/2510.03612)** — Cross-Modal Content Optimization for Steering Web Agent Preferences · 2025-10 · 🌐
+- **[WebInject](https://arxiv.org/abs/2505.11717)** — Prompt Injection Attack to Web Agents · 2025-05 · 🌐
+- **[MIP](https://arxiv.org/abs/2503.10809)** — MIP against Agent: Malicious Image Patches Hijacking Multimodal OS Agents · 2025-03 · 🧩
+- **[ARE](https://arxiv.org/abs/2406.12814)** — Dissecting Adversarial Robustness of Multimodal LM Agents · 2024-06 · 🌐
 
 ### 1.3 环境注入
 
@@ -96,11 +106,15 @@
 - **[AnTrap](https://arxiv.org/abs/2608.24099)** — Are Android GUI Agents Robust Against Runtime Anomalies? AnTrap: Evaluating Agents in Dynamic Adversarial Environments · 2026-08 · 📱
 - **[Not an A11y](https://arxiv.org/abs/2608.08939)** — How Android Accessibility Exposes Mobile AI Agents to Indirect Prompt Injection · 2026-08 · 📱
 - **[MIRAGE (Mobile)](https://arxiv.org/abs/2605.28116)** — MIRAGE: Context-Aware Prompt Injection against Mobile GUI Agents via User-Generated Content · 2026-05 · 📱
+- **[WAAA](https://arxiv.org/abs/2605.05509)** — WAAA! Web Adversaries Against Agentic Browsers · 2026-05 · 🌐
 - **[eTAMP](https://arxiv.org/abs/2604.02623)** — Poison Once, Exploit Forever: Environment-Injected Memory Poisoning Attacks on Web Agents · 2026-04 · 🌐
+- **[TrickyArena](https://arxiv.org/abs/2510.18113)** — Investigating the Impact of Dark Patterns on LLM-Based Web Agents · 2025-10 · 🌐
 - **[Dynamic EIA](https://arxiv.org/abs/2509.11250)** — Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments · 2025-09 · 🌐
 - **[A11y Tree IPI](https://arxiv.org/abs/2507.14799)** — Manipulating LLM Web Agents with Indirect Prompt Injection Attack via HTML Accessibility Tree · 2025-07 · 🌐
 - **[AdInject](https://arxiv.org/abs/2505.21499)** — Real-World Black-Box Attacks on Web Agents via Advertising Delivery · 2025-05 · 🌐
+- **[EVA](https://arxiv.org/abs/2505.14289)** — Evolving Semantic Adversaries for Red-Teaming GUI Agents Against Environmental Injection Attacks · 2025-05 · 🧩
 - **[EIA](https://arxiv.org/abs/2409.11295)** — Environmental Injection Attack on Generalist Web Agents for Privacy Leakage · 2024-09 · 🌐
+- **[Caution for the Environment: Multimodal LLM Agents are Susceptible to Environmental Distractions](https://arxiv.org/abs/2408.02544)** · 2024-08 · 🧩
 
 ### 1.4 越权与权限滥用
 
@@ -131,21 +145,27 @@
 - **[MemVenom](https://arxiv.org/abs/2606.10742)** — Triggered Poisoning of Multimodal Memories in Web Agents · 2026-06 · 🌐
 - **[AgentRAE](https://arxiv.org/abs/2603.23007)** — Remote Action Execution through Notification-based Visual Backdoors against Screenshots-based Mobile GUI Agents · 2026-03 · 📱
 - **[SlowBA](https://arxiv.org/abs/2603.08316)** — An Efficiency Backdoor Attack towards VLM-based GUI Agents · 2026-03 · 📱🧩
+- **[Skill Trust Framework](https://arxiv.org/abs/2602.12430)** — Agent Skills for Large Language Models: Architecture, Acquisition, Security, and the Path Forward · 2026-02 · 🧩
 - **[VisualTrap](https://arxiv.org/abs/2507.06899)** — A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation · 2025-07 · 📱🖥️
 - **[VIBMA](https://arxiv.org/abs/2506.13205)** — Poison Once, Control Anywhere: Clean-Text Visual Backdoors in VLM-based Mobile Agents · 2025-06 · 📱
+- **[AgentGhost](https://arxiv.org/abs/2505.14418)** — Hidden Ghost Hand: Unveiling Backdoor Vulnerabilities in MLLM-Powered Mobile GUI Agents · 2025-05 · 📱
 
 ### 1.7 良性指令下的意外危害
 
 *无恶意攻击者，agent 自身在正常指令下造成危害* · [简介 →](docs/by-section/zh/1-7-unintended-harm-from-benign-instructions.md)
 
+- **[CAVEAT](https://arxiv.org/abs/2609.27273)** — Towards Robust Computer-Use Agents in Incentive-Misaligned Environments · 2026-09 · 🌐
 - **[Nudge Susceptibility](https://arxiv.org/abs/2609.19843)** — A Dual-Process Perspective on Nudge Susceptibility in LLM-Based GUI Agents · 2026-09 · 🌐
 - **[Alignment Is Local](https://arxiv.org/abs/2607.29199)** — A Paired Diagnostic for GUI Agents under User Persuasion · 2026-07 · 📱🧩
 - **[OTora](https://arxiv.org/abs/2605.08876)** — A Unified Red Teaming Framework for Reasoning-Level Denial-of-Service in LLM Agents · 2026-05 · 🌐🖥️
 - **[OS-BLIND](https://arxiv.org/abs/2604.10577)** — The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents · 2026-04 · 🖥️
 - **[AutoElicit](https://arxiv.org/abs/2602.08235)** — When Benign Inputs Lead to Severe Harms: Eliciting Unsafe Unintended Behaviors of Computer-Use Agents · 2026-02 · 🖥️
+- **[The Behavioral Fabric of LLM-Powered GUI Agents: Human Values and Interaction Outcomes](https://arxiv.org/abs/2601.16356)** · 2026-01 · 🌐
 - **[AgentBait](https://arxiv.org/abs/2601.07263)** — When Bots Take the Bait: Exposing and Mitigating the Emerging Social Engineering Attack in Web Automation Agent · 2026-01 · 🌐
 - **[DECEPTICON](https://arxiv.org/abs/2512.22894)** — How Dark Patterns Manipulate Web Agents · 2025-12 · 🌐
+- **[BLIND-ACT](https://arxiv.org/abs/2510.01670)** — Just Do It!? Computer-Use Agents Exhibit Blind Goal-Directedness · 2025-10 · 🧩
 - **[Dark Patterns Meet GUI Agents](https://arxiv.org/abs/2509.10723)** — LLM Agent Susceptibility to Manipulative Interfaces and the Role of Human Oversight · 2025-09 · 🌐
+- **[Characterizing Unintended Consequences in Human-GUI Agent Collaboration for Web Browsing](https://arxiv.org/abs/2505.09875)** · 2025-05 · 🌐
 
 ## 2 防御层
 
@@ -157,6 +177,7 @@
 
 - **[FocusMem](https://arxiv.org/abs/2608.04530)** — Factorizing Content, Readout, and Trust in Latent GUI Memory · 2026-08 · 📱🖥️🌐
 - **[UCM](https://arxiv.org/abs/2607.05277)** — Untrusted Content Masking for Web Agents with Security Guarantees · 2026-07 · 🌐
+- **[IPI Probe Controls](https://arxiv.org/abs/2606.22864)** — When AUC 0.998 Is Not Enough: A Candidate Evaluation Protocol for Hidden-State Probes of Indirect Prompt Injection in Multimodal Computer-Use Agents · 2026-06 · 🧩
 - **[CAPED](https://arxiv.org/abs/2606.12666)** — Context-Aware Privacy Exposure Defense for Mobile GUI Agents · 2026-06 · 📱
 - **[MaskClaw](https://arxiv.org/abs/2605.28646)** — Edge-Side Personalized Privacy Arbitration for GUI Agents with Behavior-Driven Skill Evolution · 2026-05 · 📱🖥️
 - **[WARD](https://arxiv.org/abs/2605.15030)** — Adversarially Robust Defense of Web Agents Against Prompt Injections · 2026-05 · 🌐
@@ -167,12 +188,16 @@
 - **[WebSentinel](https://arxiv.org/abs/2602.03792)** — Detecting and Localizing Prompt Injection Attacks for Web Agents · 2026-02 · 🌐
 - **[Rennervate](https://arxiv.org/abs/2512.08417)** — Attention is All You Need to Defend Against Indirect Prompt Injection Attacks in LLMs · 2025-12 · 🌐
 - **[DualTAP](https://arxiv.org/abs/2511.13248)** — A Dual-Task Adversarial Protector for Mobile MLLM Agents · 2025-11 · 📱
+- **[CORE](https://arxiv.org/abs/2510.15455)** — Reducing UI Exposure in Mobile Agents via Collaboration Between Cloud and Local LLMs · 2025-10 · 📱
+- **[GEM](https://arxiv.org/abs/2505.12842)** — Gaussian Embedding Modeling for Out-of-Distribution Detection in GUI Agents · 2025-05 · 🧩
 
 ### 2.2 执行前风险评估
 
 *世界模型预测、动作风险打分* · [简介 →](docs/by-section/zh/2-2-pre-execution-risk-assessment.md)
 
+- **[SCOPE](https://arxiv.org/abs/2609.22178)** — Beyond Task Completion: Training Capable and Safe Computer-Use Agents · 2026-08 · 🧩
 - **[SeerGuard](https://arxiv.org/abs/2607.15550)** — A Safety Framework for Mobile GUI Agents via World Model Prediction · 2026-07 · 📱
+- **[Argus](https://arxiv.org/abs/2606.25760)** — Uncertainty Quantification for Computer-Use Agents: A Benchmark across Vision-Language Models and GUI Grounding Datasets · 2026-06 · 🧩
 - **[DUDE](https://arxiv.org/abs/2605.09497)** — Don't Click That: Teaching Web Agents to Resist Deceptive Interfaces · 2026-05 · 🌐
 - **[DeAction](https://arxiv.org/abs/2602.08995)** — When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents · 2026-02 · 🖥️
 - **[SafePred](https://arxiv.org/abs/2602.01725)** — A Predictive Guardrail for Computer-Using Agents via World Models · 2026-02 · 🖥️
@@ -184,9 +209,11 @@
 
 *信息流追踪、OS 级策略强制、沙箱* · [简介 →](docs/by-section/zh/2-3-runtime-interception-access-control.md)
 
+- **[MATE](https://arxiv.org/abs/2609.22724)** — Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning · 2026-09 · 📱
 - **[HazardAuditor](https://arxiv.org/abs/2609.15134)** — From Executable Threats to Safer Computer-Use Agents · 2026-09 · 🖥️🌐
 - **[Key-Step Supervision](https://arxiv.org/abs/2609.02057)** — Monitoring Web Agents Without Internal Signals: Observable Trajectories and Key-Step Supervision · 2026-09 · 🌐
 - **[CURA](https://arxiv.org/abs/2608.27808)** — Certified Runtime Alarms for Computer-Use Agents · 2026-08 · 🖥️
+- **[CRATE-S](https://arxiv.org/abs/2608.20797)** — Automated Trajectory Evaluation for Mobile Agents via Step-Level Consequence Reasoning and Aggregation · 2026-08 · 📱
 - **[Prismata](https://arxiv.org/abs/2607.08147)** — Confining Cross-Site Prompt Injection in Web Agents · 2026-07 · 🌐
 - **[BraveGuard](https://arxiv.org/abs/2606.01166)** — From Open-World Threats to Safer Computer-Use Agents · 2026-05 · 🖥️🌐
 - **[TEE-Backed Isolation](https://arxiv.org/abs/2605.06393)** — Constraining Host-Level Abuse in Self-Hosted Computer-Use Agents via TEE-Backed Isolation · 2026-05 · 🖥️
@@ -205,7 +232,9 @@
 - **[TIPO](https://arxiv.org/abs/2604.11259)** — Mobile GUI Agent Privacy Personalization with Trajectory Induced Preference Optimization · 2026-04 · 📱
 - **[PrivWeb](https://arxiv.org/abs/2509.11939)** — Unobtrusive and Content-aware Privacy Protection For Web Agents · 2025-09 · 🌐
 - **[VeriOS](https://arxiv.org/abs/2509.07553)** — Query-Driven Proactive Human-Agent-GUI Interaction for Trustworthy OS Agents · 2025-09 · 📱🖥️
+- **[InquireMobile](https://arxiv.org/abs/2508.19679)** — Teaching VLM-based Mobile Agent to Request Human Assistance via Reinforcement Fine-Tuning · 2025-08 · 📱
 - **[VerificAgent](https://arxiv.org/abs/2506.02539)** — Domain-Specific Memory Verification for Scalable Oversight of Aligned Computer-Use Agents · 2025-06 · 🖥️
+- **[Toward a Human-Centered Evaluation Framework for Trustworthy LLM-Powered GUI Agents](https://arxiv.org/abs/2504.17934)** · 2025-04 · 🌐
 
 ### 2.5 事后恢复与回滚
 
@@ -215,6 +244,7 @@
 - **[CUADebug](https://arxiv.org/abs/2608.02643)** — Diagnosing and Repairing Computer-Use Agent Failures · 2026-07 · 🖥️
 - **[Agent Fingerprinting](https://arxiv.org/abs/2606.20910)** — Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents · 2026-06 · 🌐
 - **[What Did It Actually Do](https://arxiv.org/abs/2603.28551)** — "What Did It Actually Do?": Understanding Risk Awareness and Traceability for Computer-Use Agents · 2026-03 · 🖥️
+- **[KillBench](https://arxiv.org/abs/2511.13725)** — Can We Stop Malicious AI? KILLBENCH: A Benchmark for External AI Kill Switch Feasibility · 2025-09 · 🌐
 
 ### 2.6 形式化保证与验证
 
@@ -226,6 +256,7 @@
 - **[DMAST](https://arxiv.org/abs/2603.04364)** — Dual-Modality Multi-Stage Adversarial Safety Training: Robustifying Multimodal Web Agents Against Cross-Modal Attacks · 2026-03 · 🌐
 - **[Aura](https://arxiv.org/abs/2602.10915)** — Blind Gods and Broken Screens: Architecting a Secure, Intent-Centric Mobile Agent Operating System · 2026-02 · 📱
 - **[NOVA](https://arxiv.org/abs/2601.09923)** — CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents · 2026-01 · 🖥️
+- **[Building Browser Agents](https://arxiv.org/abs/2511.19477)** — Architecture, Security, and Practical Solutions · 2025-11 · 🌐
 - **[LaSM](https://arxiv.org/abs/2507.10610)** — Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents · 2025-07 · 🖥️🌐
 
 ## 3 评测基准与数据集
@@ -245,6 +276,8 @@
 - **[SusBench](https://arxiv.org/abs/2510.11035)** — An Online Benchmark for Evaluating Dark Pattern Susceptibility of Computer-Use Agents · 2025-10 · 🌐🖥️
 - **[CUAHarm](https://arxiv.org/abs/2508.00935)** — Measuring Harmfulness of Computer-Using Agents · 2025-07 · 🖥️
 - **[RiOSWorld](https://arxiv.org/abs/2506.00618)** — Benchmarking the Risk of Multimodal Computer-Use Agents · 2025-05 · 🖥️
+- **[RedTeamCUA](https://arxiv.org/abs/2505.21936)** — Realistic Adversarial Testing of Computer-Use Agents in Hybrid Web-OS Environments · 2025-05 · 🧩
+- **[DoomArena](https://arxiv.org/abs/2504.14064)** — A framework for Testing AI Agents Against Evolving Security Threats · 2025-04 · 🧩
 
 ### 3.2 Web 环境基准
 
@@ -263,8 +296,11 @@
 - **[Genesis](https://arxiv.org/abs/2510.18314)** — Evolving Attack Strategies for LLM Web Agent Red-Teaming · 2025-10 · 🌐
 - **[SecureWebArena](https://arxiv.org/abs/2510.10073)** — A Holistic Security Evaluation Benchmark for LVLM-based Web Agents · 2025-10 · 🌐
 - **[WAInjectBench](https://arxiv.org/abs/2510.01354)** — Benchmarking Prompt Injection Detections for Web Agents · 2025-10 · 🌐
+- **[WAREX](https://arxiv.org/abs/2510.03285)** — Web Agent Reliability Evaluation on Existing Benchmarks · 2025-09 · 🌐
 - **[RISK](https://arxiv.org/abs/2509.21982)** — A Framework for GUI Agents in E-commerce Risk Management · 2025-09 · 🌐
 - **[WebRRSBench](https://arxiv.org/abs/2509.21782)** — Benchmarking MLLM-based Web Understanding: Reasoning, Robustness and Safety · 2025-09 · 🌐
+- **[WASP](https://arxiv.org/abs/2504.18575)** — Benchmarking Web Agent Security Against Prompt Injection Attacks · 2025-04 · 🌐
+- **[SafeArena](https://arxiv.org/abs/2503.04957)** — Evaluating the Safety of Autonomous Web Agents · 2025-03 · 🌐
 - **[AdvAgent](https://arxiv.org/abs/2410.17401)** — Controllable Blackbox Red-teaming on Web Agents · 2024-10 · 🌐
 - **[ST-WebAgentBench](https://arxiv.org/abs/2410.06703)** — A Benchmark for Evaluating Safety and Trustworthiness in Web Agents · 2024-10 · 🌐
 
@@ -275,8 +311,11 @@
 - **[PriMobiBench](https://arxiv.org/abs/2609.13873)** — Characterizing Visual Privacy Leakage in VLM-Driven Mobile GUI Agents · 2026-09 · 📱
 - **[MobileWorldSafety](https://arxiv.org/abs/2608.17659)** — Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps · 2026-08 · 📱
 - **[GhostEI-Bench](https://arxiv.org/abs/2510.20333)** — Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments? · 2025-10 · 📱
+- **[SAPA-Bench](https://arxiv.org/abs/2508.19493)** — Mind the Third Eye! Benchmarking Privacy Awareness in MLLM-powered Smartphone Agents · 2025-08 · 📱
 - **[MVISU-Bench](https://arxiv.org/abs/2508.09057)** — Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions · 2025-08 · 📱
+- **[AgentScan](https://arxiv.org/abs/2505.12981)** — From Assistants to Adversaries: Exploring the Security Risks of Mobile LLM Agents · 2025-05 · 📱
 - **[MobileSafetyBench](https://arxiv.org/abs/2410.17520)** — Evaluating Safety of Autonomous Agents in Mobile Device Control · 2024-10 · 📱
+- **[Systematic Categorization, Construction and Evaluation of New Attacks against Multi-modal Mobile GUI Agents](https://arxiv.org/abs/2407.09295)** · 2024-07 · 📱
 
 ### 3.4 Desktop 与 OS 环境基准
 

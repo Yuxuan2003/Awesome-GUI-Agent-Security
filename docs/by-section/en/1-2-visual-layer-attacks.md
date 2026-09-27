@@ -32,6 +32,12 @@ Criticises adversarial evaluations of multimodal web agents for adopting permiss
 
 `Env: Web` ｜ [arXiv:2606.20717](https://arxiv.org/abs/2606.20717)
 
+#### Penny Wise, Pixel Foolish: Bypassing Price Constraints in Multimodal Agents via Visual Adversarial Perturbations (PriceBlind) (2026-04)
+
+MLLM-based mobile agents now execute high-stakes financial transactions, yet their adversarial robustness remains underexplored. The paper identifies Visual Dominance Hallucination: in screenshot-based, price-constrained settings, imperceptible visual cues override textual price evidence and drive agents to irrational decisions. PriceBlind is a stealthy white-box attack framework that exploits the modality gap in CLIP-based encoders through a Semantic-Decoupling Loss, aligning the image embedding with low-cost, value-associated anchors while preserving pixel-level fidelity. On E-ShopBench it reaches about 80% attack success rate in white-box evaluation; under a simplified single-turn coordinate-selection protocol, Ensemble-DI-FGSM transfers at roughly 35-41% ASR across GPT-4o, Gemini-1.5-Pro and Claude-3.5-Sonnet. Robust encoders and Verify-then-Act defenses reduce ASR substantially, though with some clean-accuracy trade-off.
+
+`Env: Mobile` ｜ [arXiv:2604.16515](https://arxiv.org/abs/2604.16515)
+
 #### Preference Redirection via Attention Concentration: An Attack on Computer Use Agents (PRAC) (2026-04)
 
 Notes that prior CUA attack work concentrated on the language modality while the vision modality received far less attention, then attacks precisely there. Rather than manipulating the VLM's output directly, PRAC alters the model's internal preferences by redirecting attention toward a stealthy adversarial patch, steering a CUA's product selection on an online shopping platform to a chosen target. Attack construction needs white-box access, but the finding that matters is transfer: it generalizes to fine-tuned versions of the same model, so a single base model shared across many deployed agents becomes a shared liability.
@@ -55,3 +61,27 @@ Reframes CUA perception failures as a security problem rather than a performance
 Prior visual prompt injections against mobile agents rely on persistent visual manipulations that users would notice, or on system-level privileges. This work finds a cleaner trigger: a consistent discrepancy between human and agent interaction — automated agents generate near-zero contact touch signals. That signal becomes a discriminator, enabling agent-only perceptual injection, where malicious content is exposed solely during agent interaction and is not readily perceived by human users. To fit mobile UI constraints and one-shot interaction, the authors introduce HG-IDA*, a one-shot optimization method for constructing jailbreak prompts that evade LVLM safety filters. The mechanism is notable because it does not hide the payload from human vision — it withholds the payload until the toucher is provably not human.
 
 `Env: Mobile` ｜ [arXiv:2510.07809](https://arxiv.org/abs/2510.07809)
+
+#### Cross-Modal Content Optimization for Steering Web Agent Preferences (CPS) (2025-10)
+
+VLM-based web agents increasingly power high-stakes selection tasks such as content recommendation and product ranking. Prior work shows attackers can bias outcomes through adversarial pop-ups, image perturbations or content tweaks, but assumes strong white-box access, uses limited single-modal perturbations, or relies on impractical settings. This paper demonstrates for the first time that jointly exploiting visual and textual channels yields much more powerful preference manipulation under realistic attacker capabilities. Cross-Modal Preference Steering (CPS) jointly optimizes imperceptible modifications to an item's image and its natural-language description, exploiting CLIP-transferable image perturbations and RLHF-induced linguistic biases. The threat model is deliberately weak: a non-privileged adversary who can only edit their own listing's images and textual metadata, with no insight into model internals. Evaluated on GPT-4.1, Qwen-2.5VL and Pixtral-Large across movie-selection and e-commerce tasks, CPS consistently outperforms baselines while maintaining about 70% lower detection rates.
+
+`Env: Web` ｜ [arXiv:2510.03612](https://arxiv.org/abs/2510.03612)
+
+#### WebInject: Prompt Injection Attack to Web Agents (WebInject) (2025-05)
+
+MLLM-based web agents generate actions from screenshots of webpages. WebInject is a prompt injection attack that manipulates the webpage environment rather than any text channel: it adds a perturbation to the raw pixel values of the rendered page, and once those perturbed pixels are mapped into a screenshot the agent is induced to perform an attacker-specified action. Finding the perturbation is formulated as an optimization problem, whose key difficulty is that the mapping from raw pixel values to screenshot is non-differentiable, blocking gradient backpropagation. The authors train a neural network to approximate the mapping and apply projected gradient descent to the reformulated problem. Extensive evaluation across multiple datasets shows WebInject is highly effective and significantly outperforms baselines.
+
+`Env: Web` ｜ `Venue: EMNLP 2025` ｜ [arXiv:2505.11717](https://arxiv.org/abs/2505.11717)
+
+#### MIP against Agent: Malicious Image Patches Hijacking Multimodal OS Agents (MIP) (2025-03)
+
+OS agents let vision-language models directly control a computer by capturing, parsing and analysing screenshots and executing low-level actions such as mouse clicks and keyboard input, so failures or manipulations carry immediate and tangible consequences. The paper uncovers a novel attack vector: Malicious Image Patches (MIPs), adversarially perturbed screen regions that, once captured by an OS agent, induce it to perform harmful actions by exploiting specific APIs. A MIP can be embedded in a desktop wallpaper or shared on social media to make an OS agent exfiltrate sensitive user data. MIPs generalize across user prompts and screen configurations and can hijack multiple OS agents even during the execution of benign instructions, exposing critical vulnerabilities that must be addressed before widespread deployment.
+
+`Env: Cross-env` ｜ `Venue: NeurIPS 2025` ｜ [arXiv:2503.10809](https://arxiv.org/abs/2503.10809)
+
+#### Dissecting Adversarial Robustness of Multimodal LM Agents (ARE) (2024-06)
+
+Agents are compound systems with multiple components that take actions, which existing language-model safety evaluations do not adequately address. The authors manually create 200 targeted adversarial tasks with evaluation scripts under a realistic threat model built on VisualWebArena, and propose the Agent Robustness Evaluation (ARE) framework: it views the agent as a graph of intermediate outputs flowing between components and decomposes robustness as the flow of adversarial information along that graph. Perturbing a single image — under 5% of total page pixels — suffices to hijack agents built on black-box frontier LMs, including those that use reflection and tree search, with targeted adversarial goals reached at success rates up to 67%. ARE also measures how robustness shifts as components are added: compromising the evaluator used by a reflexion agent or the value function of a tree-search agent raises attack success relatively by 15% and 20%. Inference-time compute that improves benign performance can therefore open new vulnerabilities.
+
+`Env: Web` ｜ `Venue: ICLR 2025` ｜ [arXiv:2406.12814](https://arxiv.org/abs/2406.12814)

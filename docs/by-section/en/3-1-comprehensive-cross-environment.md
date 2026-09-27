@@ -61,3 +61,15 @@ Points out that existing benchmarks evaluate LMs in chatbots or simple tool use,
 Poses the transfer question head-on: can safety risk principles designed and aligned for general MLLMs in dialogue settings carry over to real-world computer-use scenarios? It argues prior risk evaluations fail on one of two counts — either they lack realistic interactive environments, or they narrow onto a few specific risk types — and both failures ignore the complexity and variability that define real environments. RiOSWorld evaluates risk during actual computer manipulation, and has become one of the more widely referenced risk benchmarks for multimodal CUAs.
 
 `Env: Desktop` ｜ [arXiv:2506.00618](https://arxiv.org/abs/2506.00618)
+
+#### RedTeamCUA: Realistic Adversarial Testing of Computer-Use Agents in Hybrid Web-OS Environments (RedTeamCUA) (2025-05)
+
+Evaluations of indirect prompt injection against computer-use agents either lack realistic but controlled environments or ignore hybrid web-OS attack scenarios that span both interfaces. RedTeamCUA is an adversarial testing framework built around a hybrid sandbox that integrates a VM-based OS environment with Docker-based web platforms. It supports flexible adversarial scenario configuration and can initialize tests directly at the point of injection, decoupling adversarial evaluation from the navigational limitations of the agent. On this basis the authors build RTC-Bench with 864 examples of realistic hybrid web-OS attacks. Benchmarking frontier CUAs shows large vulnerabilities: Claude 3.7 Sonnet | CUA reaches 42.9% attack success rate while the most secure, Operator, still shows 7.6%. Attempt rates run as high as 92.5% — agents often try to execute adversarial tasks and fail only because of capability limits — and in realistic end-to-end settings the strongest current model, Claude 4.5 Sonnet | CUA, exhibits a 60% attack success rate.
+
+`Env: Cross-env` ｜ `Venue: ICLR 2026` ｜ [arXiv:2505.21936](https://arxiv.org/abs/2505.21936)
+
+#### DoomArena: A framework for Testing AI Agents Against Evolving Security Threats (DoomArena) (2025-04)
+
+DoomArena is a security evaluation framework built on three principles: it is a plug-in framework that integrates easily into realistic agentic frameworks such as BrowserGym for web agents and tau-bench for tool-calling agents; it is configurable, allowing detailed threat modelling with specific components made attackable and attacker targets specified; and it is modular, decoupling attack development from the environment so the same attacks apply across environments. Applied to state-of-the-art web and tool-calling agents, it yields several surprising results: agents have varying vulnerability to different threat models (malicious user vs malicious environment) with no Pareto-dominant agent; multiple attacks applied together often combine constructively; and guardrail-model defenses tend to fail while defenses based on powerful LLMs work better.
+
+`Env: Cross-env` ｜ [arXiv:2504.14064](https://arxiv.org/abs/2504.14064)

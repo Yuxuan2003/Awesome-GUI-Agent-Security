@@ -297,3 +297,9 @@ Notes that prior work concentrated on browser-based agents and HTML-level attack
 Poses the transfer question head-on: can safety risk principles designed and aligned for general MLLMs in dialogue settings carry over to real-world computer-use scenarios? It argues prior risk evaluations fail on one of two counts — either they lack realistic interactive environments, or they narrow onto a few specific risk types — and both failures ignore the complexity and variability that define real environments. RiOSWorld evaluates risk during actual computer manipulation, and has become one of the more widely referenced risk benchmarks for multimodal CUAs.
 
 `Env: Desktop` ｜ [arXiv:2506.00618](https://arxiv.org/abs/2506.00618)
+
+#### sudo rm -rf agentic_security (SUDO) (2025-03)
+
+LLMs deployed as computer-use agents autonomously perform tasks in real desktop or web environments, creating serious security exposures. This paper presents SUDO (Screen-based Universal Detox2Tox Offense), an attack framework that systematically bypasses refusal-trained safeguards in commercial computer-use agents such as Claude for Computer Use. The core mechanism, Detox2Tox, transforms harmful requests the agent initially rejects into seemingly benign ones, secures detailed instructions from advanced vision-language models, then reintroduces malicious content via toxification just before execution. Unlike conventional jailbreaks, SUDO iteratively refines its attacks using built-in refusal feedback, becoming increasingly effective against robust policy filters. Across 50 real-world tasks and multiple state-of-the-art VLMs, SUDO achieves 24.41% attack success rate without refinement and up to 41.33% with iterative refinement against Claude for Computer Use.
+
+`Env: Desktop, Cross-env` ｜ `Venue: ACL 2025` ｜ [arXiv:2503.20279](https://arxiv.org/abs/2503.20279)

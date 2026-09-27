@@ -8,11 +8,23 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### Beyond Task Completion: Training Capable and Safe Computer-Use Agents (SCOPE) (2026-08)
+
+只以任务成功为目标的后训练，并不会带来可靠的安全行为。本文给出明确规范：可靠的 CUA 应当 以风险为条件决定执行方式 —— 普通良性任务照常完成，遇到环境风险时规避并在仍存在安全路径时 继续，而当目标本身有害或已无安全路径时应当拒绝。SCOPE 把任务执行能力与安全感知决策联合 后训练；SCOPE-Gen 自动合成可验证的能力任务，并把它转换为保持原目标的环境风险变体，由此 构建出含能力示范、安全续行与显式拒绝三类轨迹的数据集 SATraj-OS。SCOPE 先通过监督微调 学习这三类轨迹，再用在线强化学习提升任务完成度。从 Qwen3.5-9B 出发，SCOPE-RL 在 OSWorld 上任务成功率 54.17%、在 OS-BLIND 上攻击规避率 64.30%，能力与安全的综合得分 58.80% 为 参评 agent 最高。消融显示两类安全监督作用互补而不对称：拒绝轨迹贡献了大部分攻击规避提升， 而风险处理轨迹在同等规避水平下保住了更多任务效用。
+
+`环境: 跨环境` ｜ [arXiv:2609.22178](https://arxiv.org/abs/2609.22178)
+
 #### SeerGuard: A Safety Framework for Mobile GUI Agents via World Model Prediction (SeerGuard) (2026-07)
 
 指出移动 GUI agent 现有安全机制本质上都是被动响应，无法在动作触发前评估风险，而这类 agent 的单个错误动作往往不可逆。SeerGuard 是「后果感知」框架，将指令级筛查与动作级 风险评估结合：在当前 GUI 状态下分析 agent 拟执行的动作，预判可能结果再决定是否放行。 支撑能力来自一个多任务学习训练的安全增强世界模型（SAWM），把语义化的下一状态预测与 安全风险评估融进同一个模型，且该框架可跨不同底层 GUI agent 迁移。
 
 `环境: Mobile` ｜ [arXiv:2607.15550](https://arxiv.org/abs/2607.15550)
+
+#### Uncertainty Quantification for Computer-Use Agents: A Benchmark across Vision-Language Models and GUI Grounding Datasets (Argus) (2026-06)
+
+计算机使用代理把视觉语言模型的预测变成可执行的 GUI 点击，因此可靠的不确定性估计对拒绝 执行、校准、失误严重性排序与空间安全区域都至关重要；但事后不确定性量化（UQ）的证据零散 分布在孤立的模型—数据集对上，难以判断排序是否稳定。Argus 是一个跨机制基准：包含覆盖 4 个 VLM agent 与 4 个数据集的 27 种方法开源矩阵，以及在无法取得 logit、隐藏状态与 注意力图的 3 家前沿厂商上的 8 种方法闭源矩阵。核心发现是「选择性迁移」：固定模型时 UQ 排序跨数据集稳定（Spearman rho 最高 0.969），但跨模型类别与可观测接口时退化，向闭源厂商 的跨层迁移平均只有 +0.08 —— 因此闭源场景的 UQ 应在目标上重新排序而非外推。共形点击区域 在校准后半径可缩小 40–60%，但在校准—测试或接口不匹配时覆盖率会下降。
+
+`环境: 跨环境` ｜ [arXiv:2606.25760](https://arxiv.org/abs/2606.25760)
 
 #### Don't Click That: Teaching Web Agents to Resist Deceptive Interfaces (DUDE) (2026-05)
 

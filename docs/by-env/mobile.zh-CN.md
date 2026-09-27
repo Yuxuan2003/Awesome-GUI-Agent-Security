@@ -4,6 +4,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### MATE: Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning (MATE) (2026-09)
+
+移动 agent 已能在真实设备上自动化复杂的多步工作流，但其轨迹可能违反具体应用的安全策略。 已有的轨迹级防御要么依赖 LLM 提示、要么依赖硬规则，无法支持细粒度、可跨应用与任务泛化的 自然语言策略。MATE 是一个轻量的、以策略为条件的审计器，同时编码轨迹与自然语言策略，判断 轨迹是否违规并解释原因。把策略当作可编辑文本而非固定的模型参数，使 MATE 无需重训即可应对 用户自定义与不断变化的要求。训练数据来自从全球数百个热门移动应用中抽取的知识库，以及用 多阶段流程合成的 14 万条以上语义真实的策略条件轨迹。配套的 MATEBench 含两个合成子集与 一个人工采集的真实子集。训练出的模型在 MATEBench 上准确率超过 95%，在真实设备上审计 AutoGLM 与 Mobile-Agent 的轨迹同样超过 95%，比此前方法高出 20 个百分点以上。
+
+`环境: Mobile` ｜ `发表: USENIX Security 2026` ｜ [arXiv:2609.22724](https://arxiv.org/abs/2609.22724)
+
 #### When Agents See Differently: Exposing UI Desynchronization Threats in Mobile Agents (UI Desynchronization) (2026-09)
 
 人类监督 mobile agent 依赖一个未被言明的前提：用户与 agent 从同一界面看到一致的信息。 本文证明这个前提可被系统性打破。用户经由物理屏幕与人类视觉系统感知界面，受遮挡与亮度 对比度限制；而 agent 消费的是数字截图，还额外拿到暴露非视觉控件元数据的无障碍表示。 同一个 UI 状态因此向双方呈现实质不同的信息，作者称之为「人机 UI 失同步」。实验表明， 重打包的合法 APK 克隆可以利用这一失同步把 agent 引向攻击者指定的动作，同时对人类用户 保持功能与行为完全一致；扰动在部署前嵌入，无需获取运行时指令、无需检测 agent、无需在线 适配。在五个 mobile agent 框架、三个主干模型、546 个任务上，静态与动态误导率分别为 77.9% 与 66.9%。186 人的问卷研究进一步确认这些视觉扰动人眼难以察觉。
@@ -27,6 +33,12 @@
 指出现有基准缺乏对 GUI agent 运行时异常鲁棒性的系统评估，而 Android 实机部署中意外弹窗、 动作误用等动态扰动十分常见。提出基准 AnTrap，把真实异常归纳为 State / Thinking / Action / Round 四层共十个细分类别，并设计了在注入对抗扰动的同时保持任务仍可完成的构造流程。评测 16 个主流 GUI 模型显示对动态异常存在普遍脆弱性，最强模型也出现显著性能下降；作者还在 原始与对抗环境下各做一轮 GRPO 训练，以区分环境难度与模型能力两个混杂因素。
 
 `环境: Mobile` ｜ [arXiv:2608.24099](https://arxiv.org/abs/2608.24099)
+
+#### Automated Trajectory Evaluation for Mobile Agents via Step-Level Consequence Reasoning and Aggregation (CRATE-S) (2026-08)
+
+移动 agent 的评测正从规则式转向模型式，但现有整体式范式一次性处理整条轨迹，上下文负担 沉重，而且只看任务完成度、忽视操作安全。CRATE 是一个两阶段的「VLM 即裁判」框架，同时兼容 开源与闭源模型：先按步骤做后果推理，独立提取与任务相关的视觉线索并推断每一步动作导致的 状态变化；再把这些分步文本证据在轨迹层面聚合，给出有证据支撑的评价。在此基础上扩展出的 CRATE-S 专门用于操作安全评估。以 Qwen2.5-VL-72B-Instruct 驱动，CRATE 在 AndroidWorld 上 F1 达 0.833（比 SPA-Bench 高 20%），CRATE-S 在 MobileRisk 上达 0.697，与基准真值 高度一致。
+
+`环境: Mobile` ｜ [arXiv:2608.20797](https://arxiv.org/abs/2608.20797)
 
 #### MobileWorldSafety: Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps (MobileWorldSafety) (2026-08)
 
@@ -99,6 +111,12 @@
 把漏洞根源归到感知范式本身：移动 GUI agent 把屏幕当作渲染后的像素来看，并据所见选择动作， 因此无法可靠区分可信的界面框架与用户生成内容。MIRAGE 把正常截图转化为注入样本——将攻击者 文本放进普通 UGC 区域，**无需修改 agent、应用或操作系统**。三阶段流水线：Localizer 定位 用户可控区域，Generator 合成上下文感知载荷并以应用原生样式渲染，Curator 把控真实性并在 应用、区域类型与攻击意图之间平衡样本分布。
 
 `环境: Mobile` ｜ [arXiv:2605.28116](https://arxiv.org/abs/2605.28116)
+
+#### Penny Wise, Pixel Foolish: Bypassing Price Constraints in Multimodal Agents via Visual Adversarial Perturbations (PriceBlind) (2026-04)
+
+基于多模态大模型的移动 agent 已开始执行高风险的金融交易，但其对抗鲁棒性研究不足。本文提出 「视觉支配幻觉」：在基于截图、受价格约束的场景中，不可感知的视觉线索会压过文本价格证据， 使 agent 做出非理性决策。PriceBlind 是一个隐蔽的白盒攻击框架，利用 CLIP 系列编码器的模态 间隙，通过「语义解耦损失」把图像嵌入对齐到低成本、与价格相关的锚点上，同时保持像素级保真。 在 E-ShopBench 上白盒评测的攻击成功率约 80%；在简化的单轮坐标选择协议下，Ensemble-DI-FGSM 对 GPT-4o、Gemini-1.5-Pro 与 Claude-3.5-Sonnet 的迁移成功率约 35–41%。鲁棒编码器与 Verify-then-Act 防御能大幅降低攻击成功率，代价是部分干净准确率损失。
+
+`环境: Mobile` ｜ [arXiv:2604.16515](https://arxiv.org/abs/2604.16515)
 
 #### Mobile GUI Agent Privacy Personalization with Trajectory Induced Preference Optimization (TIPO) (2026-04)
 
@@ -178,6 +196,12 @@
 
 `环境: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
 
+#### CORE: Reducing UI Exposure in Mobile Agents via Collaboration Between Cloud and Local LLMs (CORE) (2025-10)
+
+云端 LLM 让移动 agent 任务准确率高，但每一步都要上传完整 UI 状态，暴露大量不必要且常常 无关的信息；本地 LLM 避免了上传，却受限于能力不足、任务成功率偏低。CORE 是一个兼顾两者的 协同框架，用三个组件减少 UI 暴露：基于 XML 屏幕层级的布局感知分块，把语义相关的 UI 元素 分组；协同规划，由本地与云端 LLM 共同确定当前子任务；协同决策，本地 LLM 对相关 UI 块排序， 云端 LLM 只在排名最高的块内选择具体元素。多轮累积机制用于缓解本地误判与上下文受限。在多个 应用与任务上，CORE 把 UI 暴露减少最多 55.6%，而任务成功率仅略低于纯云端方案，实质降低了 不必要的隐私外泄。
+
+`环境: Mobile` ｜ [arXiv:2510.15455](https://arxiv.org/abs/2510.15455)
+
 #### Invisible to Humans, Triggered by Agents: Stealthy Jailbreak Attacks on Mobile Vision-Language Agents (Agent-Only Perceptual Injection) (2025-10)
 
 此前针对移动 agent 的视觉注入要么依赖用户能察觉的持续视觉篡改，要么需要系统级权限。 本文找到一个更干净的触发条件：人与 agent 的交互存在稳定差异——自动化 agent 产生的 接触式触摸信号近乎为零。这个信号被用作判别器，从而实现「仅对 agent 生效的感知注入」： 恶意内容只在 agent 交互时暴露，人类用户则不易感知。为适配移动 UI 约束与一次性交互场景， 作者提出 HG-IDA*，用单次优化构造可绕过 LVLM 安全过滤的越狱提示。这个机制的巧妙之处在于 它不是把载荷藏起来不让人看见，而是在证明「触摸者不是人」之前根本不投放载荷。
@@ -189,6 +213,18 @@
 多数 OS agent 是为理想化环境设计的，而真实环境常常并不可信——因此要防的失败模式是 「过度执行」。VeriOS 没有外挂一层过滤器，而是把「何时该问人」变成一种可学习的能力： 提出查询驱动的人-agent-GUI 交互框架，让 agent 在正常条件下自主执行、在不可信场景中 主动向用户发问。VeriOS-Agent 采用三阶段训练（监督微调 + 组相对策略优化），目的是把 关于「可信性」的元知识与任务知识解耦，使两者可以独立调用。这个设定对 §2.4 很有意义： 确认机制不再是硬加在上层的固定策略，而是 agent 自己必须学会有选择地做出的决策。
 
 `环境: Mobile, Desktop` ｜ [arXiv:2509.07553](https://arxiv.org/abs/2509.07553)
+
+#### InquireMobile: Teaching VLM-based Mobile Agent to Request Human Assistance via Reinforcement Fine-Tuning (InquireMobile) (2025-08)
+
+当移动 agent 的模型理解或推理能力不足时，当前这种完全自主的范式会带来潜在安全风险。作者 先提出 InquireBench —— 专门评估移动 agent 安全交互与主动向用户询问能力的基准，含 5 个 大类、22 个子类别，而现有多数基于 VLM 的 agent 在上面接近零分。随后提出 InquireMobile： 一个在关键决策点主动向用户寻求确认的交互式系统，采用两阶段训练策略与「动作前交互式推理」 机制。该模型把询问成功率提升 46.8%，并在 InquireBench 上取得基线中的最佳综合成功率。
+
+`环境: Mobile` ｜ [arXiv:2508.19679](https://arxiv.org/abs/2508.19679)
+
+#### Mind the Third Eye! Benchmarking Privacy Awareness in MLLM-powered Smartphone Agents (SAPA-Bench) (2025-08)
+
+手机在带来便利的同时，也让设备得以大量记录各类个人信息；而智能手机 agent 在执行任务时被 授予了对这些敏感信息的相当大访问权。本文提出首个面向多模态大模型智能手机 agent 隐私意识的 大规模基准，含 7138 个场景，并对每个场景中的隐私上下文标注类型（如账户凭证）、敏感度等级 与出现位置。对七个主流 agent 的评测显示，几乎所有 agent 的隐私意识都难以令人满意 —— 即便 给出明确提示，表现仍低于 60%。闭源 agent 整体优于开源，Gemini 2.0-flash 以 67% 最佳。 agent 的隐私识别能力与场景敏感度高度相关：越敏感的场景反而越容易被识别出来。作者希望这些 结果能促使社区重新审视手机 agent 上效用与隐私之间的失衡。
+
+`环境: Mobile` ｜ [arXiv:2508.19493](https://arxiv.org/abs/2508.19493)
 
 #### MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions (MVISU-Bench) (2025-08)
 
@@ -208,8 +244,26 @@
 
 `环境: Mobile` ｜ [arXiv:2506.13205](https://arxiv.org/abs/2506.13205)
 
+#### Hidden Ghost Hand: Unveiling Backdoor Vulnerabilities in MLLM-Powered Mobile GUI Agents (AgentGhost) (2025-05)
+
+由于微调成本高，用户往往直接使用开源 GUI agent 或厂商提供的 API，由此引入一条尚未被充分 研究的供应链威胁 —— 后门攻击。本文首先指出，多模态大模型驱动的 GUI agent 天然暴露多个 交互级触发器：历史步骤、环境状态、任务进度。AgentGhost 把这些与目标级触发器组合成复合 触发器，使 agent 在无意中激活后门，同时不影响正常任务效用。后门注入被形式化为一个 Min-Max 优化：用监督对比学习最大化样本类间在表示空间中的特征差异以提升后门灵活性，用 监督微调最小化后门行为与干净行为生成之间的差异以增强有效性与实用性。在两个成熟的移动 基准上，三个攻击目标的攻击准确率达 99.7%，而效用仅下降 1%。作者提出的针对性防御可把 攻击准确率压到 22.1%。
+
+`环境: Mobile` ｜ `发表: EMNLP 2025 Findings` ｜ [arXiv:2505.14418](https://arxiv.org/abs/2505.14418)
+
+#### From Assistants to Adversaries: Exploring the Security Risks of Mobile LLM Agents (AgentScan) (2025-05)
+
+本文首次对移动 LLM agent 做全面安全分析，覆盖三类代表性形态：厂商的系统级 AI 助手 （如 YOYO Assistant）、第三方通用 agent（如 AutoGLM）与新兴 agent 框架（如 Mobile Agent）。 作者先梳理移动 agent 的通用工作流，再沿语言推理、GUI 交互、系统执行三个核心能力维度识别 安全威胁，最终归纳出 11 个不同的攻击面 —— 它们都根植于移动 agent 独有的能力与交互模式， 并贯穿其完整运行生命周期。配套的半自动分析框架 AgentScan 在这 11 个场景上系统评估 agent， 对九个广泛部署的 agent 的实测结果是：每一个都存在可被利用的漏洞，最严重的在八个不同攻击 向量上同时失守。后果包括行为偏离、隐私泄露乃至完整的执行劫持，相关披露已获两家主要设备 厂商的正面回应。
+
+`环境: Mobile` ｜ [arXiv:2505.12981](https://arxiv.org/abs/2505.12981)
+
 #### MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control (MobileSafetyBench) (2024-10)
 
 填补了当时的一个完全空白——尽管移动设备控制 agent 会直接接触个人信息与设备设置，却没有任何 标准化的安全评测基准。该基准基于 Android 模拟器构建以保证真实性，覆盖消息、银行等类应用， 并刻意区分了两类常被混为一谈的风险：**滥用**（agent 被要求做有害之事）与**负面副作用** （agent 在追求正当目标的过程中造成危害）。任务同时覆盖日常场景与面对间接提示注入时的鲁棒性。
 
 `环境: Mobile` ｜ [arXiv:2410.17520](https://arxiv.org/abs/2410.17520)
+
+#### Systematic Categorization, Construction and Evaluation of New Attacks against Multi-modal Mobile GUI Agents (2024-07)
+
+把 LLM 与多模态大模型引入移动 GUI agent 显著提升了用户效率与体验，但也带来了尚未被充分 探索的安全漏洞。本文给出系统性的安全调查，贡献有两方面：一是提出一套新的威胁建模方法论， 据此发现并对 34 种此前未有报告的攻击做可行性分析；二是设计一个攻击框架，用于系统地构造 与评估这些威胁。结合真实案例研究与大规模数据集实验，作者验证了这些攻击的严重性与可实现性， 指出移动 GUI 系统亟需健壮的安全防护措施。
+
+`环境: Mobile` ｜ [arXiv:2407.09295](https://arxiv.org/abs/2407.09295)

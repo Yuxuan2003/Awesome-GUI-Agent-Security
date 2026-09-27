@@ -32,6 +32,12 @@ Proposes an efficiency backdoor against VLM-based GUI agents: the trigger leaves
 
 `Env: Mobile, Cross-env` ｜ [arXiv:2603.08316](https://arxiv.org/abs/2603.08316)
 
+#### Agent Skills for Large Language Models: Architecture, Acquisition, Security, and the Path Forward (Skill Trust Framework) (2026-02)
+
+Agent skills — composable packages of instructions, code and resources that agents load on demand — let models extend capabilities without retraining. This survey organizes the field along four axes: architectural foundations (the SKILL.md specification, progressive context loading, and the complementary roles of skills and MCP); acquisition (reinforcement learning with skill libraries, autonomous discovery, compositional synthesis); deployment at scale, including the computer-use agent stack and GUI grounding progress on OSWorld; and security. On the security axis, empirical analyses reveal that 26.1% of community-contributed skills contain vulnerabilities, motivating the proposed Skill Trust and Lifecycle Governance Framework — a four-tier, gate-based permission model mapping skill provenance to graduated deployment capabilities. Seven open challenges are identified, from cross-platform portability to capability-based permission models.
+
+`Env: Cross-env` ｜ [arXiv:2602.12430](https://arxiv.org/abs/2602.12430)
+
 #### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
 
 Identifies visual grounding — the mapping from a textual plan to concrete GUI elements — as an attack surface in its own right, distinct from planning or reasoning. The consequence is what makes it dangerous: a backdoor planted in grounding compromises the agent's behavior **even when it is given a completely correct task-solving plan**, so inspecting the plan reveals nothing wrong. VisualTrap hijacks grounding by misleading the agent into locating the textual plan at attacker-chosen positions, which means every layer of plan-level review or reasoning audit passes cleanly while the actions still land where the attacker wants.
@@ -43,3 +49,9 @@ Identifies visual grounding — the mapping from a textual plan to concrete GUI 
 Exploits a structural weakness in how mobile agents are built: they are typically fine-tuned on small, user-collected datasets, which makes training-time poisoning practical rather than theoretical. VIBMA is the first clean-text backdoor for VLM-based mobile agents — it modifies only the visual input while leaving prompts and instructions untouched, so there is no textual anomaly to detect. After fine-tuning on poisoned data, inserting a predefined visual trigger at inference activates the attacker's behavior. The mechanism aligns poisoned samples' training gradients with those of an attacker-specified target instance, embedding backdoor features into the data itself.
 
 `Env: Mobile` ｜ [arXiv:2506.13205](https://arxiv.org/abs/2506.13205)
+
+#### Hidden Ghost Hand: Unveiling Backdoor Vulnerabilities in MLLM-Powered Mobile GUI Agents (AgentGhost) (2025-05)
+
+Because fine-tuning is expensive, users rely on open-source GUI agents or vendor APIs, which introduces an underexplored supply-chain threat: backdoor attacks. The paper first shows that MLLM-powered GUI agents naturally expose multiple interaction-level triggers such as historical steps, environment states and task progress. AgentGhost builds composite triggers by combining goal-level and interaction-level triggers, so agents activate backdoors unintentionally while retaining normal task utility. Backdoor injection is cast as a Min-Max optimization: supervised contrastive learning maximizes feature differences across sample classes in representation space for flexibility, while supervised fine-tuning minimizes the discrepancy between backdoor and clean behaviour generation for effectiveness and utility. Across two established mobile benchmarks, attack accuracy reaches 99.7% on three attack objectives with only 1% utility degradation. A tailored defense reduces attack accuracy to 22.1%.
+
+`Env: Mobile` ｜ `Venue: EMNLP 2025 Findings` ｜ [arXiv:2505.14418](https://arxiv.org/abs/2505.14418)

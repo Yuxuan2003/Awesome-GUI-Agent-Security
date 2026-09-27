@@ -31,3 +31,9 @@
 在个人化 agent 从专家圈走向大众使用的背景下研究 CUA 风险的人因侧：这类系统会安装 skill、 调用工具、访问私有资源、修改本地环境，但用户通常并不清楚自己授予了什么权限、agent 实际 做了什么、以及事后是否被干净卸载。工作把 OpenClaw 生态的多来源语料（安全事件、公告、恶意 skill 报告、新闻报道、教程、社交媒体叙述）与面向用户和从业者的访谈研究结合起来。发现是： 受访者在抽象层面认得出这类系统有风险，却缺乏关于权限与持久化的具体心智模型。
 
 `环境: Desktop` ｜ [arXiv:2603.28551](https://arxiv.org/abs/2603.28551)
+
+#### Can We Stop Malicious AI? KILLBENCH: A Benchmark for External AI Kill Switch Feasibility (KillBench) (2025-09)
+
+随着高能力模型与快速普及的 agent 系统不断涌现，如何在 AI 有意或无意作恶时及时制止，已经 成为紧迫问题。KillBench 面向部署最广的 agent 形态 —— web agent —— 来评估「终止开关」： 一种仅凭外部信号、无需访问模型内部参数或服务栈就能中止恶意运行中 agent 的机制。基准包含 四种恶意 agent 配置（含一个无审查的 LLM agent）、八个有害场景，以及由十种不同越狱模式 构造的恶意提示。作者实现了四种外部终止开关防御方法，并在 Grok-4.3、GPT-5.2、Gemma4、 Qwen3.6 与一个无审查 Qwen 变体上评测，为衡量外部终止开关的可行性与研究 AI 可纠正性提供了 实证工具。
+
+`环境: Web` ｜ `发表: ACL Findings` ｜ [arXiv:2511.13725](https://arxiv.org/abs/2511.13725)

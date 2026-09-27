@@ -38,6 +38,12 @@ Conducts systematic threat analysis and adversarial testing of real-world CUAs, 
 
 `Env: Desktop, Web` ｜ [arXiv:2507.05445](https://arxiv.org/abs/2507.05445)
 
+#### A Survey on the Safety and Security Threats of Computer-Using Agents: JARVIS or Ultron? (JARVIS or Ultron?) (2025-05)
+
+A systematization of knowledge on the safety and security threats of computer-using agents (CUAs), which autonomously navigate desktop applications, web pages and mobile apps. The authors conduct a comprehensive literature review organized around four objectives: defining the CUA that suits safety analysis, categorizing current safety threats, proposing a comprehensive taxonomy of defensive strategies, and summarizing the benchmarks, datasets and evaluation metrics used to assess CUA safety and performance. Vulnerabilities in LLM-driven reasoning, compounded by the integration of multiple software components and multimodal inputs, make this security landscape considerably broader than what LLM safety work alone addresses. The survey gives researchers a structured foundation for exploring unexplored vulnerabilities and offers practitioners actionable guidance for designing and deploying secure CUAs.
+
+`Env: Cross-env` ｜ `Venue: ACL 2026` ｜ [arXiv:2505.10924](https://arxiv.org/abs/2505.10924)
+
 #### Towards Trustworthy GUI Agents: A Survey (Trustworthy GUI Survey) (2025-03)
 
 Frames the execution gap as the central obstacle to trustworthy GUI agents: the misalignment between perception, reasoning, and interaction in dynamic, partially observable interfaces. Unlike conversational systems, GUI agents perform irreversible operations such as submitting forms, granting permissions, or deleting data. The survey proposes a workflow-aligned taxonomy decomposing trust into Perception, Reasoning, and Interaction Trust, traces how failures propagate and compound through action/observation loops, and argues that task completion alone is an insufficient basis for trust assessment.

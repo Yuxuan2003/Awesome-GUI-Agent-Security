@@ -20,6 +20,12 @@ Observes that provable injection defenses depend on strict isolation between tru
 
 `Env: Web` ｜ [arXiv:2607.05277](https://arxiv.org/abs/2607.05277)
 
+#### When AUC 0.998 Is Not Enough: A Candidate Evaluation Protocol for Hidden-State Probes of Indirect Prompt Injection in Multimodal Computer-Use Agents (IPI Probe Controls) (2026-06)
+
+Hidden-state probing — a linear classifier on a frozen vision-language model's internal activations — has become an attractive tool for flagging indirect prompt injection before a computer-use agent emits a corrupted action. On a single-backbone cautionary case study (Qwen2.5-VL-7B on Mind2Web with teacher-forced replay), the paper argues that a high probing AUC on a clean-vs-attack split is not by itself evidence of malicious-content detection. Two post-hoc diagnostics — a paired-construction scalar baseline on text-side injections, and same-step nuisance-matched visual controls on the overlay surface — do not license an unqualified malicious-content interpretation of the headline result, though they leave room for partly-semantic readings. The diagnostics are packaged as a candidate control set with reporting heuristics for what a high clean-vs-attack AUC does and does not license. Labels mark injection-surface presence, not attack success, and generalization beyond this backbone and benchmark remains a conjecture.
+
+`Env: Cross-env` ｜ [arXiv:2606.22864](https://arxiv.org/abs/2606.22864)
+
 #### CAPED: Context-Aware Privacy Exposure Defense for Mobile GUI Agents (CAPED) (2026-06)
 
 Names a problem specific to the screenshot paradigm: because the agent sees the phone exactly as a human does, every screen observation becomes a privacy boundary, and routine task execution can expose contacts, messages, photos, health cues and other context entirely unrelated to the request. The authors call this incidental visual privacy exposure and explain why both extremes fail — text anonymization misses visual and inferential cues, while generic masking removes the very evidence and controls the agent needs to finish the task. CAPED is a phone-side pre-upload control layer that parses visible UI elements and masks selectively, using task requirements and screen context as a privacy prior.
@@ -79,3 +85,15 @@ Takes a mechanistic route to injection defense by reading attention features rat
 Locates the privacy leak at a concrete architectural point: screenshots containing PII are routinely sent to untrusted third-party routers, which can mine that data with their own MLLMs. The scenario imposes conflicting requirements that prior perturbation methods fail to satisfy jointly — hide PII from the router's model while preserving enough signal for the agent's model to finish the task. DualTAP explicitly decouples the two objectives via a contrastive attention module that targets only PII-sensitive regions and a dual-task adversarial objective balancing task-preservation loss against privacy interference.
 
 `Env: Mobile` ｜ [arXiv:2511.13248](https://arxiv.org/abs/2511.13248)
+
+#### CORE: Reducing UI Exposure in Mobile Agents via Collaboration Between Cloud and Local LLMs (CORE) (2025-10)
+
+Cloud-based LLMs give mobile agents high task accuracy but require uploading the full UI state at every step, exposing unnecessary and often irrelevant information; local LLMs avoid uploads but suffer from limited capacity and lower success rates. CORE is a collaborative framework that reduces UI exposure while maintaining accuracy, with three components: layout-aware block partitioning that groups semantically related UI elements using the XML screen hierarchy; co-planning, where local and cloud LLMs jointly identify the current sub-task; and co-decision-making, where the local LLM ranks relevant UI blocks and the cloud LLM selects specific elements within the top-ranked block. A multi-round accumulation mechanism mitigates local misjudgement and limited context. Across diverse apps and tasks, CORE cuts UI exposure by up to 55.6% while keeping task success only slightly below cloud-only agents.
+
+`Env: Mobile` ｜ [arXiv:2510.15455](https://arxiv.org/abs/2510.15455)
+
+#### GEM: Gaussian Embedding Modeling for Out-of-Distribution Detection in GUI Agents (GEM) (2025-05)
+
+When GUI agents encounter out-of-distribution instructions that violate environmental constraints or exceed their capabilities, they may suffer task breakdowns or pose security threats, so effective OOD detection is essential. Traditional OOD methods perform suboptimally here because of the complex embedding space and continuously evolving GUI environments. The authors observe that the in-distribution input semantic space clusters with respect to distance from a centroid, and propose GEM: fitting a Gaussian mixture model over input embedding distances extracted from the agent, which reflect its capability boundary. Evaluated on eight datasets spanning smartphones, computers and web browsers, GEM improves average accuracy by 23.70% over the best baseline while adding only 4.9% training and 6.5% test time. Requesting cloud-model assistance on detected OOD samples raises step-wise success by 9.40%, and generalization is verified across nine backbones.
+
+`Env: Cross-env` ｜ [arXiv:2505.12842](https://arxiv.org/abs/2505.12842)

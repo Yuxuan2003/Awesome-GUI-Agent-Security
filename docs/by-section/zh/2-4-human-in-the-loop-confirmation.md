@@ -26,8 +26,20 @@
 
 `环境: Mobile, Desktop` ｜ [arXiv:2509.07553](https://arxiv.org/abs/2509.07553)
 
+#### InquireMobile: Teaching VLM-based Mobile Agent to Request Human Assistance via Reinforcement Fine-Tuning (InquireMobile) (2025-08)
+
+当移动 agent 的模型理解或推理能力不足时，当前这种完全自主的范式会带来潜在安全风险。作者 先提出 InquireBench —— 专门评估移动 agent 安全交互与主动向用户询问能力的基准，含 5 个 大类、22 个子类别，而现有多数基于 VLM 的 agent 在上面接近零分。随后提出 InquireMobile： 一个在关键决策点主动向用户寻求确认的交互式系统，采用两阶段训练策略与「动作前交互式推理」 机制。该模型把询问成功率提升 46.8%，并在 InquireBench 上取得基线中的最佳综合成功率。
+
+`环境: Mobile` ｜ [arXiv:2508.19679](https://arxiv.org/abs/2508.19679)
+
 #### VerificAgent: Domain-Specific Memory Verification for Scalable Oversight of Aligned Computer-Use Agents (VerificAgent) (2025-06)
 
 把持久化记忆当作一个**显式的对齐面**来处理，理由是：持续的记忆增强让 CUA 能从过往交互中学习， 但未经审核的记忆会编码领域不适当或不安全的启发式规则——这些伪规则会悄然偏离用户意图与安全 约束。VerificAgent 结合三部分：专家策划的领域知识种子、训练期基于轨迹的迭代记忆增长、以及 部署前的人工事实核查环节。真正的贡献在其框定方式：让人类**一次性**纠正高影响错误，就把 经核验的记忆变成一份「冻结的安全契约」，后续所有动作都必须满足它，且无需微调模型。
 
 `环境: Desktop` ｜ [arXiv:2506.02539](https://arxiv.org/abs/2506.02539)
+
+#### Toward a Human-Centered Evaluation Framework for Trustworthy LLM-Powered GUI Agents (2025-04)
+
+LLM 驱动的 GUI agent 会在有限人工监督下处理敏感数据，由此带来的隐私与安全风险既不同于 传统 GUI 自动化，也不同于一般的自主 agent。这篇立场论文识别出三类关键风险，同时指出：现有 评测几乎只关注性能，隐私与安全评估基本处于空白。文章梳理了 GUI agent 与通用 LLM agent 的 现有评测指标，并指出把人工评估者引入 GUI agent 评测时的五个关键挑战。作者主张建立以人为 中心的评测框架 —— 把风险评估纳入其中，通过上下文内的 consent 提升用户知情度，并把隐私与 安全考量嵌入 GUI agent 的设计与评测全过程。
+
+`环境: Web` ｜ [arXiv:2504.17934](https://arxiv.org/abs/2504.17934)

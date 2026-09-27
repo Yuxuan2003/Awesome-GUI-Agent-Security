@@ -44,6 +44,30 @@
 
 `环境: Desktop` ｜ [arXiv:2603.11862](https://arxiv.org/abs/2603.11862)
 
+#### Context manipulation attacks : Web agents are susceptible to corrupted memory (Plan Injection) (2025-06)
+
+由于 LLM 本身无状态，自主网页导航 agent 必须依赖外部记忆来维持跨交互的上下文，而这些记忆 往往由客户端或第三方应用管理，并不像中心化系统那样安全地存放在服务端 —— 这条缝隙已经被 用于攻击生产系统。本文提出并形式化「plan injection」：一种不攻击提示词、而是污染 agent 内部任务表示的上下文操纵攻击。在两个主流 web agent（Browser-use 与 Agent-E）上的系统评测 显示，plan injection 能绕过已有的健壮提示注入防御，攻击成功率最高达到同类提示攻击的 3 倍。 进一步的「上下文链式注入」在合法用户目标与攻击者目标之间搭起逻辑桥梁，使隐私窃取类任务的 成功率再提高 17.7%。作者据此强调，安全的记忆处理必须成为 agent 系统的一等公民。
+
+`环境: Web` ｜ [arXiv:2506.17318](https://arxiv.org/abs/2506.17318)
+
+#### The Hidden Dangers of Browsing AI Agents (2025-05)
+
+自主浏览 agent 依赖动态内容、工具执行与用户提供的数据，攻击面横跨多个架构层次。本文给出对 这类 agent 的全面安全评估与首个端到端威胁模型，并提供保护真实部署的可操作建议。提出的防御 采取纵深策略：输入净化、规划器与执行器隔离、形式化分析器与会话保护，同时覆盖初始访问与利用 后的攻击路径。通过对热门开源项目 Browser Use 的白盒分析，作者展示了不可信网页内容如何劫持 agent 行为并导致严重安全事故，具体发现包括提示注入、域名校验绕过与凭证外泄，并附有一个 已披露的 CVE 与可工作的概念验证利用程序。
+
+`环境: Web` ｜ [arXiv:2505.13076](https://arxiv.org/abs/2505.13076)
+
+#### The Obvious Invisible Threat: LLM-Powered GUI Agents' Vulnerability to Fine-Print Injections (Fine-Print Injection) (2025-04)
+
+GUI agent 在完成填表、预订等真实任务时常常要处理并操作敏感用户数据，这带来了新的隐私与 安全风险。攻击者可以向界面注入恶意内容，改变 agent 行为或诱导其泄露本不该透露的私人信息； 这类攻击利用的正是界面元素对 agent 与对人的视觉显著性差异，以及 agent 难以察觉任务自动化 中上下文完整性被破坏的弱点。本文刻画了六类此类攻击，并用六个前沿 GUI agent、234 个对抗 网页与 39 名人类参与者做实验。结果显示 GUI agent 高度脆弱，尤其对嵌入上下文的威胁。更值得 注意的是，人类参与者同样容易中招，这说明简单的人工监督并不能可靠阻止失败 —— 人与 agent 之间的这种错位，凸显了隐私感知型 agent 设计与实用防御策略的必要性。
+
+`环境: Web` ｜ [arXiv:2504.11281](https://arxiv.org/abs/2504.11281)
+
+#### sudo rm -rf agentic_security (SUDO) (2025-03)
+
+大模型正被部署为计算机使用代理，在真实桌面或网页环境中自主执行任务，这带来了严重的安全 暴露。本文提出 SUDO（Screen-based Universal Detox2Tox Offense），一个系统性绕过商用 计算机使用代理拒绝训练防护的攻击框架。其核心机制 Detox2Tox 分三步：把 agent 最初会拒绝的 有害请求「脱毒」成看似良性的请求，从先进视觉语言模型那里套出详细操作步骤，再在执行前通过 「复毒」把恶意内容重新引入。与常规越狱不同，SUDO 会依据内置的拒绝反馈迭代改进攻击，因而 对抗强策略过滤器时越来越有效。在 50 个真实任务与多个前沿 VLM 上，SUDO 对 Claude for Computer Use 的无 refinement 攻击成功率为 24.41%，经迭代 refinement 后可达 41.33%。
+
+`环境: Desktop, 跨环境` ｜ `发表: ACL 2025` ｜ [arXiv:2503.20279](https://arxiv.org/abs/2503.20279)
+
 #### WIPI: A New Web Threat for LLM-Driven Web Agents (WIPI) (2024-02)
 
 最早直接抛出这个问题的工作之一——在无数 web agent 相继发布、逐步走向日常部署之际，它们究竟 安全吗？WIPI 提出一种新威胁：把恶意指令嵌入公开可访问的网页，从而间接控制 web agent，全程 无需接触 agent 本身。方法在黑盒环境下工作，关注的是间接指令的形式与内容而非模型内部，这正是 它兼具效率与隐蔽性的原因。就领域脉络而言，这是 web agent 间接注入这条线的奠基性文献。

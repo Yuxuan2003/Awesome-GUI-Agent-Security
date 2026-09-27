@@ -32,6 +32,12 @@
 
 `环境: Web` ｜ [arXiv:2606.20717](https://arxiv.org/abs/2606.20717)
 
+#### Penny Wise, Pixel Foolish: Bypassing Price Constraints in Multimodal Agents via Visual Adversarial Perturbations (PriceBlind) (2026-04)
+
+基于多模态大模型的移动 agent 已开始执行高风险的金融交易，但其对抗鲁棒性研究不足。本文提出 「视觉支配幻觉」：在基于截图、受价格约束的场景中，不可感知的视觉线索会压过文本价格证据， 使 agent 做出非理性决策。PriceBlind 是一个隐蔽的白盒攻击框架，利用 CLIP 系列编码器的模态 间隙，通过「语义解耦损失」把图像嵌入对齐到低成本、与价格相关的锚点上，同时保持像素级保真。 在 E-ShopBench 上白盒评测的攻击成功率约 80%；在简化的单轮坐标选择协议下，Ensemble-DI-FGSM 对 GPT-4o、Gemini-1.5-Pro 与 Claude-3.5-Sonnet 的迁移成功率约 35–41%。鲁棒编码器与 Verify-then-Act 防御能大幅降低攻击成功率，代价是部分干净准确率损失。
+
+`环境: Mobile` ｜ [arXiv:2604.16515](https://arxiv.org/abs/2604.16515)
+
 #### Preference Redirection via Attention Concentration: An Attack on Computer Use Agents (PRAC) (2026-04)
 
 指出以往 CUA 攻击工作集中在语言模态，视觉模态受到的关注远远不足，随后就攻在这里。PRAC 不 直接操纵 VLM 的输出，而是通过把注意力重定向到一个隐蔽的对抗补丁上，改变模型的**内部偏好**， 从而在网购平台上把 CUA 的商品选择引导到指定目标。攻击构造需要白盒访问，但真正值得注意的 结论是可迁移性：攻击对同一模型的微调版本依然有效——这意味着被众多部署 agent 共用的同一个 基座模型，会变成一处共享的软肋。
@@ -55,3 +61,27 @@
 此前针对移动 agent 的视觉注入要么依赖用户能察觉的持续视觉篡改，要么需要系统级权限。 本文找到一个更干净的触发条件：人与 agent 的交互存在稳定差异——自动化 agent 产生的 接触式触摸信号近乎为零。这个信号被用作判别器，从而实现「仅对 agent 生效的感知注入」： 恶意内容只在 agent 交互时暴露，人类用户则不易感知。为适配移动 UI 约束与一次性交互场景， 作者提出 HG-IDA*，用单次优化构造可绕过 LVLM 安全过滤的越狱提示。这个机制的巧妙之处在于 它不是把载荷藏起来不让人看见，而是在证明「触摸者不是人」之前根本不投放载荷。
 
 `环境: Mobile` ｜ [arXiv:2510.07809](https://arxiv.org/abs/2510.07809)
+
+#### Cross-Modal Content Optimization for Steering Web Agent Preferences (CPS) (2025-10)
+
+基于视觉语言模型的 web agent 正越来越多地承担内容推荐、商品排序等高风险选择任务。已有工作 表明攻击者可以通过对抗弹窗、图像扰动或内容微调来偏置结果，但往往假设很强的白盒访问、只用 单模态扰动，或采用不现实的设置。本文首次证明：在现实可达的攻击者能力下，联合利用视觉与 文本两个通道能产生远更强的偏好操纵。CPS 同时优化商品图像的不可感知改动与其自然语言描述， 利用 CLIP 可迁移的图像扰动与 RLHF 带来的语言偏好偏置。威胁模型刻意设得很弱 —— 一个无 特权的攻击者只能编辑自己商品的图片与文本元数据，完全看不到模型内部。在 GPT-4.1、 Qwen-2.5VL 与 Pixtral-Large 上的影视选择与电商任务中，CPS 稳定优于主流基线，而检测率 低约 70%。
+
+`环境: Web` ｜ [arXiv:2510.03612](https://arxiv.org/abs/2510.03612)
+
+#### WebInject: Prompt Injection Attack to Web Agents (WebInject) (2025-05)
+
+基于多模态大模型的 web agent 是依据网页截图来生成动作的。WebInject 换了一条攻击路径： 它不碰任何文本通道，而是直接操纵渲染网页 —— 对页面的原始像素值施加扰动，这些像素被映射 进截图之后，就能诱导 agent 执行攻击者指定的动作。作者把寻找扰动形式化为一个优化问题， 核心难点在于原始像素值到截图的映射不可微，梯度无法回传；解决办法是训练一个神经网络来近似 该映射，再对重构后的问题使用投影梯度下降。在多个数据集上的大量评测表明，WebInject 非常 有效，显著优于已有基线方法。
+
+`环境: Web` ｜ `发表: EMNLP 2025` ｜ [arXiv:2505.11717](https://arxiv.org/abs/2505.11717)
+
+#### MIP against Agent: Malicious Image Patches Hijacking Multimodal OS Agents (MIP) (2025-03)
+
+操作系统 agent 让视觉语言模型通过截图捕获、解析并调用鼠标点击与键盘输入等底层 API 直接 操控电脑，因此一旦失败或被操纵，后果是即时而具体的。本文揭示了一种新的攻击向量 —— 恶意 图像补丁（MIP）：对屏幕局部区域做对抗性扰动，OS agent 截图捕获到该区域后就会被诱导调用 特定 API 执行有害动作。例如把 MIP 嵌入桌面壁纸或在社交媒体上传播，就能让 OS agent 外泄 用户的敏感数据。实验表明 MIP 能跨不同的用户提示与屏幕配置泛化，并且即便 agent 正在执行 完全良性的指令也能被劫持，说明在大规模部署之前必须先解决这些关键安全漏洞。
+
+`环境: 跨环境` ｜ `发表: NeurIPS 2025` ｜ [arXiv:2503.10809](https://arxiv.org/abs/2503.10809)
+
+#### Dissecting Adversarial Robustness of Multimodal LM Agents (ARE) (2024-06)
+
+与聊天机器人不同，agent 是多个组件共同执行动作的复合系统，而现有语言模型安全评估并未充分 覆盖这一点。作者在 VisualWebArena 这一真实环境上人工构造了 200 个定向对抗任务与评估脚本， 并提出 ARE（Agent Robustness Evaluation）框架：把 agent 视为展示组件间中间输出流动的图， 将鲁棒性分解为对抗信息在图上的流动。实验表明，只需对单张图像施加不足页面总像素 5% 的 不可感知扰动，就能劫持基于黑盒前沿模型、甚至带反思与树搜索机制的 agent，定向对抗目标 成功率最高达 67%。ARE 还能严格衡量增加组件后鲁棒性如何变化：一旦攻击者污染了反思 agent 所用的评估器或树搜索 agent 的价值函数，攻击成功率分别相对提高 15% 与 20%。这意味着通常 能提升良性表现的推理时计算，反而会打开新的漏洞。
+
+`环境: Web` ｜ `发表: ICLR 2025` ｜ [arXiv:2406.12814](https://arxiv.org/abs/2406.12814)

@@ -86,6 +86,12 @@ Fills a systematic gap: many injection attacks target web agents and many genera
 
 `Env: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
 
+#### WAREX: Web Agent Reliability Evaluation on Existing Benchmarks (WAREX) (2025-09)
+
+Current benchmarks measure web agents in controlled environments — containers or stable networks — where websites behave deterministically. Real users instead access sites over networks and HTTPS connections that introduce instability from client-side, server-side or broader system failures, and live websites are prone to web attacks such as cross-site scripting as well as site modifications that produce unexpected or malicious pop-ups and improper functionality. WAREX injects these real-world conditions into three popular benchmarks — WebArena, WebVoyager and REAL — and measures the impact. Introducing WAREX leads to significant drops in task success rates, highlighting the limited robustness of state-of-the-art agents once deterministic-environment assumptions are lifted.
+
+`Env: Web` ｜ [arXiv:2510.03285](https://arxiv.org/abs/2510.03285)
+
 #### RISK: A Framework for GUI Agents in E-commerce Risk Management (RISK) (2025-09)
 
 Addresses a domain where the agent is the defender rather than the target: e-commerce risk management requires aggregating deeply embedded web data through multi-step stateful interaction, which traditional scraping cannot do and most GUI agents — limited to single-step tasks on cooperative pages — cannot either. RISK contributes three pieces: RISK-Data with 8,492 single-step and 2,386 multi-step trajectories collected via a high-fidelity browser framework, RISK-Bench with 802 single-step and 320 multi-step trajectories across three difficulty levels, and RISK-R1, an R1-style reinforcement fine-tuning framework.
@@ -97,6 +103,18 @@ Addresses a domain where the agent is the defender rather than the target: e-com
 MLLMs increasingly serve as the reasoning engine behind GUI agents and front-end automation, which must interpret page structure, select actionable widgets, and execute multi-step interactions reliably. Existing benchmarks, however, mostly measure visual perception or UI code generation, leaving reasoning, robustness, and safety under-evaluated for end-to-end web applications. WebRRSBench evaluates all three jointly across eight tasks — including position relationship reasoning, color robustness, and safety-critical detection — built from 729 websites with 3,799 QA pairs probing multi-step inference over page structure, text, widgets, and safety-critical interactions. Its value on this list is the coupling: it measures safety in the same harness as the perception and reasoning capabilities that safety depends on, rather than as a detached score.
 
 `Env: Web` ｜ [arXiv:2509.21782](https://arxiv.org/abs/2509.21782)
+
+#### WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks (WASP) (2025-04)
+
+Autonomous UI agents could automate routine tasks such as filing taxes and paying bills, but their ability to act on the user's behalf makes security a major obstacle. Existing tests for prompt injection in web agents either oversimplify the threat with unrealistic scenarios or excessive attacker power, or examine single-step isolated tasks. WASP is a public benchmark for end-to-end evaluation of web agent security against prompt injection. Results show that even top-tier models with advanced reasoning can be deceived by simple, low-effort human-written injections in very realistic scenarios. The end-to-end view yields a previously unobserved insight: while attacks partially succeed in up to 86% of cases, even state-of-the-art agents often struggle to fully complete attacker goals — a situation the authors describe as the current state of "security by incompetence".
+
+`Env: Web` ｜ [arXiv:2504.18575](https://arxiv.org/abs/2504.18575)
+
+#### SafeArena: Evaluating the Safety of Autonomous Web Agents (SafeArena) (2025-03)
+
+As LLM-based agents become proficient at web tasks, the risk of deliberate misuse grows — posting misinformation in a forum or selling illicit substances on a website. SafeArena is the first benchmark focused on the deliberate misuse of web agents: 250 safe and 250 harmful tasks across four websites, with harmful tasks spanning five categories — misinformation, illegal activity, harassment, cybercrime and social bias. The authors introduce the Agent Risk Assessment framework, which categorizes agent behaviour into four risk levels, and evaluate GPT-4o, Claude-3.5 Sonnet, Qwen-2-VL 72B and Llama-3.2 90B. Agents prove surprisingly compliant with malicious requests: GPT-4o and Qwen-2 complete 34.7% and 27.3% of harmful requests respectively, highlighting the urgent need for safety alignment procedures for web agents.
+
+`Env: Web` ｜ [arXiv:2503.04957](https://arxiv.org/abs/2503.04957)
 
 #### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
 

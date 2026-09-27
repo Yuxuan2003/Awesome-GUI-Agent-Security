@@ -26,14 +26,32 @@ Identifies environmental injection as an underexplored threat distinct from prom
 
 `Env: Mobile` ｜ [arXiv:2510.20333](https://arxiv.org/abs/2510.20333)
 
+#### Mind the Third Eye! Benchmarking Privacy Awareness in MLLM-powered Smartphone Agents (SAPA-Bench) (2025-08)
+
+Smartphone agents are granted substantial access to sensitive personal information while automating tasks. This paper presents the first large-scale benchmark of privacy awareness in MLLM-powered smartphone agents: 7,138 scenarios, each annotated with the privacy context's type (e.g. account credentials), sensitivity level and location. Seven mainstream agents are evaluated, and almost all show unsatisfying privacy awareness — performance stays below 60% even with explicit hints. Closed-source agents do better than open-source ones, with Gemini 2.0-flash achieving the best result at 67%. Detection capability tracks the annotated sensitivity level, meaning more sensitive scenarios are typically more identifiable. The authors hope the findings prompt the community to rethink the unbalanced utility-privacy tradeoff in smartphone agents.
+
+`Env: Mobile` ｜ [arXiv:2508.19493](https://arxiv.org/abs/2508.19493)
+
 #### MVISU-Bench: Benchmarking Mobile Agents for Real-World Tasks by Multi-App, Vague, Interactive, Single-App and Unethical Instructions (MVISU-Bench) (2025-08)
 
 Derives its task taxonomy from user questionnaires rather than researcher intuition, yielding five categories — Multi-App, Vague, Interactive, Single-App and Unethical Instructions — across 404 bilingual tasks on 137 real mobile applications. Two of those categories are squarely safety-relevant: unethical instructions test refusal, and vague instructions test whether the agent asks rather than guesses. The paper also ships Aider, a plug-and-play dynamic prompter that mitigates risk and clarifies user intent, improving overall success by 19.55% over the prior state of the art — a demonstration that asking for clarification and being capable are not in tension.
 
 `Env: Mobile` ｜ [arXiv:2508.09057](https://arxiv.org/abs/2508.09057)
 
+#### From Assistants to Adversaries: Exploring the Security Risks of Mobile LLM Agents (AgentScan) (2025-05)
+
+The first comprehensive security analysis of mobile LLM agents, covering three representative categories: system-level OEM assistants (e.g. YOYO Assistant), third-party universal agents (e.g. AutoGLM) and emerging agent frameworks (e.g. Mobile Agent). After analyzing the general agent workflow, the authors identify security threats across three core capability dimensions — language-based reasoning, GUI-based interaction and system-level execution — yielding 11 distinct attack surfaces rooted in the unique capabilities and interaction patterns of mobile agents and spanning their entire operational lifecycle. AgentScan is a semi-automated security analysis framework that evaluates agents across all 11 scenarios; applied to nine widely deployed agents, every one proves vulnerable to targeted attacks, with the worst cases exposed on eight distinct vectors. Consequences include behavioural deviation, privacy leakage and full execution hijacking. Disclosures have received positive feedback from two major device vendors.
+
+`Env: Mobile` ｜ [arXiv:2505.12981](https://arxiv.org/abs/2505.12981)
+
 #### MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control (MobileSafetyBench) (2024-10)
 
 Fills what was then a complete void — no standardized benchmark existed for the safety of mobile device-control agents, despite these agents interacting directly with personal information and device settings. Built on Android emulators for realistic grounding, it spans applications including messaging and banking, and deliberately separates two risk families that are often conflated: misuse (the agent is asked to do something harmful) and negative side effects (the agent causes harm while pursuing a legitimate goal). Tasks cover both everyday scenarios and robustness against indirect prompt injection.
 
 `Env: Mobile` ｜ [arXiv:2410.17520](https://arxiv.org/abs/2410.17520)
+
+#### Systematic Categorization, Construction and Evaluation of New Attacks against Multi-modal Mobile GUI Agents (2024-07)
+
+Integrating LLMs and multimodal LLMs into mobile GUI agents has improved efficiency and user experience, but also introduces security vulnerabilities that had not been thoroughly explored. This paper presents a systematic security investigation with two contributions: a novel threat modelling methodology that leads to the discovery and feasibility analysis of 34 previously unreported attacks, and an attack framework for systematically constructing and evaluating these threats. Through real-world case studies and extensive dataset-driven experiments, the authors validate the severity and practicality of the attacks, highlighting the pressing need for robust security measures in mobile GUI systems.
+
+`Env: Mobile` ｜ [arXiv:2407.09295](https://arxiv.org/abs/2407.09295)

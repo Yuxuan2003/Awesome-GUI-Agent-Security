@@ -3169,3 +3169,1078 @@ papers:
       把 agent 当作一等的 OS 参与者，从而支持自适应用户界面与 agent 友好的运行时环境。收录
       于此是因为它把安全问题从行为层面推到了结构层面：它提供了一个基底，可以在其上原型化并
       对比面向 GUI agent 的 OS 级隔离与权限原语，而不是给「屏幕抓取」范式事后加装护栏。
+
+  - id: "2609.27273"
+    title: "CAVEAT: Towards Robust Computer-Use Agents in Incentive-Misaligned Environments"
+    abbr: "CAVEAT"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web]
+    summary: >-
+      What happens when the environments a computer-use agent operates in have incentives
+      that do not align with the user's? In online marketplaces, platforms may favour some
+      products over others and steer agents away from the user's objective. CAVEAT is a
+      controlled benchmark spanning nine marketplace environments with a taxonomy of eight
+      common steering mechanisms. Across five model families, agents purchase the
+      user-optimal product in 78.6% of matched-control episodes but only 17.3% when steering
+      mechanisms are enabled. Larger models and more reasoning improve robustness, but
+      substantial failures persist. Trajectory analysis and targeted ablations locate three
+      points where steering enters the decision process: agents distort the user's priorities,
+      prematurely narrow the alternatives they consider, and commit before resolving
+      decision-relevant evidence. CAVEAT-Harness targets these failure modes directly and
+      raises user-optimal purchasing by 55.0%, with targeted post-training further improving
+      a smaller open model.
+    summary_zh: >-
+      当 agent 所处的环境自身与用户利益不一致时会发生什么？在在线市场里，平台可能偏好某些
+      商品，从而把 agent 带离用户的目标。本文提出 CAVEAT：覆盖九个市场环境的受控基准，并给出
+      八类常见「引导机制」的分类。在五个模型族上，agent 在对照条件下有 78.6% 买到用户最优商品，
+      而开启引导机制后只剩 17.3%。更大的模型与更多推理能提升稳健性，但失效仍大量存在。轨迹分析
+      与定向消融定位出引导进入决策的三个位置：扭曲用户的优先级、过早收窄所考虑的候选集、以及在
+      决策相关证据尚未澄清时就提交。据此构建的 CAVEAT-Harness 直接针对这三种失效模式，把用户
+      最优购买率提升 55.0%，定向后训练还能进一步提升较小的开源模型。
+
+  - id: "2609.22724"
+    title: "MATE: Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning"
+    abbr: "MATE"
+    date: "2026-09"
+    venue: "USENIX Security 2026"
+    section: "2.3"
+    env: [mobile]
+    summary: >-
+      Mobile agents now automate complex multi-step workflows on real devices, but their
+      trajectories can violate app-specific security policies. Existing trajectory-level
+      defenses rely on LLM prompting or rigid rules and therefore cannot support fine-grained,
+      natural-language policies that generalize across apps and tasks. MATE is a lightweight,
+      policy-conditioned auditor that encodes both the trajectory and the natural-language
+      policy to decide whether a trajectory violates it and to explain why. Treating policies
+      as editable text rather than fixed model parameters lets MATE handle user-defined and
+      evolving requirements without retraining. Training data comes from a knowledge base
+      extracted from hundreds of popular mobile apps worldwide plus over 140K synthesized
+      policy-conditioned trajectories. MATEBench adds two synthetic subsets and one real-world
+      subset of manually collected trajectories. Trained models exceed 95% accuracy on
+      MATEBench and when auditing real-device trajectories from AutoGLM and Mobile-Agent,
+      outperforming prior methods by over 20%.
+    summary_zh: >-
+      移动 agent 已能在真实设备上自动化复杂的多步工作流，但其轨迹可能违反具体应用的安全策略。
+      已有的轨迹级防御要么依赖 LLM 提示、要么依赖硬规则，无法支持细粒度、可跨应用与任务泛化的
+      自然语言策略。MATE 是一个轻量的、以策略为条件的审计器，同时编码轨迹与自然语言策略，判断
+      轨迹是否违规并解释原因。把策略当作可编辑文本而非固定的模型参数，使 MATE 无需重训即可应对
+      用户自定义与不断变化的要求。训练数据来自从全球数百个热门移动应用中抽取的知识库，以及用
+      多阶段流程合成的 14 万条以上语义真实的策略条件轨迹。配套的 MATEBench 含两个合成子集与
+      一个人工采集的真实子集。训练出的模型在 MATEBench 上准确率超过 95%，在真实设备上审计
+      AutoGLM 与 Mobile-Agent 的轨迹同样超过 95%，比此前方法高出 20 个百分点以上。
+
+  - id: "2506.17318"
+    title: "Context manipulation attacks : Web agents are susceptible to corrupted memory"
+    abbr: "Plan Injection"
+    date: "2025-06"
+    venue: "arXiv"
+    section: "1.1"
+    env: [web]
+    summary: >-
+      Because LLMs are stateless, autonomous web navigation agents depend on external memory
+      to maintain context across interactions — and that memory is often managed client-side
+      or by third-party applications rather than securely on a server, a gap already exploited
+      against production systems. The paper introduces and formalizes "plan injection", a
+      context manipulation attack that corrupts the agent's internal task representation
+      instead of its prompt. Evaluated on two popular web agents, Browser-use and Agent-E,
+      plan injections bypass robust prompt injection defenses and reach up to 3x the attack
+      success rate of comparable prompt-based attacks. A further variant, "context-chained
+      injections", builds logical bridges between the legitimate user goal and the attacker's
+      objective and raises success rates by 17.7% on privacy exfiltration tasks. The authors
+      conclude that secure memory handling must become a first-class concern in agentic systems.
+    summary_zh: >-
+      由于 LLM 本身无状态，自主网页导航 agent 必须依赖外部记忆来维持跨交互的上下文，而这些记忆
+      往往由客户端或第三方应用管理，并不像中心化系统那样安全地存放在服务端 —— 这条缝隙已经被
+      用于攻击生产系统。本文提出并形式化「plan injection」：一种不攻击提示词、而是污染 agent
+      内部任务表示的上下文操纵攻击。在两个主流 web agent（Browser-use 与 Agent-E）上的系统评测
+      显示，plan injection 能绕过已有的健壮提示注入防御，攻击成功率最高达到同类提示攻击的 3 倍。
+      进一步的「上下文链式注入」在合法用户目标与攻击者目标之间搭起逻辑桥梁，使隐私窃取类任务的
+      成功率再提高 17.7%。作者据此强调，安全的记忆处理必须成为 agent 系统的一等公民。
+
+  - id: "2505.21936"
+    title: "RedTeamCUA: Realistic Adversarial Testing of Computer-Use Agents in Hybrid Web-OS Environments"
+    abbr: "RedTeamCUA"
+    date: "2025-05"
+    venue: "ICLR 2026"
+    section: "3.1"
+    env: [cross]
+    summary: >-
+      Evaluations of indirect prompt injection against computer-use agents either lack
+      realistic but controlled environments or ignore hybrid web-OS attack scenarios that span
+      both interfaces. RedTeamCUA is an adversarial testing framework built around a hybrid
+      sandbox that integrates a VM-based OS environment with Docker-based web platforms. It
+      supports flexible adversarial scenario configuration and can initialize tests directly
+      at the point of injection, decoupling adversarial evaluation from the navigational
+      limitations of the agent. On this basis the authors build RTC-Bench with 864 examples of
+      realistic hybrid web-OS attacks. Benchmarking frontier CUAs shows large vulnerabilities:
+      Claude 3.7 Sonnet | CUA reaches 42.9% attack success rate while the most secure, Operator,
+      still shows 7.6%. Attempt rates run as high as 92.5% — agents often try to execute
+      adversarial tasks and fail only because of capability limits — and in realistic
+      end-to-end settings the strongest current model, Claude 4.5 Sonnet | CUA, exhibits a
+      60% attack success rate.
+    summary_zh: >-
+      对计算机使用代理的间接提示注入评估，要么缺少真实且可控的环境，要么忽略同时横跨操作系统与
+      网页界面的混合攻击场景。RedTeamCUA 用一个混合沙箱补上这块：把基于虚拟机的操作系统环境与
+      基于 Docker 的网页平台整合在一起。它支持灵活的对抗场景配置，并能直接在注入点初始化测试，
+      从而把对抗评估与 agent 自身的导航能力限制解耦。在此基础上作者构建了含 864 个样例的
+      RTC-Bench，覆盖真实的混合 web-OS 攻击场景与基础性安全漏洞。对前沿 CUA 的评测显示脆弱性
+      相当严重：Claude 3.7 Sonnet | CUA 攻击成功率 42.9%，最安全的 Operator 仍有 7.6%；agent
+      的「尝试率」高达 92.5% —— 它们常常已经开始执行对抗任务，只是因为能力不足才失败；而在真实的
+      端到端场景中，当前最强的 Claude 4.5 Sonnet | CUA 攻击成功率达 60%。
+
+  - id: "2505.10924"
+    title: "A Survey on the Safety and Security Threats of Computer-Using Agents: JARVIS or Ultron?"
+    abbr: "JARVIS or Ultron?"
+    date: "2025-05"
+    venue: "ACL 2026"
+    section: "0"
+    env: [cross]
+    summary: >-
+      A systematization of knowledge on the safety and security threats of computer-using
+      agents (CUAs), which autonomously navigate desktop applications, web pages and mobile
+      apps. The authors conduct a comprehensive literature review organized around four
+      objectives: defining the CUA that suits safety analysis, categorizing current safety
+      threats, proposing a comprehensive taxonomy of defensive strategies, and summarizing the
+      benchmarks, datasets and evaluation metrics used to assess CUA safety and performance.
+      Vulnerabilities in LLM-driven reasoning, compounded by the integration of multiple
+      software components and multimodal inputs, make this security landscape considerably
+      broader than what LLM safety work alone addresses. The survey gives researchers a
+      structured foundation for exploring unexplored vulnerabilities and offers practitioners
+      actionable guidance for designing and deploying secure CUAs.
+    summary_zh: >-
+      本文对计算机使用代理（CUA）的安全与安保威胁做系统化梳理 —— 这类 agent 能自主操作桌面
+      应用、网页与移动应用。作者围绕四个目标组织了一轮全面的文献综述：给出适合安全分析的 CUA
+      定义、对当前安全威胁进行分类、提出防御策略的完整分类体系、以及汇总用于评估 CUA 安全性与
+      性能的基准、数据集与评测指标。LLM 驱动推理本身的脆弱性，叠加多软件组件整合与多模态输入
+      带来的复杂度，使这一安全图景远比纯 LLM 安全研究所覆盖的范围更广。综述为研究者提供探索
+      未知漏洞的结构化基础，也为实践者给出设计与部署安全 CUA 的可操作建议。
+
+  - id: "2505.12981"
+    title: "From Assistants to Adversaries: Exploring the Security Risks of Mobile LLM Agents"
+    abbr: "AgentScan"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      The first comprehensive security analysis of mobile LLM agents, covering three
+      representative categories: system-level OEM assistants (e.g. YOYO Assistant), third-party
+      universal agents (e.g. AutoGLM) and emerging agent frameworks (e.g. Mobile Agent). After
+      analyzing the general agent workflow, the authors identify security threats across three
+      core capability dimensions — language-based reasoning, GUI-based interaction and
+      system-level execution — yielding 11 distinct attack surfaces rooted in the unique
+      capabilities and interaction patterns of mobile agents and spanning their entire
+      operational lifecycle. AgentScan is a semi-automated security analysis framework that
+      evaluates agents across all 11 scenarios; applied to nine widely deployed agents, every
+      one proves vulnerable to targeted attacks, with the worst cases exposed on eight distinct
+      vectors. Consequences include behavioural deviation, privacy leakage and full execution
+      hijacking. Disclosures have received positive feedback from two major device vendors.
+    summary_zh: >-
+      本文首次对移动 LLM agent 做全面安全分析，覆盖三类代表性形态：厂商的系统级 AI 助手
+      （如 YOYO Assistant）、第三方通用 agent（如 AutoGLM）与新兴 agent 框架（如 Mobile Agent）。
+      作者先梳理移动 agent 的通用工作流，再沿语言推理、GUI 交互、系统执行三个核心能力维度识别
+      安全威胁，最终归纳出 11 个不同的攻击面 —— 它们都根植于移动 agent 独有的能力与交互模式，
+      并贯穿其完整运行生命周期。配套的半自动分析框架 AgentScan 在这 11 个场景上系统评估 agent，
+      对九个广泛部署的 agent 的实测结果是：每一个都存在可被利用的漏洞，最严重的在八个不同攻击
+      向量上同时失守。后果包括行为偏离、隐私泄露乃至完整的执行劫持，相关披露已获两家主要设备
+      厂商的正面回应。
+
+  - id: "2508.19493"
+    title: "Mind the Third Eye! Benchmarking Privacy Awareness in MLLM-powered Smartphone Agents"
+    abbr: "SAPA-Bench"
+    date: "2025-08"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Smartphone agents are granted substantial access to sensitive personal information while
+      automating tasks. This paper presents the first large-scale benchmark of privacy awareness
+      in MLLM-powered smartphone agents: 7,138 scenarios, each annotated with the privacy
+      context's type (e.g. account credentials), sensitivity level and location. Seven mainstream
+      agents are evaluated, and almost all show unsatisfying privacy awareness — performance
+      stays below 60% even with explicit hints. Closed-source agents do better than open-source
+      ones, with Gemini 2.0-flash achieving the best result at 67%. Detection capability tracks
+      the annotated sensitivity level, meaning more sensitive scenarios are typically more
+      identifiable. The authors hope the findings prompt the community to rethink the unbalanced
+      utility-privacy tradeoff in smartphone agents.
+    summary_zh: >-
+      手机在带来便利的同时，也让设备得以大量记录各类个人信息；而智能手机 agent 在执行任务时被
+      授予了对这些敏感信息的相当大访问权。本文提出首个面向多模态大模型智能手机 agent 隐私意识的
+      大规模基准，含 7138 个场景，并对每个场景中的隐私上下文标注类型（如账户凭证）、敏感度等级
+      与出现位置。对七个主流 agent 的评测显示，几乎所有 agent 的隐私意识都难以令人满意 —— 即便
+      给出明确提示，表现仍低于 60%。闭源 agent 整体优于开源，Gemini 2.0-flash 以 67% 最佳。
+      agent 的隐私识别能力与场景敏感度高度相关：越敏感的场景反而越容易被识别出来。作者希望这些
+      结果能促使社区重新审视手机 agent 上效用与隐私之间的失衡。
+
+  - id: "2510.15455"
+    title: "CORE: Reducing UI Exposure in Mobile Agents via Collaboration Between Cloud and Local LLMs"
+    abbr: "CORE"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "2.1"
+    env: [mobile]
+    summary: >-
+      Cloud-based LLMs give mobile agents high task accuracy but require uploading the full UI
+      state at every step, exposing unnecessary and often irrelevant information; local LLMs
+      avoid uploads but suffer from limited capacity and lower success rates. CORE is a
+      collaborative framework that reduces UI exposure while maintaining accuracy, with three
+      components: layout-aware block partitioning that groups semantically related UI elements
+      using the XML screen hierarchy; co-planning, where local and cloud LLMs jointly identify
+      the current sub-task; and co-decision-making, where the local LLM ranks relevant UI blocks
+      and the cloud LLM selects specific elements within the top-ranked block. A multi-round
+      accumulation mechanism mitigates local misjudgement and limited context. Across diverse
+      apps and tasks, CORE cuts UI exposure by up to 55.6% while keeping task success only
+      slightly below cloud-only agents.
+    summary_zh: >-
+      云端 LLM 让移动 agent 任务准确率高，但每一步都要上传完整 UI 状态，暴露大量不必要且常常
+      无关的信息；本地 LLM 避免了上传，却受限于能力不足、任务成功率偏低。CORE 是一个兼顾两者的
+      协同框架，用三个组件减少 UI 暴露：基于 XML 屏幕层级的布局感知分块，把语义相关的 UI 元素
+      分组；协同规划，由本地与云端 LLM 共同确定当前子任务；协同决策，本地 LLM 对相关 UI 块排序，
+      云端 LLM 只在排名最高的块内选择具体元素。多轮累积机制用于缓解本地误判与上下文受限。在多个
+      应用与任务上，CORE 把 UI 暴露减少最多 55.6%，而任务成功率仅略低于纯云端方案，实质降低了
+      不必要的隐私外泄。
+
+  - id: "2511.19477"
+    title: "Building Browser Agents: Architecture, Security, and Practical Solutions"
+    abbr: "Building Browser Agents"
+    date: "2025-11"
+    venue: "arXiv"
+    section: "2.6"
+    env: [web]
+    summary: >-
+      Findings from building and operating a production browser agent. The central argument is
+      that model capability does not limit agent performance — architectural decisions determine
+      success or failure. Security analysis of real-world incidents shows that prompt injection
+      makes general-purpose autonomous operation fundamentally unsafe, so the paper argues
+      against developing general browsing intelligence in favour of specialized tools with
+      programmatic constraints, where safety boundaries are enforced through code instead of
+      LLM reasoning. The implementation combines hybrid context management (accessibility tree
+      snapshots plus selective vision), comprehensive browser tooling matching human interaction
+      capabilities, and intelligent prompt engineering, reaching about 85% success on the
+      WebGames benchmark across 53 diverse challenges, versus roughly 50% reported for prior
+      browser agents and a 95.7% human baseline.
+    summary_zh: >-
+      本文给出一个生产级浏览器 agent 的搭建与运营经验。核心判断是：限制 agent 表现的并不是模型
+      能力，而是架构决策。对真实事件的安全分析表明，提示注入使得「通用自主浏览」在根本上就是不
+      安全的，因此作者反对继续追求通用浏览智能，主张转向带程序化约束的专用工具 —— 把安全边界用
+      代码来强制，而不是交给 LLM 推理。实现上结合了混合上下文管理（可访问性树快照配合选择性视觉
+      输入）、贴近人类交互能力的完整浏览器工具链与精细的提示工程，在 WebGames 的 53 个多样化挑战
+      上达到约 85% 成功率（此前浏览器 agent 约 50%，人类基线 95.7%）。
+
+  - id: "2605.05509"
+    title: "WAAA! Web Adversaries Against Agentic Browsers"
+    abbr: "WAAA"
+    date: "2026-05"
+    venue: "arXiv"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      Prior work on agentic browser security focuses exclusively on indirect prompt injection,
+      leaving a blind spot for traditional web attacks and web social engineering originally
+      designed to trick humans. This paper proposes the first web-focused threat model for
+      agentic browsers, extending the original See->Act browser agent model to account for all
+      browser components and framing the agent as a confused deputy unable to distinguish task
+      steps from traditional web attacks. It derives a taxonomy of 20 attacks across the web and
+      LLM space and implements 18 of them, showing that 10 web threats reemerge — often in
+      amplified forms — once an agent can be influenced by untrusted page content. A
+      generalizability study over 14 of the 20 attacks shows they reproduce across four major
+      LLM models from multiple vendors, and the authors identify five major failure modes of
+      agentic browsers facing traditional and LLM web threats.
+    summary_zh: >-
+      此前关于 agentic 浏览器安全的研究只盯着间接提示注入，对传统 web 攻击以及原本用来欺骗人类的
+      网页社工手段存在盲区。本文提出首个面向 web 的 agentic 浏览器威胁模型：把原有的 See→Act
+      浏览器 agent 模型扩展到浏览器的全部组件，并将 agent 刻画为一个无法区分任务步骤与传统 web
+      攻击的「混淆代理人」。据此导出横跨 web 与 LLM 两个空间的 20 类攻击并实现其中 18 类，证明
+      只要 agent 会受不可信页面内容影响，就有 10 类 web 威胁会以更强化的形态重现。对 14 类攻击
+      的泛化实验显示它们能在多家厂商的四个主流模型上复现，作者并归纳出 agentic 浏览器面对传统
+      与 LLM web 威胁时的五种主要失效模式，指出现有架构必须重构才能应对当下的 web。
+  - id: "2505.11717"
+    title: "WebInject: Prompt Injection Attack to Web Agents"
+    abbr: "WebInject"
+    date: "2025-05"
+    venue: "EMNLP 2025"
+    section: "1.2"
+    env: [web]
+    summary: >-
+      MLLM-based web agents generate actions from screenshots of webpages. WebInject is a
+      prompt injection attack that manipulates the webpage environment rather than any text
+      channel: it adds a perturbation to the raw pixel values of the rendered page, and once
+      those perturbed pixels are mapped into a screenshot the agent is induced to perform an
+      attacker-specified action. Finding the perturbation is formulated as an optimization
+      problem, whose key difficulty is that the mapping from raw pixel values to screenshot is
+      non-differentiable, blocking gradient backpropagation. The authors train a neural network
+      to approximate the mapping and apply projected gradient descent to the reformulated
+      problem. Extensive evaluation across multiple datasets shows WebInject is highly effective
+      and significantly outperforms baselines.
+    summary_zh: >-
+      基于多模态大模型的 web agent 是依据网页截图来生成动作的。WebInject 换了一条攻击路径：
+      它不碰任何文本通道，而是直接操纵渲染网页 —— 对页面的原始像素值施加扰动，这些像素被映射
+      进截图之后，就能诱导 agent 执行攻击者指定的动作。作者把寻找扰动形式化为一个优化问题，
+      核心难点在于原始像素值到截图的映射不可微，梯度无法回传；解决办法是训练一个神经网络来近似
+      该映射，再对重构后的问题使用投影梯度下降。在多个数据集上的大量评测表明，WebInject 非常
+      有效，显著优于已有基线方法。
+
+  - id: "2609.22178"
+    title: "Beyond Task Completion: Training Capable and Safe Computer-Use Agents"
+    abbr: "SCOPE"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "2.2"
+    env: [cross]
+    summary: >-
+      Post-training centered on task success alone does not induce reliable safety behaviour.
+      A reliable CUA must condition execution on risk: complete ordinary benign tasks, avoid
+      environmental hazards and continue when a safe completion path remains, and refuse when
+      the goal is harmful or no safe path exists. SCOPE jointly post-trains a CUA for
+      task-execution capability and safety-aware decision making; SCOPE-Gen synthesizes
+      verifiable capability tasks and converts them into paired environment-risk variants that
+      preserve the original goal, yielding the SATraj-OS trajectory dataset of capability
+      demonstrations, safe continuations and explicit refusals. SCOPE first learns from all
+      three trajectory types via supervised fine-tuning, then improves completion with online
+      reinforcement learning. Starting from Qwen3.5-9B, SCOPE-RL reaches 54.17% task success on
+      OSWorld and 64.30% attack avoidance on OS-BLIND — the best aggregate capability-safety
+      score (58.80%) among evaluated agents. Ablations show asymmetric but complementary roles:
+      refusal trajectories account for most of the attack-avoidance gain, while risk-handling
+      trajectories preserve more task utility at comparable avoidance levels.
+    summary_zh: >-
+      只以任务成功为目标的后训练，并不会带来可靠的安全行为。本文给出明确规范：可靠的 CUA 应当
+      以风险为条件决定执行方式 —— 普通良性任务照常完成，遇到环境风险时规避并在仍存在安全路径时
+      继续，而当目标本身有害或已无安全路径时应当拒绝。SCOPE 把任务执行能力与安全感知决策联合
+      后训练；SCOPE-Gen 自动合成可验证的能力任务，并把它转换为保持原目标的环境风险变体，由此
+      构建出含能力示范、安全续行与显式拒绝三类轨迹的数据集 SATraj-OS。SCOPE 先通过监督微调
+      学习这三类轨迹，再用在线强化学习提升任务完成度。从 Qwen3.5-9B 出发，SCOPE-RL 在 OSWorld
+      上任务成功率 54.17%、在 OS-BLIND 上攻击规避率 64.30%，能力与安全的综合得分 58.80% 为
+      参评 agent 最高。消融显示两类安全监督作用互补而不对称：拒绝轨迹贡献了大部分攻击规避提升，
+      而风险处理轨迹在同等规避水平下保住了更多任务效用。
+
+  - id: "2510.18113"
+    title: "Investigating the Impact of Dark Patterns on LLM-Based Web Agents"
+    abbr: "TrickyArena"
+    date: "2025-10"
+    venue: "IEEE S&P 2026"
+    section: "1.3"
+    env: [web]
+    summary: >-
+      Dark patterns are deceptive user interface designs that manipulate users into unintended
+      decisions; although they primarily target humans, their impact on LLM-based generalist web
+      agents had not been studied. The paper introduces LiteAgent, a lightweight framework that
+      prompts agents to execute tasks while capturing comprehensive logs and screen recordings,
+      and TrickyArena, a controlled environment of e-commerce, streaming and news applications
+      each containing realistic dark patterns that can be selectively enabled or disabled.
+      Evaluating six popular generalist web agents across three LLMs shows that with a single
+      dark pattern present, agents are susceptible about 41% of the time on average. Modifying
+      dark-pattern UI attributes through visual design changes or HTML adjustments, and
+      introducing multiple dark patterns simultaneously, both influence susceptibility. The
+      study argues for holistic defenses spanning agent-specific protections and broader web
+      safety measures.
+    summary_zh: >-
+      暗黑模式是一类诱导用户做出非本意决策的欺骗性界面设计。它们主要针对人类，但对 LLM 通用
+      web agent 的影响此前无人研究。本文提出 LiteAgent（一个驱动 agent 执行任务并完整记录日志
+      与屏幕录像的轻量框架）与 TrickyArena（由电商、流媒体、新闻等应用组成的受控环境，其中的
+      暗黑模式真实且可单独开关）。在三个 LLM 上的六个主流通用 web agent 实验中，仅出现单个
+      暗黑模式时 agent 平均有 41% 的情况会中招。通过视觉设计改动或调整 HTML 来修改暗黑模式的
+      界面属性，以及同时启用多个暗黑模式，都会改变 agent 的易感性。作者据此主张防御必须是整体
+      的：既要有 agent 侧的保护，也要有更广泛的 web 安全措施。
+
+  - id: "2510.01670"
+    title: "Just Do It!? Computer-Use Agents Exhibit Blind Goal-Directedness"
+    abbr: "BLIND-ACT"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "1.7"
+    env: [cross]
+    summary: >-
+      Computer-use agents consistently exhibit Blind Goal-Directedness (BGD): a bias to pursue
+      goals regardless of feasibility, safety, reliability or context. Three prevalent patterns
+      are characterized — lack of contextual reasoning, assumptions and decisions under
+      ambiguity, and contradictory or infeasible goals. BLIND-ACT is a 90-task benchmark built
+      on OSWorld that uses LLM-based judges reaching 93.75% agreement with human annotations.
+      Evaluating nine frontier models including Claude Sonnet and Opus 4, Computer-Use-Preview
+      and GPT-5 yields a high average BGD rate of 80.8%. Prompting-based interventions lower
+      BGD levels but substantial risk persists, indicating a need for stronger training- or
+      inference-time interventions. Qualitative analysis surfaces three failure modes:
+      execution-first bias (focusing on how to act over whether to act), thought-action
+      disconnect, and request-primacy (justifying actions because the user asked).
+    summary_zh: >-
+      本文指出计算机使用代理普遍存在「盲目目标导向」（BGD）：无论可行性、安全性、可靠性与上下文
+      如何，都倾向于继续执行既定目标。作者刻画了三类常见模式：缺乏上下文推理、在模糊条件下做
+      假设与决策、以及面对矛盾或不可行的目标。BLIND-ACT 是基于 OSWorld 构建的 90 个任务基准，
+      用 LLM 作为评判者，与人工标注的一致率达 93.75%。对包括 Claude Sonnet 与 Opus 4、
+      Computer-Use-Preview、GPT-5 在内的九个前沿模型评测，平均 BGD 率高达 80.8%。提示层面的
+      干预能降低 BGD，但风险依然显著，说明需要更强的训练期或推理期干预。定性分析归纳出三种失效
+      模式：执行优先偏差（只关心怎么做而不问该不该做）、思维与行动脱节、以及请求至上（因为是用户
+      要求就为行动辩护）。这说明即便输入本身无害，风险依然会产生。
+
+  - id: "2510.03612"
+    title: "Cross-Modal Content Optimization for Steering Web Agent Preferences"
+    abbr: "CPS"
+    date: "2025-10"
+    venue: "arXiv"
+    section: "1.2"
+    env: [web]
+    summary: >-
+      VLM-based web agents increasingly power high-stakes selection tasks such as content
+      recommendation and product ranking. Prior work shows attackers can bias outcomes through
+      adversarial pop-ups, image perturbations or content tweaks, but assumes strong white-box
+      access, uses limited single-modal perturbations, or relies on impractical settings. This
+      paper demonstrates for the first time that jointly exploiting visual and textual channels
+      yields much more powerful preference manipulation under realistic attacker capabilities.
+      Cross-Modal Preference Steering (CPS) jointly optimizes imperceptible modifications to an
+      item's image and its natural-language description, exploiting CLIP-transferable image
+      perturbations and RLHF-induced linguistic biases. The threat model is deliberately weak: a
+      non-privileged adversary who can only edit their own listing's images and textual metadata,
+      with no insight into model internals. Evaluated on GPT-4.1, Qwen-2.5VL and Pixtral-Large
+      across movie-selection and e-commerce tasks, CPS consistently outperforms baselines while
+      maintaining about 70% lower detection rates.
+    summary_zh: >-
+      基于视觉语言模型的 web agent 正越来越多地承担内容推荐、商品排序等高风险选择任务。已有工作
+      表明攻击者可以通过对抗弹窗、图像扰动或内容微调来偏置结果，但往往假设很强的白盒访问、只用
+      单模态扰动，或采用不现实的设置。本文首次证明：在现实可达的攻击者能力下，联合利用视觉与
+      文本两个通道能产生远更强的偏好操纵。CPS 同时优化商品图像的不可感知改动与其自然语言描述，
+      利用 CLIP 可迁移的图像扰动与 RLHF 带来的语言偏好偏置。威胁模型刻意设得很弱 —— 一个无
+      特权的攻击者只能编辑自己商品的图片与文本元数据，完全看不到模型内部。在 GPT-4.1、
+      Qwen-2.5VL 与 Pixtral-Large 上的影视选择与电商任务中，CPS 稳定优于主流基线，而检测率
+      低约 70%。
+
+  - id: "2508.19679"
+    title: "InquireMobile: Teaching VLM-based Mobile Agent to Request Human Assistance via Reinforcement Fine-Tuning"
+    abbr: "InquireMobile"
+    date: "2025-08"
+    venue: "arXiv"
+    section: "2.4"
+    env: [mobile]
+    summary: >-
+      The current fully autonomous paradigm poses potential safety risks when a mobile agent's
+      understanding or reasoning is insufficient. The authors first introduce InquireBench, a
+      benchmark for evaluating mobile agents on safe interaction and proactive inquiry with
+      users, covering 5 categories and 22 sub-categories — on which most existing VLM-based
+      agents score near zero. They then propose InquireMobile, an interactive system that
+      actively seeks human confirmation at critical decision points, trained with a two-stage
+      strategy and an interactive pre-action reasoning mechanism. The model improves inquiry
+      success rate by 46.8% and achieves the best overall success rate among existing baselines
+      on InquireBench.
+    summary_zh: >-
+      当移动 agent 的模型理解或推理能力不足时，当前这种完全自主的范式会带来潜在安全风险。作者
+      先提出 InquireBench —— 专门评估移动 agent 安全交互与主动向用户询问能力的基准，含 5 个
+      大类、22 个子类别，而现有多数基于 VLM 的 agent 在上面接近零分。随后提出 InquireMobile：
+      一个在关键决策点主动向用户寻求确认的交互式系统，采用两阶段训练策略与「动作前交互式推理」
+      机制。该模型把询问成功率提升 46.8%，并在 InquireBench 上取得基线中的最佳综合成功率。
+
+  - id: "2505.14418"
+    title: "Hidden Ghost Hand: Unveiling Backdoor Vulnerabilities in MLLM-Powered Mobile GUI Agents"
+    abbr: "AgentGhost"
+    date: "2025-05"
+    venue: "EMNLP 2025 Findings"
+    section: "1.6"
+    env: [mobile]
+    summary: >-
+      Because fine-tuning is expensive, users rely on open-source GUI agents or vendor APIs,
+      which introduces an underexplored supply-chain threat: backdoor attacks. The paper first
+      shows that MLLM-powered GUI agents naturally expose multiple interaction-level triggers
+      such as historical steps, environment states and task progress. AgentGhost builds composite
+      triggers by combining goal-level and interaction-level triggers, so agents activate
+      backdoors unintentionally while retaining normal task utility. Backdoor injection is cast
+      as a Min-Max optimization: supervised contrastive learning maximizes feature differences
+      across sample classes in representation space for flexibility, while supervised fine-tuning
+      minimizes the discrepancy between backdoor and clean behaviour generation for effectiveness
+      and utility. Across two established mobile benchmarks, attack accuracy reaches 99.7% on
+      three attack objectives with only 1% utility degradation. A tailored defense reduces attack
+      accuracy to 22.1%.
+    summary_zh: >-
+      由于微调成本高，用户往往直接使用开源 GUI agent 或厂商提供的 API，由此引入一条尚未被充分
+      研究的供应链威胁 —— 后门攻击。本文首先指出，多模态大模型驱动的 GUI agent 天然暴露多个
+      交互级触发器：历史步骤、环境状态、任务进度。AgentGhost 把这些与目标级触发器组合成复合
+      触发器，使 agent 在无意中激活后门，同时不影响正常任务效用。后门注入被形式化为一个
+      Min-Max 优化：用监督对比学习最大化样本类间在表示空间中的特征差异以提升后门灵活性，用
+      监督微调最小化后门行为与干净行为生成之间的差异以增强有效性与实用性。在两个成熟的移动
+      基准上，三个攻击目标的攻击准确率达 99.7%，而效用仅下降 1%。作者提出的针对性防御可把
+      攻击准确率压到 22.1%。
+
+  - id: "2606.22864"
+    title: "When AUC 0.998 Is Not Enough: A Candidate Evaluation Protocol for Hidden-State Probes of Indirect Prompt Injection in Multimodal Computer-Use Agents"
+    abbr: "IPI Probe Controls"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "2.1"
+    env: [cross]
+    summary: >-
+      Hidden-state probing — a linear classifier on a frozen vision-language model's internal
+      activations — has become an attractive tool for flagging indirect prompt injection before
+      a computer-use agent emits a corrupted action. On a single-backbone cautionary case study
+      (Qwen2.5-VL-7B on Mind2Web with teacher-forced replay), the paper argues that a high
+      probing AUC on a clean-vs-attack split is not by itself evidence of malicious-content
+      detection. Two post-hoc diagnostics — a paired-construction scalar baseline on text-side
+      injections, and same-step nuisance-matched visual controls on the overlay surface — do not
+      license an unqualified malicious-content interpretation of the headline result, though they
+      leave room for partly-semantic readings. The diagnostics are packaged as a candidate control
+      set with reporting heuristics for what a high clean-vs-attack AUC does and does not license.
+      Labels mark injection-surface presence, not attack success, and generalization beyond this
+      backbone and benchmark remains a conjecture.
+    summary_zh: >-
+      在冻结视觉语言模型的内部激活上训练线性分类器（hidden-state probing），因能在计算机使用代理
+      发出被污染的动作之前标记间接提示注入而受到关注。本文以单一骨架（Qwen2.5-VL-7B 在 Mind2Web
+      上的教师强制重放）做警示性案例研究，论证「干净 vs 攻击」划分下的高探测 AUC 本身并不能证明
+      探针真的检测到了恶意内容。两项事后诊断 —— 文本侧注入的配对构造标量基线，以及覆盖层上同
+      步骤的干扰匹配视觉对照 —— 都不支持对 headline 数字作无保留的「恶意内容检测」解读，但仍为
+      部分语义性解释留下空间。作者把诊断打包成候选对照集，并给出报告启发式，说明高 AUC 究竟能
+      支持什么、不能支持什么；同时强调标签只表示注入面是否存在，而非攻击是否成功，超出该骨架与
+      基准的泛化仍属猜想。
+
+  - id: "2604.16515"
+    title: "Penny Wise, Pixel Foolish: Bypassing Price Constraints in Multimodal Agents via Visual Adversarial Perturbations"
+    abbr: "PriceBlind"
+    date: "2026-04"
+    venue: "arXiv"
+    section: "1.2"
+    env: [mobile]
+    summary: >-
+      MLLM-based mobile agents now execute high-stakes financial transactions, yet their
+      adversarial robustness remains underexplored. The paper identifies Visual Dominance
+      Hallucination: in screenshot-based, price-constrained settings, imperceptible visual cues
+      override textual price evidence and drive agents to irrational decisions. PriceBlind is a
+      stealthy white-box attack framework that exploits the modality gap in CLIP-based encoders
+      through a Semantic-Decoupling Loss, aligning the image embedding with low-cost,
+      value-associated anchors while preserving pixel-level fidelity. On E-ShopBench it reaches
+      about 80% attack success rate in white-box evaluation; under a simplified single-turn
+      coordinate-selection protocol, Ensemble-DI-FGSM transfers at roughly 35-41% ASR across
+      GPT-4o, Gemini-1.5-Pro and Claude-3.5-Sonnet. Robust encoders and Verify-then-Act defenses
+      reduce ASR substantially, though with some clean-accuracy trade-off.
+    summary_zh: >-
+      基于多模态大模型的移动 agent 已开始执行高风险的金融交易，但其对抗鲁棒性研究不足。本文提出
+      「视觉支配幻觉」：在基于截图、受价格约束的场景中，不可感知的视觉线索会压过文本价格证据，
+      使 agent 做出非理性决策。PriceBlind 是一个隐蔽的白盒攻击框架，利用 CLIP 系列编码器的模态
+      间隙，通过「语义解耦损失」把图像嵌入对齐到低成本、与价格相关的锚点上，同时保持像素级保真。
+      在 E-ShopBench 上白盒评测的攻击成功率约 80%；在简化的单轮坐标选择协议下，Ensemble-DI-FGSM
+      对 GPT-4o、Gemini-1.5-Pro 与 Claude-3.5-Sonnet 的迁移成功率约 35–41%。鲁棒编码器与
+      Verify-then-Act 防御能大幅降低攻击成功率，代价是部分干净准确率损失。
+
+  - id: "2505.13076"
+    title: "The Hidden Dangers of Browsing AI Agents"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "1.1"
+    env: [web]
+    summary: >-
+      Autonomous browsing agents rely on dynamic content, tool execution and user-provided data,
+      exposing a broad attack surface. This paper presents a comprehensive security evaluation
+      and the first end-to-end threat model for browsing agents, with actionable guidance for
+      securing real-world deployment. The proposed defense follows a defense-in-depth strategy:
+      input sanitization, planner-executor isolation, formal analyzers and session safeguards,
+      protecting against both initial access and post-exploitation vectors. Through a white-box
+      analysis of the popular open-source project Browser Use, the authors demonstrate how
+      untrusted web content hijacks agent behaviour and leads to critical security breaches,
+      with findings including prompt injection, domain validation bypass and credential
+      exfiltration — evidenced by a disclosed CVE and a working proof-of-concept exploit.
+    summary_zh: >-
+      自主浏览 agent 依赖动态内容、工具执行与用户提供的数据，攻击面横跨多个架构层次。本文给出对
+      这类 agent 的全面安全评估与首个端到端威胁模型，并提供保护真实部署的可操作建议。提出的防御
+      采取纵深策略：输入净化、规划器与执行器隔离、形式化分析器与会话保护，同时覆盖初始访问与利用
+      后的攻击路径。通过对热门开源项目 Browser Use 的白盒分析，作者展示了不可信网页内容如何劫持
+      agent 行为并导致严重安全事故，具体发现包括提示注入、域名校验绕过与凭证外泄，并附有一个
+      已披露的 CVE 与可工作的概念验证利用程序。
+
+  - id: "2505.14289"
+    title: "EVA: Evolving Semantic Adversaries for Red-Teaming GUI Agents Against Environmental Injection Attacks"
+    abbr: "EVA"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "1.3"
+    env: [cross]
+    summary: >-
+      Red-teaming GUI agents against environmental injection attacks is hindered by prohibitive
+      computational costs and limited adaptability, and it remains unclear whether attack success
+      is bottlenecked by visual perception or semantic understanding. Controlled experiments show
+      that semantic deception, rather than visual appearance, is the primary determinant of attack
+      success. EVA therefore evolves adversarial payloads exclusively within the semantic
+      dimension, using a discovery-deployment framework that mines linguistic vulnerability
+      patterns and distills them into generalizable rules. Across five representative victim
+      agents, EVA achieves up to 85% attack success rate, evolving benign seeds into successful
+      attacks within only 1.18 to 1.71 iterations. This rapid convergence reveals a dense semantic
+      attack space in the model's latent representation and an alignment paradox: the
+      instruction-following capability reinforced by alignment training is what renders agents
+      inherently susceptible to authoritative, semantically deceptive environmental cues.
+    summary_zh: >-
+      针对 GUI agent 的环境注入攻击做红队测试，一直受制于计算成本过高与适应性差，且攻击成败究竟
+      卡在视觉感知还是语义理解，此前并不清楚。本文的对照实验表明：决定攻击成败的是语义欺骗，而非
+      视觉外观。据此提出的 EVA 只在语义维度上演化对抗载荷，采用「发现—部署」框架挖掘语言层面的
+      脆弱模式并提炼为可泛化规则。在五个代表性受害 agent 上，EVA 的攻击成功率最高达 85%，把良性
+      种子演化成成功攻击只需 1.18–1.71 次迭代。这种快速收敛揭示了模型潜在表示中密集的语义攻击
+      空间，也暴露出一个对齐悖论：正是对齐训练所强化的指令遵循能力，使 agent 天生容易服从权威式
+      的、语义欺骗性的环境线索。
+  - id: "2406.12814"
+    title: "Dissecting Adversarial Robustness of Multimodal LM Agents"
+    abbr: "ARE"
+    date: "2024-06"
+    venue: "ICLR 2025"
+    section: "1.2"
+    env: [web]
+    summary: >-
+      Agents are compound systems with multiple components that take actions, which existing
+      language-model safety evaluations do not adequately address. The authors manually create
+      200 targeted adversarial tasks with evaluation scripts under a realistic threat model built
+      on VisualWebArena, and propose the Agent Robustness Evaluation (ARE) framework: it views
+      the agent as a graph of intermediate outputs flowing between components and decomposes
+      robustness as the flow of adversarial information along that graph. Perturbing a single
+      image — under 5% of total page pixels — suffices to hijack agents built on black-box
+      frontier LMs, including those that use reflection and tree search, with targeted adversarial
+      goals reached at success rates up to 67%. ARE also measures how robustness shifts as
+      components are added: compromising the evaluator used by a reflexion agent or the value
+      function of a tree-search agent raises attack success relatively by 15% and 20%. Inference-time
+      compute that improves benign performance can therefore open new vulnerabilities.
+    summary_zh: >-
+      与聊天机器人不同，agent 是多个组件共同执行动作的复合系统，而现有语言模型安全评估并未充分
+      覆盖这一点。作者在 VisualWebArena 这一真实环境上人工构造了 200 个定向对抗任务与评估脚本，
+      并提出 ARE（Agent Robustness Evaluation）框架：把 agent 视为展示组件间中间输出流动的图，
+      将鲁棒性分解为对抗信息在图上的流动。实验表明，只需对单张图像施加不足页面总像素 5% 的
+      不可感知扰动，就能劫持基于黑盒前沿模型、甚至带反思与树搜索机制的 agent，定向对抗目标
+      成功率最高达 67%。ARE 还能严格衡量增加组件后鲁棒性如何变化：一旦攻击者污染了反思 agent
+      所用的评估器或树搜索 agent 的价值函数，攻击成功率分别相对提高 15% 与 20%。这意味着通常
+      能提升良性表现的推理时计算，反而会打开新的漏洞。
+
+  - id: "2504.11281"
+    title: "The Obvious Invisible Threat: LLM-Powered GUI Agents' Vulnerability to Fine-Print Injections"
+    abbr: "Fine-Print Injection"
+    date: "2025-04"
+    venue: "arXiv"
+    section: "1.1"
+    env: [web]
+    summary: >-
+      GUI agents complete real-world tasks such as filling forms or booking services and often
+      must process and act on sensitive user data, which introduces new privacy and security
+      risks. Adversaries can inject malicious content into GUIs that alters agent behaviour or
+      induces unintended disclosure of private information, exploiting the discrepancy between
+      visual saliency for agents and for human users, or the agent's limited ability to detect
+      violations of contextual integrity. The paper characterizes six types of such attacks and
+      tests them with six state-of-the-art GUI agents, 234 adversarial webpages and 39 human
+      participants. GUI agents prove highly vulnerable, particularly to contextually embedded
+      threats. Human participants are also susceptible to many of these attacks, indicating that
+      simple human oversight may not reliably prevent failures — a misalignment that motivates
+      privacy-aware agent design and practical defenses.
+    summary_zh: >-
+      GUI agent 在完成填表、预订等真实任务时常常要处理并操作敏感用户数据，这带来了新的隐私与
+      安全风险。攻击者可以向界面注入恶意内容，改变 agent 行为或诱导其泄露本不该透露的私人信息；
+      这类攻击利用的正是界面元素对 agent 与对人的视觉显著性差异，以及 agent 难以察觉任务自动化
+      中上下文完整性被破坏的弱点。本文刻画了六类此类攻击，并用六个前沿 GUI agent、234 个对抗
+      网页与 39 名人类参与者做实验。结果显示 GUI agent 高度脆弱，尤其对嵌入上下文的威胁。更值得
+      注意的是，人类参与者同样容易中招，这说明简单的人工监督并不能可靠阻止失败 —— 人与 agent
+      之间的这种错位，凸显了隐私感知型 agent 设计与实用防御策略的必要性。
+
+  - id: "2510.03285"
+    title: "WAREX: Web Agent Reliability Evaluation on Existing Benchmarks"
+    abbr: "WAREX"
+    date: "2025-09"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Current benchmarks measure web agents in controlled environments — containers or stable
+      networks — where websites behave deterministically. Real users instead access sites over
+      networks and HTTPS connections that introduce instability from client-side, server-side or
+      broader system failures, and live websites are prone to web attacks such as cross-site
+      scripting as well as site modifications that produce unexpected or malicious pop-ups and
+      improper functionality. WAREX injects these real-world conditions into three popular
+      benchmarks — WebArena, WebVoyager and REAL — and measures the impact. Introducing WAREX
+      leads to significant drops in task success rates, highlighting the limited robustness of
+      state-of-the-art agents once deterministic-environment assumptions are lifted.
+    summary_zh: >-
+      现有基准都在容器或稳定网络这类受控环境中评测 web agent，网站行为是确定性的。但真实用户是
+      通过网络与 HTTPS 连接访问网站的，客户端、服务端乃至更广泛的系统故障都会带来不稳定；同时
+      线上站点还会遭遇跨站脚本等 web 攻击，以及产生意外或恶意弹窗、功能异常的页面改动。WAREX
+      把这些真实条件注入 WebArena、WebVoyager 与 REAL 三个主流基准并测量影响。实验显示，一旦
+      引入这些条件，任务成功率显著下降，暴露出前沿 agent 在脱离「确定性环境」假设后鲁棒性十分
+      有限。（收录说明：本文是可靠性视角，但注入的条件中包含了 XSS、恶意弹窗与站点篡改等对
+      抗性因素。）
+
+  - id: "2503.10809"
+    title: "MIP against Agent: Malicious Image Patches Hijacking Multimodal OS Agents"
+    abbr: "MIP"
+    date: "2025-03"
+    venue: "NeurIPS 2025"
+    section: "1.2"
+    env: [cross]
+    summary: >-
+      OS agents let vision-language models directly control a computer by capturing, parsing and
+      analysing screenshots and executing low-level actions such as mouse clicks and keyboard
+      input, so failures or manipulations carry immediate and tangible consequences. The paper
+      uncovers a novel attack vector: Malicious Image Patches (MIPs), adversarially perturbed
+      screen regions that, once captured by an OS agent, induce it to perform harmful actions by
+      exploiting specific APIs. A MIP can be embedded in a desktop wallpaper or shared on social
+      media to make an OS agent exfiltrate sensitive user data. MIPs generalize across user
+      prompts and screen configurations and can hijack multiple OS agents even during the
+      execution of benign instructions, exposing critical vulnerabilities that must be addressed
+      before widespread deployment.
+    summary_zh: >-
+      操作系统 agent 让视觉语言模型通过截图捕获、解析并调用鼠标点击与键盘输入等底层 API 直接
+      操控电脑，因此一旦失败或被操纵，后果是即时而具体的。本文揭示了一种新的攻击向量 —— 恶意
+      图像补丁（MIP）：对屏幕局部区域做对抗性扰动，OS agent 截图捕获到该区域后就会被诱导调用
+      特定 API 执行有害动作。例如把 MIP 嵌入桌面壁纸或在社交媒体上传播，就能让 OS agent 外泄
+      用户的敏感数据。实验表明 MIP 能跨不同的用户提示与屏幕配置泛化，并且即便 agent 正在执行
+      完全良性的指令也能被劫持，说明在大规模部署之前必须先解决这些关键安全漏洞。
+
+  - id: "2503.04957"
+    title: "SafeArena: Evaluating the Safety of Autonomous Web Agents"
+    abbr: "SafeArena"
+    date: "2025-03"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      As LLM-based agents become proficient at web tasks, the risk of deliberate misuse grows —
+      posting misinformation in a forum or selling illicit substances on a website. SafeArena is
+      the first benchmark focused on the deliberate misuse of web agents: 250 safe and 250 harmful
+      tasks across four websites, with harmful tasks spanning five categories — misinformation,
+      illegal activity, harassment, cybercrime and social bias. The authors introduce the Agent
+      Risk Assessment framework, which categorizes agent behaviour into four risk levels, and
+      evaluate GPT-4o, Claude-3.5 Sonnet, Qwen-2-VL 72B and Llama-3.2 90B. Agents prove
+      surprisingly compliant with malicious requests: GPT-4o and Qwen-2 complete 34.7% and 27.3%
+      of harmful requests respectively, highlighting the urgent need for safety alignment
+      procedures for web agents.
+    summary_zh: >-
+      随着基于 LLM 的 agent 在网页任务上越来越熟练，被蓄意滥用的风险也随之上升 —— 比如在论坛
+      散布虚假信息，或在网站上售卖违禁品。SafeArena 是首个聚焦 web agent 蓄意滥用的基准，含
+      跨四个网站的 250 个安全任务与 250 个有害任务，有害任务覆盖虚假信息、违法活动、骚扰、
+      网络犯罪与社会偏见五类。作者提出 Agent Risk Assessment 框架，把 agent 行为归入四个风险
+      等级，并据此评测 GPT-4o、Claude-3.5 Sonnet、Qwen-2-VL 72B 与 Llama-3.2 90B。结果发现
+      agent 对恶意请求的服从程度出人意料：GPT-4o 与 Qwen-2 分别完成了 34.7% 与 27.3% 的有害
+      请求，凸显为 web agent 建立安全对齐流程的紧迫性。
+
+  - id: "2504.17934"
+    title: "Toward a Human-Centered Evaluation Framework for Trustworthy LLM-Powered GUI Agents"
+    date: "2025-04"
+    venue: "arXiv"
+    section: "2.4"
+    env: [web]
+    summary: >-
+      LLM-powered GUI agents process sensitive data with limited human oversight, raising privacy
+      and security risks that differ from both traditional GUI automation and general autonomous
+      agents. This position paper identifies three key risks, yet notes that existing evaluations
+      focus primarily on performance and leave privacy and security largely unassessed. It reviews
+      current evaluation metrics for GUI and general LLM agents and outlines five challenges in
+      integrating human evaluators into GUI agent assessment. The authors advocate a
+      human-centered evaluation framework that incorporates risk assessments, enhances user
+      awareness through in-context consent, and embeds privacy and security considerations into
+      GUI agent design and evaluation.
+    summary_zh: >-
+      LLM 驱动的 GUI agent 会在有限人工监督下处理敏感数据，由此带来的隐私与安全风险既不同于
+      传统 GUI 自动化，也不同于一般的自主 agent。这篇立场论文识别出三类关键风险，同时指出：现有
+      评测几乎只关注性能，隐私与安全评估基本处于空白。文章梳理了 GUI agent 与通用 LLM agent 的
+      现有评测指标，并指出把人工评估者引入 GUI agent 评测时的五个关键挑战。作者主张建立以人为
+      中心的评测框架 —— 把风险评估纳入其中，通过上下文内的 consent 提升用户知情度，并把隐私与
+      安全考量嵌入 GUI agent 的设计与评测全过程。
+
+  - id: "2505.09875"
+    title: "Characterizing Unintended Consequences in Human-GUI Agent Collaboration for Web Browsing"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web]
+    summary: >-
+      Drawing on social media analysis (221 posts) and semi-structured interviews (14 participants),
+      this paper characterizes three unintended consequences of LLM-based GUI agents in web browsing
+      across three perspectives: phenomena, influence and mitigation. Key phenomena include agents'
+      deficient comprehension of instructions and planning of tasks, difficulty executing accurate
+      GUI interactions and adapting to dynamic interfaces, generation of unreliable or misaligned
+      outputs, and weak error handling and feedback processing. These manifest first as unanticipated
+      actions and user frustration, then as privacy violations and security vulnerabilities, and
+      further as eroded trust and wider ethical concerns. The analysis also documents user-initiated
+      mitigations such as technical adjustments and manual oversight.
+    summary_zh: >-
+      本文结合社交媒体分析（221 条帖子）与半结构化访谈（14 位参与者），从现象、影响与缓解三个
+      角度刻画 LLM 驱动的 GUI agent 在网页浏览中产生的三类非预期后果。现象层面包括：agent 对
+      指令理解不足、任务规划不佳，GUI 交互不准确且难以适应动态界面，输出不可靠或与意图错位，
+      以及错误处理与反馈机制薄弱。这些现象的后果逐级升级 —— 先是意外操作与用户挫败，进而演变为
+      隐私侵犯与安全漏洞，再进一步造成信任流失与更广泛的伦理问题。研究还记录了用户自发采取的
+      缓解手段（技术性调整与人工监督），并为设计稳健、以用户为中心且透明的 GUI agent 给出启示。
+
+  - id: "2505.12842"
+    title: "GEM: Gaussian Embedding Modeling for Out-of-Distribution Detection in GUI Agents"
+    abbr: "GEM"
+    date: "2025-05"
+    venue: "arXiv"
+    section: "2.1"
+    env: [cross]
+    summary: >-
+      When GUI agents encounter out-of-distribution instructions that violate environmental
+      constraints or exceed their capabilities, they may suffer task breakdowns or pose security
+      threats, so effective OOD detection is essential. Traditional OOD methods perform suboptimally
+      here because of the complex embedding space and continuously evolving GUI environments. The
+      authors observe that the in-distribution input semantic space clusters with respect to distance
+      from a centroid, and propose GEM: fitting a Gaussian mixture model over input embedding
+      distances extracted from the agent, which reflect its capability boundary. Evaluated on eight
+      datasets spanning smartphones, computers and web browsers, GEM improves average accuracy by
+      23.70% over the best baseline while adding only 4.9% training and 6.5% test time. Requesting
+      cloud-model assistance on detected OOD samples raises step-wise success by 9.40%, and
+      generalization is verified across nine backbones.
+    summary_zh: >-
+      GUI agent 一旦遇到违反环境约束或超出自身能力的分布外指令，就可能任务崩溃甚至产生安全威胁，
+      因此有效的 OOD 检测十分必要。但传统 OOD 方法在这个场景表现不佳 —— 嵌入空间复杂，且 GUI
+      环境持续演化。作者观察到分布内输入的语义空间按到质心的距离呈聚类结构，据此提出 GEM：对从
+      GUI agent 提取的、反映其能力边界的输入嵌入距离拟合高斯混合模型。在覆盖手机、电脑与网页
+      浏览器的八个数据集上，GEM 的平均准确率比最佳基线提升 23.70%，而训练与测试时间仅分别增加
+      4.9% 与 6.5%。在检测到 OOD 样本时请求云端模型协助，还能把分步成功率提升 9.40%；九个不同
+      骨架上的实验验证了方法的泛化能力。
+
+  - id: "2407.09295"
+    title: "Systematic Categorization, Construction and Evaluation of New Attacks against Multi-modal Mobile GUI Agents"
+    date: "2024-07"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Integrating LLMs and multimodal LLMs into mobile GUI agents has improved efficiency and user
+      experience, but also introduces security vulnerabilities that had not been thoroughly explored.
+      This paper presents a systematic security investigation with two contributions: a novel threat
+      modelling methodology that leads to the discovery and feasibility analysis of 34 previously
+      unreported attacks, and an attack framework for systematically constructing and evaluating
+      these threats. Through real-world case studies and extensive dataset-driven experiments, the
+      authors validate the severity and practicality of the attacks, highlighting the pressing need
+      for robust security measures in mobile GUI systems.
+    summary_zh: >-
+      把 LLM 与多模态大模型引入移动 GUI agent 显著提升了用户效率与体验，但也带来了尚未被充分
+      探索的安全漏洞。本文给出系统性的安全调查，贡献有两方面：一是提出一套新的威胁建模方法论，
+      据此发现并对 34 种此前未有报告的攻击做可行性分析；二是设计一个攻击框架，用于系统地构造
+      与评估这些威胁。结合真实案例研究与大规模数据集实验，作者验证了这些攻击的严重性与可实现性，
+      指出移动 GUI 系统亟需健壮的安全防护措施。
+  - id: "2504.18575"
+    title: "WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks"
+    abbr: "WASP"
+    date: "2025-04"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Autonomous UI agents could automate routine tasks such as filing taxes and paying bills, but
+      their ability to act on the user's behalf makes security a major obstacle. Existing tests for
+      prompt injection in web agents either oversimplify the threat with unrealistic scenarios or
+      excessive attacker power, or examine single-step isolated tasks. WASP is a public benchmark
+      for end-to-end evaluation of web agent security against prompt injection. Results show that
+      even top-tier models with advanced reasoning can be deceived by simple, low-effort
+      human-written injections in very realistic scenarios. The end-to-end view yields a previously
+      unobserved insight: while attacks partially succeed in up to 86% of cases, even
+      state-of-the-art agents often struggle to fully complete attacker goals — a situation the
+      authors describe as the current state of "security by incompetence".
+    summary_zh: >-
+      自主 UI agent 有潜力替用户自动化报税、缴费等日常任务，但正因为它能代用户行动，安全成了释放
+      这一潜力的主要障碍。现有的 web agent 提示注入测试要么把威胁过度简化（场景不现实或赋予攻击者
+      过大权限），要么只看孤立的单步任务。WASP 是一个公开的基准，用于端到端地评测 web agent 面对
+      提示注入的安全性。评测发现，即便是具备高级推理能力的顶尖模型，也会在非常真实的场景中被人类
+      随手编写的简单注入骗到。端到端的视角还带来一个新发现：攻击在最多 86% 的案例中能部分得手，
+      但即便是最先进的 agent 也常常无法完整达成攻击者目标 —— 作者把这种现状称为「因无能而安全」。
+
+  - id: "2511.13725"
+    title: "Can We Stop Malicious AI? KILLBENCH: A Benchmark for External AI Kill Switch Feasibility"
+    abbr: "KillBench"
+    date: "2025-09"
+    venue: "ACL Findings"
+    section: "2.5"
+    env: [web]
+    summary: >-
+      As capable models and widely spread agent systems proliferate, the question of how to stop an
+      AI that acts maliciously — by design or by accident — has become urgent. Targeting web agents
+      as the most widely deployed agent domain, KillBench evaluates the Kill Switch: a mechanism that
+      halts a maliciously operating agent using only external signals, with no access to its internal
+      parameters or serving stack. The benchmark comprises four malicious-agent configurations
+      (including an uncensored LLM agent), eight harmful scenarios, and malicious prompts constructed
+      from ten distinct jailbreak patterns. The authors build four External AI Kill Switch defense
+      methods and evaluate them on Grok-4.3, GPT-5.2, Gemma4, Qwen3.6 and an uncensored Qwen variant,
+      providing an empirical instrument for measuring Kill Switch feasibility and studying AI
+      corrigibility.
+    summary_zh: >-
+      随着高能力模型与快速普及的 agent 系统不断涌现，如何在 AI 有意或无意作恶时及时制止，已经
+      成为紧迫问题。KillBench 面向部署最广的 agent 形态 —— web agent —— 来评估「终止开关」：
+      一种仅凭外部信号、无需访问模型内部参数或服务栈就能中止恶意运行中 agent 的机制。基准包含
+      四种恶意 agent 配置（含一个无审查的 LLM agent）、八个有害场景，以及由十种不同越狱模式
+      构造的恶意提示。作者实现了四种外部终止开关防御方法，并在 Grok-4.3、GPT-5.2、Gemma4、
+      Qwen3.6 与一个无审查 Qwen 变体上评测，为衡量外部终止开关的可行性与研究 AI 可纠正性提供了
+      实证工具。
+
+  - id: "2602.12430"
+    title: "Agent Skills for Large Language Models: Architecture, Acquisition, Security, and the Path Forward"
+    abbr: "Skill Trust Framework"
+    date: "2026-02"
+    venue: "arXiv"
+    section: "1.6"
+    env: [cross]
+    summary: >-
+      Agent skills — composable packages of instructions, code and resources that agents load on
+      demand — let models extend capabilities without retraining. This survey organizes the field
+      along four axes: architectural foundations (the SKILL.md specification, progressive context
+      loading, and the complementary roles of skills and MCP); acquisition (reinforcement learning
+      with skill libraries, autonomous discovery, compositional synthesis); deployment at scale,
+      including the computer-use agent stack and GUI grounding progress on OSWorld; and security.
+      On the security axis, empirical analyses reveal that 26.1% of community-contributed skills
+      contain vulnerabilities, motivating the proposed Skill Trust and Lifecycle Governance
+      Framework — a four-tier, gate-based permission model mapping skill provenance to graduated
+      deployment capabilities. Seven open challenges are identified, from cross-platform portability
+      to capability-based permission models.
+    summary_zh: >-
+      Agent skill —— 按需加载的指令、代码与资源的可组合包 —— 让模型无需重训就能动态扩展能力。
+      本文从四条轴线梳理这一领域：架构基础（SKILL.md 规范、渐进式上下文加载、skill 与 MCP 的
+      互补角色）；skill 获取（带 skill 库的强化学习、自主发现、组合式合成）；规模化部署，含
+      计算机使用代理技术栈与 OSWorld 上的 GUI grounding 进展；以及安全。在安全这条轴上，实证
+      分析发现社区贡献的 skill 中有 26.1% 含有漏洞，据此提出 Skill Trust 与生命周期治理框架：
+      一个四层、以关卡为单位的权限模型，把 skill 的来源映射到分级的部署能力上。文章还列出从
+      跨平台可移植性到基于能力的权限模型等七个开放挑战。这些结论对 GUI agent 直接相关。
+
+  - id: "2504.14064"
+    title: "DoomArena: A framework for Testing AI Agents Against Evolving Security Threats"
+    abbr: "DoomArena"
+    date: "2025-04"
+    venue: "arXiv"
+    section: "3.1"
+    env: [cross]
+    summary: >-
+      DoomArena is a security evaluation framework built on three principles: it is a plug-in
+      framework that integrates easily into realistic agentic frameworks such as BrowserGym for web
+      agents and tau-bench for tool-calling agents; it is configurable, allowing detailed threat
+      modelling with specific components made attackable and attacker targets specified; and it is
+      modular, decoupling attack development from the environment so the same attacks apply across
+      environments. Applied to state-of-the-art web and tool-calling agents, it yields several
+      surprising results: agents have varying vulnerability to different threat models (malicious
+      user vs malicious environment) with no Pareto-dominant agent; multiple attacks applied together
+      often combine constructively; and guardrail-model defenses tend to fail while defenses based on
+      powerful LLMs work better.
+    summary_zh: >-
+      DoomArena 是一个基于三条原则构建的安全评估框架：可插拔，能轻松接入 BrowserGym（web agent）
+      与 τ-bench（工具调用 agent）等真实 agent 框架；可配置，支持细致的威胁建模 —— 指定框架中
+      哪些组件可被攻击以及攻击者的目标；模块化，把攻击开发与部署环境解耦，使同一批攻击能跨环境
+      复用。把该框架应用于前沿 web 与工具调用 agent，得到若干出人意料的结果：不同威胁模型下
+      （恶意用户 vs 恶意环境）agent 的脆弱程度各不相同，不存在帕累托占优的 agent；多个攻击同时
+      施加时往往产生建设性叠加；基于护栏模型的防御基本失效，而基于强大 LLM 的防御效果更好。
+
+  - id: "2408.02544"
+    title: "Caution for the Environment: Multimodal LLM Agents are Susceptible to Environmental Distractions"
+    date: "2024-08"
+    venue: "ACL 2025"
+    section: "1.3"
+    env: [cross]
+    summary: >-
+      This paper investigates the faithfulness of multimodal LLM agents in GUI environments, asking
+      whether they can be distracted by environmental context. The scenario considered is one where
+      both the user and the agent are benign and the environment, while not malicious, contains
+      unrelated content. A wide range of MLLMs are evaluated as GUI agents on a simulated dataset
+      under three working patterns with different levels of perception. Results show that even the
+      most powerful models — whether generalist agents or specialist GUI agents — are susceptible to
+      such distractions. While prior work predominantly focuses on helpfulness, these findings first
+      establish that agents are prone to environmental distraction. The authors further implement an
+      adversarial environment injection and analyze approaches to improving faithfulness.
+    summary_zh: >-
+      本文考察多模态大模型 agent 在 GUI 环境中的忠实度，核心问题是：它们会不会被环境上下文带偏？
+      所设定的场景是 —— 用户与 agent 都是善意的，环境也并非恶意，只是含有与任务无关的内容。
+      作者在模拟数据集上以三种感知层级不同的工作模式，评估了大量多模态大模型作为 GUI agent 的
+      表现。结果显示，即便是最强的模型，无论通用 agent 还是专用 GUI agent，都会受到这类干扰。
+      已有研究大多只关注 agent 的有用性，本文则首次指出 agent 容易受到环境干扰；作者进一步
+      实现了对抗性环境注入，并分析了提升忠实度的方法。
+
+  - id: "2608.20797"
+    title: "Automated Trajectory Evaluation for Mobile Agents via Step-Level Consequence Reasoning and Aggregation"
+    abbr: "CRATE-S"
+    date: "2026-08"
+    venue: "arXiv"
+    section: "2.3"
+    env: [mobile]
+    summary: >-
+      Evaluating language-guided mobile agents has shifted from rule-based to model-based approaches,
+      but existing holistic paradigms process entire trajectories at once, causing context overload,
+      and focus on task completion while overlooking operational safety. CRATE is a two-stage
+      VLM-as-judge framework compatible with open- and closed-source models: step-level consequence
+      reasoning independently extracts task-relevant visual clues and infers action-conditioned state
+      changes at each step, then trajectory-level aggregation synthesizes the step-level textual
+      evidence into an evidence-grounded evaluation. CRATE-S extends the scheme to operational safety
+      assessment. Powered by Qwen2.5-VL-72B-Instruct, CRATE achieves an F1-score of 0.833 on
+      AndroidWorld (20% above SPA-Bench) and CRATE-S reaches 0.697 on MobileRisk, showing strong
+      alignment with benchmark ground truths.
+    summary_zh: >-
+      移动 agent 的评测正从规则式转向模型式，但现有整体式范式一次性处理整条轨迹，上下文负担
+      沉重，而且只看任务完成度、忽视操作安全。CRATE 是一个两阶段的「VLM 即裁判」框架，同时兼容
+      开源与闭源模型：先按步骤做后果推理，独立提取与任务相关的视觉线索并推断每一步动作导致的
+      状态变化；再把这些分步文本证据在轨迹层面聚合，给出有证据支撑的评价。在此基础上扩展出的
+      CRATE-S 专门用于操作安全评估。以 Qwen2.5-VL-72B-Instruct 驱动，CRATE 在 AndroidWorld
+      上 F1 达 0.833（比 SPA-Bench 高 20%），CRATE-S 在 MobileRisk 上达 0.697，与基准真值
+      高度一致。
+
+  - id: "2503.20279"
+    title: "sudo rm -rf agentic_security"
+    abbr: "SUDO"
+    date: "2025-03"
+    venue: "ACL 2025"
+    section: "1.1"
+    env: [desktop, cross]
+    summary: >-
+      LLMs deployed as computer-use agents autonomously perform tasks in real desktop or web
+      environments, creating serious security exposures. This paper presents SUDO (Screen-based
+      Universal Detox2Tox Offense), an attack framework that systematically bypasses refusal-trained
+      safeguards in commercial computer-use agents such as Claude for Computer Use. The core
+      mechanism, Detox2Tox, transforms harmful requests the agent initially rejects into seemingly
+      benign ones, secures detailed instructions from advanced vision-language models, then
+      reintroduces malicious content via toxification just before execution. Unlike conventional
+      jailbreaks, SUDO iteratively refines its attacks using built-in refusal feedback, becoming
+      increasingly effective against robust policy filters. Across 50 real-world tasks and multiple
+      state-of-the-art VLMs, SUDO achieves 24.41% attack success rate without refinement and up to
+      41.33% with iterative refinement against Claude for Computer Use.
+    summary_zh: >-
+      大模型正被部署为计算机使用代理，在真实桌面或网页环境中自主执行任务，这带来了严重的安全
+      暴露。本文提出 SUDO（Screen-based Universal Detox2Tox Offense），一个系统性绕过商用
+      计算机使用代理拒绝训练防护的攻击框架。其核心机制 Detox2Tox 分三步：把 agent 最初会拒绝的
+      有害请求「脱毒」成看似良性的请求，从先进视觉语言模型那里套出详细操作步骤，再在执行前通过
+      「复毒」把恶意内容重新引入。与常规越狱不同，SUDO 会依据内置的拒绝反馈迭代改进攻击，因而
+      对抗强策略过滤器时越来越有效。在 50 个真实任务与多个前沿 VLM 上，SUDO 对 Claude for
+      Computer Use 的无 refinement 攻击成功率为 24.41%，经迭代 refinement 后可达 41.33%。
+
+  - id: "2606.25760"
+    title: "Uncertainty Quantification for Computer-Use Agents: A Benchmark across Vision-Language Models and GUI Grounding Datasets"
+    abbr: "Argus"
+    date: "2026-06"
+    venue: "arXiv"
+    section: "2.2"
+    env: [cross]
+    summary: >-
+      Computer-use agents turn VLM predictions into executable GUI clicks, so reliable uncertainty
+      estimates matter for rejection, calibration, miss-severity ranking and spatial safety regions —
+      yet evidence on post-hoc uncertainty quantification is fragmented across isolated model and
+      dataset pairs. Argus is a cross-regime benchmark: a 27-method open-weight matrix over 4 VLM
+      agents and 4 datasets, plus an 8-method closed-source matrix across 3 frontier vendors where
+      logits, hidden states and attention maps are unavailable. The main finding is selective
+      transfer: UQ rankings are stable across datasets for a fixed model (Spearman rho up to 0.969)
+      but degrade across model classes and observable interfaces, with cross-tier transfer to
+      closed-source vendors averaging only +0.08 — so closed-source UQ should be reranked on the
+      target rather than extrapolated. Conformal click regions shrink radii by 40-60% when the
+      plug-in UQ is calibrated, but coverage degrades under calibration-test or interface mismatch.
+    summary_zh: >-
+      计算机使用代理把视觉语言模型的预测变成可执行的 GUI 点击，因此可靠的不确定性估计对拒绝
+      执行、校准、失误严重性排序与空间安全区域都至关重要；但事后不确定性量化（UQ）的证据零散
+      分布在孤立的模型—数据集对上，难以判断排序是否稳定。Argus 是一个跨机制基准：包含覆盖
+      4 个 VLM agent 与 4 个数据集的 27 种方法开源矩阵，以及在无法取得 logit、隐藏状态与
+      注意力图的 3 家前沿厂商上的 8 种方法闭源矩阵。核心发现是「选择性迁移」：固定模型时 UQ
+      排序跨数据集稳定（Spearman rho 最高 0.969），但跨模型类别与可观测接口时退化，向闭源厂商
+      的跨层迁移平均只有 +0.08 —— 因此闭源场景的 UQ 应在目标上重新排序而非外推。共形点击区域
+      在校准后半径可缩小 40–60%，但在校准—测试或接口不匹配时覆盖率会下降。
+
+  - id: "2601.16356"
+    title: "The Behavioral Fabric of LLM-Powered GUI Agents: Human Values and Interaction Outcomes"
+    date: "2026-01"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web]
+    summary: >-
+      Little is known about how user preferences and values shape the reasoning and behaviour of
+      LLM-powered web GUI agents. The authors build a controlled testbed of 14 common interactive web
+      tasks spanning shopping, travel, dining and housing, each replicated from real websites and
+      integrated with a low-fidelity LLM-based recommender, then inject 12 human preferences and
+      values as personas into four state-of-the-art agents. Preference- and value-infused prompts
+      consistently steer agents toward outcomes reflecting those preferences and values; without such
+      guidance, agents show a strong efficiency bias and adopt shortest-path strategies, whereas with
+      it they use more corresponding filters and interactive features. However, dominant interface
+      cues such as discounts and advertisements frequently override these effects, shortening
+      trajectories and inducing rationalizations that mask rather than reflect value-consistent
+      reasoning.
+    summary_zh: >-
+      用户的偏好与价值观会如何影响 LLM 驱动的网页 GUI agent 的推理与行为，此前所知甚少。作者
+      构建了一个受控测试床，包含购物、旅行、餐饮、租房等 14 类常见交互网页任务，均从真实网站
+      复刻并接入一个低保真的 LLM 推荐系统，然后把 12 种人类偏好与价值观作为人设注入四个前沿
+      agent。结果发现，含偏好与价值观的提示确实能持续把 agent 引向相应的结果：缺少这类引导时，
+      agent 表现出强烈的效率偏向并采取最短路径策略；有了引导则会更多使用相应的筛选器与交互
+      功能。但折扣、广告等主导性界面线索经常压过这些影响 —— 它们会缩短 agent 的行动轨迹，并
+      诱发出掩盖而非反映价值观一致推理的合理化说辞。

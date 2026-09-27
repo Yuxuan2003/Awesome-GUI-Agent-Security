@@ -61,3 +61,15 @@
 正面提出「迁移性」问题：为对话场景下的通用 MLLM 设计并对齐的安全风险原则，能否有效迁移到 真实的计算机操作场景？论文指出以往的风险评测总在两点之一上失守——要么缺乏真实的交互环境， 要么把范围收窄到少数几类特定风险——而这两种失守都忽略了真实环境所固有的复杂性与多变性。 RiOSWorld 在真实的计算机操作过程中评测风险，已成为多模态 CUA 风险评测中被较多引用的基准之一。
 
 `环境: Desktop` ｜ [arXiv:2506.00618](https://arxiv.org/abs/2506.00618)
+
+#### RedTeamCUA: Realistic Adversarial Testing of Computer-Use Agents in Hybrid Web-OS Environments (RedTeamCUA) (2025-05)
+
+对计算机使用代理的间接提示注入评估，要么缺少真实且可控的环境，要么忽略同时横跨操作系统与 网页界面的混合攻击场景。RedTeamCUA 用一个混合沙箱补上这块：把基于虚拟机的操作系统环境与 基于 Docker 的网页平台整合在一起。它支持灵活的对抗场景配置，并能直接在注入点初始化测试， 从而把对抗评估与 agent 自身的导航能力限制解耦。在此基础上作者构建了含 864 个样例的 RTC-Bench，覆盖真实的混合 web-OS 攻击场景与基础性安全漏洞。对前沿 CUA 的评测显示脆弱性 相当严重：Claude 3.7 Sonnet | CUA 攻击成功率 42.9%，最安全的 Operator 仍有 7.6%；agent 的「尝试率」高达 92.5% —— 它们常常已经开始执行对抗任务，只是因为能力不足才失败；而在真实的 端到端场景中，当前最强的 Claude 4.5 Sonnet | CUA 攻击成功率达 60%。
+
+`环境: 跨环境` ｜ `发表: ICLR 2026` ｜ [arXiv:2505.21936](https://arxiv.org/abs/2505.21936)
+
+#### DoomArena: A framework for Testing AI Agents Against Evolving Security Threats (DoomArena) (2025-04)
+
+DoomArena 是一个基于三条原则构建的安全评估框架：可插拔，能轻松接入 BrowserGym（web agent） 与 τ-bench（工具调用 agent）等真实 agent 框架；可配置，支持细致的威胁建模 —— 指定框架中 哪些组件可被攻击以及攻击者的目标；模块化，把攻击开发与部署环境解耦，使同一批攻击能跨环境 复用。把该框架应用于前沿 web 与工具调用 agent，得到若干出人意料的结果：不同威胁模型下 （恶意用户 vs 恶意环境）agent 的脆弱程度各不相同，不存在帕累托占优的 agent；多个攻击同时 施加时往往产生建设性叠加；基于护栏模型的防御基本失效，而基于强大 LLM 的防御效果更好。
+
+`环境: 跨环境` ｜ [arXiv:2504.14064](https://arxiv.org/abs/2504.14064)

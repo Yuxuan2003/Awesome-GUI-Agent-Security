@@ -26,8 +26,20 @@ Most OS agents are built for idealized settings, while real environments routine
 
 `Env: Mobile, Desktop` ｜ [arXiv:2509.07553](https://arxiv.org/abs/2509.07553)
 
+#### InquireMobile: Teaching VLM-based Mobile Agent to Request Human Assistance via Reinforcement Fine-Tuning (InquireMobile) (2025-08)
+
+The current fully autonomous paradigm poses potential safety risks when a mobile agent's understanding or reasoning is insufficient. The authors first introduce InquireBench, a benchmark for evaluating mobile agents on safe interaction and proactive inquiry with users, covering 5 categories and 22 sub-categories — on which most existing VLM-based agents score near zero. They then propose InquireMobile, an interactive system that actively seeks human confirmation at critical decision points, trained with a two-stage strategy and an interactive pre-action reasoning mechanism. The model improves inquiry success rate by 46.8% and achieves the best overall success rate among existing baselines on InquireBench.
+
+`Env: Mobile` ｜ [arXiv:2508.19679](https://arxiv.org/abs/2508.19679)
+
 #### VerificAgent: Domain-Specific Memory Verification for Scalable Oversight of Aligned Computer-Use Agents (VerificAgent) (2025-06)
 
 Treats persistent memory as an explicit alignment surface, on the reasoning that continual memory augmentation lets CUAs learn from prior interactions but unvetted memories encode domain-inappropriate or unsafe heuristics — spurious rules that quietly drift from user intent and safety constraints. VerificAgent combines an expert-curated seed of domain knowledge, iterative trajectory-based memory growth during training, and a post-hoc human fact-checking pass before deployment. The framing is the contribution: having humans correct high-impact errors once turns verified memory into a frozen safety contract that future actions must satisfy, with no model fine-tuning required.
 
 `Env: Desktop` ｜ [arXiv:2506.02539](https://arxiv.org/abs/2506.02539)
+
+#### Toward a Human-Centered Evaluation Framework for Trustworthy LLM-Powered GUI Agents (2025-04)
+
+LLM-powered GUI agents process sensitive data with limited human oversight, raising privacy and security risks that differ from both traditional GUI automation and general autonomous agents. This position paper identifies three key risks, yet notes that existing evaluations focus primarily on performance and leave privacy and security largely unassessed. It reviews current evaluation metrics for GUI and general LLM agents and outlines five challenges in integrating human evaluators into GUI agent assessment. The authors advocate a human-centered evaluation framework that incorporates risk assessments, enhances user awareness through in-context consent, and embeds privacy and security considerations into GUI agent design and evaluation.
+
+`Env: Web` ｜ [arXiv:2504.17934](https://arxiv.org/abs/2504.17934)

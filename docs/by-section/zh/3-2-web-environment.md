@@ -86,6 +86,12 @@ web agent 的安全评测长期碎片化、难以标准化。WebTrap Park 是一
 
 `环境: Web` ｜ [arXiv:2510.01354](https://arxiv.org/abs/2510.01354)
 
+#### WAREX: Web Agent Reliability Evaluation on Existing Benchmarks (WAREX) (2025-09)
+
+现有基准都在容器或稳定网络这类受控环境中评测 web agent，网站行为是确定性的。但真实用户是 通过网络与 HTTPS 连接访问网站的，客户端、服务端乃至更广泛的系统故障都会带来不稳定；同时 线上站点还会遭遇跨站脚本等 web 攻击，以及产生意外或恶意弹窗、功能异常的页面改动。WAREX 把这些真实条件注入 WebArena、WebVoyager 与 REAL 三个主流基准并测量影响。实验显示，一旦 引入这些条件，任务成功率显著下降，暴露出前沿 agent 在脱离「确定性环境」假设后鲁棒性十分 有限。（收录说明：本文是可靠性视角，但注入的条件中包含了 XSS、恶意弹窗与站点篡改等对 抗性因素。）
+
+`环境: Web` ｜ [arXiv:2510.03285](https://arxiv.org/abs/2510.03285)
+
 #### RISK: A Framework for GUI Agents in E-commerce Risk Management (RISK) (2025-09)
 
 面向一个 agent 扮演防御方而非攻击目标的领域：电商风控需要通过多步、有状态的交互聚合深度 嵌套的网页数据，这既非传统爬虫所能胜任，也超出大多数 GUI agent 的能力——后者通常局限于 配合良好的页面上的单步任务。RISK 贡献三部分：RISK-Data，通过高保真浏览器框架采集的 8492 条 单步与 2386 条多步交互轨迹；RISK-Bench，覆盖三个难度等级的 802 条单步与 320 条多步轨迹； 以及 RISK-R1，一个 R1 风格的强化微调框架。
@@ -97,6 +103,18 @@ web agent 的安全评测长期碎片化、难以标准化。WebTrap Park 是一
 MLLM 越来越多地充当 GUI agent 与前端自动化背后的推理引擎，需要理解页面结构、选择可操作 控件、可靠执行多步交互。但现有基准大多只衡量视觉感知或 UI 代码生成，对端到端 web 应用 所需的推理、鲁棒性与安全能力评测不足。WebRRSBench 在八项任务上联合评测这三者，涵盖 位置关系推理、颜色鲁棒性、安全关键检测等，数据取自 729 个网站、含 3799 个 QA 对， 考察对页面结构、文本、控件以及安全关键交互的多步推断。它在本清单中的价值在于「耦合」： 安全性与它所依赖的感知、推理能力放在同一套评测框架里衡量，而不是作为一个脱离上下文的 独立分数。
 
 `环境: Web` ｜ [arXiv:2509.21782](https://arxiv.org/abs/2509.21782)
+
+#### WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks (WASP) (2025-04)
+
+自主 UI agent 有潜力替用户自动化报税、缴费等日常任务，但正因为它能代用户行动，安全成了释放 这一潜力的主要障碍。现有的 web agent 提示注入测试要么把威胁过度简化（场景不现实或赋予攻击者 过大权限），要么只看孤立的单步任务。WASP 是一个公开的基准，用于端到端地评测 web agent 面对 提示注入的安全性。评测发现，即便是具备高级推理能力的顶尖模型，也会在非常真实的场景中被人类 随手编写的简单注入骗到。端到端的视角还带来一个新发现：攻击在最多 86% 的案例中能部分得手， 但即便是最先进的 agent 也常常无法完整达成攻击者目标 —— 作者把这种现状称为「因无能而安全」。
+
+`环境: Web` ｜ [arXiv:2504.18575](https://arxiv.org/abs/2504.18575)
+
+#### SafeArena: Evaluating the Safety of Autonomous Web Agents (SafeArena) (2025-03)
+
+随着基于 LLM 的 agent 在网页任务上越来越熟练，被蓄意滥用的风险也随之上升 —— 比如在论坛 散布虚假信息，或在网站上售卖违禁品。SafeArena 是首个聚焦 web agent 蓄意滥用的基准，含 跨四个网站的 250 个安全任务与 250 个有害任务，有害任务覆盖虚假信息、违法活动、骚扰、 网络犯罪与社会偏见五类。作者提出 Agent Risk Assessment 框架，把 agent 行为归入四个风险 等级，并据此评测 GPT-4o、Claude-3.5 Sonnet、Qwen-2-VL 72B 与 Llama-3.2 90B。结果发现 agent 对恶意请求的服从程度出人意料：GPT-4o 与 Qwen-2 分别完成了 34.7% 与 27.3% 的有害 请求，凸显为 web agent 建立安全对齐流程的紧迫性。
+
+`环境: Web` ｜ [arXiv:2503.04957](https://arxiv.org/abs/2503.04957)
 
 #### AdvAgent: Controllable Blackbox Red-teaming on Web Agents (AdvAgent) (2024-10)
 

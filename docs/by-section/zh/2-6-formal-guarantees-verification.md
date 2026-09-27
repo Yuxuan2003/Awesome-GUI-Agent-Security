@@ -44,6 +44,12 @@
 
 `环境: Desktop` ｜ [arXiv:2601.09923](https://arxiv.org/abs/2601.09923)
 
+#### Building Browser Agents: Architecture, Security, and Practical Solutions (Building Browser Agents) (2025-11)
+
+本文给出一个生产级浏览器 agent 的搭建与运营经验。核心判断是：限制 agent 表现的并不是模型 能力，而是架构决策。对真实事件的安全分析表明，提示注入使得「通用自主浏览」在根本上就是不 安全的，因此作者反对继续追求通用浏览智能，主张转向带程序化约束的专用工具 —— 把安全边界用 代码来强制，而不是交给 LLM 推理。实现上结合了混合上下文管理（可访问性树快照配合选择性视觉 输入）、贴近人类交互能力的完整浏览器工具链与精细的提示工程，在 WebGames 的 53 个多样化挑战 上达到约 85% 成功率（此前浏览器 agent 约 50%，人类基线 95.7%）。
+
+`环境: Web` ｜ [arXiv:2511.19477](https://arxiv.org/abs/2511.19477)
+
 #### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
 
 指出针对弹窗式环境注入的现有防御要么需要昂贵重训、要么在归纳性干扰下失效，转而走机制 可解释性路线。论文系统研究这类攻击如何改变 GUI agent 的注意力分布，发现正确输出与错误输出 之间存在**逐层的注意力发散模式**。LaSM 直接利用这一发现，选择性放大关键层的注意力与 MLP 模块，无需任何额外训练即把模型显著性重新对齐到任务相关的屏幕区域——这是把可解释性结论 转化为可部署 GUI agent 防御的少见案例。

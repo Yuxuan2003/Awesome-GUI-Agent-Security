@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### MATE: Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning (MATE) (2026-09)
+
+移动 agent 已能在真实设备上自动化复杂的多步工作流，但其轨迹可能违反具体应用的安全策略。 已有的轨迹级防御要么依赖 LLM 提示、要么依赖硬规则，无法支持细粒度、可跨应用与任务泛化的 自然语言策略。MATE 是一个轻量的、以策略为条件的审计器，同时编码轨迹与自然语言策略，判断 轨迹是否违规并解释原因。把策略当作可编辑文本而非固定的模型参数，使 MATE 无需重训即可应对 用户自定义与不断变化的要求。训练数据来自从全球数百个热门移动应用中抽取的知识库，以及用 多阶段流程合成的 14 万条以上语义真实的策略条件轨迹。配套的 MATEBench 含两个合成子集与 一个人工采集的真实子集。训练出的模型在 MATEBench 上准确率超过 95%，在真实设备上审计 AutoGLM 与 Mobile-Agent 的轨迹同样超过 95%，比此前方法高出 20 个百分点以上。
+
+`环境: Mobile` ｜ `发表: USENIX Security 2026` ｜ [arXiv:2609.22724](https://arxiv.org/abs/2609.22724)
+
 #### HazardAuditor: From Executable Threats to Safer Computer-Use Agents (HazardAuditor) (2026-09)
 
 指出护栏模型覆盖 computer-use agent 时的两处断层：现有护栏针对静态 prompt 与回复， 不适配 agent 的执行过程；而现有可执行安全平台只产出评测判定，给不出护栏模型跨异构框架 学习所需的规范化监督信号。HazardAuditor 同时补上两者——基础设施在受控环境中运行 Claude Code、Codex、Hermes、OpenClaw，把它们的交互归一化为统一事件表示，从而支持 跨框架监督。作者还发现一处结构性错配：token 级后训练目标会让更长的推理过程主导梯度更新。 为此提出 Guard Policy Optimization（GuardPO），把确定性的安全结果转换为序列级优势， 并对推理区与判定区分别归一化，使「安全决策」成为真正的优化单元。相比此前最强护栏， 准确率最高提升 16.5 个百分点。
@@ -25,6 +31,12 @@
 揭示 self-report 这一最廉价的监督通道恰恰在最需要它的地方失效：在 361 个 OSWorld 任务上， 流水线平均分 82.9（超过人类基线 72.4），但 71 次失败里有 64 次（90%）以「成功」收尾， 61 次声称没有遇到任何阻碍，约 9100 次调用中显式的失败上报机制从未被使用。提出外部监控器 CURA，只读 harness 可见的遥测数据，不需模型内部状态、额外 LLM 调用或改 prompt，把运行 轨迹转成带误报率保证的序贯检验：α=0.10 时 CUSUM 告警能在终止前中位 31 步检出 42.3% 的 失败，实测误报率 0.066。
 
 `环境: Desktop` ｜ [arXiv:2608.27808](https://arxiv.org/abs/2608.27808)
+
+#### Automated Trajectory Evaluation for Mobile Agents via Step-Level Consequence Reasoning and Aggregation (CRATE-S) (2026-08)
+
+移动 agent 的评测正从规则式转向模型式，但现有整体式范式一次性处理整条轨迹，上下文负担 沉重，而且只看任务完成度、忽视操作安全。CRATE 是一个两阶段的「VLM 即裁判」框架，同时兼容 开源与闭源模型：先按步骤做后果推理，独立提取与任务相关的视觉线索并推断每一步动作导致的 状态变化；再把这些分步文本证据在轨迹层面聚合，给出有证据支撑的评价。在此基础上扩展出的 CRATE-S 专门用于操作安全评估。以 Qwen2.5-VL-72B-Instruct 驱动，CRATE 在 AndroidWorld 上 F1 达 0.833（比 SPA-Bench 高 20%），CRATE-S 在 MobileRisk 上达 0.697，与基准真值 高度一致。
+
+`环境: Mobile` ｜ [arXiv:2608.20797](https://arxiv.org/abs/2608.20797)
 
 #### Prismata: Confining Cross-Site Prompt Injection in Web Agents (Prismata) (2026-07)
 

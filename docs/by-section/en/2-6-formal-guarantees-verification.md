@@ -44,6 +44,12 @@ Confronts a genuine architectural impasse: isolation gives the strongest injecti
 
 `Env: Desktop` ｜ [arXiv:2601.09923](https://arxiv.org/abs/2601.09923)
 
+#### Building Browser Agents: Architecture, Security, and Practical Solutions (Building Browser Agents) (2025-11)
+
+Findings from building and operating a production browser agent. The central argument is that model capability does not limit agent performance — architectural decisions determine success or failure. Security analysis of real-world incidents shows that prompt injection makes general-purpose autonomous operation fundamentally unsafe, so the paper argues against developing general browsing intelligence in favour of specialized tools with programmatic constraints, where safety boundaries are enforced through code instead of LLM reasoning. The implementation combines hybrid context management (accessibility tree snapshots plus selective vision), comprehensive browser tooling matching human interaction capabilities, and intelligent prompt engineering, reaching about 85% success on the WebGames benchmark across 53 diverse challenges, versus roughly 50% reported for prior browser agents and a 95.7% human baseline.
+
+`Env: Web` ｜ [arXiv:2511.19477](https://arxiv.org/abs/2511.19477)
+
 #### LaSM: Layer-wise Scaling Mechanism for Defending Pop-up Attack on GUI Agents (LaSM) (2025-07)
 
 Notes that existing defenses against pop-up environmental injection either require costly retraining or collapse under inductive interference, then takes a mechanistic route instead. The paper systematically studies how such attacks alter a GUI agent's attention and uncovers a layer-wise attention divergence pattern separating correct from incorrect outputs. LaSM exploits this directly by selectively amplifying attention and MLP modules in the critical layers, realigning model saliency with task-relevant screen regions without any additional training — a rare instance of interpretability findings converted into a deployable GUI-agent defense.

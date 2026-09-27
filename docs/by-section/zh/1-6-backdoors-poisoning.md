@@ -32,6 +32,12 @@
 
 `环境: Mobile, 跨环境` ｜ [arXiv:2603.08316](https://arxiv.org/abs/2603.08316)
 
+#### Agent Skills for Large Language Models: Architecture, Acquisition, Security, and the Path Forward (Skill Trust Framework) (2026-02)
+
+Agent skill —— 按需加载的指令、代码与资源的可组合包 —— 让模型无需重训就能动态扩展能力。 本文从四条轴线梳理这一领域：架构基础（SKILL.md 规范、渐进式上下文加载、skill 与 MCP 的 互补角色）；skill 获取（带 skill 库的强化学习、自主发现、组合式合成）；规模化部署，含 计算机使用代理技术栈与 OSWorld 上的 GUI grounding 进展；以及安全。在安全这条轴上，实证 分析发现社区贡献的 skill 中有 26.1% 含有漏洞，据此提出 Skill Trust 与生命周期治理框架： 一个四层、以关卡为单位的权限模型，把 skill 的来源映射到分级的部署能力上。文章还列出从 跨平台可移植性到基于能力的权限模型等七个开放挑战。这些结论对 GUI agent 直接相关。
+
+`环境: 跨环境` ｜ [arXiv:2602.12430](https://arxiv.org/abs/2602.12430)
+
 #### VisualTrap: A Stealthy Backdoor Attack on GUI Agents via Visual Grounding Manipulation (VisualTrap) (2025-07)
 
 把「视觉 grounding」——即从文本计划到具体 GUI 元素的映射——认定为一个独立的攻击面，与规划和 推理层面区分开来。其后果正是危险之处：植入 grounding 的后门会在 agent **拿到完全正确的 解题计划时**依然改变其行为，因此检查计划本身看不出任何问题。VisualTrap 通过误导 agent 把 文本计划定位到攻击者选定的位置来劫持 grounding，这意味着所有计划级审查与推理审计都能干净 通过，而动作却落在攻击者想要的地方。
@@ -43,3 +49,9 @@
 利用移动 agent 构建方式上的结构性弱点：它们通常在小规模、用户自行收集的数据上微调，使 训练期投毒从理论威胁变成现实可行。VIBMA 是首个针对 VLM 移动 agent 的**纯净文本**后门—— 只修改视觉输入，prompt 与指令完全保持原样，因此没有任何文本异常可供检测。模型在投毒数据上 微调后，推理时加入预设的视觉触发图案即激活攻击者指定行为。其机制是把投毒样本的训练梯度与 攻击者指定目标实例的梯度对齐，从而把后门特征嵌进数据本身。
 
 `环境: Mobile` ｜ [arXiv:2506.13205](https://arxiv.org/abs/2506.13205)
+
+#### Hidden Ghost Hand: Unveiling Backdoor Vulnerabilities in MLLM-Powered Mobile GUI Agents (AgentGhost) (2025-05)
+
+由于微调成本高，用户往往直接使用开源 GUI agent 或厂商提供的 API，由此引入一条尚未被充分 研究的供应链威胁 —— 后门攻击。本文首先指出，多模态大模型驱动的 GUI agent 天然暴露多个 交互级触发器：历史步骤、环境状态、任务进度。AgentGhost 把这些与目标级触发器组合成复合 触发器，使 agent 在无意中激活后门，同时不影响正常任务效用。后门注入被形式化为一个 Min-Max 优化：用监督对比学习最大化样本类间在表示空间中的特征差异以提升后门灵活性，用 监督微调最小化后门行为与干净行为生成之间的差异以增强有效性与实用性。在两个成熟的移动 基准上，三个攻击目标的攻击准确率达 99.7%，而效用仅下降 1%。作者提出的针对性防御可把 攻击准确率压到 22.1%。
+
+`环境: Mobile` ｜ `发表: EMNLP 2025 Findings` ｜ [arXiv:2505.14418](https://arxiv.org/abs/2505.14418)

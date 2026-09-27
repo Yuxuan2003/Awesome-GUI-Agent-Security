@@ -31,3 +31,9 @@ Approaches agent security from the website operator's side rather than the agent
 Studies the human side of CUA risk as personalized agents move from expert circles into mainstream use: these systems install skills, invoke tools, reach private resources and modify local environments, yet users typically do not know what authority they delegated, what the agent actually did, or whether it was cleanly removed afterward. The work pairs a multi-source corpus of the OpenClaw ecosystem — incidents, advisories, malicious-skill reports, news, tutorials, social narratives — with an interview study of users and practitioners. Participants recognized these systems as risky in the abstract but lacked concrete mental models of privilege and persistence.
 
 `Env: Desktop` ｜ [arXiv:2603.28551](https://arxiv.org/abs/2603.28551)
+
+#### Can We Stop Malicious AI? KILLBENCH: A Benchmark for External AI Kill Switch Feasibility (KillBench) (2025-09)
+
+As capable models and widely spread agent systems proliferate, the question of how to stop an AI that acts maliciously — by design or by accident — has become urgent. Targeting web agents as the most widely deployed agent domain, KillBench evaluates the Kill Switch: a mechanism that halts a maliciously operating agent using only external signals, with no access to its internal parameters or serving stack. The benchmark comprises four malicious-agent configurations (including an uncensored LLM agent), eight harmful scenarios, and malicious prompts constructed from ten distinct jailbreak patterns. The authors build four External AI Kill Switch defense methods and evaluate them on Grok-4.3, GPT-5.2, Gemma4, Qwen3.6 and an uncensored Qwen variant, providing an empirical instrument for measuring Kill Switch feasibility and studying AI corrigibility.
+
+`Env: Web` ｜ `Venue: ACL Findings` ｜ [arXiv:2511.13725](https://arxiv.org/abs/2511.13725)

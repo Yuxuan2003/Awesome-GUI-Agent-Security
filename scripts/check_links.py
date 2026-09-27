@@ -18,6 +18,7 @@ import argparse
 import difflib
 import random
 import re
+import subprocess
 import sys
 import time
 import urllib.parse
@@ -33,8 +34,26 @@ ROOT = Path(__file__).resolve().parent.parent
 API = "https://export.arxiv.org/api/query"
 BATCH = 40        # arXiv 的 id_list 支持批量查询。逐条请求会在十几次后被限流
                   # （实测 CI 上 126 条只有前 12 条通过、其余 114 条全部「无法访问」）
-SLEEP = 3.2       # 批次之间的间隔
-RETRY = 4
+SLEEP = 8         # 批次之间的间隔
+RETRY = 5
+# arXiv 前置 WAF 会拒绝无 User-Agent 的请求（HTTP 406），也对 Python urllib 的
+# 请求指纹不友好 —— 2026-09-25 实测同一条 URL 同一时刻 curl 得 200、urllib 得 406。
+# 因此统一走 http_get()：curl 优先、urllib 兜底。
+UA = "Awesome-GUI-Agent-Security/1.0 (weekly maintenance; +https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security)"
+
+
+def http_get(url):
+    """取回响应文本。优先 curl，失败回退 urllib（详见上方 UA 注释）。"""
+    try:
+        p = subprocess.run(
+            ["curl", "-sS", "--compressed", "--max-time", "90", "-A", UA, url],
+            capture_output=True, text=True)
+        if p.returncode == 0 and "<feed" in p.stdout:
+            return p.stdout
+    except FileNotFoundError:
+        pass
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    return urllib.request.urlopen(req, timeout=90).read().decode()
 SIM_MIN = 0.92    # 标题相似度阈值。不要放太松：
                   # "... Part I" 与 "... Part II" 相似度可达 0.995，
                   # 正是要抓的错链场景，因此同时做长度差与子串检查
@@ -58,7 +77,7 @@ def fetch_batch(aids):
     last = None
     for attempt in range(RETRY):
         try:
-            raw = urllib.request.urlopen(url, timeout=90).read().decode()
+            raw = http_get(url)
             break
         except Exception as e:
             last = e

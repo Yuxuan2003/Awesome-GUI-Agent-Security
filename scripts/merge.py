@@ -74,6 +74,15 @@ def main():
 
     # 以文本方式追加，保留原文件里手写的 >- 折行与注释风格
     text = Path(args.batch).read_text(encoding="utf-8")
+    # 关键：剥掉批文件顶层的 `papers:` 键。
+    # 历史 bug（2026-09-25）：整段追加时把 `papers:` 也写进去了，文件里出现两个
+    # 顶层 `papers:` 键，PyYAML 取最后一个 —— 原来的 139 条全部被解析丢弃，
+    # 只剩新批次的 10 条。build.py --check 会如实打印「10 篇」，但如果没看这行
+    # 就直接提交，等于静默删库。因此这里剥离键，并在写入后做数量自检。
+    lines = text.split("\n")
+    if lines and lines[0].strip() == "papers:":
+        lines = lines[1:]
+    text = "\n".join(lines).strip("\n")
     if dup:
         # 有跳过项时不能整段追加，改为逐条 dump
         chunk = yaml.dump(fresh, allow_unicode=True, sort_keys=False,
@@ -85,9 +94,17 @@ def main():
     else:
         chunk = text if text.startswith("\n") else "\n" + text
 
-    with TARGET.open("a", encoding="utf-8") as f:
-        f.write(chunk.rstrip() + "\n")
-    print(f"✓ 已写入 {TARGET.relative_to(ROOT)}")
+    # 先拼出完整文本并校验，确认无误再落盘 —— 绝不让损坏的中间状态留在源文件上
+    merged = TARGET.read_text(encoding="utf-8").rstrip() + chunk.rstrip() + "\n"
+    check = yaml.safe_load(merged)
+    if not isinstance(check, dict) or list(check.keys()) != ["papers"]:
+        sys.exit(f"✗ 合并结果顶层键异常：{list(check.keys()) if isinstance(check, dict) else type(check)}，"
+                 f"已放弃写入（源文件未改动）")
+    if len(check["papers"]) != len(existing) + len(fresh):
+        sys.exit(f"✗ 合并后条目数 {len(check['papers'])} ≠ 原有 {len(existing)} + 新增 {len(fresh)}，"
+                 f"已放弃写入（源文件未改动）—— 多半是批文件混入了第二个 papers: 键")
+    TARGET.write_text(merged, encoding="utf-8")
+    print(f"✓ 已写入 {TARGET.relative_to(ROOT)}（{len(existing)} → {len(check['papers'])} 篇）")
     print("  接着跑：python3 scripts/build.py")
 
 

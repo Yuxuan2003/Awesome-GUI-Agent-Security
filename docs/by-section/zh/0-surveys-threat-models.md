@@ -38,6 +38,12 @@
 
 `环境: Desktop, Web` ｜ [arXiv:2507.05445](https://arxiv.org/abs/2507.05445)
 
+#### A Survey on the Safety and Security Threats of Computer-Using Agents: JARVIS or Ultron? (JARVIS or Ultron?) (2025-05)
+
+本文对计算机使用代理（CUA）的安全与安保威胁做系统化梳理 —— 这类 agent 能自主操作桌面 应用、网页与移动应用。作者围绕四个目标组织了一轮全面的文献综述：给出适合安全分析的 CUA 定义、对当前安全威胁进行分类、提出防御策略的完整分类体系、以及汇总用于评估 CUA 安全性与 性能的基准、数据集与评测指标。LLM 驱动推理本身的脆弱性，叠加多软件组件整合与多模态输入 带来的复杂度，使这一安全图景远比纯 LLM 安全研究所覆盖的范围更广。综述为研究者提供探索 未知漏洞的结构化基础，也为实践者给出设计与部署安全 CUA 的可操作建议。
+
+`环境: 跨环境` ｜ `发表: ACL 2026` ｜ [arXiv:2505.10924](https://arxiv.org/abs/2505.10924)
+
 #### Towards Trustworthy GUI Agents: A Survey (Trustworthy GUI Survey) (2025-03)
 
 把「执行落差」（execution gap）确立为可信 GUI agent 的核心障碍——即在动态、部分可观测界面下 感知、推理与交互三者之间的错配。与对话系统不同，GUI agent 执行的是提交表单、授予权限、删除 数据这类不可逆操作。综述提出与工作流对齐的分类法，把信任拆为感知信任、推理信任、交互信任 三层，梳理失败如何在动作/观察循环中传播并累积，并主张仅用任务完成率评估可信度是不充分的。

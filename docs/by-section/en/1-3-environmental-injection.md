@@ -26,11 +26,23 @@ Roots the vulnerability in the perception paradigm: mobile GUI agents see the sc
 
 `Env: Mobile` ｜ [arXiv:2605.28116](https://arxiv.org/abs/2605.28116)
 
+#### WAAA! Web Adversaries Against Agentic Browsers (WAAA) (2026-05)
+
+Prior work on agentic browser security focuses exclusively on indirect prompt injection, leaving a blind spot for traditional web attacks and web social engineering originally designed to trick humans. This paper proposes the first web-focused threat model for agentic browsers, extending the original See->Act browser agent model to account for all browser components and framing the agent as a confused deputy unable to distinguish task steps from traditional web attacks. It derives a taxonomy of 20 attacks across the web and LLM space and implements 18 of them, showing that 10 web threats reemerge — often in amplified forms — once an agent can be influenced by untrusted page content. A generalizability study over 14 of the 20 attacks shows they reproduce across four major LLM models from multiple vendors, and the authors identify five major failure modes of agentic browsers facing traditional and LLM web threats.
+
+`Env: Web` ｜ [arXiv:2605.05509](https://arxiv.org/abs/2605.05509)
+
 #### Poison Once, Exploit Forever: Environment-Injected Memory Poisoning Attacks on Web Agents (eTAMP) (2026-04)
 
 Memory makes web agents personalized yet exploitable: storing past interactions creates a persistent attack surface spanning websites and sessions. Whereas prior work assumes attackers can write to memory directly or exploit cross-user sharing, eTAMP achieves cross-session, cross-site compromise through environmental observation alone — a single contaminated observation such as viewing a manipulated product page silently poisons memory and activates during later tasks on different sites, bypassing permission-based defenses. Attack success reaches 32.5% on GPT-5-mini, 23.4% on GPT-5.2, and 19.5% on GPT-OSS-120B, and the paper further identifies Frustration Exploitation.
 
 `Env: Web` ｜ [arXiv:2604.02623](https://arxiv.org/abs/2604.02623)
+
+#### Investigating the Impact of Dark Patterns on LLM-Based Web Agents (TrickyArena) (2025-10)
+
+Dark patterns are deceptive user interface designs that manipulate users into unintended decisions; although they primarily target humans, their impact on LLM-based generalist web agents had not been studied. The paper introduces LiteAgent, a lightweight framework that prompts agents to execute tasks while capturing comprehensive logs and screen recordings, and TrickyArena, a controlled environment of e-commerce, streaming and news applications each containing realistic dark patterns that can be selectively enabled or disabled. Evaluating six popular generalist web agents across three LLMs shows that with a single dark pattern present, agents are susceptible about 41% of the time on average. Modifying dark-pattern UI attributes through visual design changes or HTML adjustments, and introducing multiple dark patterns simultaneously, both influence susceptibility. The study argues for holistic defenses spanning agent-specific protections and broader web safety measures.
+
+`Env: Web` ｜ `Venue: IEEE S&P 2026` ｜ [arXiv:2510.18113](https://arxiv.org/abs/2510.18113)
 
 #### Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments (Dynamic EIA) (2025-09)
 
@@ -50,8 +62,20 @@ Criticises prior environmental injection work for unrealistic assumptions — di
 
 `Env: Web` ｜ [arXiv:2505.21499](https://arxiv.org/abs/2505.21499)
 
+#### EVA: Evolving Semantic Adversaries for Red-Teaming GUI Agents Against Environmental Injection Attacks (EVA) (2025-05)
+
+Red-teaming GUI agents against environmental injection attacks is hindered by prohibitive computational costs and limited adaptability, and it remains unclear whether attack success is bottlenecked by visual perception or semantic understanding. Controlled experiments show that semantic deception, rather than visual appearance, is the primary determinant of attack success. EVA therefore evolves adversarial payloads exclusively within the semantic dimension, using a discovery-deployment framework that mines linguistic vulnerability patterns and distills them into generalizable rules. Across five representative victim agents, EVA achieves up to 85% attack success rate, evolving benign seeds into successful attacks within only 1.18 to 1.71 iterations. This rapid convergence reveals a dense semantic attack space in the model's latent representation and an alignment paradox: the instruction-following capability reinforced by alignment training is what renders agents inherently susceptible to authoritative, semantically deceptive environmental cues.
+
+`Env: Cross-env` ｜ [arXiv:2505.14289](https://arxiv.org/abs/2505.14289)
+
 #### EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage (EIA) (2024-09)
 
 The first study of privacy risk for generalist web agents in adversarial environments, motivated by an observation that is obvious in hindsight: everyday web tasks such as booking flights inherently involve the user's PII, so an agent that touches a compromised site leaks by construction. The paper presents a realistic website-side threat model with two adversarial targets — stealing specific PII, or the entire user request — and proposes the Environmental Injection Attack, which injects content designed to blend into the environment the agent operates in. This paper named the environmental-injection category that later work builds on.
 
 `Env: Web` ｜ [arXiv:2409.11295](https://arxiv.org/abs/2409.11295)
+
+#### Caution for the Environment: Multimodal LLM Agents are Susceptible to Environmental Distractions (2024-08)
+
+This paper investigates the faithfulness of multimodal LLM agents in GUI environments, asking whether they can be distracted by environmental context. The scenario considered is one where both the user and the agent are benign and the environment, while not malicious, contains unrelated content. A wide range of MLLMs are evaluated as GUI agents on a simulated dataset under three working patterns with different levels of perception. Results show that even the most powerful models — whether generalist agents or specialist GUI agents — are susceptible to such distractions. While prior work predominantly focuses on helpfulness, these findings first establish that agents are prone to environmental distraction. The authors further implement an adversarial environment injection and analyze approaches to improving faithfulness.
+
+`Env: Cross-env` ｜ `Venue: ACL 2025` ｜ [arXiv:2408.02544](https://arxiv.org/abs/2408.02544)
