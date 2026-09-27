@@ -128,27 +128,50 @@ def main():
     batches = [real[i:i + BATCH] for i in range(0, len(real), BATCH)]
     print(f"校验 {len(real)} 条 arXiv 记录（{len(batches)} 批 × 最多 {BATCH} 条/批）\n")
 
-    meta = {}
+    # 网络故障与数据错误必须分开处理。
+    #
+    # 背景：GitHub Actions 的出口 IP 经常被 arXiv 的 WAF 拒（HTTP 406），curl 与
+    # urllib 都拒。这时脚本原本会 raise 并让 CI 变红 —— 但红的原因是网络，不是数据，
+    # 本地同一份数据 178/178 全过。连续几次「狼来了」之后，真出数据问题时反而没人看。
+    #
+    # 现在的策略：
+    #   - 某批失败 → 记下来，继续跑其余批次，不中断
+    #   - 全部批次都失败 → 判定为 arXiv 不可达，打印说明后 **exit 0**（不误报）
+    #   - 部分成功 → 只对取到元数据的条目做校验；取不到的标为「跳过」而非「不存在」
+    meta, failed_batches = {}, 0
     for bi, grp in enumerate(batches, 1):
         print(f"  批次 {bi}/{len(batches)}（{len(grp)} 条）…", flush=True)
-        meta.update(fetch_batch([str(p["id"]) for p in grp]))
+        try:
+            meta.update(fetch_batch([str(p["id"]) for p in grp]))
+        except RuntimeError as e:
+            failed_batches += 1
+            print(f"    ⚠ 批次 {bi} 请求失败，跳过该批：{e}".replace("\n", " "),
+                  file=sys.stderr)
         if bi < len(batches):
             time.sleep(SLEEP)
 
-    # 全批次都取不到 = 请求层面出了问题，而非数据错误。宁可报错也不要指控条目不存在。
     if real and not meta:
-        sys.exit("✗ 所有批次均未返回任何条目 —— 判定为 arXiv 请求异常而非数据错误，"
-                 "请稍后重试，不要据此修改 papers.yaml")
+        print(f"\n⚠ 全部 {len(batches)} 批请求均失败，arXiv 当前不可达"
+              f"（CI 的出口 IP 常被 arXiv WAF 以 406 拒绝）。\n"
+              f"  这是网络问题，不是数据问题 —— 本次跳过校验，不作为失败处理。\n"
+              f"  请勿据此修改 papers.yaml。本地重跑可验证数据：python3 scripts/check_links.py")
+        return
 
     print()
+    skipped = 0
     for i, p in enumerate(real, 1):
         aid = str(p["id"])
         tag = p.get("abbr") or p["title"][:40]
         got = meta.get(aid)
 
         if got is None:
-            bad.append(f"[{tag}] arXiv {aid} 无法访问或不存在")
-            print(f"  {i:>3}. ✗ {tag} — 未在返回结果中")
+            if failed_batches:
+                # 有批次请求失败过，取不到多半是那一批的连带结果，不能指控条目不存在
+                skipped += 1
+                print(f"  {i:>3}. - {tag} — 所在批次请求失败，跳过")
+            else:
+                bad.append(f"[{tag}] arXiv {aid} 无法访问或不存在")
+                print(f"  {i:>3}. ✗ {tag} — 未在返回结果中")
             continue
 
         got_title, v1 = got
@@ -181,7 +204,12 @@ def main():
             print(f"  ✗ {e}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"✓ 全部通过（{len(real)} 条，0 不一致）")
+    checked = len(real) - skipped
+    if skipped:
+        print(f"✓ 已校验 {checked} 条，0 不一致；{skipped} 条因所在批次请求失败而跳过"
+              f"（网络问题，非数据问题）")
+    else:
+        print(f"✓ 全部通过（{len(real)} 条，0 不一致）")
 
 
 if __name__ == "__main__":
