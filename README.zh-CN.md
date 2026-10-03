@@ -4,7 +4,7 @@
 
 > GUI / Computer-Use / 浏览器 Agent 安全论文清单 —— 按攻防轴组织，而非按运行环境。
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.09-brightgreen) ![Papers](https://img.shields.io/badge/papers-170%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.09-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-180%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > 本页是**索引**，每篇一行；每节链接到带 2-4 句中文简介的小节页。
 
@@ -27,15 +27,15 @@
   - [1.2 视觉层攻击](#12-视觉层攻击) · 13
   - [1.3 环境注入](#13-环境注入) · 12
   - [1.4 越权与权限滥用](#14-越权与权限滥用) · 5
-  - [1.5 数据泄露与隐私](#15-数据泄露与隐私) · 6
+  - [1.5 数据泄露与隐私](#15-数据泄露与隐私) · 7
   - [1.6 后门与投毒](#16-后门与投毒) · 8
   - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 12
 - [2 防御层](#2-防御层)
   - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 15
   - [2.2 执行前风险评估](#22-执行前风险评估) · 9
-  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 15
+  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 17
   - [2.4 人在环与确认机制](#24-人在环与确认机制) · 6
-  - [2.5 事后恢复与回滚](#25-事后恢复与回滚) · 5
+  - [2.5 事后恢复与回滚](#25-事后恢复与回滚) · 6
   - [2.6 形式化保证与验证](#26-形式化保证与验证) · 8
 - [3 评测基准与数据集](#3-评测基准与数据集)
   - [3.1 综合与跨环境基准](#31-综合与跨环境基准) · 11
@@ -130,6 +130,7 @@
 
 *凭据窃取、PII 外泄、上下文完整性破坏、过度分享* · [简介 →](docs/by-section/zh/1-5-data-exfiltration-privacy.md)
 
+- **[AgentTell](https://arxiv.org/abs/2609.32915)** — Behavioural Side-Channel Leakage in Browser-Use Agents · 2026-09 · 🌐
 - **[LoginTrap](https://arxiv.org/abs/2608.04741)** — Uncovering Task-Agnostic Phishing-Style Indirect Prompt Injection Attacks against LLM-based Web Agents · 2026-08 · 🌐
 - **[Capable but Careless](https://arxiv.org/abs/2606.23189)** — Do Computer-Use Agents Follow Contextual Integrity? · 2026-06 · 🖥️
 - **[Scammer4U](https://arxiv.org/abs/2606.00497)** — "I Strongly Suspect This Website Is a Scam": Benchmarking PII Leakage and Detection without Defense in Autonomous Web Agents · 2026-05 · 🌐
@@ -209,6 +210,8 @@
 
 *信息流追踪、OS 级策略强制、沙箱* · [简介 →](docs/by-section/zh/2-3-runtime-interception-access-control.md)
 
+- **[ZoneClaw](https://arxiv.org/abs/2610.00450)** — Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents · 2026-09 · 🖥️🧩
+- **[Veer](https://arxiv.org/abs/2609.34974)** — Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces · 2026-09 · 🌐
 - **[MATE](https://arxiv.org/abs/2609.22724)** — Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning · 2026-09 · 📱
 - **[HazardAuditor](https://arxiv.org/abs/2609.15134)** — From Executable Threats to Safer Computer-Use Agents · 2026-09 · 🖥️🌐
 - **[Key-Step Supervision](https://arxiv.org/abs/2609.02057)** — Monitoring Web Agents Without Internal Signals: Observable Trajectories and Key-Step Supervision · 2026-09 · 🌐
@@ -240,6 +243,7 @@
 
 *失败归因、状态回滚、危害发生后的修复* · [简介 →](docs/by-section/zh/2-5-post-hoc-recovery-rollback.md)
 
+- **[SCOUT](https://arxiv.org/abs/2609.36201)** — Synergizing Reasoning and Tool-Use for Computer-Use Safety · 2026-09 · 🖥️🧩
 - **[Verified Repair](https://arxiv.org/abs/2608.24913)** — From Blind Edits to Verified Repair: Building Trustworthy User-Side LLM Agents for Web Accessibility · 2026-07 · 🌐
 - **[CUADebug](https://arxiv.org/abs/2608.02643)** — Diagnosing and Repairing Computer-Use Agent Failures · 2026-07 · 🖥️
 - **[Agent Fingerprinting](https://arxiv.org/abs/2606.20910)** — Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents · 2026-06 · 🌐

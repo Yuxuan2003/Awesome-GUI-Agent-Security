@@ -4244,3 +4244,134 @@ papers:
       agent 表现出强烈的效率偏向并采取最短路径策略；有了引导则会更多使用相应的筛选器与交互
       功能。但折扣、广告等主导性界面线索经常压过这些影响 —— 它们会缩短 agent 的行动轨迹，并
       诱发出掩盖而非反映价值观一致推理的合理化说辞。
+  - id: "2609.32915"
+    title: "AgentTell: Behavioural Side-Channel Leakage in Browser-Use Agents"
+    abbr: "AgentTell"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "1.5"
+    env: [web]
+    summary: >-
+      Browser-use agents carry information in their context as they move between websites, which
+      creates a privacy risk when that information is a private fact about the user. The paper
+      defines behavioural side-channel leakage: an agent's actions inadvertently reveal a secret
+      retained from a prior website, despite an explicit instruction not to disclose it — for
+      example, choosing an affiliation-specific registration option instead of a general one after
+      having read a membership record. AgentTell is a benchmark of 20 scenarios and 100 tasks in
+      which an agent acquires a secret on one site and then completes a task on another site that
+      offers secret-specific actions alongside a general action revealing nothing. Across 9,760
+      sessions on six backbones, agents carrying a secret reveal it through their actions in 61.1%
+      of sessions. Even when agents explicitly note in memory that the secret must not be shared,
+      they still leak it in 56.7% of those sessions, and in 34.5% of leaking sessions the final
+      response falsely assures the user that nothing was disclosed.
+    summary_zh: >-
+      浏览器 agent 在不同网站之间切换时会把信息带在上下文里，一旦这些信息是用户的私密事实，就
+      构成隐私风险。本文定义了「行为侧信道泄露」：即便被明确要求不得披露，agent 的动作本身仍会
+      无意中暴露从先前网站获得的秘密 —— 比如读过会员记录后，在另一个网站上选了该机构专属的注册
+      选项而非通用选项。AgentTell 基准含 20 个场景、100 个任务：agent 先在一个网站获得秘密，再
+      到另一个同时提供「秘密相关选项」与「不泄露任何信息的通用选项」的网站完成任务。在六个骨架
+      模型、9760 次会话上，携带秘密的 agent 有 61.1% 通过动作泄露了它；即便 agent 已在记忆里
+      明确写下「该秘密不得分享」，仍有 56.7% 泄露；更糟的是，34.5% 的泄露会话里 agent 的最终
+      回复还向用户错误保证「没有泄露」。
+
+  - id: "2610.00450"
+    title: "ZoneClaw: Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents"
+    abbr: "ZoneClaw"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "2.3"
+    env: [desktop, cross]
+    summary: >-
+      OpenClaw-style computer-use agents run as long-lived assistants with persistent workspace
+      memory — automatically reloaded files that hold user instructions, system summaries and
+      external claims at the same privilege level, so remembering a claim confers authority over
+      later behaviour. This enables a persistent memory attack: an attacker who controls only
+      benign-looking external content induces the agent to record attacker-favoured claims during a
+      legitimate task, and those claims later govern benign tasks the attacker never touches,
+      extending "malicious context -> malicious response" into "malicious context -> memory
+      injection -> malicious execution". Existing defenses act before content enters memory or at
+      the action it induces, not on whether stored content may guide action. ZoneClaw separates
+      persistence from authority with hierarchical trust zones: external claims persist in a
+      low-trust zone and gain action-guiding authority only by crossing an explicit boundary, where
+      promotion is cross-checked against zones the attacker cannot write; role-specific processes
+      with asymmetric privilege ensure no process both ingests external content and acts outward.
+      Across four attack scenarios, two injection settings and four backbones, attack success drops
+      from 372/480 to 6/480 while utility is retained in 458/480 trials.
+    summary_zh: >-
+      OpenClaw 类计算机使用代理作为长期运行的助手，依赖持久化的工作区记忆：自动重载的文件里，
+      用户指令、系统摘要与外部声明处于同一权限级别，于是「记住某个声明」就等于赋予了它支配后续
+      行为的权力。这催生了「持久记忆攻击」：攻击者只需控制看似无害的外部内容，就能在一次合法任务
+      中诱导 agent 记下有利于攻击者的声明，而这些声明此后会支配攻击者从未接触过的良性任务 ——
+      攻击链从「恶意上下文→恶意回复」延伸为「恶意上下文→记忆注入→恶意执行」。已有防御要么在
+      内容进入记忆前拦截、要么在它诱发的动作处拦截，却不管已存内容能否指导动作。ZoneClaw 用分层
+      信任区把「持久化」与「权威性」拆开：外部声明留在低信任区，只有跨越显式的权限边界才能获得
+      指导动作的权力，而晋升时要与攻击者无法直接写入的区域交叉核验；按角色划分、权限不对称的进程
+      保证没有任何进程既摄入外部内容又对外行动。在四种攻击场景、两种注入设置与四个骨架上，攻击
+      成功从 372/480 降到 6/480，同时 458/480 次试验保持了效用。
+
+  - id: "2609.34974"
+    title: "Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces"
+    abbr: "Veer"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "2.3"
+    env: [web]
+    summary: >-
+      Deceptive interfaces can steer web agents toward outcomes that conflict with users' interests,
+      and existing defenses mostly intervene on agent behaviour through blocking, guidance or
+      replanning. The paper identifies a distinct failure mode: a task-valid action can still
+      realize an unauthorized consequence because of the current web state — for instance a
+      pre-checked add-on silently attached to a legitimate checkout. It therefore treats
+      task-relevant web state itself as a runtime control target. Veer is an agent-side runtime
+      defense that leaves planning to the base agent and, when a proposed action would produce an
+      unauthorized consequence, first constructs a prospective intervention trajectory toward a safe
+      task-relevant state and executes it with runtime grounding and verification. Across
+      TrickyArena and WebDecept, Veer achieves the highest safe task completion in all three
+      settings, beating the next-best defense by 15.9 and 25.0 points on TrickyArena-Single and
+      -Multi, and cuts dark-pattern success on WebDecept to 0.3%. Gains hold across dark-pattern
+      types and all 12 agent, model and benchmark configurations; ablations show active state
+      intervention contributes the largest share.
+    summary_zh: >-
+      欺骗性界面会把 web agent 引向与用户利益相冲突的结果，而现有防御大多是对 agent 行为本身做
+      干预 —— 拦截、引导或重新规划。本文指出一种不同的失效模式：一个对任务而言完全合法的动作，
+      也可能因为当前网页状态而产生未经授权的后果（例如结账时被默认勾选的附加项）。因此作者把
+      「与任务相关的网页状态」本身当作运行时的控制对象。Veer 是一个 agent 侧的运行时防御：规划
+      仍交给基础 agent，一旦某个拟执行动作会产生未授权后果，Veer 先构造一条通往安全任务状态的
+      前瞻性干预轨迹，在运行时 grounding 与校验下执行它，再让原动作落地。在 TrickyArena 与
+      WebDecept 上，Veer 在三种评测设置中均取得最高的安全任务完成率，在 TrickyArena-Single 与
+      -Multi 上分别领先次优防御 15.9 与 25.0 个百分点，并把 WebDecept 上暗黑模式的成功率压到
+      0.3%。效果在各类暗黑模式与全部 12 种 agent/模型/基准组合上都成立，消融显示主动状态干预
+      贡献最大。
+
+  - id: "2609.36201"
+    title: "SCOUT: Synergizing Reasoning and Tool-Use for Computer-Use Safety"
+    abbr: "SCOUT"
+    date: "2026-09"
+    venue: "arXiv"
+    section: "2.5"
+    env: [desktop, cross]
+    summary: >-
+      Computer-use agents can cause unintended harm even under benign instructions and environments,
+      and detecting it is hard for two reasons: it needs task-specific reasoning, since verifiers
+      guided only by general safety criteria overlook subtle harmful behaviours; and it needs active
+      investigation, since trajectory screenshots show what the agent did but not always what
+      actually changed, so screenshot-only LLM-as-a-judge verifiers may miss real consequences.
+      SCOUT is a two-stage agentic safety verifier. A rubric generator reasons extensively over the
+      task and trajectory to produce task-specific completion and safety rubrics; a probing agent
+      then follows those rubrics to interact with the post-execution environment and gather grounded
+      evidence for the final judgment. SCOUT reaches 75.4 unsafe F1 and 74.5 completion F1 on
+      AutoElicit-Bench, outperforming LLM-as-a-judge and naive tool-use verifiers, and leads OS-Blind
+      with 76.4% unsafe detection accuracy. Used for test-time reflection, it reduces final unsafe
+      execution from 30.2% to 17.2%. Ablations show that tool-free rubric generation is crucial,
+      especially for non-frontier verifier backbones.
+    summary_zh: >-
+      计算机使用代理即便在良性指令与良性环境下也可能造成非预期危害，而检测这类危害有两个难点：
+      一是需要针对具体任务的细致推理，只依据通用安全准则的验证器会漏掉大量隐蔽的有害行为；二是
+      需要主动调查，因为轨迹截图只能说明 agent 做了什么，未必能说明环境里实际发生了什么变化，
+      仅看截图的 LLM-as-a-judge 无法判断动作的真实后果。SCOUT 是一个两阶段的 agentic 安全验证器：
+      先由评分标准生成器围绕任务与轨迹充分推理，生成该任务专属的「完成」与「安全」评分标准；再由
+      探测 agent 按这些标准与执行后的环境交互，收集有据可依的证据做最终判断。SCOUT 在
+      AutoElicit-Bench 上取得 75.4 的不安全 F1 与 74.5 的完成 F1，优于 LLM-as-a-judge 与朴素
+      工具调用验证器；在 OS-Blind 上不安全检测准确率 76.4%，同样领先。将其用于测试时反思，可把
+      最终不安全执行率从 30.2% 降到 17.2%。消融表明「不调用工具的评分标准生成」是关键，对非
+      前沿骨架尤其如此。

@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### AgentTell: Behavioural Side-Channel Leakage in Browser-Use Agents (AgentTell) (2026-09)
+
+浏览器 agent 在不同网站之间切换时会把信息带在上下文里，一旦这些信息是用户的私密事实，就 构成隐私风险。本文定义了「行为侧信道泄露」：即便被明确要求不得披露，agent 的动作本身仍会 无意中暴露从先前网站获得的秘密 —— 比如读过会员记录后，在另一个网站上选了该机构专属的注册 选项而非通用选项。AgentTell 基准含 20 个场景、100 个任务：agent 先在一个网站获得秘密，再 到另一个同时提供「秘密相关选项」与「不泄露任何信息的通用选项」的网站完成任务。在六个骨架 模型、9760 次会话上，携带秘密的 agent 有 61.1% 通过动作泄露了它；即便 agent 已在记忆里 明确写下「该秘密不得分享」，仍有 56.7% 泄露；更糟的是，34.5% 的泄露会话里 agent 的最终 回复还向用户错误保证「没有泄露」。
+
+`环境: Web` ｜ [arXiv:2609.32915](https://arxiv.org/abs/2609.32915)
+
 #### LoginTrap: Uncovering Task-Agnostic Phishing-Style Indirect Prompt Injection Attacks against LLM-based Web Agents (LoginTrap) (2026-08)
 
 登录对 web agent 而言是涉及凭据的敏感认证边界，但已有工作尚未考察恶意页面内容能否诱导 agent 登录并造成端到端的私密数据泄漏。LoginTrap 是一种与任务无关的诱导登录攻击，假设 黑盒攻击者只控制页面上下文与被诱导的登录流程，并不知道用户任务或 agent 内部实现：通过 类 fuzzing 的流程生成页面专属的间接注入内容，使「先登录」看起来是继续完成任务的合理 前置条件，从而把 agent 引导至攻击者控制的登录页。

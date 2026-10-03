@@ -4,6 +4,18 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces (Veer) (2026-09)
+
+欺骗性界面会把 web agent 引向与用户利益相冲突的结果，而现有防御大多是对 agent 行为本身做 干预 —— 拦截、引导或重新规划。本文指出一种不同的失效模式：一个对任务而言完全合法的动作， 也可能因为当前网页状态而产生未经授权的后果（例如结账时被默认勾选的附加项）。因此作者把 「与任务相关的网页状态」本身当作运行时的控制对象。Veer 是一个 agent 侧的运行时防御：规划 仍交给基础 agent，一旦某个拟执行动作会产生未授权后果，Veer 先构造一条通往安全任务状态的 前瞻性干预轨迹，在运行时 grounding 与校验下执行它，再让原动作落地。在 TrickyArena 与 WebDecept 上，Veer 在三种评测设置中均取得最高的安全任务完成率，在 TrickyArena-Single 与 -Multi 上分别领先次优防御 15.9 与 25.0 个百分点，并把 WebDecept 上暗黑模式的成功率压到 0.3%。效果在各类暗黑模式与全部 12 种 agent/模型/基准组合上都成立，消融显示主动状态干预 贡献最大。
+
+`环境: Web` ｜ [arXiv:2609.34974](https://arxiv.org/abs/2609.34974)
+
+#### AgentTell: Behavioural Side-Channel Leakage in Browser-Use Agents (AgentTell) (2026-09)
+
+浏览器 agent 在不同网站之间切换时会把信息带在上下文里，一旦这些信息是用户的私密事实，就 构成隐私风险。本文定义了「行为侧信道泄露」：即便被明确要求不得披露，agent 的动作本身仍会 无意中暴露从先前网站获得的秘密 —— 比如读过会员记录后，在另一个网站上选了该机构专属的注册 选项而非通用选项。AgentTell 基准含 20 个场景、100 个任务：agent 先在一个网站获得秘密，再 到另一个同时提供「秘密相关选项」与「不泄露任何信息的通用选项」的网站完成任务。在六个骨架 模型、9760 次会话上，携带秘密的 agent 有 61.1% 通过动作泄露了它；即便 agent 已在记忆里 明确写下「该秘密不得分享」，仍有 56.7% 泄露；更糟的是，34.5% 的泄露会话里 agent 的最终 回复还向用户错误保证「没有泄露」。
+
+`环境: Web` ｜ [arXiv:2609.32915](https://arxiv.org/abs/2609.32915)
+
 #### CAVEAT: Towards Robust Computer-Use Agents in Incentive-Misaligned Environments (CAVEAT) (2026-09)
 
 当 agent 所处的环境自身与用户利益不一致时会发生什么？在在线市场里，平台可能偏好某些 商品，从而把 agent 带离用户的目标。本文提出 CAVEAT：覆盖九个市场环境的受控基准，并给出 八类常见「引导机制」的分类。在五个模型族上，agent 在对照条件下有 78.6% 买到用户最优商品， 而开启引导机制后只剩 17.3%。更大的模型与更多推理能提升稳健性，但失效仍大量存在。轨迹分析 与定向消融定位出引导进入决策的三个位置：扭曲用户的优先级、过早收窄所考虑的候选集、以及在 决策相关证据尚未澄清时就提交。据此构建的 CAVEAT-Harness 直接针对这三种失效模式，把用户 最优购买率提升 55.0%，定向后训练还能进一步提升较小的开源模型。

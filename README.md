@@ -4,7 +4,7 @@
 
 > A curated list of papers on GUI / Computer-Use / Browser Agent security — organized by attack surface and defense layer, not by runtime environment.
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.09-brightgreen) ![Papers](https://img.shields.io/badge/papers-170%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.09-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-180%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > This page is the **index** — one line per paper. Each section links to a page with a 3–5 sentence summary per paper.
 
@@ -27,15 +27,15 @@
   - [1.2 Visual-Layer Attacks](#12-visual-layer-attacks) · 13
   - [1.3 Environmental Injection](#13-environmental-injection) · 12
   - [1.4 Privilege Escalation & Permission Abuse](#14-privilege-escalation-permission-abuse) · 5
-  - [1.5 Data Exfiltration & Privacy](#15-data-exfiltration-privacy) · 6
+  - [1.5 Data Exfiltration & Privacy](#15-data-exfiltration-privacy) · 7
   - [1.6 Backdoors & Poisoning](#16-backdoors-poisoning) · 8
   - [1.7 Unintended Harm from Benign Instructions](#17-unintended-harm-from-benign-instructions) · 12
 - [2 Defense Layers](#2-defense-layers)
   - [2.1 Input Filtering & Sanitization](#21-input-filtering-sanitization) · 15
   - [2.2 Pre-execution Risk Assessment](#22-pre-execution-risk-assessment) · 9
-  - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 15
+  - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 17
   - [2.4 Human-in-the-Loop & Confirmation](#24-human-in-the-loop-confirmation) · 6
-  - [2.5 Post-hoc Recovery & Rollback](#25-post-hoc-recovery-rollback) · 5
+  - [2.5 Post-hoc Recovery & Rollback](#25-post-hoc-recovery-rollback) · 6
   - [2.6 Formal Guarantees & Verification](#26-formal-guarantees-verification) · 8
 - [3 Benchmarks & Datasets](#3-benchmarks-datasets)
   - [3.1 Comprehensive & Cross-environment](#31-comprehensive-cross-environment) · 11
@@ -130,6 +130,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Credential theft, PII leakage, contextual-integrity violations, oversharing* · [Summaries →](docs/by-section/en/1-5-data-exfiltration-privacy.md)
 
+- **[AgentTell](https://arxiv.org/abs/2609.32915)** — Behavioural Side-Channel Leakage in Browser-Use Agents · 2026-09 · 🌐
 - **[LoginTrap](https://arxiv.org/abs/2608.04741)** — Uncovering Task-Agnostic Phishing-Style Indirect Prompt Injection Attacks against LLM-based Web Agents · 2026-08 · 🌐
 - **[Capable but Careless](https://arxiv.org/abs/2606.23189)** — Do Computer-Use Agents Follow Contextual Integrity? · 2026-06 · 🖥️
 - **[Scammer4U](https://arxiv.org/abs/2606.00497)** — "I Strongly Suspect This Website Is a Scam": Benchmarking PII Leakage and Detection without Defense in Autonomous Web Agents · 2026-05 · 🌐
@@ -209,6 +210,8 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Information-flow tracking, OS-level policy enforcement, sandboxing* · [Summaries →](docs/by-section/en/2-3-runtime-interception-access-control.md)
 
+- **[ZoneClaw](https://arxiv.org/abs/2610.00450)** — Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents · 2026-09 · 🖥️🧩
+- **[Veer](https://arxiv.org/abs/2609.34974)** — Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces · 2026-09 · 🌐
 - **[MATE](https://arxiv.org/abs/2609.22724)** — Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning · 2026-09 · 📱
 - **[HazardAuditor](https://arxiv.org/abs/2609.15134)** — From Executable Threats to Safer Computer-Use Agents · 2026-09 · 🖥️🌐
 - **[Key-Step Supervision](https://arxiv.org/abs/2609.02057)** — Monitoring Web Agents Without Internal Signals: Observable Trajectories and Key-Step Supervision · 2026-09 · 🌐
@@ -240,6 +243,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Failure attribution, state rollback, repair after harm has occurred* · [Summaries →](docs/by-section/en/2-5-post-hoc-recovery-rollback.md)
 
+- **[SCOUT](https://arxiv.org/abs/2609.36201)** — Synergizing Reasoning and Tool-Use for Computer-Use Safety · 2026-09 · 🖥️🧩
 - **[Verified Repair](https://arxiv.org/abs/2608.24913)** — From Blind Edits to Verified Repair: Building Trustworthy User-Side LLM Agents for Web Accessibility · 2026-07 · 🌐
 - **[CUADebug](https://arxiv.org/abs/2608.02643)** — Diagnosing and Repairing Computer-Use Agent Failures · 2026-07 · 🖥️
 - **[Agent Fingerprinting](https://arxiv.org/abs/2606.20910)** — Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents · 2026-06 · 🌐
