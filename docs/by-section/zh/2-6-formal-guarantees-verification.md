@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### Secure-CUA: Controlling Untrusted Influence in Computer-Use Agents (Secure-CUA) (2026-10)
+
+GUI 界面里，可信的控件与内容和完成合法任务所必需的不可信内容混在一起；控制了后者的攻击者， 可以嵌入指令或误导性的视觉线索，改变 agent 想要执行的动作，或把它的命令导向错误的界面目标。 本文同时为 agent 的「决策」与通过 GUI 命令的「执行」形式化了安全要求，并证明在理想执行模型 下，每一步同时满足两者即可保护整条执行轨迹。Secure-CUA 是这一模型的实现：在接触不可信内容 之前，agent 先承诺一个显式的单步程序 —— 称为「动作事务」—— 事先固定它会向不可信内容问哪些 问题、以及答案允许被如何使用。不可信区域被遮蔽，问题交给隔离的查询模型回答，目标元素在遮蔽 后的界面上定位。在模型假设下系统「按设计即安全」，而每步重新生成事务又能适应界面变化、保住 任务效用。在 WebArena 400 个任务、三个前沿模型、5 个种子共 6000 条良性轨迹上，Secure-CUA 任务成功率 53.55%，无防御 agent 为 55.12%，而 CaMeL-CUA 只有 13.17%。
+
+`环境: 跨环境` ｜ [arXiv:2610.09469](https://arxiv.org/abs/2610.09469)
+
 #### AOHP: An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction (AOHP) (2026-06)
 
 面向终端用户的操作系统是为「以应用为中心」的工作流设计的，对 AI agent 几乎没有原生支持； 因此在传统系统上跑 agent 会带来执行开销与安全风险。agent 原生操作系统的概念正在出现， 但社区缺少一个开放测试平台，来探索 agent 中介的交互究竟需要哪些架构原语。AOHP （Android Open Harness Project）是基于 AOSP 构建的 OS 级 agent harness，核心设计原则是 把 agent 当作一等的 OS 参与者，从而支持自适应用户界面与 agent 友好的运行时环境。收录 于此是因为它把安全问题从行为层面推到了结构层面：它提供了一个基底，可以在其上原型化并 对比面向 GUI agent 的 OS 级隔离与权限原语，而不是给「屏幕抓取」范式事后加装护栏。

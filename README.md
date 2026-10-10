@@ -24,7 +24,7 @@
 - [0 Surveys & Threat Models](#0-surveys-threat-models) · 8
 - [1 Attack Surfaces](#1-attack-surfaces)
   - [1.1 Indirect Prompt Injection](#11-indirect-prompt-injection) · 11
-  - [1.2 Visual-Layer Attacks](#12-visual-layer-attacks) · 13
+  - [1.2 Visual-Layer Attacks](#12-visual-layer-attacks) · 14
   - [1.3 Environmental Injection](#13-environmental-injection) · 12
   - [1.4 Privilege Escalation & Permission Abuse](#14-privilege-escalation-permission-abuse) · 5
   - [1.5 Data Exfiltration & Privacy](#15-data-exfiltration-privacy) · 7
@@ -32,11 +32,11 @@
   - [1.7 Unintended Harm from Benign Instructions](#17-unintended-harm-from-benign-instructions) · 12
 - [2 Defense Layers](#2-defense-layers)
   - [2.1 Input Filtering & Sanitization](#21-input-filtering-sanitization) · 15
-  - [2.2 Pre-execution Risk Assessment](#22-pre-execution-risk-assessment) · 9
-  - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 17
+  - [2.2 Pre-execution Risk Assessment](#22-pre-execution-risk-assessment) · 10
+  - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 18
   - [2.4 Human-in-the-Loop & Confirmation](#24-human-in-the-loop-confirmation) · 6
   - [2.5 Post-hoc Recovery & Rollback](#25-post-hoc-recovery-rollback) · 6
-  - [2.6 Formal Guarantees & Verification](#26-formal-guarantees-verification) · 8
+  - [2.6 Formal Guarantees & Verification](#26-formal-guarantees-verification) · 9
 - [3 Benchmarks & Datasets](#3-benchmarks-datasets)
   - [3.1 Comprehensive & Cross-environment](#31-comprehensive-cross-environment) · 11
   - [3.2 Web Environment](#32-web-environment) · 20
@@ -85,6 +85,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Adversarial patches, pop-up lures, typographic attacks, screenshot poisoning* · [Summaries →](docs/by-section/en/1-2-visual-layer-attacks.md)
 
+- **[WebMirage](https://arxiv.org/abs/2610.09240)** — Adversarial Images Hijack Web Agents from Visual Grounding to Browser Execution · 2026-10 · 🌐
 - **[UI Desynchronization](https://arxiv.org/abs/2609.16732)** — When Agents See Differently: Exposing UI Desynchronization Threats in Mobile Agents · 2026-09 · 📱
 - **[AgentHijack](https://arxiv.org/abs/2609.09212)** — Visual Patch Attacks on Multimodal Computer-Use Agents · 2026-09 · 🖥️🌐
 - **[Perception-Fusion Gap](https://arxiv.org/abs/2607.04334)** — Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure · 2026-07 · 🌐📱🖥️
@@ -196,6 +197,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *World-model prediction, action risk scoring* · [Summaries →](docs/by-section/en/2-2-pre-execution-risk-assessment.md)
 
+- **[AdvSim2Real](https://arxiv.org/abs/2610.08773)** — Training Web Agents Against Adaptive Prompt Injection in a Web World Model · 2026-10 · 🌐
 - **[SCOPE](https://arxiv.org/abs/2609.22178)** — Beyond Task Completion: Training Capable and Safe Computer-Use Agents · 2026-08 · 🧩
 - **[SeerGuard](https://arxiv.org/abs/2607.15550)** — A Safety Framework for Mobile GUI Agents via World Model Prediction · 2026-07 · 📱
 - **[Argus](https://arxiv.org/abs/2606.25760)** — Uncertainty Quantification for Computer-Use Agents: A Benchmark across Vision-Language Models and GUI Grounding Datasets · 2026-06 · 🧩
@@ -210,6 +212,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Information-flow tracking, OS-level policy enforcement, sandboxing* · [Summaries →](docs/by-section/en/2-3-runtime-interception-access-control.md)
 
+- **[LGWM](https://arxiv.org/abs/2610.11942)** — Right Screen, Wrong Transition: World Models as Verifiers for GUI Agents · 2026-10 · 📱🧩
 - **[ZoneClaw](https://arxiv.org/abs/2610.00450)** — Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents · 2026-09 · 🖥️🧩
 - **[Veer](https://arxiv.org/abs/2609.34974)** — Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces · 2026-09 · 🌐
 - **[MATE](https://arxiv.org/abs/2609.22724)** — Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning · 2026-09 · 📱
@@ -254,6 +257,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Defenses with provable guarantees: formal verification, control-flow integrity, conformal risk control* · [Summaries →](docs/by-section/en/2-6-formal-guarantees-verification.md)
 
+- **[Secure-CUA](https://arxiv.org/abs/2610.09469)** — Controlling Untrusted Influence in Computer-Use Agents · 2026-10 · 🧩
 - **[AOHP](https://arxiv.org/abs/2606.23449)** — An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction · 2026-06 · 📱
 - **[SkillHarness](https://arxiv.org/abs/2606.20636)** — Harnessing Safe Skills for Computer-Use Agents · 2026-06 · 🖥️
 - **[CORA](https://arxiv.org/abs/2604.09155)** — Conformal Risk-Controlled Agents for Safeguarded Mobile GUI Automation · 2026-04 · 📱

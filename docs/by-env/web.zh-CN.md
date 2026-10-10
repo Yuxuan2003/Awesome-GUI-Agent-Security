@@ -4,6 +4,18 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### Adversarial Images Hijack Web Agents from Visual Grounding to Browser Execution (WebMirage) (2026-10)
+
+现有针对 web agent 的视觉红队测试主要攻击模型推理这一环，没有考虑结构化的输入处理与动作 后处理，因此「模型层面攻击成功」并不等于真正控制了浏览器执行，也无法可靠刻画端到端的鲁棒性。 本文把视觉 grounding 型 web agent 的红队测试重新表述为一个从 grounding 到执行的端到端问题。 WebMirage 生成局部视觉扰动，使 agent 在不同页面渲染下都选中攻击者控制的内容并执行相应的 浏览器动作；它用「角色—槽位」抽象与网页重组来刻画页面元素之间的竞争，并用数据流分析让优化 目标与动作后处理对齐。在四种 agent 配置、六个 VLM 骨架、覆盖 13 个公开网站与一个沙箱基准的 2250 个任务上，WebMirage 的平均攻击成功率为 91.9%，最强基线仅 17.4%，并且在三种 agent 级防御下依然有效。
+
+`环境: Web` ｜ [arXiv:2610.09240](https://arxiv.org/abs/2610.09240)
+
+#### AdvSim2Real : Training Web Agents Against Adaptive Prompt Injection in a Web World Model (AdvSim2Real) (2026-10)
+
+web agent 无法简单地无视第三方网页，因为完成任务所需的数值和控件就在这些页面上 —— 而页面里 埋的一条指令就能把 agent 带离用户目标。现有防御在训练前固定好的注入样本上微调，自适应攻击者 很容易绕过；对抗训练让攻击者能自适应，却固定了任务集，agent 一旦学会某个任务，这个任务就 不再有训练价值。AdvSim2Real 在一个冻结的 web 世界模型里让三者协同演化：任务课程、注入对手与 agent。课程只在 agent 约一半时间能完成的任务上获得奖励；对手只在「翻转成功」时获得奖励 —— 即一条注入让原本判定成功的执行变为失败。在模拟器里训练后，一个 4B 的 agent 同时变得更强也 更稳：有无攻击时的完成率都上升，面对训练中从未见过的前沿模型对手依然稳得住，能力提升也能 迁移到真实浏览器。在 150 个 web 任务上，面对这个未见过的对手，完成率比基础 agent 相对提升 33.6%。
+
+`环境: Web` ｜ [arXiv:2610.08773](https://arxiv.org/abs/2610.08773)
+
 #### Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces (Veer) (2026-09)
 
 欺骗性界面会把 web agent 引向与用户利益相冲突的结果，而现有防御大多是对 agent 行为本身做 干预 —— 拦截、引导或重新规划。本文指出一种不同的失效模式：一个对任务而言完全合法的动作， 也可能因为当前网页状态而产生未经授权的后果（例如结账时被默认勾选的附加项）。因此作者把 「与任务相关的网页状态」本身当作运行时的控制对象。Veer 是一个 agent 侧的运行时防御：规划 仍交给基础 agent，一旦某个拟执行动作会产生未授权后果，Veer 先构造一条通往安全任务状态的 前瞻性干预轨迹，在运行时 grounding 与校验下执行它，再让原动作落地。在 TrickyArena 与 WebDecept 上，Veer 在三种评测设置中均取得最高的安全任务完成率，在 TrickyArena-Single 与 -Multi 上分别领先次优防御 15.9 与 25.0 个百分点，并把 WebDecept 上暗黑模式的成功率压到 0.3%。效果在各类暗黑模式与全部 12 种 agent/模型/基准组合上都成立，消融显示主动状态干预 贡献最大。
