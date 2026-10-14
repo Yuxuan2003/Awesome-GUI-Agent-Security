@@ -24,7 +24,7 @@
 - [0 综述与威胁模型](#0-综述与威胁模型) · 8
 - [1 攻击面](#1-攻击面)
   - [1.1 间接提示注入](#11-间接提示注入) · 11
-  - [1.2 视觉层攻击](#12-视觉层攻击) · 13
+  - [1.2 视觉层攻击](#12-视觉层攻击) · 14
   - [1.3 环境注入](#13-环境注入) · 12
   - [1.4 越权与权限滥用](#14-越权与权限滥用) · 5
   - [1.5 数据泄露与隐私](#15-数据泄露与隐私) · 7
@@ -32,11 +32,11 @@
   - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 12
 - [2 防御层](#2-防御层)
   - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 15
-  - [2.2 执行前风险评估](#22-执行前风险评估) · 9
-  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 17
+  - [2.2 执行前风险评估](#22-执行前风险评估) · 10
+  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 18
   - [2.4 人在环与确认机制](#24-人在环与确认机制) · 6
   - [2.5 事后恢复与回滚](#25-事后恢复与回滚) · 6
-  - [2.6 形式化保证与验证](#26-形式化保证与验证) · 8
+  - [2.6 形式化保证与验证](#26-形式化保证与验证) · 9
 - [3 评测基准与数据集](#3-评测基准与数据集)
   - [3.1 综合与跨环境基准](#31-综合与跨环境基准) · 11
   - [3.2 Web 环境基准](#32-web-环境基准) · 20
@@ -85,6 +85,7 @@
 
 *对抗补丁、弹窗诱导、排版攻击、截图污染* · [简介 →](docs/by-section/zh/1-2-visual-layer-attacks.md)
 
+- **[WebMirage](https://arxiv.org/abs/2610.09240)** — Adversarial Images Hijack Web Agents from Visual Grounding to Browser Execution · 2026-10 · 🌐
 - **[UI Desynchronization](https://arxiv.org/abs/2609.16732)** — When Agents See Differently: Exposing UI Desynchronization Threats in Mobile Agents · 2026-09 · 📱
 - **[AgentHijack](https://arxiv.org/abs/2609.09212)** — Visual Patch Attacks on Multimodal Computer-Use Agents · 2026-09 · 🖥️🌐
 - **[Perception-Fusion Gap](https://arxiv.org/abs/2607.04334)** — Do GUI Agents Believe Their Eyes? Diagnosing State-Belief Reliance on Pixels versus Structure · 2026-07 · 🌐📱🖥️
@@ -196,6 +197,7 @@
 
 *世界模型预测、动作风险打分* · [简介 →](docs/by-section/zh/2-2-pre-execution-risk-assessment.md)
 
+- **[AdvSim2Real](https://arxiv.org/abs/2610.08773)** — Training Web Agents Against Adaptive Prompt Injection in a Web World Model · 2026-10 · 🌐
 - **[SCOPE](https://arxiv.org/abs/2609.22178)** — Beyond Task Completion: Training Capable and Safe Computer-Use Agents · 2026-08 · 🧩
 - **[SeerGuard](https://arxiv.org/abs/2607.15550)** — A Safety Framework for Mobile GUI Agents via World Model Prediction · 2026-07 · 📱
 - **[Argus](https://arxiv.org/abs/2606.25760)** — Uncertainty Quantification for Computer-Use Agents: A Benchmark across Vision-Language Models and GUI Grounding Datasets · 2026-06 · 🧩
@@ -210,6 +212,7 @@
 
 *信息流追踪、OS 级策略强制、沙箱* · [简介 →](docs/by-section/zh/2-3-runtime-interception-access-control.md)
 
+- **[LGWM](https://arxiv.org/abs/2610.11942)** — Right Screen, Wrong Transition: World Models as Verifiers for GUI Agents · 2026-10 · 📱🧩
 - **[ZoneClaw](https://arxiv.org/abs/2610.00450)** — Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents · 2026-09 · 🖥️🧩
 - **[Veer](https://arxiv.org/abs/2609.34974)** — Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces · 2026-09 · 🌐
 - **[MATE](https://arxiv.org/abs/2609.22724)** — Policy-Aware Security Auditing for Mobile Agents via Synthesis-Driven Trajectory Learning · 2026-09 · 📱
@@ -254,6 +257,7 @@
 
 *带可证明保证的防御：形式化验证、控制流完整性、共形风险控制* · [简介 →](docs/by-section/zh/2-6-formal-guarantees-verification.md)
 
+- **[Secure-CUA](https://arxiv.org/abs/2610.09469)** — Controlling Untrusted Influence in Computer-Use Agents · 2026-10 · 🧩
 - **[AOHP](https://arxiv.org/abs/2606.23449)** — An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction · 2026-06 · 📱
 - **[SkillHarness](https://arxiv.org/abs/2606.20636)** — Harnessing Safe Skills for Computer-Use Agents · 2026-06 · 🖥️
 - **[CORA](https://arxiv.org/abs/2604.09155)** — Conformal Risk-Controlled Agents for Safeguarded Mobile GUI Automation · 2026-04 · 📱

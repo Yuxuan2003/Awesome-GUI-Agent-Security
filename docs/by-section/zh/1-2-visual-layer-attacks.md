@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### Adversarial Images Hijack Web Agents from Visual Grounding to Browser Execution (WebMirage) (2026-10)
+
+现有针对 web agent 的视觉红队测试主要攻击模型推理这一环，没有考虑结构化的输入处理与动作 后处理，因此「模型层面攻击成功」并不等于真正控制了浏览器执行，也无法可靠刻画端到端的鲁棒性。 本文把视觉 grounding 型 web agent 的红队测试重新表述为一个从 grounding 到执行的端到端问题。 WebMirage 生成局部视觉扰动，使 agent 在不同页面渲染下都选中攻击者控制的内容并执行相应的 浏览器动作；它用「角色—槽位」抽象与网页重组来刻画页面元素之间的竞争，并用数据流分析让优化 目标与动作后处理对齐。在四种 agent 配置、六个 VLM 骨架、覆盖 13 个公开网站与一个沙箱基准的 2250 个任务上，WebMirage 的平均攻击成功率为 91.9%，最强基线仅 17.4%，并且在三种 agent 级防御下依然有效。
+
+`环境: Web` ｜ [arXiv:2610.09240](https://arxiv.org/abs/2610.09240)
+
 #### When Agents See Differently: Exposing UI Desynchronization Threats in Mobile Agents (UI Desynchronization) (2026-09)
 
 人类监督 mobile agent 依赖一个未被言明的前提：用户与 agent 从同一界面看到一致的信息。 本文证明这个前提可被系统性打破。用户经由物理屏幕与人类视觉系统感知界面，受遮挡与亮度 对比度限制；而 agent 消费的是数字截图，还额外拿到暴露非视觉控件元数据的无障碍表示。 同一个 UI 状态因此向双方呈现实质不同的信息，作者称之为「人机 UI 失同步」。实验表明， 重打包的合法 APK 克隆可以利用这一失同步把 agent 引向攻击者指定的动作，同时对人类用户 保持功能与行为完全一致；扰动在部署前嵌入，无需获取运行时指令、无需检测 agent、无需在线 适配。在五个 mobile agent 框架、三个主干模型、546 个任务上，静态与动态误导率分别为 77.9% 与 66.9%。186 人的问卷研究进一步确认这些视觉扰动人眼难以察觉。
