@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### The Agent Clicks Approve: Injected Page Text Makes Browser Agents Authorize Access the Task Never Named (Authority Envelope) (2026-10)
+
+在用户已登录会话里工作的浏览器 agent，只要读到页面上一段两句话的提示，就可能替用户批准第三方 访问其账户。agent 在这里是一个「混淆代理人」：权限来自会话，要批准哪个访问请求、要注册哪个 webhook 地址则由页面指定，而在动作发生的那一刻没有任何环节把两者对照检查 —— 于是 agent 替 账户持有人点下了授权页本该只留给本人的那次「同意」。作者在两种授权场景（OAuth 式访问授权与 webhook 注册）上用开源浏览器框架和两家厂商的模型做测量：无防御时 73 次攻击全部完成了未授权 动作；即便提示模型「只有用户的任务才能授权」，10 次同意攻击仍有 7 次得手。因此作者把检查挪 到动作真正完成的地方：「权限封套」闸门要求服务端只接受与用户任务事先指定的客户端、账户或 webhook 地址相匹配的请求，该封套在 agent 启动前即固定。启用闸门后，70 次攻击中 agent 依然 每次都发出了请求，但服务端全部拒绝，而所有合法的对照任务都正常完成。
+
+`环境: Web` ｜ [arXiv:2610.15138](https://arxiv.org/abs/2610.15138)
+
 #### "Allow" to Achieve, Over-Privileged Inadvertently: The Unintended Cost of Task-Completion-Driven Pop-up Decisions in Mobile GUI Agents (Allow to Achieve) (2026-08)
 
 发现移动 GUI agent 在遇到权限弹窗时存在系统性的过度授权倾向，识别出两种偏差：App-Trust Bias（对已安装应用默认信任而一律点允许）与 Task-Prior Override（为达成任务目标而牺牲 权限最小化）。结果是 agent 在用户不知情的情况下累积远超任务所需的权限，把权限弹窗这一 最后防线变成了形式。

@@ -4496,3 +4496,254 @@ papers:
       即一条注入让原本判定成功的执行变为失败。在模拟器里训练后，一个 4B 的 agent 同时变得更强也
       更稳：有无攻击时的完成率都上升，面对训练中从未见过的前沿模型对手依然稳得住，能力提升也能
       迁移到真实浏览器。在 150 个 web 任务上，面对这个未见过的对手，完成率比基础 agent 相对提升 33.6%。
+  - id: "2610.15138"
+    title: "The Agent Clicks Approve: Injected Page Text Makes Browser Agents Authorize Access the Task Never Named"
+    abbr: "Authority Envelope"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "1.4"
+    env: [web]
+    summary: >-
+      A browser agent working in its user's signed-in session can be steered by a two-sentence note
+      on a page into approving a third party's access to the user's account. The agent is a confused
+      deputy: the session supplies the authority, the page designates which access request to approve
+      or which webhook URL to register, and nothing at the point of action checks one against the
+      other — so the agent supplies the approval click a consent screen reserves for the account
+      holder. Measured on two authorization surfaces (an OAuth-style access grant and a webhook
+      registration) with agents on an open-source browser framework and models from two providers,
+      the unauthorized action completed in all 73 undefended attack runs; an instruction stating that
+      only the user's task authorizes a grant still let 7 of 10 consent attacks complete. The authors
+      therefore move the check to where the action completes: an authority envelope gate makes the
+      service accept a request only when it matches the client, account or webhook URL that the
+      user's task named, fixed before the agent starts. With the gate the agent still sent the
+      request in all 70 attack runs, but the service rejected each, while every legitimate control
+      run completed.
+    summary_zh: >-
+      在用户已登录会话里工作的浏览器 agent，只要读到页面上一段两句话的提示，就可能替用户批准第三方
+      访问其账户。agent 在这里是一个「混淆代理人」：权限来自会话，要批准哪个访问请求、要注册哪个
+      webhook 地址则由页面指定，而在动作发生的那一刻没有任何环节把两者对照检查 —— 于是 agent 替
+      账户持有人点下了授权页本该只留给本人的那次「同意」。作者在两种授权场景（OAuth 式访问授权与
+      webhook 注册）上用开源浏览器框架和两家厂商的模型做测量：无防御时 73 次攻击全部完成了未授权
+      动作；即便提示模型「只有用户的任务才能授权」，10 次同意攻击仍有 7 次得手。因此作者把检查挪
+      到动作真正完成的地方：「权限封套」闸门要求服务端只接受与用户任务事先指定的客户端、账户或
+      webhook 地址相匹配的请求，该封套在 agent 启动前即固定。启用闸门后，70 次攻击中 agent 依然
+      每次都发出了请求，但服务端全部拒绝，而所有合法的对照任务都正常完成。
+
+  - id: "2610.15502"
+    title: "From Observations to Authorized Actions: Measuring Source Information in Android Agents"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "2.3"
+    env: [mobile]
+    summary: >-
+      Android agents read content from apps and web pages and act on it with the user's authority,
+      yet cannot reliably tell where that content came from. The WebView accessibility fields the
+      authors inspected expose the host application but omit the document origins available inside
+      the browser, so an agent reading through this interface cannot check which document supplied
+      an object; a limited reproduction on an unmodified WebView yields the same finding. Two
+      prototypes probe how source information supports authorization. An application-source monitor
+      withholds side-effecting calls whose signed source record contains an untrusted app: using the
+      OS accessibility log it blocked every selected attack write, but also withheld benign sends
+      after reading untrusted content, flagged benign tasks using external content, and carried
+      source records into later clean tasks. A WebView source-reference gate uses records from a
+      modified browser to check object origins and reference lifetime; in a separate 24-trial
+      evaluation the live agent selected no disallowed object. The prototypes are explicitly not an
+      integrated defense, but they show which source information authorization policies need and why
+      it must stay linked to the object used in execution.
+    summary_zh: >-
+      Android agent 读取应用与网页里的内容并以用户的权限据此行动，但它无法可靠地判断这些内容来自
+      哪里。作者检查发现，WebView 的无障碍字段只暴露宿主应用，却遗漏了浏览器内部本可获得的文档
+      来源，因此通过这一接口读取内容的 agent 无从核对某个对象究竟由哪个文档提供；在未改动的 WebView
+      上做的有限复现得出同样结论。作者构建并分别评估了两个原型，考察来源信息如何支撑授权。一是
+      「应用来源监控器」：若带签名的来源记录中含不可信应用，就扣住有副作用的调用。基于系统无障碍
+      日志，它拦下了所有选定的攻击写入，但也误扣了读过不可信内容之后的正常发送、误报了使用外部内容的
+      良性任务，并把来源记录带进了后续的干净任务。二是「WebView 来源引用闸门」：借助修改过的浏览器
+      记录核验对象来源与引用生命周期，在单独的 24 次试验中实时 agent 没有选中任何被禁止的对象。作者
+      明确说这两个原型还不是完整防御，但它们说明了授权策略需要哪些来源信息，以及为什么这些信息必须
+      与执行时实际使用的对象保持绑定。
+
+  - id: "2610.16778"
+    title: "PrivacyGuard: Source-Linked Sanitization and Locally Resolvable PII References for Cloud GUI Agents"
+    abbr: "PrivacyGuard"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "2.1"
+    env: [mobile]
+    summary: >-
+      Cloud GUI agents send instructions and screenshots to remote planners, exposing personally
+      identifiable information. Existing placeholder defenses mask detected spans and reuse exact
+      strings, so fragmented or changed forms can still expose PII or break entity continuity across
+      turns. PrivacyGuard addresses this private-reference problem with source-linked sanitization
+      (SAN), which reconstructs fragmented or overlapping evidence and rewrites the complete source
+      extent, and a structured reference lifecycle (REF), which links changed appearances to session
+      entities and supports locally resolvable references without returning raw values to the upload
+      path. In five-turn sessions, it reduces audited source-value leakage by 33.55%-82.60% relative
+      to the closest prior full-pipeline system across all four reader-language combinations, and REF
+      raises strict cross-form continuity from 0.04 under exact-value reuse to 0.81. On
+      reference-required Android tasks, verified completion rises from 8/30 and 7/30 to 17/30 and
+      20/30; on AndroidLab it achieves the highest or tied-highest task success among protection
+      pipelines for all four planners, and on PrivScreen it cuts fixed-reader field exposure by about
+      63%.
+    summary_zh: >-
+      云端 GUI agent 会把指令和截图发给远程规划器，从而暴露个人身份信息（PII）。现有的占位符防御
+      只遮蔽检测到的片段、并复用完全相同的字符串，一旦 PII 以碎片化或变形的形式出现，仍可能泄露，
+      或者在多轮之间断开实体的连续性。PrivacyGuard 用两部分解决这个「私密引用」问题：一是与来源
+      绑定的净化（SAN），重建碎片化或重叠的证据并改写完整的来源范围；二是结构化的引用生命周期
+      （REF），把变形后的出现关联到会话实体，支持在本地解析引用，原始值不会回到上传路径。在五轮会话
+      中，相比最接近的已有全流程系统，它在全部四种读取器—语言组合下把可审计的来源值泄露降低
+      33.55%–82.60%；REF 把严格跨形式连续性从「精确值复用」下的 0.04 提升到 0.81。在需要引用的
+      Android 任务上，验证完成数从 8/30、7/30 提升到 17/30、20/30；在 AndroidLab 上，四个规划器
+      下它的任务成功率在各防护方案中均为最高或并列最高；在 PrivScreen 上，固定读取器的字段暴露降低
+      约 63%。
+
+  - id: "2610.17457"
+    title: "BrowseSafe++: Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views"
+    abbr: "BrowseSafe++"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      BrowseSafe++ extends BrowseSafe from 14,719 pages to 38,675 page pairs, most of whose prompt
+      injections were observed in the wild on production websites. Each injection is kept unchanged
+      while the sensitive parts of the surrounding page are rewritten for privacy, and every attacked
+      page is paired with a clean control copy. Both are provided as HTML, Markdown, an accessibility
+      tree and a screenshot, together with a user task and its expected answer. The benchmark covers
+      twelve website types — from news articles to shared documents and forums — with 24 attack types
+      in 18 page locations. The paired pages train BrowseSafe-Guard, two 0.8B-parameter detectors for
+      text and screenshots that achieve higher F1 than a frontier-model detector while keeping
+      false-positive rates and inference cost low. BrowseSafe-Adapt revises benchmark injections using
+      browser-agent feedback: attacks that succeed on only a few percent of tasks when replayed
+      directly reach up to 95.41% success once adapted.
+    summary_zh: >-
+      BrowseSafe++ 把 BrowseSafe 从 14719 个页面扩展到 38675 对页面，其中大多数提示注入是在线上
+      生产网站中实际观察到的。每条注入保持原样，只改写其周边页面的敏感部分以保护隐私；每个被攻击
+      页面都配有同一页面的干净副本作为对照。两者都以 HTML、Markdown、无障碍树和截图四种形式提供，
+      并附有用户任务及其预期答案。基准覆盖新闻、共享文档、论坛等十二类网站，含 24 种攻击类型、
+      分布在页面的 18 个位置。利用这些成对页面训练出的 BrowseSafe-Guard 是两个 0.8B 参数的检测器
+      （分别处理文本与截图），F1 高于基于前沿模型的检测器，同时保持良性页面上的低误报率与低推理
+      成本。BrowseSafe-Adapt 则根据浏览器 agent 的反馈改写基准中的注入：直接重放时只能在百分之几的
+      任务上得手的攻击，经自适应改写后成功率最高可达 95.41%。
+
+  - id: "2610.18508"
+    title: "Towards Safe Autonomy for Computer Use"
+    abbr: "SA-CUA"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "2.6"
+    env: [desktop, cross]
+    summary: >-
+      Alignment training and safety classifiers cannot rule out that a sophisticated indirect prompt
+      injection gets through, so recent work builds agents with information-flow guarantees — but
+      those rely on structured tool interfaces. Computer-use agents act visually on the screen, which
+      offers no boundary between trusted first-party interfaces and untrusted, possibly
+      attacker-authored content, and actions are equally ambiguous: a click may land on an app toolbar
+      or an attacker-controlled button. Treating the user as the source of trust and confirming every
+      sensitive decision causes confirmation fatigue. SA-CUA is a dual-LLM framework that builds a
+      reliable trust boundary by deriving conservative deterministic rules from the accessibility tree
+      to unmask only trusted regions of the privileged LLM's screenshot, keeping trusted and untrusted
+      content separated. Human input is needed only to specify the task at the start; during
+      execution a robust endorsement channel lets values move from the untrusted to the trusted domain
+      after verification through trusted channels, so the agent can autonomously handle tasks
+      involving untrusted information. SA-CUA keeps attack success at zero while maintaining much
+      higher utility than CaMeL-CUA.
+    summary_zh: >-
+      对齐训练和安全分类器都无法排除精心构造的间接提示注入最终得手，因此近期工作转向构建带信息流
+      保证的 agent —— 但这类方案依赖结构化的工具接口。计算机使用代理是在屏幕上以视觉方式行动的，
+      屏幕上可信的第一方界面与不可信、可能由攻击者编写的内容之间没有天然边界；动作同样有歧义，一次
+      点击可能落在应用工具栏上，也可能落在攻击者控制的按钮上。若把用户当作信任来源、对每个敏感决策
+      都要求确认，又会造成确认疲劳。SA-CUA 是一个双 LLM 框架：它从无障碍树推导出保守的确定性规则，
+      只把截图中可信的区域呈现给特权 LLM，从而建立可靠的信任边界，让可信与不可信内容保持隔离。人只
+      需要在开始时给出任务规范；执行过程中，一条稳健的「背书通道」在通过可信渠道核实信息后，允许
+      数值从不可信域进入可信域，使 agent 能够自主处理涉及不可信信息的任务。SA-CUA 在把攻击成功率
+      保持为零的同时，效用远高于 CaMeL-CUA。
+
+  - id: "2610.24277"
+    title: "SPIDES: Information-Flow Control for Browser Agents"
+    abbr: "SPIDES"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "2.3"
+    env: [web]
+    summary: >-
+      LLM-driven browser agents act across origins with the user's authority and no built-in
+      isolation, and recent work argues they erode boundaries such as the Same-Origin Policy. The
+      authors argue that restoring SOP is neither sufficient — a same-origin public sink can leak
+      private data — nor necessary, since legitimate tasks require authorized cross-origin flows.
+      SPIDES instead enforces information-flow control: primitive browser actions such as typing,
+      clicking and navigating are gated on labels propagated from element-level HTML confidentiality
+      and integrity annotations. Untrusted and confidential content is masked from the agent's
+      context, and policies block unauthorized flows, giving guarantees against both prompt injection
+      and data exfiltration that hold independently of the model driving the agent. To compare
+      defenses under a common threat model, the authors build MicroNet, a closed ecosystem of 28
+      interlinked websites with element-level ground-truth labels and paired benign/adversarial tasks.
+      SPIDES achieves 0% attack success by design while retaining high task completion and autonomy,
+      improving on state-of-the-art baselines in both.
+    summary_zh: >-
+      LLM 驱动的浏览器 agent 带着用户的权限跨源行动，且没有内建隔离，近期工作认为它们正在侵蚀同源
+      策略（SOP）等传统 web 安全边界。本文认为恢复 SOP 既不充分（同源的公开出口也能泄露私有数据），
+      也不必要（合法任务本来就需要经授权的跨源数据流）。SPIDES 改为实施信息流控制：打字、点击、
+      跳转等基础浏览器动作，要依据从元素级 HTML 机密性与完整性标注传播而来的标签来放行。不可信内容
+      与机密内容在 agent 的上下文里被遮蔽，策略阻断未授权的数据流，从而对提示注入与数据外泄同时给出
+      安全保证，且这一保证不依赖驱动 agent 的模型。为了在统一威胁模型下比较各种防御，作者构建了
+      MicroNet：由 28 个互相链接的网站组成的封闭生态，带元素级真值标签以及成对的良性/对抗任务。
+      SPIDES 按设计实现 0% 攻击成功率，同时保持较高的任务完成率与自主性，在这两方面都优于现有最佳
+      基线。
+
+  - id: "2610.23307"
+    title: "MobileInject: Evaluating Reasoning-to-Action Security of MLLM-Based Mobile Agents under Cross-Modal Consistency Injection"
+    abbr: "MobileInject"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Adversaries can embed malicious objectives in cross-application mobile content and steer MLLM
+      mobile agents through indirect multimodal injection, yet the cross-modal properties of prompt
+      injection in mobile ecosystems remain poorly understood. MobileInject is the first benchmark for
+      evaluating mobile agents against multimodal injection and reasoning-to-action security risks: a
+      high-fidelity interactive mobile evaluation framework covering 11 scenarios, 9 security-risk
+      categories and 108 executable risk instances. It introduces Cross-Modal Consistency Injection,
+      which exploits corroboration across modalities, plus two enhanced attacks — Multi-Role
+      Collaborative Deception and Reasoning-Camouflage Injection — that intensify trust manipulation
+      and reasoning hijacking, and a Reasoning Security Diagnosis Framework for fine-grained failure
+      analysis. Systematic experiments show mobile agents are broadly vulnerable to multimodal
+      injection, with many failures stemming from reasoning hijacking at early stages.
+    summary_zh: >-
+      攻击者可以把恶意目标嵌入跨应用的移动端内容中，通过间接多模态注入操纵基于多模态大模型的移动
+      agent；然而提示注入在移动生态中的跨模态特性，此前一直缺乏深入理解。MobileInject 是首个评估
+      移动 agent 抵御多模态注入与「推理到动作」安全风险的基准：一个高保真的交互式移动端评测框架，
+      覆盖 11 个场景、9 类安全风险与 108 个可执行风险实例。它提出「跨模态一致性注入」，利用多个模态
+      之间相互印证来增强可信度；另有两种强化攻击 —— 多角色协同欺骗与推理伪装注入 —— 分别加剧信任
+      操纵与推理劫持；还配有一个推理安全诊断框架用于细粒度失效分析。系统实验表明，移动 agent 普遍
+      容易受到多模态注入影响，且许多失败源于推理早期就已被劫持。
+
+  - id: "2610.23303"
+    title: "MobileJailBench: Red Queen Jailbreak Benchmarking for Mobile Agents"
+    abbr: "MobileJailBench"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "3.3"
+    env: [mobile]
+    summary: >-
+      Growing autonomy in MLLM mobile agents broadens the attack surface and amplifies misuse risks
+      such as privacy leakage, device compromise and large-scale phishing. Existing jailbreak
+      evaluations focus on conversational attacks rather than mobile workflows, use static task sets
+      of fixed difficulty, and rely narrowly on attack success rate. MobileJailBench is the first
+      evolving jailbreak benchmark for mobile agents: 520 tasks spanning three jailbreak paradigms and
+      14 risk categories, built on a high-fidelity mobile sandbox supporting realistic workflows across
+      over 20 widely used apps; Dual-Dynamic Evolution, combining Failure-Distilled Jailbreak
+      Evolution with Weakness-Driven Benchmark Expansion; and a Stratified Adjudication Framework
+      assessing security awareness, execution behaviour and risk consequences. Current mobile agents
+      prove particularly vulnerable to implicit jailbreaks — their safety alignment is largely
+      superficial and fails to generalize from conversational refusal to dynamic mobile interaction —
+      and the evolution mechanism reaches 100% attack success on Qwen3.5-122B.
+    summary_zh: >-
+      多模态大模型移动 agent 的自主性不断增强，也扩大了攻击面，放大了隐私泄露、设备被控、大规模钓鱼
+      等滥用风险。现有越狱评测存在三处空白：只看对话式攻击而非移动端工作流、任务集静态且难度固定、
+      只用攻击成功率这一单一指标。MobileJailBench 是首个面向移动 agent 的「可演化」越狱基准，由三
+      部分组成：基于自建高保真移动沙箱的 520 个任务，覆盖三种越狱范式与 14 类风险、支持在 20 多个
+      常用应用中执行真实工作流；「双动态演化」机制，结合失败蒸馏的越狱演化与弱点驱动的基准扩展；以及
+      分层裁决框架，从安全意识、执行行为与风险后果三个层面做评估。实验显示当前移动 agent 对隐式越狱
+      尤其脆弱 —— 它们的安全对齐大多停留在表层，无法从对话中的拒绝泛化到动态的移动端交互；演化机制
+      在 Qwen3.5-122B 上达到 100% 攻击成功率。

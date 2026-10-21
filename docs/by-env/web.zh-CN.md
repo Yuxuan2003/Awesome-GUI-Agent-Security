@@ -4,6 +4,24 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### SPIDES: Information-Flow Control for Browser Agents (SPIDES) (2026-10)
+
+LLM 驱动的浏览器 agent 带着用户的权限跨源行动，且没有内建隔离，近期工作认为它们正在侵蚀同源 策略（SOP）等传统 web 安全边界。本文认为恢复 SOP 既不充分（同源的公开出口也能泄露私有数据）， 也不必要（合法任务本来就需要经授权的跨源数据流）。SPIDES 改为实施信息流控制：打字、点击、 跳转等基础浏览器动作，要依据从元素级 HTML 机密性与完整性标注传播而来的标签来放行。不可信内容 与机密内容在 agent 的上下文里被遮蔽，策略阻断未授权的数据流，从而对提示注入与数据外泄同时给出 安全保证，且这一保证不依赖驱动 agent 的模型。为了在统一威胁模型下比较各种防御，作者构建了 MicroNet：由 28 个互相链接的网站组成的封闭生态，带元素级真值标签以及成对的良性/对抗任务。 SPIDES 按设计实现 0% 攻击成功率，同时保持较高的任务完成率与自主性，在这两方面都优于现有最佳 基线。
+
+`环境: Web` ｜ [arXiv:2610.24277](https://arxiv.org/abs/2610.24277)
+
+#### BrowseSafe++: Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views (BrowseSafe++) (2026-10)
+
+BrowseSafe++ 把 BrowseSafe 从 14719 个页面扩展到 38675 对页面，其中大多数提示注入是在线上 生产网站中实际观察到的。每条注入保持原样，只改写其周边页面的敏感部分以保护隐私；每个被攻击 页面都配有同一页面的干净副本作为对照。两者都以 HTML、Markdown、无障碍树和截图四种形式提供， 并附有用户任务及其预期答案。基准覆盖新闻、共享文档、论坛等十二类网站，含 24 种攻击类型、 分布在页面的 18 个位置。利用这些成对页面训练出的 BrowseSafe-Guard 是两个 0.8B 参数的检测器 （分别处理文本与截图），F1 高于基于前沿模型的检测器，同时保持良性页面上的低误报率与低推理 成本。BrowseSafe-Adapt 则根据浏览器 agent 的反馈改写基准中的注入：直接重放时只能在百分之几的 任务上得手的攻击，经自适应改写后成功率最高可达 95.41%。
+
+`环境: Web` ｜ [arXiv:2610.17457](https://arxiv.org/abs/2610.17457)
+
+#### The Agent Clicks Approve: Injected Page Text Makes Browser Agents Authorize Access the Task Never Named (Authority Envelope) (2026-10)
+
+在用户已登录会话里工作的浏览器 agent，只要读到页面上一段两句话的提示，就可能替用户批准第三方 访问其账户。agent 在这里是一个「混淆代理人」：权限来自会话，要批准哪个访问请求、要注册哪个 webhook 地址则由页面指定，而在动作发生的那一刻没有任何环节把两者对照检查 —— 于是 agent 替 账户持有人点下了授权页本该只留给本人的那次「同意」。作者在两种授权场景（OAuth 式访问授权与 webhook 注册）上用开源浏览器框架和两家厂商的模型做测量：无防御时 73 次攻击全部完成了未授权 动作；即便提示模型「只有用户的任务才能授权」，10 次同意攻击仍有 7 次得手。因此作者把检查挪 到动作真正完成的地方：「权限封套」闸门要求服务端只接受与用户任务事先指定的客户端、账户或 webhook 地址相匹配的请求，该封套在 agent 启动前即固定。启用闸门后，70 次攻击中 agent 依然 每次都发出了请求，但服务端全部拒绝，而所有合法的对照任务都正常完成。
+
+`环境: Web` ｜ [arXiv:2610.15138](https://arxiv.org/abs/2610.15138)
+
 #### Adversarial Images Hijack Web Agents from Visual Grounding to Browser Execution (WebMirage) (2026-10)
 
 现有针对 web agent 的视觉红队测试主要攻击模型推理这一环，没有考虑结构化的输入处理与动作 后处理，因此「模型层面攻击成功」并不等于真正控制了浏览器执行，也无法可靠刻画端到端的鲁棒性。 本文把视觉 grounding 型 web agent 的红队测试重新表述为一个从 grounding 到执行的端到端问题。 WebMirage 生成局部视觉扰动，使 agent 在不同页面渲染下都选中攻击者控制的内容并执行相应的 浏览器动作；它用「角色—槽位」抽象与网页重组来刻画页面元素之间的竞争，并用数据流分析让优化 目标与动作后处理对齐。在四种 agent 配置、六个 VLM 骨架、覆盖 13 个公开网站与一个沙箱基准的 2250 个任务上，WebMirage 的平均攻击成功率为 91.9%，最强基线仅 17.4%，并且在三种 agent 级防御下依然有效。
