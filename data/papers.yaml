@@ -3430,7 +3430,7 @@ papers:
       上达到约 85% 成功率（此前浏览器 agent 约 50%，人类基线 95.7%）。
 
   - id: "2605.05509"
-    title: "WAAA! Web Adversaries Against Agentic Browsers"
+    title: "WAAA! Web Adversaries Against Web Agents"
     abbr: "WAAA"
     date: "2026-05"
     venue: "arXiv"
@@ -4747,3 +4747,69 @@ papers:
       分层裁决框架，从安全意识、执行行为与风险后果三个层面做评估。实验显示当前移动 agent 对隐式越狱
       尤其脆弱 —— 它们的安全对齐大多停留在表层，无法从对话中的拒绝泛化到动态的移动端交互；演化机制
       在 Qwen3.5-122B 上达到 100% 攻击成功率。
+  - id: "2610.39282"
+    title: "What Does \"Now\" Mean to Your Computer-Use Agent? Stale Screenshots, Page Loads, and Which Check to Run Before a Click"
+    abbr: "Preflight"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "1.7"
+    env: [web]
+    summary: >-
+      Computer-use agents plan on a screenshot for several seconds and then click a screen position;
+      if the page changed in the meantime, the click lands on an unintended element. Prior work blames
+      the planning interval, but measuring planned clicks on 31 public pages shows the risk lies in page
+      loading: 0.4% of clicks planned on fully loaded pages became stale within 30 seconds, versus 17%
+      of clicks planned in the first second after a page opened. Waiting about one second for network
+      activity to stop removes most of this risk, yet the wait rules of eight of ten widely used
+      open-source agents leave more than 1% of clicks stale. Commercial pages keep loading longer: in
+      the HTTP Archive crawl, only 15% of 65 desktop booking and shopping home pages reached 500 ms of
+      network idle within 3 seconds, versus 63% of 3,028 .gov pages, and 52% shifted layout after a
+      capped network-idle wait, versus 8%. Where a pre-click check is needed — before irreversible
+      actions and on still-loading pages — a pixel comparison verifies target position as accurately as
+      a frontier VLM at one eighth of the latency, and a 4B model matches the frontier model in
+      verifying whether the previous action succeeded. The authors release a benchmark generator, a
+      break-even formula for when a check pays off, and three rules for agent developers.
+    summary_zh: >-
+      计算机使用代理要对着一张截图规划好几秒才去点击某个屏幕坐标；如果这期间页面变了，点击就会落在
+      非预期的元素上。以往工作把风险归因于规划耗时，但作者在 31 个公开网页上实测规划好的点击后发现，
+      风险其实来自页面加载：在完全加载的页面上规划的点击，30 秒内失效的只有 0.4%；而在页面打开后
+      第一秒内规划的点击，失效率高达 17%。等待约一秒、直到网络活动停止，就能消除大部分风险，但十个
+      常用开源 agent 中有八个的等待规则仍会让超过 1% 的点击失效。商业页面加载得更久：在 HTTP Archive
+      的公开抓取中，65 个桌面端预订与购物首页只有 15% 能在 3 秒内达到 500 毫秒网络空闲（3028 个 .gov
+      页面为 63%），52% 在封顶的网络空闲等待之后仍发生布局偏移（.gov 为 8%）。在确实需要点击前检查的
+      场合 —— 不可逆动作之前、以及仍在加载的页面上 —— 像素比对验证目标位置的准确度与前沿 VLM 相当，
+      延迟只有八分之一；一个 4B 模型在判断上一步动作是否成功上也能追平前沿模型。作者发布了基准生成器、
+      判断「何时值得检查」的盈亏平衡公式，以及给 agent 开发者的三条规则。（收录说明：本文偏可靠性
+      视角，但其核心关切是「点错元素」与不可逆动作前的校验，服务于阻止非预期后果，故归入 §1.7。）
+  - id: "2610.30202"
+    title: "MPIDetector: Detecting Multi-modal Prompt Injection via LLM-based Reasoning"
+    abbr: "MPIDetector"
+    date: "2026-10"
+    venue: "arXiv"
+    section: "2.1"
+    env: [cross]
+    summary: >-
+      Attackers can conceal malicious instructions inside textual narratives or visual inputs to
+      bypass safety alignment, and signature- or perplexity-based detectors rely on pattern matching
+      that fails on sophisticated cross-modal prompt injection payloads. MPIDetector instead uses an
+      LLM's intrinsic reasoning via few-shot in-context learning: rather than fine-tuning, it supplies
+      prompt templates and representative attack examples so the model scrutinizes the semantic
+      intent of inputs across modalities. The evaluation benchmark covers eight textual and seven
+      visual malicious categories plus benign datasets for false-positive testing. Across
+      Gemini-2.0-Flash, Qwen3-VL-32B-Instruct and Doubao-seed-1.6-flash, it reaches up to 90.91%
+      accuracy with 100% recall on textual tasks and up to 99.28% accuracy with 100% precision across
+      all models on visual tasks. Crucially, against 500 highly obfuscated environmental web-agent
+      injections from WebInject, detection reaches 99.80%, outperforming two textual and two visual
+      baselines. (Boundary entry: the detector is not specific to GUI agents, but its threat model
+      includes environmental injections into web agents, and §2.1 already covers comparable
+      injection-detection evaluation work.)
+    summary_zh: >-
+      攻击者可以把恶意指令藏在文本叙述或视觉输入里绕过安全对齐，而基于签名或困惑度的检测方法依赖
+      模式匹配，难以识别复杂的跨模态提示注入载荷。MPIDetector 改用 LLM 自身的推理能力：不微调，
+      只通过少样本上下文学习提供提示模板与代表性攻击样例，让模型跨模态审视输入的语义意图。评测基准
+      含 8 类文本恶意类别、7 类视觉恶意类别，并配良性数据集检验误报。在 Gemini-2.0-Flash、
+      Qwen3-VL-32B-Instruct 与 Doubao-seed-1.6-flash 上，文本任务最高 90.91% 准确率、100% 召回，
+      视觉任务最高 99.28% 准确率且所有模型均保持 100% 精确率。关键在于，面对 WebInject 中 500 条
+      高度混淆的环境 web-agent 注入，检出率最高达 99.80%，优于两个文本基线与两个视觉基线。
+      （边界条目：该检测器并非专为 GUI agent 设计，但其威胁模型包含针对 web agent 的环境注入，
+      且 §2.1 已收录同类的注入检测评估工作，故收录并在 PR 中列明理由。）

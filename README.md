@@ -4,7 +4,7 @@
 
 > A curated list of papers on GUI / Computer-Use / Browser Agent security — organized by attack surface and defense layer, not by runtime environment.
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-190%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.11-brightgreen) ![Papers](https://img.shields.io/badge/papers-190%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.11-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > This page is the **index** — one line per paper. Each section links to a page with a 3–5 sentence summary per paper.
 
@@ -29,9 +29,9 @@
   - [1.4 Privilege Escalation & Permission Abuse](#14-privilege-escalation-permission-abuse) · 6
   - [1.5 Data Exfiltration & Privacy](#15-data-exfiltration-privacy) · 7
   - [1.6 Backdoors & Poisoning](#16-backdoors-poisoning) · 8
-  - [1.7 Unintended Harm from Benign Instructions](#17-unintended-harm-from-benign-instructions) · 12
+  - [1.7 Unintended Harm from Benign Instructions](#17-unintended-harm-from-benign-instructions) · 13
 - [2 Defense Layers](#2-defense-layers)
-  - [2.1 Input Filtering & Sanitization](#21-input-filtering-sanitization) · 16
+  - [2.1 Input Filtering & Sanitization](#21-input-filtering-sanitization) · 17
   - [2.2 Pre-execution Risk Assessment](#22-pre-execution-risk-assessment) · 10
   - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 20
   - [2.4 Human-in-the-Loop & Confirmation](#24-human-in-the-loop-confirmation) · 6
@@ -107,7 +107,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 - **[AnTrap](https://arxiv.org/abs/2608.24099)** — Are Android GUI Agents Robust Against Runtime Anomalies? AnTrap: Evaluating Agents in Dynamic Adversarial Environments · 2026-08 · 📱
 - **[Not an A11y](https://arxiv.org/abs/2608.08939)** — How Android Accessibility Exposes Mobile AI Agents to Indirect Prompt Injection · 2026-08 · 📱
 - **[MIRAGE (Mobile)](https://arxiv.org/abs/2605.28116)** — MIRAGE: Context-Aware Prompt Injection against Mobile GUI Agents via User-Generated Content · 2026-05 · 📱
-- **[WAAA](https://arxiv.org/abs/2605.05509)** — WAAA! Web Adversaries Against Agentic Browsers · 2026-05 · 🌐
+- **[WAAA](https://arxiv.org/abs/2605.05509)** — WAAA! Web Adversaries Against Web Agents · 2026-05 · 🌐
 - **[eTAMP](https://arxiv.org/abs/2604.02623)** — Poison Once, Exploit Forever: Environment-Injected Memory Poisoning Attacks on Web Agents · 2026-04 · 🌐
 - **[TrickyArena](https://arxiv.org/abs/2510.18113)** — Investigating the Impact of Dark Patterns on LLM-Based Web Agents · 2025-10 · 🌐
 - **[Dynamic EIA](https://arxiv.org/abs/2509.11250)** — Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments · 2025-09 · 🌐
@@ -157,6 +157,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *No adversary involved — harm arising from the agent's own behavior on normal tasks* · [Summaries →](docs/by-section/en/1-7-unintended-harm-from-benign-instructions.md)
 
+- **[Preflight](https://arxiv.org/abs/2610.39282)** — What Does "Now" Mean to Your Computer-Use Agent? Stale Screenshots, Page Loads, and Which Check to Run Before a Click · 2026-10 · 🌐
 - **[CAVEAT](https://arxiv.org/abs/2609.27273)** — Towards Robust Computer-Use Agents in Incentive-Misaligned Environments · 2026-09 · 🌐
 - **[Nudge Susceptibility](https://arxiv.org/abs/2609.19843)** — A Dual-Process Perspective on Nudge Susceptibility in LLM-Based GUI Agents · 2026-09 · 🌐
 - **[Alignment Is Local](https://arxiv.org/abs/2607.29199)** — A Paired Diagnostic for GUI Agents under User Persuasion · 2026-07 · 📱🧩
@@ -178,6 +179,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Filtering or masking untrusted content before it enters the model context* · [Summaries →](docs/by-section/en/2-1-input-filtering-sanitization.md)
 
+- **[MPIDetector](https://arxiv.org/abs/2610.30202)** — Detecting Multi-modal Prompt Injection via LLM-based Reasoning · 2026-10 · 🧩
 - **[PrivacyGuard](https://arxiv.org/abs/2610.16778)** — Source-Linked Sanitization and Locally Resolvable PII References for Cloud GUI Agents · 2026-10 · 📱
 - **[FocusMem](https://arxiv.org/abs/2608.04530)** — Factorizing Content, Readout, and Trust in Latent GUI Memory · 2026-08 · 📱🖥️🌐
 - **[UCM](https://arxiv.org/abs/2607.05277)** — Untrusted Content Masking for Web Agents with Security Guarantees · 2026-07 · 🌐
