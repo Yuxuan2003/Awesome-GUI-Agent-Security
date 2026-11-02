@@ -4,7 +4,7 @@
 
 > A curated list of papers on GUI / Computer-Use / Browser Agent security — organized by attack surface and defense layer, not by runtime environment.
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-190%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.11-brightgreen) ![Papers](https://img.shields.io/badge/papers-190%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.11-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > This page is the **index** — one line per paper. Each section links to a page with a 3–5 sentence summary per paper.
 
