@@ -4,7 +4,7 @@
 
 > GUI / Computer-Use / 浏览器 Agent 安全论文清单 —— 按攻防轴组织，而非按运行环境。
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-180%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-190%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > 本页是**索引**，每篇一行；每节链接到带 2-4 句中文简介的小节页。
 
@@ -26,21 +26,21 @@
   - [1.1 间接提示注入](#11-间接提示注入) · 11
   - [1.2 视觉层攻击](#12-视觉层攻击) · 14
   - [1.3 环境注入](#13-环境注入) · 12
-  - [1.4 越权与权限滥用](#14-越权与权限滥用) · 5
+  - [1.4 越权与权限滥用](#14-越权与权限滥用) · 6
   - [1.5 数据泄露与隐私](#15-数据泄露与隐私) · 7
   - [1.6 后门与投毒](#16-后门与投毒) · 8
   - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 12
 - [2 防御层](#2-防御层)
-  - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 15
+  - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 16
   - [2.2 执行前风险评估](#22-执行前风险评估) · 10
-  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 18
+  - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 20
   - [2.4 人在环与确认机制](#24-人在环与确认机制) · 6
   - [2.5 事后恢复与回滚](#25-事后恢复与回滚) · 6
-  - [2.6 形式化保证与验证](#26-形式化保证与验证) · 9
+  - [2.6 形式化保证与验证](#26-形式化保证与验证) · 10
 - [3 评测基准与数据集](#3-评测基准与数据集)
   - [3.1 综合与跨环境基准](#31-综合与跨环境基准) · 11
-  - [3.2 Web 环境基准](#32-web-环境基准) · 20
-  - [3.3 Mobile 环境基准](#33-mobile-环境基准) · 8
+  - [3.2 Web 环境基准](#32-web-环境基准) · 21
+  - [3.3 Mobile 环境基准](#33-mobile-环境基准) · 10
   - [3.4 Desktop 与 OS 环境基准](#34-desktop-与-os-环境基准) · 4
 - [4 商用 AI 浏览器与产品安全](#4-商用-ai-浏览器与产品安全) · 2
 
@@ -121,6 +121,7 @@
 
 *OS 级越权、跨应用提权、权限弹窗诱导、TOCTOU* · [简介 →](docs/by-section/zh/1-4-privilege-escalation-permission-abuse.md)
 
+- **[Authority Envelope](https://arxiv.org/abs/2610.15138)** — The Agent Clicks Approve: Injected Page Text Makes Browser Agents Authorize Access the Task Never Named · 2026-10 · 🌐
 - **[Allow to Achieve](https://arxiv.org/abs/2608.04755)** — "Allow" to Achieve, Over-Privileged Inadvertently: The Unintended Cost of Task-Completion-Driven Pop-up Decisions in Mobile GUI Agents · 2026-08 · 📱
 - **[AI Sees](https://arxiv.org/abs/2607.00333)** — (A)I Sees What You Don't: Exploiting New Attack Surfaces in Third-Party Mobile Agents · 2026-07 · 📱
 - **[PUSV](https://arxiv.org/abs/2604.18860)** — Temporal UI State Inconsistency in Desktop GUI Agents: Formalizing and Defending Against TOCTOU Attacks on Computer-Use Agents · 2026-04 · 🖥️
@@ -177,6 +178,7 @@
 
 *在内容进入模型上下文前过滤或遮蔽不可信部分* · [简介 →](docs/by-section/zh/2-1-input-filtering-sanitization.md)
 
+- **[PrivacyGuard](https://arxiv.org/abs/2610.16778)** — Source-Linked Sanitization and Locally Resolvable PII References for Cloud GUI Agents · 2026-10 · 📱
 - **[FocusMem](https://arxiv.org/abs/2608.04530)** — Factorizing Content, Readout, and Trust in Latent GUI Memory · 2026-08 · 📱🖥️🌐
 - **[UCM](https://arxiv.org/abs/2607.05277)** — Untrusted Content Masking for Web Agents with Security Guarantees · 2026-07 · 🌐
 - **[IPI Probe Controls](https://arxiv.org/abs/2606.22864)** — When AUC 0.998 Is Not Enough: A Candidate Evaluation Protocol for Hidden-State Probes of Indirect Prompt Injection in Multimodal Computer-Use Agents · 2026-06 · 🧩
@@ -212,6 +214,8 @@
 
 *信息流追踪、OS 级策略强制、沙箱* · [简介 →](docs/by-section/zh/2-3-runtime-interception-access-control.md)
 
+- **[SPIDES](https://arxiv.org/abs/2610.24277)** — Information-Flow Control for Browser Agents · 2026-10 · 🌐
+- **[From Observations to Authorized Actions: Measuring Source Information in Android Agents](https://arxiv.org/abs/2610.15502)** · 2026-10 · 📱
 - **[LGWM](https://arxiv.org/abs/2610.11942)** — Right Screen, Wrong Transition: World Models as Verifiers for GUI Agents · 2026-10 · 📱🧩
 - **[ZoneClaw](https://arxiv.org/abs/2610.00450)** — Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents · 2026-09 · 🖥️🧩
 - **[Veer](https://arxiv.org/abs/2609.34974)** — Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces · 2026-09 · 🌐
@@ -257,6 +261,7 @@
 
 *带可证明保证的防御：形式化验证、控制流完整性、共形风险控制* · [简介 →](docs/by-section/zh/2-6-formal-guarantees-verification.md)
 
+- **[SA-CUA](https://arxiv.org/abs/2610.18508)** — Towards Safe Autonomy for Computer Use · 2026-10 · 🖥️🧩
 - **[Secure-CUA](https://arxiv.org/abs/2610.09469)** — Controlling Untrusted Influence in Computer-Use Agents · 2026-10 · 🧩
 - **[AOHP](https://arxiv.org/abs/2606.23449)** — An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction · 2026-06 · 📱
 - **[SkillHarness](https://arxiv.org/abs/2606.20636)** — Harnessing Safe Skills for Computer-Use Agents · 2026-06 · 🖥️
@@ -291,6 +296,7 @@
 
 *针对 web / 浏览器 agent 的安全评测* · [简介 →](docs/by-section/zh/3-2-web-environment.md)
 
+- **[BrowseSafe++](https://arxiv.org/abs/2610.17457)** — Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views · 2026-10 · 🌐
 - **[Who Pays the Price](https://arxiv.org/abs/2606.13385)** — Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents · 2026-06 · 🌐
 - **[WebDecept](https://arxiv.org/abs/2606.13686)** — Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces · 2026-04 · 🌐
 - **[RiskWebWorld](https://arxiv.org/abs/2604.13531)** — A Realistic Interactive Benchmark for GUI Agents in E-commerce Risk Management · 2026-04 · 🌐
@@ -316,6 +322,8 @@
 
 *针对移动 / Android / iOS agent 的安全评测* · [简介 →](docs/by-section/zh/3-3-mobile-environment.md)
 
+- **[MobileInject](https://arxiv.org/abs/2610.23307)** — Evaluating Reasoning-to-Action Security of MLLM-Based Mobile Agents under Cross-Modal Consistency Injection · 2026-10 · 📱
+- **[MobileJailBench](https://arxiv.org/abs/2610.23303)** — Red Queen Jailbreak Benchmarking for Mobile Agents · 2026-10 · 📱
 - **[PriMobiBench](https://arxiv.org/abs/2609.13873)** — Characterizing Visual Privacy Leakage in VLM-Driven Mobile GUI Agents · 2026-09 · 📱
 - **[MobileWorldSafety](https://arxiv.org/abs/2608.17659)** — Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps · 2026-08 · 📱
 - **[GhostEI-Bench](https://arxiv.org/abs/2510.20333)** — Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments? · 2025-10 · 📱

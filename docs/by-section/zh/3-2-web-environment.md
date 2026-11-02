@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### BrowseSafe++: Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views (BrowseSafe++) (2026-10)
+
+BrowseSafe++ 把 BrowseSafe 从 14719 个页面扩展到 38675 对页面，其中大多数提示注入是在线上 生产网站中实际观察到的。每条注入保持原样，只改写其周边页面的敏感部分以保护隐私；每个被攻击 页面都配有同一页面的干净副本作为对照。两者都以 HTML、Markdown、无障碍树和截图四种形式提供， 并附有用户任务及其预期答案。基准覆盖新闻、共享文档、论坛等十二类网站，含 24 种攻击类型、 分布在页面的 18 个位置。利用这些成对页面训练出的 BrowseSafe-Guard 是两个 0.8B 参数的检测器 （分别处理文本与截图），F1 高于基于前沿模型的检测器，同时保持良性页面上的低误报率与低推理 成本。BrowseSafe-Adapt 则根据浏览器 agent 的反馈改写基准中的注入：直接重放时只能在百分之几的 任务上得手的攻击，经自适应改写后成功率最高可达 95.41%。
+
+`环境: Web` ｜ [arXiv:2610.17457](https://arxiv.org/abs/2610.17457)
+
 #### Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents (Who Pays the Price) (2026-06)
 
 指出现有安全基准都采用「攻击视角」，只关注注入在技术上是否可行，忽略了危害在不同受害方 之间的分布差异。本文主张注入风险是**受害者依赖**的：同一个漏洞对不同利益相关方（用户、 平台、商家）造成的后果高度不对称，同一攻击模式的有效性也随目标不同而显著变化。据此构建 以利益相关方为中心的基准，聚焦电商这类动作直接带来财务后果的真实场景。

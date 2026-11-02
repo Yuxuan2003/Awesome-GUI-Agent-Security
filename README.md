@@ -4,7 +4,7 @@
 
 > A curated list of papers on GUI / Computer-Use / Browser Agent security — organized by attack surface and defense layer, not by runtime environment.
 
-![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-180%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
+![Last Update](https://img.shields.io/badge/last%20update-2026.10-brightgreen) ![Papers](https://img.shields.io/badge/papers-190%2B-blue) ![Time Range](https://img.shields.io/badge/time-2024.01--2026.10-orange) [![Link Check](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml/badge.svg)](https://github.com/Yuxuan2003/Awesome-GUI-Agent-Security/actions/workflows/check.yml) ![Awesome](https://img.shields.io/badge/-awesome-ff69b4)
 
 > This page is the **index** — one line per paper. Each section links to a page with a 3–5 sentence summary per paper.
 
@@ -26,21 +26,21 @@
   - [1.1 Indirect Prompt Injection](#11-indirect-prompt-injection) · 11
   - [1.2 Visual-Layer Attacks](#12-visual-layer-attacks) · 14
   - [1.3 Environmental Injection](#13-environmental-injection) · 12
-  - [1.4 Privilege Escalation & Permission Abuse](#14-privilege-escalation-permission-abuse) · 5
+  - [1.4 Privilege Escalation & Permission Abuse](#14-privilege-escalation-permission-abuse) · 6
   - [1.5 Data Exfiltration & Privacy](#15-data-exfiltration-privacy) · 7
   - [1.6 Backdoors & Poisoning](#16-backdoors-poisoning) · 8
   - [1.7 Unintended Harm from Benign Instructions](#17-unintended-harm-from-benign-instructions) · 12
 - [2 Defense Layers](#2-defense-layers)
-  - [2.1 Input Filtering & Sanitization](#21-input-filtering-sanitization) · 15
+  - [2.1 Input Filtering & Sanitization](#21-input-filtering-sanitization) · 16
   - [2.2 Pre-execution Risk Assessment](#22-pre-execution-risk-assessment) · 10
-  - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 18
+  - [2.3 Runtime Interception & Access Control](#23-runtime-interception-access-control) · 20
   - [2.4 Human-in-the-Loop & Confirmation](#24-human-in-the-loop-confirmation) · 6
   - [2.5 Post-hoc Recovery & Rollback](#25-post-hoc-recovery-rollback) · 6
-  - [2.6 Formal Guarantees & Verification](#26-formal-guarantees-verification) · 9
+  - [2.6 Formal Guarantees & Verification](#26-formal-guarantees-verification) · 10
 - [3 Benchmarks & Datasets](#3-benchmarks-datasets)
   - [3.1 Comprehensive & Cross-environment](#31-comprehensive-cross-environment) · 11
-  - [3.2 Web Environment](#32-web-environment) · 20
-  - [3.3 Mobile Environment](#33-mobile-environment) · 8
+  - [3.2 Web Environment](#32-web-environment) · 21
+  - [3.3 Mobile Environment](#33-mobile-environment) · 10
   - [3.4 Desktop & OS Environment](#34-desktop-os-environment) · 4
 - [4 Commercial AI Browsers & Product Security](#4-commercial-ai-browsers-product-security) · 2
 
@@ -121,6 +121,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *OS-level escalation, cross-app privilege abuse, permission-dialog manipulation, TOCTOU* · [Summaries →](docs/by-section/en/1-4-privilege-escalation-permission-abuse.md)
 
+- **[Authority Envelope](https://arxiv.org/abs/2610.15138)** — The Agent Clicks Approve: Injected Page Text Makes Browser Agents Authorize Access the Task Never Named · 2026-10 · 🌐
 - **[Allow to Achieve](https://arxiv.org/abs/2608.04755)** — "Allow" to Achieve, Over-Privileged Inadvertently: The Unintended Cost of Task-Completion-Driven Pop-up Decisions in Mobile GUI Agents · 2026-08 · 📱
 - **[AI Sees](https://arxiv.org/abs/2607.00333)** — (A)I Sees What You Don't: Exploiting New Attack Surfaces in Third-Party Mobile Agents · 2026-07 · 📱
 - **[PUSV](https://arxiv.org/abs/2604.18860)** — Temporal UI State Inconsistency in Desktop GUI Agents: Formalizing and Defending Against TOCTOU Attacks on Computer-Use Agents · 2026-04 · 🖥️
@@ -177,6 +178,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Filtering or masking untrusted content before it enters the model context* · [Summaries →](docs/by-section/en/2-1-input-filtering-sanitization.md)
 
+- **[PrivacyGuard](https://arxiv.org/abs/2610.16778)** — Source-Linked Sanitization and Locally Resolvable PII References for Cloud GUI Agents · 2026-10 · 📱
 - **[FocusMem](https://arxiv.org/abs/2608.04530)** — Factorizing Content, Readout, and Trust in Latent GUI Memory · 2026-08 · 📱🖥️🌐
 - **[UCM](https://arxiv.org/abs/2607.05277)** — Untrusted Content Masking for Web Agents with Security Guarantees · 2026-07 · 🌐
 - **[IPI Probe Controls](https://arxiv.org/abs/2606.22864)** — When AUC 0.998 Is Not Enough: A Candidate Evaluation Protocol for Hidden-State Probes of Indirect Prompt Injection in Multimodal Computer-Use Agents · 2026-06 · 🧩
@@ -212,6 +214,8 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Information-flow tracking, OS-level policy enforcement, sandboxing* · [Summaries →](docs/by-section/en/2-3-runtime-interception-access-control.md)
 
+- **[SPIDES](https://arxiv.org/abs/2610.24277)** — Information-Flow Control for Browser Agents · 2026-10 · 🌐
+- **[From Observations to Authorized Actions: Measuring Source Information in Android Agents](https://arxiv.org/abs/2610.15502)** · 2026-10 · 📱
 - **[LGWM](https://arxiv.org/abs/2610.11942)** — Right Screen, Wrong Transition: World Models as Verifiers for GUI Agents · 2026-10 · 📱🧩
 - **[ZoneClaw](https://arxiv.org/abs/2610.00450)** — Mitigating Persistent Memory Attacks by Establishing Memory-Zoning in OpenClaw-Style Computer-Use Agents · 2026-09 · 🖥️🧩
 - **[Veer](https://arxiv.org/abs/2609.34974)** — Before Acting, Change the State: Prospective State Intervention for Web Agents under Deceptive Interfaces · 2026-09 · 🌐
@@ -257,6 +261,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Defenses with provable guarantees: formal verification, control-flow integrity, conformal risk control* · [Summaries →](docs/by-section/en/2-6-formal-guarantees-verification.md)
 
+- **[SA-CUA](https://arxiv.org/abs/2610.18508)** — Towards Safe Autonomy for Computer Use · 2026-10 · 🖥️🧩
 - **[Secure-CUA](https://arxiv.org/abs/2610.09469)** — Controlling Untrusted Influence in Computer-Use Agents · 2026-10 · 🧩
 - **[AOHP](https://arxiv.org/abs/2606.23449)** — An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction · 2026-06 · 📱
 - **[SkillHarness](https://arxiv.org/abs/2606.20636)** — Harnessing Safe Skills for Computer-Use Agents · 2026-06 · 🖥️
@@ -291,6 +296,7 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Security evaluation for web / browser agents* · [Summaries →](docs/by-section/en/3-2-web-environment.md)
 
+- **[BrowseSafe++](https://arxiv.org/abs/2610.17457)** — Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views · 2026-10 · 🌐
 - **[Who Pays the Price](https://arxiv.org/abs/2606.13385)** — Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents · 2026-06 · 🌐
 - **[WebDecept](https://arxiv.org/abs/2606.13686)** — Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces · 2026-04 · 🌐
 - **[RiskWebWorld](https://arxiv.org/abs/2604.13531)** — A Realistic Interactive Benchmark for GUI Agents in E-commerce Risk Management · 2026-04 · 🌐
@@ -316,6 +322,8 @@ Browse by environment: [Web](docs/by-env/web.md) ｜ [Mobile](docs/by-env/mobile
 
 *Security evaluation for mobile / Android / iOS agents* · [Summaries →](docs/by-section/en/3-3-mobile-environment.md)
 
+- **[MobileInject](https://arxiv.org/abs/2610.23307)** — Evaluating Reasoning-to-Action Security of MLLM-Based Mobile Agents under Cross-Modal Consistency Injection · 2026-10 · 📱
+- **[MobileJailBench](https://arxiv.org/abs/2610.23303)** — Red Queen Jailbreak Benchmarking for Mobile Agents · 2026-10 · 📱
 - **[PriMobiBench](https://arxiv.org/abs/2609.13873)** — Characterizing Visual Privacy Leakage in VLM-Driven Mobile GUI Agents · 2026-09 · 📱
 - **[MobileWorldSafety](https://arxiv.org/abs/2608.17659)** — Benchmarking GUI Agent Safety Against Environmental Injection Attacks in Android Apps · 2026-08 · 📱
 - **[GhostEI-Bench](https://arxiv.org/abs/2510.20333)** — Do Mobile Agents Resilience to Environmental Injection in Dynamic On-Device Environments? · 2025-10 · 📱
