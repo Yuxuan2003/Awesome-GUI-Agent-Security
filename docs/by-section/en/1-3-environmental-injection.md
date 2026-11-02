@@ -26,7 +26,7 @@ Roots the vulnerability in the perception paradigm: mobile GUI agents see the sc
 
 `Env: Mobile` ｜ [arXiv:2605.28116](https://arxiv.org/abs/2605.28116)
 
-#### WAAA! Web Adversaries Against Agentic Browsers (WAAA) (2026-05)
+#### WAAA! Web Adversaries Against Web Agents (WAAA) (2026-05)
 
 Prior work on agentic browser security focuses exclusively on indirect prompt injection, leaving a blind spot for traditional web attacks and web social engineering originally designed to trick humans. This paper proposes the first web-focused threat model for agentic browsers, extending the original See->Act browser agent model to account for all browser components and framing the agent as a confused deputy unable to distinguish task steps from traditional web attacks. It derives a taxonomy of 20 attacks across the web and LLM space and implements 18 of them, showing that 10 web threats reemerge — often in amplified forms — once an agent can be influenced by untrusted page content. A generalizability study over 14 of the 20 attacks shows they reproduce across four major LLM models from multiple vendors, and the authors identify five major failure modes of agentic browsers facing traditional and LLM web threats.
 

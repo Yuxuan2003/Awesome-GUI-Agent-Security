@@ -26,7 +26,7 @@
 
 `环境: Mobile` ｜ [arXiv:2605.28116](https://arxiv.org/abs/2605.28116)
 
-#### WAAA! Web Adversaries Against Agentic Browsers (WAAA) (2026-05)
+#### WAAA! Web Adversaries Against Web Agents (WAAA) (2026-05)
 
 此前关于 agentic 浏览器安全的研究只盯着间接提示注入，对传统 web 攻击以及原本用来欺骗人类的 网页社工手段存在盲区。本文提出首个面向 web 的 agentic 浏览器威胁模型：把原有的 See→Act 浏览器 agent 模型扩展到浏览器的全部组件，并将 agent 刻画为一个无法区分任务步骤与传统 web 攻击的「混淆代理人」。据此导出横跨 web 与 LLM 两个空间的 20 类攻击并实现其中 18 类，证明 只要 agent 会受不可信页面内容影响，就有 10 类 web 威胁会以更强化的形态重现。对 14 类攻击 的泛化实验显示它们能在多家厂商的四个主流模型上复现，作者并归纳出 agentic 浏览器面对传统 与 LLM web 威胁时的五种主要失效模式，指出现有架构必须重构才能应对当下的 web。
 

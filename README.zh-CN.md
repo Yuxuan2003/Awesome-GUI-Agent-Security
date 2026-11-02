@@ -29,9 +29,9 @@
   - [1.4 越权与权限滥用](#14-越权与权限滥用) · 6
   - [1.5 数据泄露与隐私](#15-数据泄露与隐私) · 7
   - [1.6 后门与投毒](#16-后门与投毒) · 8
-  - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 12
+  - [1.7 良性指令下的意外危害](#17-良性指令下的意外危害) · 13
 - [2 防御层](#2-防御层)
-  - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 16
+  - [2.1 输入侧过滤与净化](#21-输入侧过滤与净化) · 17
   - [2.2 执行前风险评估](#22-执行前风险评估) · 10
   - [2.3 执行中拦截与权限控制](#23-执行中拦截与权限控制) · 20
   - [2.4 人在环与确认机制](#24-人在环与确认机制) · 6
@@ -107,7 +107,7 @@
 - **[AnTrap](https://arxiv.org/abs/2608.24099)** — Are Android GUI Agents Robust Against Runtime Anomalies? AnTrap: Evaluating Agents in Dynamic Adversarial Environments · 2026-08 · 📱
 - **[Not an A11y](https://arxiv.org/abs/2608.08939)** — How Android Accessibility Exposes Mobile AI Agents to Indirect Prompt Injection · 2026-08 · 📱
 - **[MIRAGE (Mobile)](https://arxiv.org/abs/2605.28116)** — MIRAGE: Context-Aware Prompt Injection against Mobile GUI Agents via User-Generated Content · 2026-05 · 📱
-- **[WAAA](https://arxiv.org/abs/2605.05509)** — WAAA! Web Adversaries Against Agentic Browsers · 2026-05 · 🌐
+- **[WAAA](https://arxiv.org/abs/2605.05509)** — WAAA! Web Adversaries Against Web Agents · 2026-05 · 🌐
 - **[eTAMP](https://arxiv.org/abs/2604.02623)** — Poison Once, Exploit Forever: Environment-Injected Memory Poisoning Attacks on Web Agents · 2026-04 · 🌐
 - **[TrickyArena](https://arxiv.org/abs/2510.18113)** — Investigating the Impact of Dark Patterns on LLM-Based Web Agents · 2025-10 · 🌐
 - **[Dynamic EIA](https://arxiv.org/abs/2509.11250)** — Environmental Injection Attacks against GUI Agents in Realistic Dynamic Environments · 2025-09 · 🌐
@@ -157,6 +157,7 @@
 
 *无恶意攻击者，agent 自身在正常指令下造成危害* · [简介 →](docs/by-section/zh/1-7-unintended-harm-from-benign-instructions.md)
 
+- **[Preflight](https://arxiv.org/abs/2610.39282)** — What Does "Now" Mean to Your Computer-Use Agent? Stale Screenshots, Page Loads, and Which Check to Run Before a Click · 2026-10 · 🌐
 - **[CAVEAT](https://arxiv.org/abs/2609.27273)** — Towards Robust Computer-Use Agents in Incentive-Misaligned Environments · 2026-09 · 🌐
 - **[Nudge Susceptibility](https://arxiv.org/abs/2609.19843)** — A Dual-Process Perspective on Nudge Susceptibility in LLM-Based GUI Agents · 2026-09 · 🌐
 - **[Alignment Is Local](https://arxiv.org/abs/2607.29199)** — A Paired Diagnostic for GUI Agents under User Persuasion · 2026-07 · 📱🧩
@@ -178,6 +179,7 @@
 
 *在内容进入模型上下文前过滤或遮蔽不可信部分* · [简介 →](docs/by-section/zh/2-1-input-filtering-sanitization.md)
 
+- **[MPIDetector](https://arxiv.org/abs/2610.30202)** — Detecting Multi-modal Prompt Injection via LLM-based Reasoning · 2026-10 · 🧩
 - **[PrivacyGuard](https://arxiv.org/abs/2610.16778)** — Source-Linked Sanitization and Locally Resolvable PII References for Cloud GUI Agents · 2026-10 · 📱
 - **[FocusMem](https://arxiv.org/abs/2608.04530)** — Factorizing Content, Readout, and Trust in Latent GUI Memory · 2026-08 · 📱🖥️🌐
 - **[UCM](https://arxiv.org/abs/2607.05277)** — Untrusted Content Masking for Web Agents with Security Guarantees · 2026-07 · 🌐
