@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### MobileGrail: Learning Compact Guardrails for On-Device deployable Mobile GUI Agent Safety (MobileGrail) (2026-11)
+
+移动 GUI agent 的运行时护栏会在执行前评估每个拟执行动作，但现有方案依赖云端多模态大模型，等于把每一屏 内容（支付、消息、病历）都发往远程服务器。MobileGrail 是可端侧部署的护栏：它维护一个循环更新的任务 状态，只保留后续安全决策需要的证据；并学习两种标签 —— unsafe 标记真正构成违规的那一步，block 则可在 「干预窗口」内任意一步发出，窗口从用户授权已无法解释的第一个动作开始。训练环境含 32 个应用，后端会 校验每个动作的实际效果；作者还发布了离线基准 MobileVeto，不安全轨迹大多来自训练未见的应用，并各配一条 良性对照。基于 Qwen3.5-2B 的 MobileGrail 拦截了 76.2% 的违规（提示式底座为 64.5%），过早干预率从 58.6% 降到 5.2%，两项都优于云端方案 OS-Sentinel；在 GhostEI-Bench 上守护 agent 时，110 个任务中完全 成功的攻击从 13 个降到 3 个；4 bit 量化后在骁龙 8 Elite 上中位延迟 4.7 秒。
+
+`环境: Mobile` ｜ [arXiv:2611.29847](https://arxiv.org/abs/2611.29847)
+
 #### AdvSim2Real : Training Web Agents Against Adaptive Prompt Injection in a Web World Model (AdvSim2Real) (2026-10)
 
 web agent 无法简单地无视第三方网页，因为完成任务所需的数值和控件就在这些页面上 —— 而页面里 埋的一条指令就能把 agent 带离用户目标。现有防御在训练前固定好的注入样本上微调，自适应攻击者 很容易绕过；对抗训练让攻击者能自适应，却固定了任务集，agent 一旦学会某个任务，这个任务就 不再有训练价值。AdvSim2Real 在一个冻结的 web 世界模型里让三者协同演化：任务课程、注入对手与 agent。课程只在 agent 约一半时间能完成的任务上获得奖励；对手只在「翻转成功」时获得奖励 —— 即一条注入让原本判定成功的执行变为失败。在模拟器里训练后，一个 4B 的 agent 同时变得更强也 更稳：有无攻击时的完成率都上升，面对训练中从未见过的前沿模型对手依然稳得住，能力提升也能 迁移到真实浏览器。在 150 个 web 任务上，面对这个未见过的对手，完成率比基础 agent 相对提升 33.6%。

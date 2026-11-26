@@ -8,6 +8,12 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection (MobileProbe) (2026-11)
+
+移动 GUI agent 屏幕上显示什么就照着什么操作，攻击者因此可以把恶意指令嵌进普通 UI 内容、改变它的动作， 即环境注入攻击。现有基准把手工载荷钉在固定任务的固定步骤上：一方面换个应用就得重新设计，另一方面同一任务 下 agent 可能走不同路径，没走到注入页面的 agent 未经测试就被记为「安全」，导致定点式基准低估风险。 MobileProbe 是一个感知轨迹的红队框架：通过自动化渗透测试发现攻击者可控的内容面，沿 agent 轨迹定位脆弱的 决策点，再用代理模型过滤的进化循环迭代优化贴合上下文的载荷。配套基准含 12 个移动应用上的 83 个长程攻击 实例，每个都标注了机密性、完整性或可用性（CIA）攻击目标。在三种代表性 agent 架构上，MobileProbe 的攻击 成功率高于人工编写、零样本 LLM 以及迁移到移动端的已有自动化红队基线，可作为部署前的安全审计工具。
+
+`环境: Mobile` ｜ `发表: NDSS 2027` ｜ [arXiv:2611.16693](https://arxiv.org/abs/2611.16693)
+
 #### Are Android GUI Agents Robust Against Runtime Anomalies? AnTrap: Evaluating Agents in Dynamic Adversarial Environments (AnTrap) (2026-08)
 
 指出现有基准缺乏对 GUI agent 运行时异常鲁棒性的系统评估，而 Android 实机部署中意外弹窗、 动作误用等动态扰动十分常见。提出基准 AnTrap，把真实异常归纳为 State / Thinking / Action / Round 四层共十个细分类别，并设计了在注入对抗扰动的同时保持任务仍可完成的构造流程。评测 16 个主流 GUI 模型显示对动态异常存在普遍脆弱性，最强模型也出现显著性能下降；作者还在 原始与对抗环境下各做一轮 GRPO 训练，以区分环境难度与模型能力两个混杂因素。

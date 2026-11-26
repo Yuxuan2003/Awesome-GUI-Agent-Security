@@ -8,6 +8,24 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### Benchmarking Web Agent Defenses Against Adaptive Visual Prompt Injection (AdaptiveVPI) (2026-11)
+
+现有视觉提示注入（VPI）防御大多在截图里找被注入的指令，但钓鱼 URL 这类恶意目的地可以藏在 HTML 里 —— 截图上看不到，agent 交互时却能访问到；而且现有评测很少考虑熟悉防御机制的自适应攻击者。AdaptiveVPI 是首个面向 web agent 自适应 VPI 的基准：在 10 个真实网站上构造 360 个网页实例，覆盖 6 种劫持策略， 恶意目的地均不出现在截图中；配套的攻击框架根据被测防御的反馈迭代改写恶意指令，并用三项指标分三个 层级衡量劫持程度。在 10 种计算机使用 agent 防御配置和 11 种 browser-use agent 防御配置上，自适应 攻击的平均成功率分别达到 91.87% 与 91.99%，说明当前 VPI 防御与真实的自适应威胁之间差距很大。
+
+`环境: Web` ｜ [arXiv:2611.29268](https://arxiv.org/abs/2611.29268)
+
+#### Harness Matters: Measuring and Dissecting Security Resilience in Web Agents (WebTrap Farm) (2026-11)
+
+Web agent 依赖执行框架（harness）来解释用户目标、感知网页、规划动作，并把模型决策落地成浏览器操作， 但框架设计究竟怎样影响安全性，此前几乎没有被量化。作者把 harness 抽象成四阶段执行流程，并构建 WebTrap Farm —— 一个系统化、可扩展的评测框架，覆盖恶意用户指令、恶意提示注入、欺骗式网页设计三类 攻击，同时用成对的可用性校准任务把「真正的防御行为」与「能力不足」区分开。实测发现现有 harness 普遍易受典型攻击，部分不安全行为甚至在没有显式攻击内容时就出现，属于框架本身的失效；统计分析显示 harness 与后端模型都显著影响安全结果。作者进一步定位防御行为在四个阶段中的产生位置，给出更稳健的 设计机制，结论是把 harness 本身视为一条安全边界，防御不应只围绕模型做，而要走向框架级的安全设计。
+
+`环境: Web` ｜ [arXiv:2611.11971](https://arxiv.org/abs/2611.11971)
+
+#### ScamWorld: An Interactive Environment for Evaluating Web Agents Against Online Fraud (ScamWorld) (2026-11)
+
+除了提示注入与欺骗式界面，在开放网页上代用户浏览、购物、管理账号的 web agent 还会遇到专门骗人的 欺诈 —— 假冒网店、虚假投资平台、预付费骗局；但诈骗站点存活时间短，难以系统评测。ScamWorld 按不同 场景、欺诈机制与语言重建已上报的诈骗网站，每个重建站点复现了有据可查的欺诈机制，让欺诈迹象在 agent 做出最终动作之前就可被观察到，从而实现可控、可重复的评测。作者用六个前沿 LLM 驱动的 web agent 做实验，基线受骗率在 11%–35% 之间；相比索取凭据或钱包信息，agent 更容易在付款环节照做。轨迹分析 还发现，部分 agent 明明识别出可疑条件却仍然继续，有时把用户指令理解成「可以接受网站额外条款」的 授权。作者把 ScamWorld 作为可复用的测试床发布，用于系统性评测和压测 web agent 面对真实网络欺诈的 表现。
+
+`环境: Web` ｜ [arXiv:2611.04879](https://arxiv.org/abs/2611.04879)
+
 #### BrowseSafe++: Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views (BrowseSafe++) (2026-10)
 
 BrowseSafe++ 把 BrowseSafe 从 14719 个页面扩展到 38675 对页面，其中大多数提示注入是在线上 生产网站中实际观察到的。每条注入保持原样，只改写其周边页面的敏感部分以保护隐私；每个被攻击 页面都配有同一页面的干净副本作为对照。两者都以 HTML、Markdown、无障碍树和截图四种形式提供， 并附有用户任务及其预期答案。基准覆盖新闻、共享文档、论坛等十二类网站，含 24 种攻击类型、 分布在页面的 18 个位置。利用这些成对页面训练出的 BrowseSafe-Guard 是两个 0.8B 参数的检测器 （分别处理文本与截图），F1 高于基于前沿模型的检测器，同时保持良性页面上的低误报率与低推理 成本。BrowseSafe-Adapt 则根据浏览器 agent 的反馈改写基准中的注入：直接重放时只能在百分之几的 任务上得手的攻击，经自适应改写后成功率最高可达 95.41%。
