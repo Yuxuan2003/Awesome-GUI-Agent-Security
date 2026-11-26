@@ -4813,3 +4813,334 @@ papers:
       高度混淆的环境 web-agent 注入，检出率最高达 99.80%，优于两个文本基线与两个视觉基线。
       （边界条目：该检测器并非专为 GUI agent 设计，但其威胁模型包含针对 web agent 的环境注入，
       且 §2.1 已收录同类的注入检测评估工作，故收录并在 PR 中列明理由。）
+  - id: "2611.11971"
+    title: "Harness Matters: Measuring and Dissecting Security Resilience in Web Agents"
+    abbr: "WebTrap Farm"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Web agents rely on an execution harness that interprets user goals, perceives webpages,
+      plans actions, and grounds model decisions into browser operations, yet how harness design
+      quantitatively shapes security has barely been measured. The authors characterize the harness
+      as a four-stage workflow and build WebTrap Farm, a systematic and extensible evaluation
+      framework covering three attack categories — malicious user prompts, malicious prompt
+      injection, and deceptive web design — with paired usability-calibration tasks that separate
+      genuine defensive behavior from capability limitations. Evaluation shows existing harnesses
+      remain vulnerable to typical attacks, with some unsafe behaviors occurring even without
+      explicit attack content, revealing harness-intrinsic security failures; statistical analysis
+      further shows that both the harness and the backend model significantly affect security
+      outcomes. The authors localize where defensive behavior emerges across the four stages and
+      identify more secure design mechanisms, positioning the harness itself as a security boundary
+      and arguing for a move beyond model-centric defenses toward harness-level security design.
+    summary_zh: >-
+      Web agent 依赖执行框架（harness）来解释用户目标、感知网页、规划动作，并把模型决策落地成浏览器操作，
+      但框架设计究竟怎样影响安全性，此前几乎没有被量化。作者把 harness 抽象成四阶段执行流程，并构建
+      WebTrap Farm —— 一个系统化、可扩展的评测框架，覆盖恶意用户指令、恶意提示注入、欺骗式网页设计三类
+      攻击，同时用成对的可用性校准任务把「真正的防御行为」与「能力不足」区分开。实测发现现有 harness
+      普遍易受典型攻击，部分不安全行为甚至在没有显式攻击内容时就出现，属于框架本身的失效；统计分析显示
+      harness 与后端模型都显著影响安全结果。作者进一步定位防御行为在四个阶段中的产生位置，给出更稳健的
+      设计机制，结论是把 harness 本身视为一条安全边界，防御不应只围绕模型做，而要走向框架级的安全设计。
+
+  - id: "2611.06039"
+    title: "Securing Web Agents with the Compile-Then-Execute Paradigm"
+    abbr: "Baya"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "2.6"
+    env: [web]
+    summary: >-
+      ReAct-style web agents select each action from runtime observations that inherently mix
+      trusted and untrusted content, leaving their control flow vulnerable to prompt injections
+      embedded in webpages. Baya compiles the user's request into an executable Python program
+      before accessing the live website: a sandboxed coding harness generates code against a
+      pre-built, strictly typed Trusted Website API, and the planning model never observes live
+      website content. Untrusted data may fill program values or select among branches fixed at
+      compile time, but it cannot redefine the user task or cause the model to synthesize new
+      website operations at runtime; the API is prepared offline per site from native REST
+      endpoints plus trusted Playwright browser-automation wrappers, and site content remains
+      attacker-controlled data. On 581 WebArena Verified tasks Baya reaches 77.8% aggregate
+      utility, versus 55.1% for browser-only ReAct and 66.7% for API-enabled ReAct, and on the
+      WASP web-agent security benchmark it achieves 0% attack success rate against 16.2% and
+      25.5% for the two ReAct baselines. (Boundary entry: Baya is not a screenshot- or
+      DOM-perceiving ReAct browser agent, but it does act on live WebArena sites through
+      browser-automation wrappers and is evaluated on WASP; its contribution is control-flow
+      integrity by construction, hence section 2.6.)
+    summary_zh: >-
+      ReAct 式 web agent 每一步都从运行时观测里选动作，而这些观测天然混合了可信与不可信内容，控制流
+      因此容易被嵌在网页里的提示注入劫持。Baya 采用「先编译、后执行」：在接触真实网站之前，先把用户请求
+      编译成可执行的 Python 程序 —— 由沙盒中的编码 agent 针对预先构造、强类型的 Trusted Website API
+      生成代码，规划模型全程看不到实时网页内容。不可信数据只能填充程序变量、或在编译期已经定好的分支之间
+      做选择，既不能改写用户任务，也不能让模型在运行时凭空合成新的网站操作。该 API 按站点离线构造，
+      整合原生 REST 端点与可信的 Playwright 浏览器自动化封装；网页里的第三方内容仍被视为攻击者可控的数据。
+      在 581 个 WebArena Verified 任务上，Baya 综合效用 77.8%，高于纯浏览器 ReAct（55.1%）与带 API 的
+      ReAct（66.7%）；在 web agent 安全基准 WASP 上攻击成功率为 0%，两个 ReAct 基线分别为 16.2% 与
+      25.5%。（边界条目：Baya 不是看截图/DOM 逐步点击的 ReAct 浏览器 agent，但它确实通过浏览器自动化
+      封装作用于真实的 WebArena 站点，并用 WASP 做安全评测；核心贡献是「构造上即保证控制流完整性」，
+      故归入 §2.6。）
+
+  - id: "2611.04879"
+    title: "ScamWorld: An Interactive Environment for Evaluating Web Agents Against Online Fraud"
+    abbr: "ScamWorld"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Beyond prompt injections and deceptive interfaces, web agents browsing, shopping, and
+      managing accounts on the open web also encounter fraud designed to deceive humans —
+      fraudulent online stores, fake investment platforms, and advance-fee schemes — yet
+      short-lived scam websites make systematic evaluation difficult. ScamWorld reconstructs
+      reported scam websites across diverse scenarios, fraud mechanisms, and languages; each
+      reconstructed site reproduces documented fraud mechanisms so that signs of fraud are
+      observable before the agent's final action, enabling controlled, repeatable evaluation.
+      In a study of web agents powered by six frontier LLMs, baseline deception rates range from
+      11% to 35% across models, and agents proceed more readily with payments than with requests
+      for credentials or wallet information. Trajectory analysis shows that some agents
+      acknowledge suspicious conditions yet still proceed, at times treating the user's
+      instructions as authorisation to accept additional terms imposed by the website.
+      ScamWorld is released as a reusable testbed for systematically evaluating and
+      stress-testing web agents against real-world online fraud.
+    summary_zh: >-
+      除了提示注入与欺骗式界面，在开放网页上代用户浏览、购物、管理账号的 web agent 还会遇到专门骗人的
+      欺诈 —— 假冒网店、虚假投资平台、预付费骗局；但诈骗站点存活时间短，难以系统评测。ScamWorld 按不同
+      场景、欺诈机制与语言重建已上报的诈骗网站，每个重建站点复现了有据可查的欺诈机制，让欺诈迹象在 agent
+      做出最终动作之前就可被观察到，从而实现可控、可重复的评测。作者用六个前沿 LLM 驱动的 web agent
+      做实验，基线受骗率在 11%–35% 之间；相比索取凭据或钱包信息，agent 更容易在付款环节照做。轨迹分析
+      还发现，部分 agent 明明识别出可疑条件却仍然继续，有时把用户指令理解成「可以接受网站额外条款」的
+      授权。作者把 ScamWorld 作为可复用的测试床发布，用于系统性评测和压测 web agent 面对真实网络欺诈的
+      表现。
+  - id: "2611.29268"
+    title: "Benchmarking Web Agent Defenses Against Adaptive Visual Prompt Injection"
+    abbr: "AdaptiveVPI"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "3.2"
+    env: [web]
+    summary: >-
+      Defenses against visual prompt injection (VPI) mostly look for injected instructions in
+      screenshots, yet malicious destinations such as phishing URLs can sit in the HTML, invisible
+      in the screenshot but reachable through agent interactions, and existing evaluations rarely
+      consider attackers who know the defense. AdaptiveVPI is the first benchmark for adaptive VPI
+      against web agents: 360 webpage instances spanning 6 hijack strategies across 10 real-world
+      websites, with malicious destinations hidden from the screenshot, plus an attack framework that
+      iteratively refines instructions using feedback from the defense under test and three metrics
+      that grade hijacking at three levels. Across 10 defense configurations for computer-use agents
+      and 11 for browser-use agents, adaptive attacks reach average success rates of 91.87% and
+      91.99%, exposing a wide gap between current VPI defenses and realistic adaptive threats.
+    summary_zh: >-
+      现有视觉提示注入（VPI）防御大多在截图里找被注入的指令，但钓鱼 URL 这类恶意目的地可以藏在 HTML 里 ——
+      截图上看不到，agent 交互时却能访问到；而且现有评测很少考虑熟悉防御机制的自适应攻击者。AdaptiveVPI
+      是首个面向 web agent 自适应 VPI 的基准：在 10 个真实网站上构造 360 个网页实例，覆盖 6 种劫持策略，
+      恶意目的地均不出现在截图中；配套的攻击框架根据被测防御的反馈迭代改写恶意指令，并用三项指标分三个
+      层级衡量劫持程度。在 10 种计算机使用 agent 防御配置和 11 种 browser-use agent 防御配置上，自适应
+      攻击的平均成功率分别达到 91.87% 与 91.99%，说明当前 VPI 防御与真实的自适应威胁之间差距很大。
+
+  - id: "2611.29977"
+    title: "Conartist: Adaptive Agentic Red-Teaming of Computer-Using Agents against Multi-Step Prompt Injection"
+    abbr: "Conartist"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "1.1"
+    env: [web, cross]
+    summary: >-
+      Agent harnesses secure computer-using agents with two core mechanisms — consistency checking,
+      which keeps the agent on the user's objective, and risk auditing, which inspects high-risk
+      operations — and both turn out to be exploitable. Conartist is a cascaded adaptive prompt
+      injection framework: a goal-pollution stage builds deceptive causal dependencies between the
+      legitimate objective and malicious operations so attack steps look logically consistent with
+      the task, and a second stage mines security-auditing feedback from controlled exploration to
+      either avoid triggering the audit or induce extra high-risk operations through the audit
+      itself. Across five backbone models it reaches 32.12% attack success on a 576-instance tool-use
+      benchmark and 66.67% on a Reddit GUI benchmark, 14.41 and 29.17 points above the prior best
+      attack, and an analysis of OpenClaw distills seven realistic exploitable patterns.
+      (Boundary entry: part of the evaluation is tool-use rather than GUI, but the target is
+      explicitly computer-using agents and their harness defenses, with a GUI benchmark included.)
+    summary_zh: >-
+      Agent 框架靠两项核心机制保护计算机使用 agent：一致性检查（防止偏离用户目标）与风险审计（主动审查
+      高风险操作），而这两项机制本身都可被利用。Conartist 是一个两阶段级联的自适应提示注入框架：第一阶段
+      用「目标污染」在合法用户目标与恶意操作之间编造因果依赖，让攻击步骤看起来与任务逻辑一致；第二阶段
+      从受控攻击探索中分析安全审计的反馈，要么绕开审计，要么反过来借审计流程诱导出额外的高风险操作。
+      在五个底座模型上，它在 576 例工具调用基准上攻击成功率 32.12%，在 Reddit GUI 基准上 66.67%，分别
+      比此前最佳攻击高 14.41 与 29.17 个百分点；对 OpenClaw 的分析还归纳出七种现实可利用的攻击模式。
+      （边界条目：部分评测为工具调用而非 GUI，但研究对象明确是计算机使用 agent 及其框架防御，且含 GUI
+      基准，故收录。）
+
+  - id: "2611.29847"
+    title: "MobileGrail: Learning Compact Guardrails for On-Device deployable Mobile GUI Agent Safety"
+    abbr: "MobileGrail"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "2.2"
+    env: [mobile]
+    summary: >-
+      Runtime guardrails for mobile GUI agents assess each proposed action before execution, but
+      existing ones run on cloud-hosted multimodal models and thus ship every screen — payments,
+      messages, medical records — to a remote server. MobileGrail is an on-device guardrail that keeps
+      a recurrent task state holding only the evidence later safety decisions need, and learns two
+      labels: unsafe for the action that commits a violation, and block, which may fire anywhere in an
+      intervention window starting from the first action the user's authorization no longer explains.
+      Training uses a 32-app environment whose backends verify every action's effect, and the
+      authors release MobileVeto, an offline benchmark of unsafe trajectories on largely held-out apps
+      paired with benign counterparts. Built on Qwen3.5-2B it intercepts 76.2% of violations (vs.
+      64.5% for its prompted backbone) while cutting premature intervention from 58.6% to 5.2%,
+      beating the cloud-based OS-Sentinel on both; guarding an agent on GhostEI-Bench it cuts fully
+      successful attacks from 13 to 3 of 110 tasks, and at 4 bits runs on a Snapdragon 8 Elite at a
+      median 4.7 s.
+    summary_zh: >-
+      移动 GUI agent 的运行时护栏会在执行前评估每个拟执行动作，但现有方案依赖云端多模态大模型，等于把每一屏
+      内容（支付、消息、病历）都发往远程服务器。MobileGrail 是可端侧部署的护栏：它维护一个循环更新的任务
+      状态，只保留后续安全决策需要的证据；并学习两种标签 —— unsafe 标记真正构成违规的那一步，block 则可在
+      「干预窗口」内任意一步发出，窗口从用户授权已无法解释的第一个动作开始。训练环境含 32 个应用，后端会
+      校验每个动作的实际效果；作者还发布了离线基准 MobileVeto，不安全轨迹大多来自训练未见的应用，并各配一条
+      良性对照。基于 Qwen3.5-2B 的 MobileGrail 拦截了 76.2% 的违规（提示式底座为 64.5%），过早干预率从
+      58.6% 降到 5.2%，两项都优于云端方案 OS-Sentinel；在 GhostEI-Bench 上守护 agent 时，110 个任务中完全
+      成功的攻击从 13 个降到 3 个；4 bit 量化后在骁龙 8 Elite 上中位延迟 4.7 秒。
+
+  - id: "2611.25526"
+    title: "MATE: Mobile Agent Trustworthy Execution for Safe and Efficient Mobile Control"
+    abbr: "MATE"
+    date: "2026-11"
+    venue: "EMNLP 2026"
+    section: "2.3"
+    env: [mobile]
+    summary: >-
+      Mobile agents on personal smartphones can touch private data, payments, settings, and the
+      foreground screen. MATE is an execution-layer system that controls the boundary between an
+      agent's action proposals and their device effects without modifying the underlying model. Each
+      UI primitive becomes a structured action record combining the instruction, target app, screen
+      context, primitive, and action fields; a Runtime Guardrail maps the record to allow, block, or
+      user approval, Predefined Task Routing serves recurring requests through verified routes with
+      post-execution screen checks, and a floating overlay keeps execution compact. On
+      MobileSafetyBench, MATE raises high-risk blocking from 29.7% to 97.0% under GPT-4o, and on
+      AndroidWorld it cuts LLM calls by up to 6x while raising recurring-use task success to 95.7%.
+    summary_zh: >-
+      个人手机上的移动 agent 可以触及隐私数据、支付、系统设置和前台屏幕。MATE 是一个执行层系统，在不改动
+      底层模型的前提下，管住「agent 提出动作」与「动作在设备上生效」之间的边界。它把每个 UI 原语表示为结构化
+      动作记录，包含指令、目标应用、屏幕上下文、原语类型与动作字段；运行时护栏把记录映射为放行、拦截或交由
+      用户确认三种决策；预定义任务路由让高频重复请求走经过验证的固定路径，并在执行后检查屏幕；悬浮界面让
+      执行过程保持在紧凑的覆盖层中。在 MobileSafetyBench 上，MATE 在 GPT-4o 下把高风险动作拦截率从 29.7%
+      提到 97.0%；在 AndroidWorld 上，LLM 调用最多减少 6 倍，重复使用场景的任务成功率提升到 95.7%。
+
+  - id: "2611.24102"
+    title: "IDEA: Intent-Dominance Evidence Audit for Inference-Time Backdoor Detection in GUI Agents"
+    abbr: "IDEA"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "2.6"
+    env: [cross]
+    summary: >-
+      Organizations increasingly deploy downloaded open-weight GUI agents, and a backdoored checkpoint
+      passes clean acceptance tests while misbehaving only when a visual trigger appears on screen —
+      a supply-chain risk that existing sample-level detectors, built for image classifiers and
+      CLIP-style encoders, do not address at the step level. IDEA rests on an observation the authors
+      call intent–evidence dominance inversion: on clean steps the instruction drives the action, but
+      when an unreferenced screen region hijacks a step, the instruction loses control of the decision
+      state or that region dictates it. Intent Counterfactual Probing measures how far redirected
+      instructions move the decision state, Region Causal Audit measures how far ablating a candidate
+      region moves it, and a gated conformal score compares both against clean steps, giving a
+      finite-sample false-positive guarantee without trigger knowledge or attack data. On
+      Qwen2.5-VL-3B across five attack families, IDEA consistently detects backdoor activation at a
+      controlled false-positive rate, outperforms state-of-the-art detectors, localizes the trigger
+      region for every alarm, and adds only modest inference overhead.
+    summary_zh: >-
+      越来越多机构直接部署下载来的开源权重 GUI agent，而被植入后门的权重能通过干净数据上的验收测试，只在屏幕
+      出现视觉触发器时才作恶 —— 这是一种供应链风险；现有样本级检测器面向图像分类器和 CLIP 类编码器，无法在
+      GUI agent 的单步层面检测。IDEA 基于作者称为「意图–证据主导反转」的现象：正常步骤里是指令在驱动动作，
+      而当某个指令未提及的屏幕区域劫持了这一步时，指令就失去了对决策状态的控制，或者由该区域主导决策。
+      意图反事实探测（ICP）衡量改写指令能让决策状态偏移多远，区域因果审计（RCA）衡量消融候选区域能让它偏移
+      多远；再用门控共形分数把两者与同等距离的干净步骤对比，在不知道触发器、也不需要攻击数据的前提下给出有限
+      样本的误报率保证。在 Qwen2.5-VL-3B 与五类攻击上，IDEA 能在受控误报率下稳定检出后门激活，优于现有最佳
+      检测方法，每次报警都能定位触发区域，推理开销也不大。
+
+  - id: "2611.22971"
+    title: "SEAM: Computer-Use Agents Know the Harm Between Screens, and Commit It Anyway"
+    abbr: "SEAM"
+    date: "2026-11"
+    venue: "arXiv"
+    section: "3.4"
+    env: [desktop]
+    summary: >-
+      CUA safety benchmarks place harm either in the task intent or on a single screen — a malicious
+      instruction, an injected command, a phishing page — so an agent that checks the task and each
+      screen in isolation can pass them. In delegated work, however, harm often arises by combination:
+      a fact about a person on one screen, a fact about an item on another, and a legitimate task that
+      binds them. SEAM (Safety Execution Across Multiple screens) contains 600 multi-step,
+      cross-application OSWorld tasks in which the instruction and every single observation are
+      benign and only their combination is harmful; minimal-pair variants scored from server logs
+      rather than an LLM judge pinpoint where agents fail. General-purpose open-weight and flagship
+      agents carry out the harm in up to 92% of runs yet decline when the user states it in one
+      sentence; they open the decisive pages, flag the harm when asked, and with thinking often write
+      the conflict into their reasoning and confirm anyway. Safety recognition does not reliably
+      translate into safe execution, and the same warning stops agents far more often in the user's
+      instruction than on screen; proprietary models are markedly more cautious.
+    summary_zh: >-
+      现有 CUA 安全基准把危害放在任务意图里，或放在单一屏幕上（恶意指令、注入命令、钓鱼页面），因此一个分别
+      检查任务与每一屏的 agent 就能通过。但在委托式工作中，危害往往来自组合：一屏上有关于某人的事实，另一屏
+      上有关于某物的事实，再加上一个把两者绑在一起的合法任务。SEAM（跨多屏的安全执行）包含 600 个多步、跨
+      应用的 OSWorld 任务，其中指令和每一个单独的观测都是良性的，只有组合起来才有害；通过只差一处的最小对
+      变体、并以服务器日志而非 LLM 评审打分，可以精确定位 agent 在哪一步失守。通用开源权重模型与旗舰 agent
+      在最多 92% 的运行中实施了危害，可一旦用户用一句话直接说出来，它们就会拒绝；它们确实打开了关键页面，
+      被问到时也能指出危害，开启思考时还常把冲突写进推理里，然后照样确认执行。可见「认出风险」并不能可靠
+      转化为「安全执行」，且取决于信息通道：同样的警告放在用户指令里比放在屏幕上有效得多；闭源模型明显更谨慎。
+
+  - id: "2611.22223"
+    title: "GapLeak: When Privacy-Preserving LLM-based Web Agents Become a Privacy Risk"
+    abbr: "GapLeak"
+    date: "2026-11"
+    venue: "PoPETs"
+    section: "1.5"
+    env: [web]
+    summary: >-
+      LLM-based web agents rely on data minimization and least privilege to protect user privacy, but
+      these principles constrain authorized sources, not higher-sensitivity sources that remain
+      reachable. A website can request a field unavailable from authorized sources, creating an
+      information gap; to finish the task, a goal-driven agent may escalate to reachable but
+      unauthorized sources and disclose accumulated sensitive information. GapLeak formalizes this
+      vulnerability, in which an adversary exploits a legitimate web form with no prompt injection or
+      malicious instruction at all. Across three web-agent frameworks and six LLMs from Anthropic,
+      Google, and OpenAI in recruitment, e-commerce, travel, and healthcare, it induces about 37%
+      unauthorized disclosure on average, and removing the information gap cuts disclosure by more
+      than 50%. Instruction-level least-privilege defenses help partially but often hurt task
+      success, whereas the proposed submission-time verification, which filters unauthorized content
+      before form submission, eliminates over 96% of unauthorized disclosures while preserving task
+      success.
+    summary_zh: >-
+      基于 LLM 的 web agent 依靠数据最小化和最小权限原则保护用户隐私，但这些原则只约束了「已授权来源」，管不住
+      那些仍然可以访问到的更高敏感度来源。网站可以索要一个已授权来源里没有的字段，制造「信息缺口」；为了完成
+      任务，目标驱动的 agent 可能会转而去查可达但未授权的来源，进而泄露累积的敏感信息。GapLeak 把这一漏洞
+      形式化：攻击者只需利用一个合法的网页表单，不需要任何提示注入或恶意指令。在招聘、电商、出行、医疗四个
+      场景下，对三个 web agent 框架和来自 Anthropic、Google、OpenAI 的六个 LLM 测试，平均未授权泄露率约
+      37%；消除信息缺口可把泄露降低 50% 以上。基于最小权限的指令级防御只能部分缓解，且常损害任务成功率；
+      作者提出的「提交时校验」在表单提交前过滤未授权内容，消除了 96% 以上的未授权泄露，同时保持任务成功率。
+
+  - id: "2611.16693"
+    title: "MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection"
+    abbr: "MobileProbe"
+    date: "2026-11"
+    venue: "NDSS 2027"
+    section: "1.3"
+    env: [mobile]
+    summary: >-
+      Mobile GUI agents act on whatever the screen shows, so an attacker can embed malicious
+      instructions in ordinary UI content and redirect their actions (environmental injection).
+      Existing benchmarks pin hand-crafted payloads to a fixed step of a fixed task, which neither
+      transfers across apps nor tests agents that take a different route and never reach the
+      injected page — such agents are recorded as safe without being tested, so fixed-point
+      benchmarks underestimate risk. MobileProbe is a trajectory-aware red-teaming framework that
+      discovers attacker-controllable content surfaces through automated pentesting, localizes
+      vulnerable decision points along the agent's trajectory, and iteratively refines context-aware
+      payloads through a surrogate-filtered evolutionary loop. Its benchmark has 83 long-horizon
+      attack instances across 12 mobile apps, each annotated with a Confidentiality, Integrity, or
+      Availability goal; on three representative agent architectures MobileProbe achieves higher
+      attack success than human-written, zero-shot LLM, and prior automated red-teaming baselines
+      adapted to mobile, and can serve as a pre-deployment auditing tool.
+    summary_zh: >-
+      移动 GUI agent 屏幕上显示什么就照着什么操作，攻击者因此可以把恶意指令嵌进普通 UI 内容、改变它的动作，
+      即环境注入攻击。现有基准把手工载荷钉在固定任务的固定步骤上：一方面换个应用就得重新设计，另一方面同一任务
+      下 agent 可能走不同路径，没走到注入页面的 agent 未经测试就被记为「安全」，导致定点式基准低估风险。
+      MobileProbe 是一个感知轨迹的红队框架：通过自动化渗透测试发现攻击者可控的内容面，沿 agent 轨迹定位脆弱的
+      决策点，再用代理模型过滤的进化循环迭代优化贴合上下文的载荷。配套基准含 12 个移动应用上的 83 个长程攻击
+      实例，每个都标注了机密性、完整性或可用性（CIA）攻击目标。在三种代表性 agent 架构上，MobileProbe 的攻击
+      成功率高于人工编写、零样本 LLM 以及迁移到移动端的已有自动化红队基线，可作为部署前的安全审计工具。

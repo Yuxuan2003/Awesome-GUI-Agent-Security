@@ -4,6 +4,24 @@
 
 > 本文件由 `scripts/build.py` 生成，请勿手工编辑。
 
+#### MobileGrail: Learning Compact Guardrails for On-Device deployable Mobile GUI Agent Safety (MobileGrail) (2026-11)
+
+移动 GUI agent 的运行时护栏会在执行前评估每个拟执行动作，但现有方案依赖云端多模态大模型，等于把每一屏 内容（支付、消息、病历）都发往远程服务器。MobileGrail 是可端侧部署的护栏：它维护一个循环更新的任务 状态，只保留后续安全决策需要的证据；并学习两种标签 —— unsafe 标记真正构成违规的那一步，block 则可在 「干预窗口」内任意一步发出，窗口从用户授权已无法解释的第一个动作开始。训练环境含 32 个应用，后端会 校验每个动作的实际效果；作者还发布了离线基准 MobileVeto，不安全轨迹大多来自训练未见的应用，并各配一条 良性对照。基于 Qwen3.5-2B 的 MobileGrail 拦截了 76.2% 的违规（提示式底座为 64.5%），过早干预率从 58.6% 降到 5.2%，两项都优于云端方案 OS-Sentinel；在 GhostEI-Bench 上守护 agent 时，110 个任务中完全 成功的攻击从 13 个降到 3 个；4 bit 量化后在骁龙 8 Elite 上中位延迟 4.7 秒。
+
+`环境: Mobile` ｜ [arXiv:2611.29847](https://arxiv.org/abs/2611.29847)
+
+#### MATE: Mobile Agent Trustworthy Execution for Safe and Efficient Mobile Control (MATE) (2026-11)
+
+个人手机上的移动 agent 可以触及隐私数据、支付、系统设置和前台屏幕。MATE 是一个执行层系统，在不改动 底层模型的前提下，管住「agent 提出动作」与「动作在设备上生效」之间的边界。它把每个 UI 原语表示为结构化 动作记录，包含指令、目标应用、屏幕上下文、原语类型与动作字段；运行时护栏把记录映射为放行、拦截或交由 用户确认三种决策；预定义任务路由让高频重复请求走经过验证的固定路径，并在执行后检查屏幕；悬浮界面让 执行过程保持在紧凑的覆盖层中。在 MobileSafetyBench 上，MATE 在 GPT-4o 下把高风险动作拦截率从 29.7% 提到 97.0%；在 AndroidWorld 上，LLM 调用最多减少 6 倍，重复使用场景的任务成功率提升到 95.7%。
+
+`环境: Mobile` ｜ `发表: EMNLP 2026` ｜ [arXiv:2611.25526](https://arxiv.org/abs/2611.25526)
+
+#### MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection (MobileProbe) (2026-11)
+
+移动 GUI agent 屏幕上显示什么就照着什么操作，攻击者因此可以把恶意指令嵌进普通 UI 内容、改变它的动作， 即环境注入攻击。现有基准把手工载荷钉在固定任务的固定步骤上：一方面换个应用就得重新设计，另一方面同一任务 下 agent 可能走不同路径，没走到注入页面的 agent 未经测试就被记为「安全」，导致定点式基准低估风险。 MobileProbe 是一个感知轨迹的红队框架：通过自动化渗透测试发现攻击者可控的内容面，沿 agent 轨迹定位脆弱的 决策点，再用代理模型过滤的进化循环迭代优化贴合上下文的载荷。配套基准含 12 个移动应用上的 83 个长程攻击 实例，每个都标注了机密性、完整性或可用性（CIA）攻击目标。在三种代表性 agent 架构上，MobileProbe 的攻击 成功率高于人工编写、零样本 LLM 以及迁移到移动端的已有自动化红队基线，可作为部署前的安全审计工具。
+
+`环境: Mobile` ｜ `发表: NDSS 2027` ｜ [arXiv:2611.16693](https://arxiv.org/abs/2611.16693)
+
 #### MobileInject: Evaluating Reasoning-to-Action Security of MLLM-Based Mobile Agents under Cross-Modal Consistency Injection (MobileInject) (2026-10)
 
 攻击者可以把恶意目标嵌入跨应用的移动端内容中，通过间接多模态注入操纵基于多模态大模型的移动 agent；然而提示注入在移动生态中的跨模态特性，此前一直缺乏深入理解。MobileInject 是首个评估 移动 agent 抵御多模态注入与「推理到动作」安全风险的基准：一个高保真的交互式移动端评测框架， 覆盖 11 个场景、9 类安全风险与 108 个可执行风险实例。它提出「跨模态一致性注入」，利用多个模态 之间相互印证来增强可信度；另有两种强化攻击 —— 多角色协同欺骗与推理伪装注入 —— 分别加剧信任 操纵与推理劫持；还配有一个推理安全诊断框架用于细粒度失效分析。系统实验表明，移动 agent 普遍 容易受到多模态注入影响，且许多失败源于推理早期就已被劫持。
